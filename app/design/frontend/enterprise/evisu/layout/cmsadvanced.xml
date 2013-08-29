@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <PAGE_TYPE_DEFAULT>
+        <reference name="content">
+            <block type="cmsadvanced/page" name="cmsadvanced.page"/>
+        </reference>
+    </PAGE_TYPE_DEFAULT>
+
+    <PAGE_TYPE_HOME_PAGE>
+        <reference name="head">
+            <!--<action method="addItem"><type>skin_js</type><name>js/jquery/jquery.flexslider-min.js</name></action>-->
+            <!--<action method="addItem"><type>skin_js</type><name>js/froogaloop.min.js</name></action>-->
+            <!--<action method="addItem"><type>skin_js</type><name>js/homepage.js</name></action>-->
+            <!--<action method="addItem"><type>skin_js</type><name>js/jquery/jquery.bxslider.min.js</name></action>-->
+            <!-- action method="addItem"><type>skin_css</type><name>css/jquery.bxslider.css</name></action -->
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <remove name="global_messages" />
+        </reference>
+    </PAGE_TYPE_HOME_PAGE>
+</layout>

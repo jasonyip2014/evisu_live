@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_HomePage>
+            <version>0.1.0</version>
+        </Evisu_HomePage>
+    </modules>
+    <global>
+        <models>
+            <evisu_homepage>
+                <class>Evisu_HomePage_Model</class>
+            </evisu_homepage>
+        </models>
+        <blocks>
+            <evisu_homepage>
+                <class>Evisu_HomePage_Block</class>
+            </evisu_homepage>
+        </blocks>
+        <helpers>
+            <evisu_homepage>
+                <class>Evisu_HomePage_Helper</class>
+            </evisu_homepage>
+        </helpers>
+        <resources>
+            <evisu_homepage_setup>
+                <setup>
+                    <module>Evisu_HomePage</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_homepage_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <home_page>
+                <name>Home Page</name>
+                <template>cmsadvanced/homepage/homepage.phtml</template>
+                <!--<block>homepage/homepage</block>-->
+                <groups>
+                    <main>
+                        <label>Main</label>
+                        <attributes>
+                            <main_image>
+                                <name>Main Image</name>
+                                <required>1</required>
+                                <template>image</template>
+                            </main_image>
+                            <main_text>
+                                <name>Main Image</name>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </main_text>
+                        </attributes>
+                    </main>
+                </groups>
+            </home_page>
+
+           <!-- <homepagetype4>
+                <name>Home Page Type 4</name>
+                <template>cmsadvanced/homepage/homepagetype4.phtml</template>
+                <block>homepage/type4</block>
+                <groups>
+                    <type4_side_left>
+                        <name>Side Left</name>
+                        <attributes>
+                            <type4_side_left_title>
+                                <label>Title Text</label>
+                                <template>text</template>
+                            </type4_side_left_title>
+                            <type4_side_left_title_color>
+                                <label>Title Text Color</label>
+                                <type>text</type>
+                                <template>dropdown</template>
+                                <source>homepage/config_source_textcolor</source>
+                            </type4_side_left_title_color>
+                            <type4_side_left_text>
+                                <label>Button Text</label>
+                                <template>text</template>
+                            </type4_side_left_text>
+                            <type4_side_left_url>
+                                <label>Target URL</label>
+                                <template>text</template>
+                            </type4_side_left_url>
+                            <type4_side_left_image>
+                                <label>Background Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                            </type4_side_left_image>
+                            <type4_side_left_code_video>
+                                <label>Code video</label>
+                                <template>text</template>
+                            </type4_side_left_code_video>
+                        </attributes>
+                    </type4_side_left>
+                    <type4_side_right>
+                        <name>Side Right</name>
+                        <attributes>
+                            <type4_side_right_title>
+                                <label>Title Text</label>
+                                <template>text</template>
+                            </type4_side_right_title>
+                            <type4_side_left_title_color>
+                                <label>Title Text Color</label>
+                                <type>text</type>
+                                <template>dropdown</template>
+                                <source>homepage/config_source_textcolor</source>
+                            </type4_side_left_title_color>
+                            <type4_side_right_text>
+                                <label>Button Text</label>
+                                <template>text</template>
+                            </type4_side_right_text>
+                            <type4_side_right_url>
+                                <label>Target URL</label>
+                                <template>text</template>
+                            </type4_side_right_url>
+                            <type4_side_right_image>
+                                <label>Background Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                            </type4_side_right_image>
+                            <type4_side_right_code_video>
+                                <label>Code video</label>
+                                <template>text</template>
+                            </type4_side_right_code_video>
+                        </attributes>
+                    </type4_side_right>
+                </groups>
+            </homepagetype4>-->
+        </pagetypes>
+    </cmsadvanced>
+</config>
