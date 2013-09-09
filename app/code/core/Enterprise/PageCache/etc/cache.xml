@@ -13,13 +13,13 @@
             <container>Enterprise_PageCache_Model_Container_Viewedproducts</container>
             <cache_lifetime>86400</cache_lifetime>
         </last_viewed_products_widget>
-        <catalog_navigation>
+        <!--<catalog_navigation>
             <block>page/html_topmenu</block>
             <name>catalog.topnav</name>
             <placeholder>TOPMENU</placeholder>
             <container>Enterprise_PageCache_Model_Container_Catalognavigation</container>
             <cache_lifetime>86400</cache_lifetime>
-        </catalog_navigation>
+        </catalog_navigation>-->
         <cart_sidebar>
             <block>checkout/cart_sidebar</block>
             <placeholder>CART_SIDEBAR</placeholder>

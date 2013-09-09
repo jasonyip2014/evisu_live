@@ -1,0 +1,25 @@
+<?php
+/* @see RONISBT_TOPMENU_BLOCK_SUBMENU */
+?>
+<?php
+    $_menuHelper = Mage::helper('topmenu');
+    $_subLevel = $this->getLevel()+1;
+    $_category = $this->getCategory();
+    $categoryChildren = $this->helper('topmenu')->getCategoryChildren($this->getCategory(), false);
+?>
+<div class="level-<?php echo $this->getLevel() ?> dropdown dropdown<?php echo ($_category->getName())? '-'.strtolower($_category->getName()) : ''; ?>">
+    <div class="col-1">
+        <ul class="dropdown-categories">
+            <?php $i=0; foreach ($categoryChildren as $child): $i++;?>
+                <li rel="el<?php echo $i; ?>" class="level-<?php echo $_subLevel ?>">
+                    <div class="category-name">
+                        <?php $rel = ($child->getMenuThumbnailImage()) ? $_menuHelper->getMenuThumbnailImageUrl($child->getMenuThumbnailImage()): '' ; ?>
+                        <a href="<?php echo $this->urlEscape($_menuHelper->getCategoryUrl($child)) ?>" title="<?php echo $this->escapeHtml($child->getName()); ?>" rel="<?php echo $rel; ?>">
+                            <?php echo $child->getName() ?>
+                        </a>
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+</div>

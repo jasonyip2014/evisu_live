@@ -1,0 +1,71 @@
+<?php /* @var $this RonisBT_TopMenu_Block_Navigation */ ?>
+
+<?php $_menu = $this->getMenuItems() ?>
+
+<?php if (!empty($_menu)): ?>
+<div class="nav-container">
+    <ul id="nav">
+        <li class="level0 nav-1 nav-shop top-level">
+            <a class="main-menu-item" href="javascript:void(0)" title="<?php echo $this->__('Shop'); ?>">
+                <?php echo $this->__('Shop'); ?>
+            </a>
+            <?php if ($_menu): ?>
+            <ul class="level0 no-display">
+                <?php foreach ($_menu as $_item): ?>
+                    <?php echo $this->drawItem($_item, 1) ?>
+                <?php endforeach ?>
+                <li class="category-image-holder">
+                    <?php /*
+                        <?php $defaultImgSrc = Mage::helper('crombie_catalog')->getDefaultCategoryImageSrc(); ?>
+                        <div class="shop-category-image">
+                            <img src="<?php echo $defaultImgSrc ?>" alt="" class="default-cat-image"/>
+                        </div>
+                    */ ?>
+                </li>
+                <li><span class="search-bnt"></span></li>
+            </ul>
+            <?php endif; ?>
+        </li>
+        <?php  /*
+            <li class="level0 nav-2 nav-the-crombie-coat top-level">
+                <a href="<?php echo Mage::getUrl('the-coat'); ?>" class="<?php echo $this->__('The Crombie Coat'); ?>">
+                    <span><?php echo $this->__('The Crombie Coat'); ?></span>
+                </a>
+            </li>
+            <li class="level0 nav-3 nav-heritage top-level">
+                <a href="<?php echo Mage::getUrl('heritage'); ?>" class="<?php echo $this->__('Heritage'); ?>">
+                    <span><?php echo $this->__('Heritage'); ?></span>
+                </a>
+            </li>
+            <li class="level0 nav-4 nav-lookbook top-level">
+                <a href="<?php echo Mage::getUrl('lookbook'); ?>" class="">
+                    <span><?php echo $this->__('Lookbook'); ?></span>
+                </a>
+            </li>
+            <li class="level0 nav-5 nav-made-to-measure top-level">
+                <a href="<?php echo Mage::getUrl('made-to-measure'); ?>" class="<?php echo $this->__('Made To Measure'); ?>">
+                    <span><?php echo $this->__('Made To Measure'); ?></span>
+                </a>
+            </li>
+            <li class="level0 nav-6 nav-blog top-level">
+                <a href="<?php echo Mage::getUrl('blog'); ?>" class="<?php echo $this->__('Blog'); ?>">
+                    <span><?php echo $this->__('Blog'); ?></span>
+                </a>
+            </li>
+            <li class="level0 nav-7 nav-press top-level">
+                <a href="<?php echo Mage::getUrl('press'); ?>" class="<?php echo $this->__('Press'); ?>">
+                    <span><?php echo $this->__('Press'); ?></span>
+                </a>
+            </li>
+            <li class="level0 nav-8 nav-press top-level" id="nav-8">
+                <?php $saleProducts = Mage::helper('salecategory')->getSaleCategoryCollection(); ?>
+                <?php if($saleProducts->getSize()): ?>
+                    <a href="<?php echo Mage::getUrl('sale-2'); ?>" class="<?php echo $this->__('Sale'); ?>">
+                        <span><?php echo $this->__('Sale'); ?></span>
+                    </a>
+                <?php endif ?>
+            </li>
+        */ ?>
+    </ul>
+</div>
+<?php endif; ?>

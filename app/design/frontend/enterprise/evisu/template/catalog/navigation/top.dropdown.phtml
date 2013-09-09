@@ -1,0 +1,66 @@
+<?php
+return;
+    // NOTE: Uncomment to enable filter multiselect for CatalogNavigation
+    //$this->setMultiselectFiltersEnabled(true);
+    $_menuHelper = $this->helper('topmenu');
+    $_sublevel = $this->getLevel()+1;
+    $_category = $this->getCategory();
+
+    // $_colors = $this->getFilterItems('color');
+    // $_prices = $this->getFilterItems('price', 'catalog/layer_filter_price');
+?>
+<div class="level-<?php echo $this->getLevel() ?> dropdown dropdown<?php echo ($_category->getName())? '-'.strtolower($_category->getName()) : ''; ?>">
+    <div class="col-1">
+            <ul class="dropdown-categories">
+                <?php $i=0; foreach ($this->helper('topmenu')->getCategoryChildren($this->getCategory(), false) as $child): $i++;?>
+                    <li class="level-<?php echo $_sublevel ?>">
+                        <h2 class="category-name">
+                            <a href="<?php echo $this->urlEscape($_menuHelper->getCategoryUrl($child)) ?>">
+                                <?php echo $child->getName() ?>
+                            </a>
+                        </h2>
+                        <?php /* $categoryThumbnail = ($child->getMenuThumbnailImage()) ? $_menuHelper->getMenuThumbnailImageUrl($child->getMenuThumbnailImage()) : false ; ?>
+                        <?php if ($categoryThumbnail): ?>
+                            <a class="main-category-image" href="<?php echo $this->urlEscape($child->getUrl()) ?>">
+                                <img width="175" height="128" src="<?php echo $categoryThumbnail; ?>" />
+                            </a>
+                        <?php endif; ?>
+                        <?php if ( ($categoryChildren = $this->helper('topmenu')->getCategoryChildren($child, false)) && count($categoryChildren)): ?>
+                        <ul class="dropdown-subcategories-links">
+                            <?php $j=0; foreach($categoryChildren as $_child): $j++;?>
+                            <li class="level-<?php echo $_sublevel; ?>">
+                                <p class="category-name">
+                                    <a href="<?php echo $this->urlEscape($_menuHelper->getCategoryUrl($_child)) ?>">
+                                        <?php echo $_child->getName() ?>
+                                    </a>
+                                </p>
+                            </li>
+                            <?php endforeach ?>
+                        </ul>
+                        <?php endif; */?>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    <?php /* <div class="col-2">
+        <h2 class="title"><?php echo $this->__('View by price:') ?></h2>
+        <ul>
+            <li class="level-<?php echo $_sublevel ?>"><a href="<?php echo $this->getCategoryUrl($_category) ?>"><span><?php echo $this->__('View all') ?></span></a></li>
+            <?php foreach ($_prices as $_item): ?>
+                <?php if ($_item->getCount() > 0): ?>
+                    <li><a href="<?php echo $this->getFilterItemUrl($_category, $_item, true) ?>"><span><?php echo $_item->getLabel() ?></span></a></li>
+                <?php endif ?>
+            <?php endforeach; ?>
+        </ul>
+
+        <h2 class="title"><?php echo $this->__('View by color:') ?></h2>
+        <ul>
+            <li class="level-<?php echo $_sublevel ?>"><a href="<?php echo $this->getCategoryUrl($_category) ?>"><span><?php echo $this->__('View all') ?></span></a></li>
+            <?php foreach ($_colors as $_item): ?>
+                <?php if ($_item->getCount() > 0): ?>
+                    <li><a href="<?php echo $this->getFilterItemUrl($_category, $_item, true) ?>"><span><?php echo $_item->getLabel() ?></span></a></li>
+                <?php endif ?>
+            <?php endforeach; ?>
+        </ul>
+    </div> */ ?>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <placeholders>
+        <catalog_navigation>
+            <block>topmenu/navigation</block>
+            <name>catalog.topmenu</name>
+            <placeholder>CATALOG_NAVIGATION</placeholder>
+            <container>Enterprise_PageCache_Model_Container_Catalognavigation</container>
+            <cache_lifetime>60</cache_lifetime>
+        </catalog_navigation>
+    </placeholders>
+</config>

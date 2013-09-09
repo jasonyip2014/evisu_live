@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <RonisBT_TopMenu>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Catalog />
+                <Enterprise_PageCache />
+            </depends>
+        </RonisBT_TopMenu>
+    </modules>
+</config>
