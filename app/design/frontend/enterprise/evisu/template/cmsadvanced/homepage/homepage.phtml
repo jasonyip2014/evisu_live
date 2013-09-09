@@ -1,9 +1,27 @@
 <?php
-//die('sdf');
-/**
- * Created by JetBrains PhpStorm.
- * User: nikolayk
- * Date: 8/29/13
- * Time: 9:46 AM
- */
+    /* @var $this RonisBT_Cms_Block_Page */
 ?>
+<div class="home-page">
+    <div class="main-section">
+        <div class="image-holder">
+            <img src="<?php echo $this->getImage('main_image') ?>" />
+        </div>
+        <p><?php echo $this->escapeHtml($this->getMainText()) ?></p>
+    </div>
+    <div class="navigation">
+        <div class="explore-more-btn"><?php echo $this->__('Explore More') ?></div>
+        <div class="back-btn"><?php echo $this->__('Back') ?></div>
+    </div>
+    <div class="sections">
+        <?php $i = 1; ?>
+        <?php $sections = $this->getSections() ?>
+        <?php if(count($sections) > 0): ?>
+            <?php foreach ($sections as $_section): ?>
+                <div class="section-<?php echo $i ?>">
+                    <?php echo $_section->toHtml(); ?>
+                </div>
+                <?php $i++; ?>
+            <?php endforeach ?>
+        <?php endIf; ?>
+    </div>
+</div>

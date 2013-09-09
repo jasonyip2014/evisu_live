@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_HomePage>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </Evisu_HomePage>
     </modules>
     <global>
@@ -35,7 +35,7 @@
             <home_page>
                 <name>Home Page</name>
                 <template>cmsadvanced/homepage/homepage.phtml</template>
-                <!--<block>homepage/homepage</block>-->
+                <block>evisu_homepage/homepage</block>
                 <groups>
                     <main>
                         <label>Main</label>
@@ -54,78 +54,918 @@
                     </main>
                 </groups>
             </home_page>
-
-           <!-- <homepagetype4>
-                <name>Home Page Type 4</name>
-                <template>cmsadvanced/homepage/homepagetype4.phtml</template>
-                <block>homepage/type4</block>
+            <home_page_section>
+                <name>Home Page Section</name>
+                <template>cmsadvanced/homepage/blocks/section.phtml</template>
+                <block>evisu_homepage/homepage</block>
+            </home_page_section>
+<!--Section 1            -->
+            <home_page_section1_text_block>
+                <name>Home Page Section1 Text Block</name>
+                <template>cmsadvanced/homepage/blocks/section1/text_block.phtml</template>
                 <groups>
-                    <type4_side_left>
-                        <name>Side Left</name>
+                    <hps1_data_text_block>
+                        <name>Data</name>
                         <attributes>
-                            <type4_side_left_title>
-                                <label>Title Text</label>
+                            <hps1_text_block_header>
+                                <label>Header</label>
                                 <template>text</template>
-                            </type4_side_left_title>
-                            <type4_side_left_title_color>
-                                <label>Title Text Color</label>
-                                <type>text</type>
-                                <template>dropdown</template>
-                                <source>homepage/config_source_textcolor</source>
-                            </type4_side_left_title_color>
-                            <type4_side_left_text>
-                                <label>Button Text</label>
-                                <template>text</template>
-                            </type4_side_left_text>
-                            <type4_side_left_url>
-                                <label>Target URL</label>
-                                <template>text</template>
-                            </type4_side_left_url>
-                            <type4_side_left_image>
-                                <label>Background Image</label>
                                 <required>1</required>
-                                <template>image</template>
-                            </type4_side_left_image>
-                            <type4_side_left_code_video>
-                                <label>Code video</label>
-                                <template>text</template>
-                            </type4_side_left_code_video>
-                        </attributes>
-                    </type4_side_left>
-                    <type4_side_right>
-                        <name>Side Right</name>
-                        <attributes>
-                            <type4_side_right_title>
-                                <label>Title Text</label>
-                                <template>text</template>
-                            </type4_side_right_title>
-                            <type4_side_left_title_color>
-                                <label>Title Text Color</label>
-                                <type>text</type>
-                                <template>dropdown</template>
-                                <source>homepage/config_source_textcolor</source>
-                            </type4_side_left_title_color>
-                            <type4_side_right_text>
-                                <label>Button Text</label>
-                                <template>text</template>
-                            </type4_side_right_text>
-                            <type4_side_right_url>
-                                <label>Target URL</label>
-                                <template>text</template>
-                            </type4_side_right_url>
-                            <type4_side_right_image>
-                                <label>Background Image</label>
+                            </hps1_text_block_header>
+                            <hps1_text_block_text>
+                                <label>Text</label>
+                                <template>textarea</template>
                                 <required>1</required>
-                                <template>image</template>
-                            </type4_side_right_image>
-                            <type4_side_right_code_video>
-                                <label>Code video</label>
+                            </hps1_text_block_text>
+                            <hps1_text_block_link_text>
+                                <label>Link Text</label>
                                 <template>text</template>
-                            </type4_side_right_code_video>
+                                <required>1</required>
+                            </hps1_text_block_link_text>
+                            <hps1_text_block_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps1_text_block_target_url>
                         </attributes>
-                    </type4_side_right>
+                    </hps1_data_text_block>
                 </groups>
-            </homepagetype4>-->
+            </home_page_section1_text_block>
+            <home_page_section1_image_panel1>
+                <name>Home Page Section1 Image Panel 1</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel1.phtml</template>
+                <groups>
+                    <hps1_data_image_panel1>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip1_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip1_video>
+                            <hps1_ip1_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip1_image>
+                            <hps1_ip1_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip1_link_text>
+                            <hps1_ip1_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip1_target_url>
+                        </attributes>
+                    </hps1_data_image_panel1>
+                </groups>
+            </home_page_section1_image_panel1>
+            <home_page_section1_image_panel2>
+                <name>Home Page Section1 Image Panel 2</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel2.phtml</template>
+                <groups>
+                    <hps1_data_image_panel2>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip2_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip2_video>
+                            <hps1_ip2_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip2_image>
+                            <hps1_ip2_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip2_link_text>
+                            <hps1_ip2_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip2_target_url>
+                        </attributes>
+                    </hps1_data_image_panel2>
+                </groups>
+            </home_page_section1_image_panel2>
+            <home_page_section1_image_panel3>
+                <name>Home Page Section1 Image Panel 3</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel3.phtml</template>
+                <groups>
+                    <hps1_data_image_panel3>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip3_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip3_video>
+                            <hps1_ip3_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip3_image>
+                            <hps1_ip3_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip3_link_text>
+                            <hps1_ip3_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip3_target_url>
+                        </attributes>
+                    </hps1_data_image_panel3>
+                </groups>
+            </home_page_section1_image_panel3>
+            <home_page_section1_image_panel4>
+                <name>Home Page Section1 Image Panel 4</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel4.phtml</template>
+                <groups>
+                    <hps1_data_image_panel4>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip4_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip4_video>
+                            <hps1_ip4_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip4_image>
+                            <hps1_ip4_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip4_link_text>
+                            <hps1_ip4_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip4_target_url>
+                        </attributes>
+                    </hps1_data_image_panel4>
+                </groups>
+            </home_page_section1_image_panel4>
+            <home_page_section1_image_panel5>
+                <name>Home Page Section1 Image Panel 5</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel5.phtml</template>
+                <groups>
+                    <hps1_data_image_panel5>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip5_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip5_video>
+                            <hps1_ip5_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip5_image>
+                            <hps1_ip5_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip5_link_text>
+                            <hps1_ip5_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip5_target_url>
+                        </attributes>
+                    </hps1_data_image_panel5>
+                </groups>
+            </home_page_section1_image_panel5>
+            <home_page_section1_image_panel6>
+                <name>Home Page Section1 Image Panel 6</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel6.phtml</template>
+                <groups>
+                    <hps1_data_image_panel6>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip6_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip6_video>
+                            <hps1_ip6_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip6_image>
+                            <hps1_ip6_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip6_link_text>
+                            <hps1_ip6_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip6_target_url>
+                        </attributes>
+                    </hps1_data_image_panel6>
+                </groups>
+            </home_page_section1_image_panel6>
+            <home_page_section1_image_panel7>
+                <name>Home Page Section1 Image Panel 7</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel7.phtml</template>
+                <groups>
+                    <hps1_data_image_panel7>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip7_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip7_video>
+                            <hps1_ip7_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip7_image>
+                            <hps1_ip7_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip7_link_text>
+                            <hps1_ip7_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip7_target_url>
+                        </attributes>
+                    </hps1_data_image_panel7>
+                </groups>
+            </home_page_section1_image_panel7>
+            <home_page_section1_image_panel8>
+                <name>Home Page Section1 Image Panel 8</name>
+                <template>cmsadvanced/homepage/blocks/section1/image_panel8.phtml</template>
+                <groups>
+                    <hps1_data_image_panel8>
+                        <name>Data</name>
+                        <attributes>
+                            <hps1_ip8_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps1_ip8_video>
+                            <hps1_ip8_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps1_ip8_image>
+                            <hps1_ip8_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </hps1_ip8_link_text>
+                            <hps1_ip8_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </hps1_ip8_target_url>
+                        </attributes>
+                    </hps1_data_image_panel8>
+                </groups>
+            </home_page_section1_image_panel8>
+
+<!--Section 2-->
+            <home_page_section2_product_promo_x2>
+                <name>Home Page Section1 Product Promo x2</name>
+                <template>cmsadvanced/homepage/blocks/section2/product_promo_x2.phtml</template>
+                <groups>
+                    <hps2_data_product_promo_x2>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <hps2_pp_x2_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image1>
+                            <hps2_pp_x2_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image1_link_title>
+                            <hps2_pp_x2_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image1_target_url>
+                            <!--Image2-->
+                            <hps2_pp_x2_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image2>
+                            <hps2_pp_x2_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image2_link_title>
+                            <hps2_pp_x2_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image2_target_url>
+                            <hps2_pp_x2_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_image2_target_url>
+                            <!--Text Box-->
+                            <hps2_pp_x2_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_tb_link_text>
+                            <hps2_pp_x2_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2_tb_target_url>
+                            <hps2_pp_x2_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps2_pp_x2_tb_bg_color>
+                            <!--Additional-->
+                            <hps2_pp_x2_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </hps2_pp_x2_add_text>
+                        </attributes>
+                    </hps2_data_product_promo_x2>
+                </groups>
+            </home_page_section2_product_promo_x2>
+            <home_page_section2_product_promo_x2s>
+                <name>Home Page Section1 Product Promo x2 Small</name>
+                <template>cmsadvanced/homepage/blocks/section2/product_promo_x2s.phtml</template>
+                <groups>
+                    <hps2_data_product_promo_x2s>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <hps2_pp_x2s_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image1>
+                            <hps2_pp_x2s_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image1_link_title>
+                            <hps2_pp_x2s_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image1_target_url>
+                            <!--Image2-->
+                            <hps2_pp_x2s_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image2>
+                            <hps2_pp_x2s_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image2_link_title>
+                            <hps2_pp_x2s_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image2_target_url>
+                            <hps2_pp_x2s_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_image2_target_url>
+                            <!--Text Box-->
+                            <hps2_pp_x2s_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_tb_link_text>
+                            <hps2_pp_x2s_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2s_tb_target_url>
+                            <hps2_pp_x2s_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps2_pp_x2s_tb_bg_color>
+                            <!--Additional-->
+                            <hps2_pp_x2s_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </hps2_pp_x2s_add_text>
+                        </attributes>
+                    </hps2_data_product_promo_x2s>
+                </groups>
+            </home_page_section2_product_promo_x2s>
+            <home_page_section2_product_promo_x2w>
+                <name>Home Page Section1 Product Promo x2 With Text Boxes</name>
+                <template>cmsadvanced/homepage/blocks/section2/product_promo_x2w.phtml</template>
+                <groups>
+                    <hps2_data_product_promo_x2w>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <hps2_pp_x2w_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image1>
+                            <hps2_pp_x2w_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image1_link_title>
+                            <hps2_pp_x2w_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image1_target_url>
+                            <!--Image2-->
+                            <hps2_pp_x2w_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image2>
+                            <hps2_pp_x2w_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image2_link_title>
+                            <hps2_pp_x2w_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image2_target_url>
+                            <hps2_pp_x2w_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_image2_target_url>
+                            <!--Text Box 1-->
+                            <hps2_pp_x2w_tb1_link_text>
+                                <label>1st Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_tb1_link_text>
+                            <hps2_pp_x2w_tb1_target_url>
+                                <label>1st Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_tb1_target_url>
+                            <hps2_pp_x2w_tb1_bg_color>
+                                <label>1st Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps2_pp_x2w_tb1_bg_color>
+                            <!--Text Box 2-->
+                            <hps2_pp_x2w_tb2_link_text>
+                                <label>2st Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_tb2_link_text>
+                            <hps2_pp_x2w_tb2_target_url>
+                                <label>2st Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x2w_tb2_target_url>
+                            <hps2_pp_x2w_tb2_bg_color>
+                                <label>2st Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps2_pp_x2w_tb2_bg_color>
+                            <!--Additional-->
+                            <hps2_pp_x2w_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </hps2_pp_x2w_add_text>
+                        </attributes>
+                    </hps2_data_product_promo_x2w>
+                </groups>
+            </home_page_section2_product_promo_x2w>
+            <home_page_section2_product_promo_x3>
+                <name>Home Page Section1 Product Promo x3</name>
+                <template>cmsadvanced/homepage/blocks/section2/product_promo_x3.phtml</template>
+                <groups>
+                    <hps2_data_product_promo_x3>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <hps2_pp_x3_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image1>
+                            <hps2_pp_x3_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image1_link_title>
+                            <hps2_pp_x3_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image1_target_url>
+                            <!--Image2-->
+                            <hps2_pp_x3_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image2>
+                            <hps2_pp_x3_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image2_link_title>
+                            <hps2_pp_x3_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image2_target_url>
+                            <hps2_pp_x3_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image2_target_url>
+                            <!--Image3-->
+                            <hps2_pp_x3_image3>
+                                <label>3rd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image3>
+                            <hps2_pp_x3_image3_link_title>
+                                <label>3rd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image3_link_title>
+                            <hps2_pp_x3_image3_target_url>
+                                <label>3rd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_image3_target_url>
+                            <!--Text Box-->
+                            <hps2_pp_x3_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_tb_link_text>
+                            <hps2_pp_x3_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x3_tb_target_url>
+                            <hps2_pp_x3_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps2_pp_x3_tb_bg_color>
+                            <!--Additional-->
+                            <hps2_pp_x3_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </hps2_pp_x3_add_text>
+                        </attributes>
+                    </hps2_data_product_promo_x3>
+                </groups>
+            </home_page_section2_product_promo_x3>
+            <home_page_section2_product_promo_x4>
+                <name>Home Page Section1 Product Promo x4</name>
+                <template>cmsadvanced/homepage/blocks/section2/product_promo_x4.phtml</template>
+                <groups>
+                    <hps2_data_product_promo_x4>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <hps2_pp_x4_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image1>
+                            <hps2_pp_x4_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image1_link_title>
+                            <hps2_pp_x4_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image1_target_url>
+                            <!--Image2-->
+                            <hps2_pp_x4_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image2>
+                            <hps2_pp_x4_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image2_link_title>
+                            <hps2_pp_x4_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image2_target_url>
+                            <hps2_pp_x4_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image2_target_url>
+                            <!--Image3-->
+                            <hps2_pp_x4_image3>
+                                <label>3rd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image3>
+                            <hps2_pp_x4_image3_link_title>
+                                <label>3rd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image3_link_title>
+                            <hps2_pp_x4_image3_target_url>
+                                <label>3rd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image3_target_url>
+                            <!--Image4-->
+                            <hps2_pp_x4_image4>
+                                <label>4th Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image4>
+                            <hps2_pp_x4_image4_link_title>
+                                <label>4th Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image4_link_title>
+                            <hps2_pp_x4_image4_target_url>
+                                <label>4th Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_image4_target_url>
+                            <!--Text Box-->
+                            <hps2_pp_x4_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_tb_link_text>
+                            <hps2_pp_x4_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps2_pp_x4_tb_target_url>
+                            <hps2_pp_x4_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps2_pp_x4_tb_bg_color>
+                            <!--Additional-->
+                            <hps2_pp_x4_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </hps2_pp_x4_add_text>
+                        </attributes>
+                    </hps2_data_product_promo_x4>
+                </groups>
+            </home_page_section2_product_promo_x4>
+
+<!--Section 3-->
+            <home_page_section3_image_panel_left>
+                <name>Home Page Section3 Image Panel Left</name>
+                <template>cmsadvanced/homepage/blocks/section3/image_panel_left.phtml</template>
+                <groups>
+                    <hps3_data_image_panel_left>
+                        <name>Data</name>
+                        <attributes>
+                            <hps3_ipl_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                        </hps3_ipl_video>
+                            <hps3_ipl_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps3_ipl_image>
+                        <hps3_ipl_header>
+                            <label>Header</label>
+                            <template>text</template>
+                            <required>1</required>
+                        </hps3_ipl_header>
+                            <hps3_ipl_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipl_title>
+                            <hps3_ipl_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </hps3_ipl_text>
+                            <hps3_ipl_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipl_link_text>
+                            <hps3_ipl_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipl_target_url>
+                        </attributes>
+                    </hps3_data_image_panel_left>
+                </groups>
+            </home_page_section3_image_panel_left>
+            <home_page_section3_image_panel_right>
+                <name>Home Page Section3 Image Panel Right</name>
+                <template>cmsadvanced/homepage/blocks/section3/image_panel_right.phtml</template>
+                <groups>
+                    <hps3_data_image_panel_right>
+                        <name>Data</name>
+                        <attributes>
+                            <hps3_ipr_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </hps3_ipr_video>
+                            <hps3_ipr_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </hps3_ipr_image>
+                            <hps3_ipr_header>
+                                <label>header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipr_header>
+                            <hps3_ipr_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipr_title>
+                            <hps3_ipr_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </hps3_ipr_text>
+                            <hps3_ipr_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipr_link_text>
+                            <hps3_ipr_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_ipr_target_url>
+                        </attributes>
+                    </hps3_data_image_panel_right>
+                </groups>
+            </home_page_section3_image_panel_right>
+            <home_page_section3_press_panel>
+                <name>Home Page Section3 Press Panel</name>
+                <template>cmsadvanced/homepage/blocks/section3/press_panel.phtml</template>
+                <groups>
+                    <hps3_data_press_panel>
+                        <name>Data</name>
+                        <attributes>
+                            <hps3_pp_image>
+                                <label>Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps3_pp_image>
+                            <hps3_pp_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_pp_header>
+                            <hps3_pp_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_pp_title>
+                            <hps3_pp_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </hps3_pp_text>
+                            <hps3_pp_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_pp_link_text>
+                            <hps3_pp_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_pp_target_url>
+                        </attributes>
+                    </hps3_data_press_panel>
+                </groups>
+            </home_page_section3_press_panel>
+            <home_page_section3_blog_panel>
+                <name>Home Page Section3 Blog Panel</name>
+                <template>cmsadvanced/homepage/blocks/section3/blog_panel.phtml</template>
+                <groups>
+                    <hps3_data_blog_panel>
+                        <name>Data</name>
+                        <attributes>
+                            <hps3_bp_image>
+                                <label>Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </hps3_bp_image>
+                            <hps3_bp_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_bp_header>
+                            <hps3_bp_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_bp_title>
+                            <hps3_bp_date>
+                                <label>Date</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_bp_date>
+                            <hps3_bp_category>
+                                <label>Category</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_bp_category>
+                            <hps3_bp_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </hps3_bp_text>
+                            <hps3_bp_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_bp_link_text>
+                            <hps3_bp_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_bp_target_url>
+                        </attributes>
+                    </hps3_data_blog_panel>
+                </groups>
+            </home_page_section3_blog_panel>
+            <home_page_section3_text_block>
+                <name>Home Page Section3 Text Block</name>
+                <template>cmsadvanced/homepage/blocks/section3/text_block.phtml</template>
+                <groups>
+                    <hps3_data_text_block>
+                        <name>Data</name>
+                        <attributes>
+                            <hps3_tb_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_tb_header>
+                            <hps3_tb_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_tb_title>
+                            <hps3_tb_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </hps3_tb_text>
+                        </attributes>
+                    </hps3_data_text_block>
+                </groups>
+            </home_page_section3_text_block>
+            <home_page_section3_small_box>
+                <name>Home Page Section3 Small Box</name>
+                <template>cmsadvanced/homepage/blocks/section3/small_box.phtml</template>
+                <groups>
+                    <hps3_data_small_box>
+                        <name>Data</name>
+                        <attributes>
+                            <hps3_sb_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_sb_link_text>
+                            <hps3_sb_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </hps3_sb_target_url>
+                            <hps3_sb_bg_color>
+                                <label>Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hps3_sb_bg_color>
+                        </attributes>
+                    </hps3_data_small_box>
+                </groups>
+            </home_page_section3_small_box>
         </pagetypes>
     </cmsadvanced>
 </config>
