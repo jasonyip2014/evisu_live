@@ -39,11 +39,12 @@ class Mage_Newsletter_SubscriberController extends Mage_Core_Controller_Front_Ac
     public function newAction()
     {
         if ($this->getRequest()->isPost() && $this->getRequest()->getPost('email')) {
-            $session            = Mage::getSingleton('core/session');
+            $session            = Mage::getSingleton('newsletter/session'); //fix RonisBT change core/session to newsletter/session for localize message
             $customerSession    = Mage::getSingleton('customer/session');
             $email              = (string) $this->getRequest()->getPost('email');
 
             try {
+
                 if (!Zend_Validate::is($email, 'EmailAddress')) {
                     Mage::throwException($this->__('Please enter a valid email address.'));
                 }
