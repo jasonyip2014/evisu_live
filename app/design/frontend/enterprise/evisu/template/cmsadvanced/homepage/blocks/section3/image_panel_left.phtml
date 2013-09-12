@@ -11,7 +11,9 @@
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps3_ipl_image') ?>" alt="" />
     </div>
 <?php endIf; ?>
-<h2><?php echo $this->escapeHtml($this->getHps3IplHeader()) ?></h2>
-<h3><?php echo $this->escapeHtml($this->getHps3IplTitle()) ?></h3>
-<p><?php echo nl2br($this->escapeHtml($this->getHps3IplText())) ?></p>
-<a href="<?php echo $this->escapeHtml($this->getHps3IplTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3IplLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3IplLinkText()) ?></a>
+<div class="text-holder">
+    <h2><?php echo $this->escapeHtml($this->getHps3IplHeader()) ?></h2>
+    <h3><?php echo $this->escapeHtml($this->getHps3IplTitle()) ?></h3>
+    <p><?php echo nl2br($this->escapeHtml($this->getHps3IplText())) ?></p>
+    <a href="<?php echo $this->escapeHtml($this->getHps3IplTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3IplLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3IplLinkText()) ?></a>
+</div>

@@ -28,8 +28,10 @@
     </a>
 </div>
 <?php if($this->getHps2PpX4TbLinkText() && $this->getHps2PpX4TbTargetUrl()): ?>
-    <a class="<?php echo $this->escapeHtml($this->getHps2PpX4TbBgColor()) ?>" href="<?php echo $this->escapeHtml($this->getHps2PpX4TbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps2PpX4TbLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps2PpX4TbLinkText()) ?></a>
+    <a class="<?php echo $this->escapeHtml($this->getHps2PpX4TbBgColor()) ?> category-link" href="<?php echo $this->escapeHtml($this->getHps2PpX4TbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps2PpX4TbLinkText()) ?>"><span><span><?php echo $this->escapeHtml($this->getHps2PpX4TbLinkText()) ?></span></span></a>
 <?php endIf; ?>
 <?php if($this->getHps2PpX4AddText()): ?>
-    <p><?php echo $this->escapeHtml($this->getHps2PpX4AddText()) ?></p>
+    <div class="add-text">
+        <p><?php echo $this->escapeHtml($this->getHps2PpX4AddText()) ?></p>
+    </div>
 <?php endIf; ?>

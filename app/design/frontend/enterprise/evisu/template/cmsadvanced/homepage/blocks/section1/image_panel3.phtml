@@ -11,6 +11,8 @@
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip3_image') ?>" alt="" />
     </div>
 <?php endIf; ?>
-<?php if($this->getHps1Ip3LinkText() && $this->getHps1Ip3TargetUrl()): ?>
-    <a href="<?php echo $this->escapeHtml($this->getHps1Ip3TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps1Ip3LinkText()) ?>"><?php echo $this->escapeHtml($this->getHps1Ip3LinkText()) ?></a>
+<?php $linkText = $this->getHps1Ip3LinkText(); if($linkText && $this->getHps1Ip3TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip3TargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHps1Ip3LinkText()) ?>"><span class="text-link-holder"><span class="text-link-wrapper"><?php echo $this->escapeHtml($this->getHps1Ip3LinkText()) ?></span></span></a>
+<?php elseif(!$linkText && $this->getHps1Ip3TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip3TargetUrl()) ?>"></a>
 <?php endIf; ?>

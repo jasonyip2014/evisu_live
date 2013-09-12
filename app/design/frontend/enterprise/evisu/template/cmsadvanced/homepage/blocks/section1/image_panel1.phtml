@@ -2,7 +2,6 @@
 <?php
     /* @var $this RonisBT_Cms_Block_Page */
 ?>
-
 <?php if($videoCode = $this->getHps1Ip1Video()): ?>
     <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 <?php else: ?>
@@ -11,6 +10,8 @@
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip1_image') ?>" alt="" />
     </div>
 <?php endIf; ?>
-<?php if($this->getHps1Ip1LinkText() && $this->getHps1Ip1TargetUrl()): ?>
-    <a href="<?php echo $this->escapeHtml($this->getHps1Ip1TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps1Ip1LinkText()) ?>"><?php echo $this->escapeHtml($this->getHps1Ip1LinkText()) ?></a>
+<?php $linkText = $this->getHps1Ip1LinkText(); if($linkText && $this->getHps1Ip1TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip1TargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHps1Ip1LinkText()) ?>"><span class="text-link-holder"><span class="text-link-wrapper"><?php echo $this->escapeHtml($this->getHps1Ip1LinkText()) ?></span></span></a>
+<?php elseif(!$linkText && $this->getHps1Ip1TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip1TargetUrl()) ?>"></a>
 <?php endIf; ?>

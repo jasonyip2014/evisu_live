@@ -2,6 +2,10 @@
 <?php
     /* @var $this RonisBT_Cms_Block_Page */
 ?>
-<a class="<?php echo $this->escapeHtml($this->getHps3SbBgColor()) ?>" href="<?php echo $this->escapeHtml($this->getHps3SbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3SbLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3SbLinkText()) ?></a>
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('social_links_block')->toHtml() ?>
+<a class="<?php echo $this->escapeHtml($this->getHps3SbBgColor()) ?> news-block" href="<?php echo $this->escapeHtml($this->getHps3SbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3SbLinkText()) ?>"><span><span><span><?php echo $this->escapeHtml($this->getHps3SbLinkText()) ?></span></span></span></a>
+<div class="social-links-holder">
+    <div class="social-links-wrapper">
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('social_media_block_homepage')->toHtml() ?>
+    </div>
+</div>
 

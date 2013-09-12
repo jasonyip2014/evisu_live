@@ -11,7 +11,8 @@
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps3_ipr_image') ?>" alt="" />
     </div>
 <?php endIf; ?>
-<h2><?php echo $this->escapeHtml($this->getHps3IprHeader()) ?></h2>
-<h3><?php echo $this->escapeHtml($this->getHps3IprTitle()) ?></h3>
-<p><?php echo nl2br($this->escapeHtml($this->getHps3IprText())) ?></p>
-<a href="<?php echo $this->escapeHtml($this->getHps3IprTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3IprLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3IprLinkText()) ?></a>
+<div class="text-holder">
+    <h2><?php echo $this->escapeHtml($this->getHps3IprHeader()) ?>&nbsp;<span><?php echo $this->escapeHtml($this->getHps3IprTitle()) ?></span></h2>
+    <p><?php echo nl2br($this->escapeHtml($this->getHps3IprText())) ?></p>
+    <a href="<?php echo $this->escapeHtml($this->getHps3IprTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3IprLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3IprLinkText()) ?></a>
+</div>

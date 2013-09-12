@@ -11,6 +11,8 @@
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip2_image') ?>" alt="" />
     </div>
 <?php endIf; ?>
-<?php if($this->getHps1Ip2LinkText() && $this->getHps1Ip2TargetUrl()): ?>
-    <a href="<?php echo $this->escapeHtml($this->getHps1Ip2TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps1Ip2LinkText()) ?>"><?php echo $this->escapeHtml($this->getHps1Ip2LinkText()) ?></a>
+<?php $linkText = $this->getHps1Ip2LinkText(); if($linkText && $this->getHps1Ip2TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip2TargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHps1Ip2LinkText()) ?>"><span class="text-link-holder"><span class="text-link-wrapper"><?php echo $this->escapeHtml($this->getHps1Ip2LinkText()) ?></span></span></a>
+<?php elseif(!$linkText && $this->getHps1Ip2TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip2TargetUrl()) ?>"></a>
 <?php endIf; ?>

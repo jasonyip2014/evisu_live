@@ -11,6 +11,8 @@
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip5_image') ?>" alt="" />
     </div>
 <?php endIf; ?>
-<?php if($this->getHps1Ip5LinkText() && $this->getHps1Ip5TargetUrl()): ?>
-    <a href="<?php echo $this->escapeHtml($this->getHps1Ip5TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps1Ip5LinkText()) ?>"><?php echo $this->escapeHtml($this->getHps1Ip5LinkText()) ?></a>
+<?php $linkText = $this->getHps1Ip5LinkText(); if($linkText && $this->getHps1Ip5TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip5TargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHps1Ip5LinkText()) ?>"><span class="text-link-holder"><span class="text-link-wrapper"><?php echo $this->escapeHtml($this->getHps1Ip5LinkText()) ?></span></span></a>
+<?php elseif(!$linkText && $this->getHps1Ip5TargetUrl()): ?>
+    <a href="<?php echo $this->escapeHtml($this->getHps1Ip5TargetUrl()) ?>"></a>
 <?php endIf; ?>
