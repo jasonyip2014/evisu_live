@@ -1,0 +1,63 @@
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery-1.9.1.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/event.simulate.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/customSelect.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/main.js</name></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="unsetChild"><name>left</name></action>
+            <block type="core/text_list" name="top_bar" as="top_bar">
+                <action method="insert"><name>left</name><sibling/><after>1</after><alias>left</alias></action>
+            </block>
+
+        </reference>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="customer"><label>Sign Up</label><url helper="customer/getRegisterUrl" /><title>Sign Up</title><prepare/><urlParams/><position>1</position></action>
+        </reference>
+        <reference name="header">
+            <remove name="account.links" />
+            <remove name="checkout.links" />
+            <remove name="wishlist_link"/>
+            <remove name="welcome" />
+            <remote name="top.search" />
+        </reference>
+        <reference name="footer">
+            <remove name="footer_links" />
+            <remove name="store_switcher" />
+            <block type="cms/block" name="social_links"><action method="setBlockId"><block_id>social_links_block</block_id></action></block>
+        </reference>
+
+    </default>
+
+    <catalog_category_layered>
+        <reference name="root">
+
+            <reference name="top_bar">
+                <!--<block type="catalog/layer_view" name="catalog.filter" template="catalog/layer/view.phtml"/>-->
+                <!-- <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml"/> -->
+
+                <action method="insert"><name>product_list_toolbar</name><sibling/><after>1</after><alias>product_list_toolbar</alias></action>
+            </reference>
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar" />
+            <remove name="paypal.partner.right.logo" />
+        </reference>
+        <reference name="product_list">
+            <action method="unsetChild"><name>toolbar</name></action>
+        </reference>
+        <reference name="breadcrumbs.container">
+            <remove name="category.title" />
+            <block type="catalog/category_view" name="category.main_title" before="-" template="catalog/category/title.phtml"/>
+            <block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />
+            <!--<action method="unsetChild"><name>category.title</name></action>-->
+            <!--<action method="insert"><blockName>child.block.name</blockName><siblingName>name_of_block</siblingName><after>1</after><alias>child_block_alias</alias></action>-->
+        </reference>
+    </catalog_category_layered>
+
+</layout>
