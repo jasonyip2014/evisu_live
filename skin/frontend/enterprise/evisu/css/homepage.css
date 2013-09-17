@@ -53,8 +53,10 @@
 .quick-navigation .back-btn:hover{background-position:0 -114px;}
 .section-holder > *{
     position:absolute;
-    left:0;
-    top:0;
+}
+.section-holder .main-section{
+    width:100%;
+    height:100%;
 }
 .section-holder .section{
     /*height:2500px;*/
@@ -63,19 +65,22 @@
 
 /* Section 1 */
 .section-holder .section-1{
-    top:-12.21%;
+/*    top:-12.21%;*/
     width:93%;
     right:10px;
     left:auto;
 }
 .section-holder-1{
-    height:1785px;
+    height:2500px;
+}
+.section-holder-1 .sticky-wrapper{
+    left:5%;
 }
 .section-holder .home_page_section1_text_block{
     position:absolute;
-    left:0;
+    left:5%;
     top:0;
-    z-index:2;
+    z-index:3;
 }
 .section-holder h2{
     font:700 72px/80px 'Open Sans', sans-serif;
@@ -108,11 +113,11 @@
     color:#ccc;
     border-color:#ccc;
 }
-.section-holder .section-1 img{
+.section-holder-1 img{
     width:100%;
     height:auto;
 }
-.section-holder .section-1 .image-holder + a{
+.section-holder-1 .image-holder + a{
     position:absolute;
     left:0;
     top:0;
@@ -122,7 +127,7 @@
     height:100%;
     width:100%;
 }
-.section-holder .section-1 .text-link-holder{
+.section-holder-1 .text-link-holder{
     position:absolute;
     left:50%;
     top:50%;
@@ -133,7 +138,7 @@
     vertical-align:middle;
     background:#fff;
 }
-.section-holder .section-1 .text-link-wrapper{
+.section-holder-1 .text-link-wrapper{
     display:table-cell;
     vertical-align:middle;
     text-align:center;
@@ -147,63 +152,76 @@
     width:12.5%;
     position:absolute;
     left:32.91%;
-    top:14.67%;
+    /*top:14.67%;*/
+    bottom:0;
 }
 .section-holder .home_page_section1_image_panel2{
     position:absolute;
     left:44.27%;
-    top:8.45%;
+    /*top:8.45%;*/
+    bottom:0;
     width:28%;
 }
 .section-holder .home_page_section1_image_panel3{
     position:absolute;
     right:0;
-    top:0;
+    bottom:0;
     z-index:1;
     width:30%;
 }
 .section-holder .home_page_section1_image_panel4{
     position:absolute;
     left:17.81%;
-    top:36.19%;
+    /*top:36.19%;*/
+    bottom:0;
     z-index:1;
-    width:23.48%;
+    width:25.48%;
+}
+.section-holder .home_page_section1_image_panel4 .video-wrapper{
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
 }
 .section-holder .home_page_section1_image_panel4 iframe{
-    width:100%;
-    height:auto;
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 .section-holder .home_page_section1_image_panel5{
     position:absolute;
     left:6.04%;
-    top:43.3%;
+    /*top: -0.7%;*/
+    bottom:0;
     width:37.08%;
 }
 .section-holder .home_page_section1_image_panel6{
     position:absolute;
     left:44.22%;
-    top:53.5%;
+    /*top: 0.5%;*/
+    bottom:0;
     width:28.33%;
 }
 .section-holder .home_page_section1_image_panel7{
     position:absolute;
     width:14.47%;
-    top:50.42%;
     left:74.68%;
+    /*top: 0.58%;*/
+    bottom:0;
 }
 .section-holder .home_page_section1_image_panel8{
     position:absolute;
     left:82.6%;
-    top:71.65%;
     width:14.63%;
     z-index:1;
+    /*top: 20.65%;*/
+    bottom:0;
 }
 
 /* Section 2 */
-.section-2{
-    right:0;
-}
-.section-2 .add-text{
+.section-holder-2 .add-text{
     text-align:center;
     color:#333;
     font:700 28px/34px 'Open Sans', sans-serif;
@@ -211,50 +229,55 @@
     margin:0 auto;
     letter-spacing:5px;
 }
+.section-holder-2 .add-text p{
+	z-index:10;
+}
 .section-holder-2{
     height:2290px;
 }
-.section-holder .section-2 .block-1{
+.section-holder-2 .block-1{
     position:absolute;
     left:7.29%;
     top:6.3%;
     width:35.41%;
+    z-index:2;
 }
-.section-holder .section-2 .block-2{
+.section-holder-2 .block-2{
     position:absolute;
     right:7.29%;
     top:6.3%;
     width:35.41%;
 }
-.section-holder .section-2 .block-3{
+.section-holder-2 .block-3{
     position:absolute;
     left:7.29%;
     top:40.31%;
     width:35.41%;
+    z-index:1;
 }
-.section-holder .section-2 .block-4{
+.section-holder-2 .block-4{
     position:absolute;
     right:7.29%;
     top:32.2%;
     width:46.87%;
 }
-.section-holder .section-2 .block-5{
+.section-holder-2 .block-5{
     position:absolute;
     left:7.29%;
     top:80.85%;
     width:35.41%;
 }
-.section-holder .section-2 .block-6{
+.section-holder-2 .block-6{
     position:absolute;
     right:7.29%;
     top:80.85%;
     width:46.87%;
 }
-.section-2 img{
+.section-holder-2 img{
     width:100%;
     height:auto;
 }
-.section-2 .category-link{
+.section-holder-2 .category-link{
     position:absolute;
     left:50%;
     top:50%;
@@ -264,42 +287,42 @@
     color:#fff;
     font:bold 18px/18px Courier, sans-serif;
 }
-.section-2 .category-link > span{
+.section-holder-2 .category-link > span{
     display:table;
     vertical-align:middle;
     width:100%;
     height:100%;
 }
-.section-2 .category-link > span span{
+.section-holder-2 .category-link > span span{
     display:table-cell;
     vertical-align:middle;
     text-align:center;
     padding:15px;
 }
-.section-2 .category-link.light-grey{background:#ccc;}
-.section-2 .category-link.dark-grey{background:#333;}
-.section-2 .home_page_section2_product_promo_x2 .image-holder{
+.section-holder-2 .category-link.light-grey{background:#ccc;}
+.section-holder-2 .category-link.dark-grey{background:#333;}
+.section-holder-2 .home_page_section2_product_promo_x2 .image-holder{
     float:left;
     width:50%;
 }
-.section-2 .home_page_section2_product_promo_x4 .image-holder{
+.section-holder-2 .home_page_section2_product_promo_x4 .image-holder{
     display:inline-block;
     vertical-align:top;
     margin:0 -5px 0 0;
     width:50%;
 }
-.section-2 .home_page_section2_product_promo_x2w .image-holder{
+.section-holder-2 .home_page_section2_product_promo_x2w .image-holder{
     float:left;
     width:50%;
 }
-.section-2 .home_page_section2_product_promo_x2s .image-holder{
+.section-holder-2 .home_page_section2_product_promo_x2s .image-holder{
     float:left;
     width:33%;
 }
-.section-2 .home_page_section2_product_promo_x2s .image-holder:first-child{
+.section-holder-2 .home_page_section2_product_promo_x2s .image-holder:first-child{
     float:right;
 }
-.section-2 .home_page_section2_product_promo_x3 .image-holder{
+.section-holder-2 .home_page_section2_product_promo_x3 .image-holder{
     float:left;
     width:33%;
 }

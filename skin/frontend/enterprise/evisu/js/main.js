@@ -46,7 +46,7 @@ var EvisuNavigation =
 jQuery(function($)
 {
     $('#custom-currency-selector').customSelect();
-
+	$('html,body').scrollTop(0);
     // === Navigation Animation
     //EvisuNavigation.init('#nav');
 

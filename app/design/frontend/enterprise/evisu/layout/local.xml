@@ -6,6 +6,7 @@
             <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.noconflict.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery/event.simulate.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery/customSelect.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.sticky.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/main.js</name></action>
         </reference>
         <reference name="root">

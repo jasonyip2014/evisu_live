@@ -4,7 +4,9 @@
 ?>
 
 <?php if($videoCode = $this->getHps1Ip4Video()): ?>
+<div class="video-wrapper">
     <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</div>
 <?php else: ?>
     <div class="image-holder">
         <?php $imageSize = getimagesize($this->getImage('hps1_ip4_image')) ?>

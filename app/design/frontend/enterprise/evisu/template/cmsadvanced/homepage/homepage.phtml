@@ -1,19 +1,18 @@
 <?php
     /* @var $this RonisBT_Cms_Block_Page */
 ?>
-<?php /*
-<div id="d" style="position:fixed; background-color:red; width:50px;height:15px">0</div>
- */ ?>
 <div class="homepage-holder">
     <div class="main-section-holder section-holder">
-        <div class="image-holder">
-            <img src="<?php echo $this->getImage('main_image') ?>" />
+        <div class="main-section">
+            <div class="image-holder">
+                <img src="<?php echo $this->getImage('main_image') ?>" />
+            </div>
+            <p><?php echo $this->escapeHtml($this->getMainText()) ?></p>
         </div>
-        <p><?php echo $this->escapeHtml($this->getMainText()) ?></p>
-    </div>
-    <div class="quick-navigation">
-        <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
-        <a href="#" class="back-btn"><?php echo $this->__('Back') ?></a>
+        <div class="quick-navigation">
+            <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
+            <a href="javascript:void(null)" class="back-btn"><?php echo $this->__('Back') ?></a>
+        </div>
     </div>
     <div class="sections">
         <?php $i = 1; ?>
@@ -21,9 +20,7 @@
         <?php if(count($sections) > 0): ?>
             <?php foreach ($sections as $_section): ?>
                 <div class="section-holder section-holder-<?php echo $i ?>">
-                    <div class="section-<?php echo $i ?> section">
                         <?php echo $_section->toHtml(); ?>
-                    </div>
                 </div>
                 <?php $i++; ?>
             <?php endforeach ?>
