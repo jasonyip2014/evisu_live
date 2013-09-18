@@ -8,7 +8,16 @@ jQuery(function($){
 	$('.quick-navigation .explore-more-btn').css('display','none').delay( 3000 ).fadeIn( 600 ).fadeOut( 200 ).fadeIn( 800 );
 	//$('.section-holder-1 > div').css('display','none');
 	$('.section-holder-1 > div.home_page_section1_text_block').show('fast');
-		
+	
+	$(".home_page_section1_text_block").sticky({ topSpacing: 0});
+	$(".home_page_section3_text_block").sticky({ topSpacing: 0});
+	$('.section-holder-3 > div.block-2').sticky({ topSpacing:400, wrapperClassName:'newsBlock', className:'newsStick'});
+	
+	
+	$('.quick-navigation .back-btn').on('click',function(){
+		$('html,body').stop().animate({scrollTop : 0},1500);
+	});
+	
 	$(window).scroll(function(){
 		var	$topPosition = $(window).scrollTop();
 		
@@ -24,15 +33,19 @@ jQuery(function($){
 		//Section One Animation
 		var $positionSection1 = $('.section-holder-1').position().top - $topPosition,
 			$positionSection2 = $('.section-holder-2').position().top - $topPosition,
+			$positionSection3 = $('.section-holder-3').position().top - $topPosition,
+			$windowHeight = $(window).height(),
 			$section1Text = $(".home_page_section1_text_block"),
+			$section3Text = $(".home_page_section3_text_block"),
 			$section1TextLeft = $section1Text.css('left'),
 			$animate1 = $positionSection1*(-2),
-			$animate2 = $positionSection2*(1);
-			
-		$section1Text.sticky({ topSpacing: 0});
+			$animate2 = $positionSection2*(1),
+			$animate3 = $positionSection3*(2);
+		
 		if($section1Text.hasClass("is-sticky")){
 			$('.main-section .image-holder').css('margin-top',$positionSection1);
 			if($(window).width()>1600){
+				
 				$('.section-holder-1 > div.home_page_section1_image_panel1').stop().css({ "bottom": $animate1/1.2 });
 				$('.section-holder-1 > div.home_page_section1_image_panel2').stop().css({ "bottom": $animate1/1.5 });
 				$('.section-holder-1 > div.home_page_section1_image_panel3').stop().css({ "bottom": $animate1/1.4 });
@@ -48,6 +61,19 @@ jQuery(function($){
 				$('.section-holder-2 > div.block-4').stop().css({ "top": ($animate2/6)+($('.section-holder-2 > div.block-1').height()-100) });
 				$('.section-holder-2 > div.block-5').stop().css({ "top": ($animate2/2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+400 });
 				$('.section-holder-2 > div.block-6').stop().css({ "top": ($animate2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+$('.section-holder-2 > div.block-3').height()-200 });
+				
+				var $bottomPosition3 = $positionSection3-500-$windowHeight;
+				if($bottomPosition3<=0){
+					$section1Text.css('margin-top',$bottomPosition3);
+				}else{
+					$section1Text.css('margin-top','0');
+				}
+				$('.section-holder-3 > div.block-3').stop().css({ "top": ($animate3/1.5)+500 });
+				$('.section-holder-3 > div.block-4').stop().css({ "top": ($animate3/1)+200 });
+				$('.section-holder-3 > div.block-5').stop().css({ "top": ($animate3/30)+$('.section-holder-3 > div.block-3 > .image-holder').height()+600 });
+				$('.section-holder-3 > div.block-6').stop().css({ "top": ($animate3/10)+$('.section-holder-3 > div.block-3 > .image-holder').height()+650 });
+				$('.section-holder-3 > div.block-7').stop().css({ "top": ($animate3/10)+$('.section-holder-3 > div.block-3 > .image-holder').height()+550 });
+				
 			}else{
 				var $animate1 = $positionSection1*(-4),
 					$animate2 = $positionSection2/3;
@@ -66,6 +92,18 @@ jQuery(function($){
 				$('.section-holder-2 > div.block-4').stop().css({ "top": ($animate2/6)+($('.section-holder-2 > div.block-1').height()-100) });
 				$('.section-holder-2 > div.block-5').stop().css({ "top": ($animate2/2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+400 });
 				$('.section-holder-2 > div.block-6').stop().css({ "top": ($animate2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+$('.section-holder-2 > div.block-3').height()-200 });
+				
+				var $bottomPosition3 = $positionSection3-$windowHeight;
+				if($bottomPosition3<=0){
+					$section1Text.css('margin-top',$bottomPosition3);
+				}else{
+					$section1Text.css('margin-top','0');
+				}
+				$('.section-holder-3 > div.block-3').stop().css({ "top": ($animate3/1.5)+1100 });
+				$('.section-holder-3 > div.block-4').stop().css({ "top": ($animate3/1)+1200 });
+				$('.section-holder-3 > div.block-5').stop().css({ "top": ($animate3/30)+$('.section-holder-3 > div.block-3 > .image-holder').height()+700 });
+				$('.section-holder-3 > div.block-6').stop().css({ "top": ($animate3/10)+$('.section-holder-3 > div.block-3 > .image-holder').height()+750 });
+				$('.section-holder-3 > div.block-7').stop().css({ "top": ($animate3/10)+$('.section-holder-3 > div.block-3 > .image-holder').height()+900 });
 			}
 			
 			
@@ -79,7 +117,11 @@ jQuery(function($){
 			$('.section-holder-2').css('margin-top','-1100px');
 		}else{
 			$('.section-holder-2').css('margin-top','-500px');
+			$('.section-holder-3').css('margin-top','-500px');
 		}
+		$(".home_page_section1_text_block").sticky('update');
+		$(".home_page_section3_text_block").sticky('update');
+		$('.section-holder-3 > div.block-2').sticky('update');
 	});
 	$(window).resize();
 	$('html,body').scrollTop(0);
