@@ -4,8 +4,12 @@
 ?>
 
 <?php if($videoCode = $this->getHps1Ip6Video()): ?>
-    <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-<?php else: ?>
+    <div class="video-wrapper">
+        <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+    <a href="#" class="video-overlay-holder"></a>
+<?php endIf; ?>
+<?php if($videoCode = $this->getHps1Ip6Image()): ?>
     <div class="image-holder">
         <?php $imageSize = getimagesize($this->getImage('hps1_ip6_image')) ?>
         <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip6_image') ?>" alt="" />

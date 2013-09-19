@@ -94,7 +94,7 @@
     width:530px;
 }
 .section-holder .section-description{
-    font:bold 12px/14px Courier, sans-serif;
+    font: 12px/14px Courier, Arial, Helvetica, sans-serif;
     color:#fff;
     background:#333;
     padding:35px 20px;
@@ -144,7 +144,7 @@
     text-align:center;
     padding:15px;
     color:#333;
-    font:bold 18px/18px Courier, sans-serif;
+    font: 14px/18px Courier, sans-serif;
     text-transform:lowercase;
 }
 .section-holder .home_page_section1_image_panel1{
@@ -247,6 +247,7 @@
     right:7.29%;
     top:6.3%;
     width:35.41%;
+    z-index:2;
 }
 .section-holder-2 .block-3{
     position:absolute;
@@ -285,7 +286,7 @@
     height:120px;
     margin:-60px 0 0 -60px;
     color:#fff;
-    font:bold 18px/18px Courier, sans-serif;
+    font: 14px/18px Courier, sans-serif;
 }
 .section-holder-2 .category-link > span{
     display:table;
@@ -332,14 +333,14 @@
     right:0;
 }
 .section-holder-3{
-    height:1640px;
+    height:1000px;
 }
 .section-holder-3 .block-3,
 .section-holder-3 .block-4,
 .section-holder-3 .block-5,
 .section-holder-3 .block-6,
 .section-holder-3 .block-7{
-	bottom:-500px;
+	bottom:0px;
 }
 .section-holder-3 img{
     width:100%;
@@ -451,6 +452,7 @@
     position:absolute;
     left:29.47%;
     width:28.58%;
+    z-index:2;
 }
 .section-holder-3 .home_page_section3_image_panel_left h2{
     position:static;
@@ -472,7 +474,7 @@
     background: #333;
     padding: 35px 20px;
     color:#fff;
-    font:bold 12px/14px Courier, sans-serif;
+    font: 12px/14px Courier, sans-serif;
     width:264px;
     margin:0 0 6.76%;
 }
@@ -497,6 +499,7 @@
     position:absolute;
     left:78.75%;
     width:17.91%;
+    z-index:2;
 }
 .section-holder-3 .home_page_section3_press_panel h2,
 .section-holder-3 .home_page_section3_blog_panel h2{
@@ -588,7 +591,7 @@
     background: #333;
     padding: 35px 20px;
     color:#fff;
-    font:bold 12px/14px Courier, sans-serif;
+    font: 12px/14px Courier, sans-serif;
     margin:0 0 8.84%;
 }
 .section-holder-3 .home_page_section3_image_panel_right a{
@@ -660,10 +663,11 @@
     .quick-navigation .back-btn:hover{background-position:0 -80px;}
     .section-holder-3 .home_page_section3_small_box .news-block{
         width:150px;
-        height:131px;
+        height:134px;
         font-size:20px;
         line-height:26px;
         margin:0 0 24px;
+        float:left;
     }
     .section-holder-3 .home_page_section3_small_box .social-links-holder{
         width:150px;
@@ -728,12 +732,10 @@
         margin-top: -98px;
     }
     .section-holder-3 .home_page_section3_blog_panel.block-5{
-        left:3.04%;
-        width:21.29%;
+        left:30%;
     }
     .section-holder-3 .home_page_section3_blog_panel.block-6{
-        left:28.04%;
-        width:21.29%;
+        left:45%;
     }
     .section-holder-3 .home_page_section3_blog_panel.block-5 img{
         width:75%;
