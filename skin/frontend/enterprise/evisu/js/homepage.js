@@ -45,7 +45,6 @@ jQuery(function($){
 		
 		if($section1Text.hasClass("is-sticky")){
 			$('.main-section .image-holder').css('margin-top',$positionSection1);
-			console.log($('.section-holder-3 > div.block-2').offsetWidth);
 			if($(window).width()>1600){
 				
 				$('.section-holder-1 > div.home_page_section1_image_panel1').stop().css({ "bottom": $animate1/1.2 });
@@ -59,57 +58,65 @@ jQuery(function($){
 				
 				var $topSection2Block1 = $animate2/11;
 				$('.section-holder-2 > div.block-1').stop().css({ "top": $topSection2Block1 });
-				if($topSection2Block1<=30){
-					$('.section-holder-2 > div.block-1').stop().fadeTo( "slow", 0 );
+				if($topSection2Block1<=35){
+					$('.section-holder-2 > div.block-1').fadeTo( 300, 0 );
 				}else{
-					$('.section-holder-2 > div.block-1').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-1').fadeTo( 300, 1 );
 				}
 				
 				var $topSection2Block2 = ($animate2/3)-100;
 				$('.section-holder-2 > div.block-2').stop().css({ "top": $topSection2Block2 });
 				if($topSection2Block2<=17){
-					$('.section-holder-2 > div.block-2').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-2').fadeTo( 300, 0 );
 				}else{
-					$('.section-holder-2 > div.block-2').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-2').fadeTo( 300, 1 );
 				}
 				
 				var $topSection2Block3 = ($animate2)+($('.section-holder-2 > div.block-1').height()/2);
 				$('.section-holder-2 > div.block-3').stop().css({ "top": $topSection2Block3 });
-				if($topSection2Block3<=120){
-					$('.section-holder-2 > div.block-3').stop().fadeTo( "slow", 0 );
+				if($topSection2Block3<=160){
+					$('.section-holder-2 > div.block-3').fadeTo( 300, 0 );
 				}else{
-					$('.section-holder-2 > div.block-3').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-3').fadeTo( 300, 1 );
 				}
 				
 				var $topSection2Block4 = ($animate2/6)+($('.section-holder-2 > div.block-1').height()-100);
 				$('.section-holder-2 > div.block-4').stop().css({ "top": $topSection2Block4 });
 				if($topSection2Block4<=320){
-					$('.section-holder-2 > div.block-4').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-4').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-4').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-4').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block5 = ($animate2/2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+400;
 				$('.section-holder-2 > div.block-5').stop().css({ "top": $topSection2Block5 });
 				if($topSection2Block5<=979){
-					$('.section-holder-2 > div.block-5').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-5').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-5').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-5').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block6 = ($animate2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+$('.section-holder-2 > div.block-3').height()-200;
 				$('.section-holder-2 > div.block-6').stop().css({ "top": $topSection2Block6 });
 				if($topSection2Block6<=868){
-					$('.section-holder-2 > div.block-6').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-6').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-6').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-6').fadeTo( "slow", 1 );
 				}
 				
-				var $bottomPosition3 = $positionSection3-400-$windowHeight;
+				var $bottomPosition3 = $positionSection3-400-$windowHeight,
+					$checkPosition = $bottomPosition3*(-1);
+
 				if($bottomPosition3<=0){
+					if($checkPosition>=100){
+						$section1Text.fadeTo(200, 0 );
+					}else{
+						$section1Text.fadeTo(200, 1 );
+					}
 					$section1Text.css('margin-top',$bottomPosition3);
 				}else{
 					$section1Text.css('margin-top','0');
+					$section1Text.fadeTo(200, 1 );
 				}
 				
 				$('.section-holder-3 > div.block-3').stop().css({ "top": ($animate3/2.5)-1500 });
@@ -135,56 +142,63 @@ jQuery(function($){
 				var $topSection2Block1 = $animate2/11;
 				$('.section-holder-2 > div.block-1').stop().css({ "top": $topSection2Block1 });
 				if($topSection2Block1<=30){
-					$('.section-holder-2 > div.block-1').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-1').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-1').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-1').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block2 = ($animate2/3)-100;
 				$('.section-holder-2 > div.block-2').stop().css({ "top": $topSection2Block2 });
 				if($topSection2Block2<=17){
-					$('.section-holder-2 > div.block-2').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-2').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-2').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-2').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block3 = ($animate2)+($('.section-holder-2 > div.block-1').height()/2);
 				$('.section-holder-2 > div.block-3').stop().css({ "top": $topSection2Block3 });
 				if($topSection2Block3<=350){
-					$('.section-holder-2 > div.block-3').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-3').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-3').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-3').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block4 = ($animate2/6)+($('.section-holder-2 > div.block-1').height()-100);
 				$('.section-holder-2 > div.block-4').stop().css({ "top": $topSection2Block4 });
 				if($topSection2Block4<=320){
-					$('.section-holder-2 > div.block-4').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-4').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-4').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-4').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block5 = ($animate2/2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+400;
 				$('.section-holder-2 > div.block-5').stop().css({ "top": $topSection2Block5 });
 				if($topSection2Block5<=979){
-					$('.section-holder-2 > div.block-5').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-5').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-5').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-5').fadeTo( "slow", 1 );
 				}
 				
 				var $topSection2Block6 = ($animate2)+$('.section-holder-2 > div.block-1').height()+$('.section-holder-2 > div.block-2').height()+$('.section-holder-2 > div.block-3').height()-200;
 				$('.section-holder-2 > div.block-6').stop().css({ "top": $topSection2Block6 });
 				if($topSection2Block6<=868){
-					$('.section-holder-2 > div.block-6').stop().fadeTo( "slow", 0 );
+					$('.section-holder-2 > div.block-6').fadeTo( "slow", 0 );
 				}else{
-					$('.section-holder-2 > div.block-6').stop().fadeTo( "slow", 1 );
+					$('.section-holder-2 > div.block-6').fadeTo( "slow", 1 );
 				}
 				
-				var $bottomPosition3 = $positionSection3-400-$windowHeight;
+				var $bottomPosition3 = $positionSection3-400-$windowHeight,
+					$checkPosition = $bottomPosition3*(-1);
 				if($bottomPosition3<=0){
+					if($checkPosition>=100){
+						$section1Text.fadeTo(300, 0 );
+					}else{
+						$section1Text.fadeTo(300, 1 );
+					}
 					$section1Text.css('margin-top',$bottomPosition3);
 				}else{
 					$section1Text.css('margin-top','0');
+					$section1Text.fadeTo(300, 1 );
 				}
 				$('.section-holder-3 > div.block-3').stop().css({ "top": ($animate3/2.5)-1100 });
 				$('.section-holder-3 > div.block-4').stop().css({ "top": ($animate3/1.5)-2100 });
