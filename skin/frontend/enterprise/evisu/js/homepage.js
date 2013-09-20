@@ -19,17 +19,8 @@ jQuery(function($){
 		$('html,body').stop().animate({scrollTop : 0},1500);
 	});
 	
-	$(window).scroll(function(){
-		var	$topPosition = $(window).scrollTop();
-		
-		//Back Button Enable/Disable
-		if($topPosition>0){
-			$('.quick-navigation .back-btn').fadeIn( 800 );
-		}else if($topPosition==0){
-			$('.quick-navigation .back-btn').fadeOut( 800 );
-		}
-		console.log($topPosition);
-		$('.quick-navigation .explore-more-btn').on('click',function(){
+	$('.quick-navigation .explore-more-btn').on('click',function(){
+			var	$topPosition = $(window).scrollTop();
 			if($(window).width()>1600){
 				if($topPosition<2080){
 					$('html,body').stop().animate({scrollTop : 2080},1500);
@@ -60,6 +51,16 @@ jQuery(function($){
 				}
 			}
 		});
+	
+	$(window).scroll(function(){
+		var	$topPosition = $(window).scrollTop();
+		
+		//Back Button Enable/Disable
+		if($topPosition>0){
+			$('.quick-navigation .back-btn').fadeIn( 800 );
+		}else if($topPosition==0){
+			$('.quick-navigation .back-btn').fadeOut( 800 );
+		}
 		
 		//Section One Animation
 		var $positionSection1 = $('.section-holder-1').position().top - $topPosition,
