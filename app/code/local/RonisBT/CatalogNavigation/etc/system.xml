@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <catalog>
+            <groups>
+                <catalog_navigation translate="label" module="catalognavigation">
+                    <label>Layered Navigation Customisations</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>101</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <standard_layer_view translate="label">
+                            <label>Use Standard Layer View</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </standard_layer_view>
+                        <price_slider translate="label">
+                            <label>Use Price Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_slider>
+                        <use_ajax translate="label">
+                            <label>Use Ajax</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_ajax>
+                        <exclusive_filters translate="label note">
+                            <label>Use Exclusive Filters</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <note><![CDATA[Multiselect filters are turned off when this option is enabled]]></note>
+                        </exclusive_filters>
+                        <inverse_filters translate="label note">
+                            <label>Product attributes to apply inverse fitler logic</label>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <note><![CDATA[Attribute codes selarated with commas]]></note>
+                        </inverse_filters>
+                        <max_price_filter_range translate="label note">
+                            <label>Max. price filter range</label>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <note><![CDATA[If empty or 0 - use magento default logic]]></note>
+                        </max_price_filter_range>
+                    </fields>
+                </catalog_navigation>
+            </groups>
+        </catalog>
+    </sections>
+</config>

@@ -28,11 +28,26 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </javascript>
+                        <default_menu_image translate="label" module="topmenu">
+                            <label>Default Menu Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">catalog/category/topmenu</upload_dir>
+                            <base_url type="media" scope_info="1">catalog/category/topmenu</base_url>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_menu_image>
                         <items translate="label comment" module="topmenu">
                             <label>Menu Items</label>
                             <frontend_model>topmenu/adminhtml_system_config_form_field_array_items</frontend_model>
                             <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
-                            <sort_order>30</sort_order>
+                            <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>

@@ -3,15 +3,29 @@ var EvisuNavigation =
     /* Main menu animation class */
     over : false,
     self : null,
+    menuCategoryImage : null,
 
     init : function(container){
         self = this;
         navLi = jQuery(container + ' > li');
-        navLi.on('mouseenter', function() {self.mouseEnter(jQuery(this))});
-        navLi.on('mouseleave', function() {self.mouseLeave(jQuery(this))});
+        menuCategoryImage = jQuery(container + ' #menu-category-image');
+
+        //Shop Open|Close
+        navLi.on('mouseenter', function() {self.shopMouseEnter(jQuery(this))});
+        navLi.on('mouseleave', function() {self.shopMouseLeave(jQuery(this))});
+
+        //Category thumbnail change
+        jQuery(document).on('mouseenter', container + ' .level-2 a', function() {
+            menuCategoryImage.stop().animate({opacity:0}, 'fast');
+            menuCategoryImage.attr('src', jQuery(this).attr('rel'));
+        });
+        jQuery(document).on('mouseleave', container + ' .level-2 a', function() {
+            menuCategoryImage.stop().animate({opacity:0}, 'fast');
+            menuCategoryImage.attr('src', menuCategoryImage.attr('rel'));
+        });
     },
 
-    mouseEnter : function(element){
+    shopMouseEnter : function(element){
         navLiChild = element.find(' > ul');
         if (!navLiChild){
             return;
@@ -22,7 +36,7 @@ var EvisuNavigation =
         self.over = true;
     },
 
-    mouseLeave : function(element){
+    shopMouseLeave : function(element){
         navLiChild = element.find(' > ul');
         if (!navLiChild){
             return;
@@ -42,6 +56,8 @@ var EvisuNavigation =
 };
 
 
+
+
 //onDocumentReady
 jQuery(function($)
 {
@@ -51,7 +67,7 @@ jQuery(function($)
     //EvisuNavigation.init('#nav');
 
     $('img').on('load', function() {
-        $(this).css('opacity', 1);
+        $(this).stop().animate({opacity: 1}, 'fast');
     });
 });
 
