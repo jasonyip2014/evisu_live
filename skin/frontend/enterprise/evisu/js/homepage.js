@@ -24,12 +24,42 @@ jQuery(function($){
 		
 		//Back Button Enable/Disable
 		if($topPosition>0){
-			$('.quick-navigation .explore-more-btn').fadeOut( 800 );
 			$('.quick-navigation .back-btn').fadeIn( 800 );
 		}else if($topPosition==0){
-			$('.quick-navigation .explore-more-btn').fadeIn( 800 );
 			$('.quick-navigation .back-btn').fadeOut( 800 );
 		}
+		console.log($topPosition);
+		$('.quick-navigation .explore-more-btn').on('click',function(){
+			if($(window).width()>1600){
+				if($topPosition<2080){
+					$('html,body').stop().animate({scrollTop : 2080},1500);
+				}else if($topPosition<2550){
+					$('html,body').stop().animate({scrollTop : 2550},1500);
+				}else if($topPosition<3295){
+					$('html,body').stop().animate({scrollTop : 3295},1500);
+				}else if($topPosition<3670){
+					$('html,body').stop().animate({scrollTop : 3670},1500);
+				}else if($topPosition<4680){
+					$('html,body').stop().animate({scrollTop : 4680},1500);
+				}else if($topPosition<5220){
+					$('html,body').stop().animate({scrollTop : 5220},1500);
+				}
+			}else{
+				if($topPosition<1920){
+					$('html,body').stop().animate({scrollTop : 1920},1500);
+				}else if($topPosition<2132){
+					$('html,body').stop().animate({scrollTop : 2132},1500);
+				}else if($topPosition<2770){
+					$('html,body').stop().animate({scrollTop : 2770},1500);
+				}else if($topPosition<3090){
+					$('html,body').stop().animate({scrollTop : 3090},1500);
+				}else if($topPosition<4265){
+					$('html,body').stop().animate({scrollTop : 4265},1500);
+				}else if($topPosition<4788){
+					$('html,body').stop().animate({scrollTop : 4788},1500);
+				}
+			}
+		});
 		
 		//Section One Animation
 		var $positionSection1 = $('.section-holder-1').position().top - $topPosition,
@@ -42,7 +72,7 @@ jQuery(function($){
 			$animate1 = $positionSection1*(-2),
 			$animate2 = $positionSection2*(1),
 			$animate3 = $positionSection3*(4);
-		
+
 		if($section1Text.hasClass("is-sticky")){
 			$('.main-section .image-holder').css('margin-top',$positionSection1);
 			if($(window).width()>1600){
@@ -104,19 +134,18 @@ jQuery(function($){
 					$('.section-holder-2 > div.block-6').fadeTo( "slow", 1 );
 				}
 				
-				var $bottomPosition3 = $positionSection3-400-$windowHeight,
-					$checkPosition = $bottomPosition3*(-1);
+				if($positionSection2<=620){
+					$('.section-holder-1 .block-1 .section-description, .section-holder-1 .block-1 .section-main-link').stop().fadeTo( 300, 0 );
+				}else{
+					$('.section-holder-1 .block-1 .section-description, .section-holder-1 .block-1 .section-main-link').stop().fadeTo( 300, 1 );
+				}
+				
+				var $bottomPosition3 = $positionSection3-400-$windowHeight;
 
 				if($bottomPosition3<=0){
-					if($checkPosition>=100){
-						$section1Text.fadeTo(200, 0 );
-					}else{
-						$section1Text.fadeTo(200, 1 );
-					}
 					$section1Text.css('margin-top',$bottomPosition3);
 				}else{
 					$section1Text.css('margin-top','0');
-					$section1Text.fadeTo(200, 1 );
 				}
 				
 				$('.section-holder-3 > div.block-3').stop().css({ "top": ($animate3/2.5)-1500 });
@@ -187,18 +216,17 @@ jQuery(function($){
 					$('.section-holder-2 > div.block-6').fadeTo( "slow", 1 );
 				}
 				
-				var $bottomPosition3 = $positionSection3-400-$windowHeight,
-					$checkPosition = $bottomPosition3*(-1);
+				if($positionSection2<=1400){
+					$('.section-holder-1 .block-1 .section-description, .section-holder-1 .block-1 .section-main-link').stop().fadeTo( 300, 0 );
+				}else{
+					$('.section-holder-1 .block-1 .section-description, .section-holder-1 .block-1 .section-main-link').stop().fadeTo( 300, 1 );
+				}
+				
+				var $bottomPosition3 = $positionSection3-400-$windowHeight;
 				if($bottomPosition3<=0){
-					if($checkPosition>=100){
-						$section1Text.fadeTo(300, 0 );
-					}else{
-						$section1Text.fadeTo(300, 1 );
-					}
 					$section1Text.css('margin-top',$bottomPosition3);
 				}else{
 					$section1Text.css('margin-top','0');
-					$section1Text.fadeTo(300, 1 );
 				}
 				$('.section-holder-3 > div.block-3').stop().css({ "top": ($animate3/2.5)-1100 });
 				$('.section-holder-3 > div.block-4').stop().css({ "top": ($animate3/1.5)-2100 });
