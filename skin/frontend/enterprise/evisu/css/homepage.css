@@ -660,9 +660,9 @@
         left:186px;
     }
     .quick-navigation .back-btn{
-        width:59px;
-        height:53px;
-        bottom:48px;
+        width: 69px;
+        height: 58px;
+        bottom: 79px;
     }
     .quick-navigation .back-btn:hover{background-position:0 -80px;}
     .section-holder-3 .home_page_section3_small_box .news-block{
