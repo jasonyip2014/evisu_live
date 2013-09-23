@@ -41,7 +41,7 @@ jQuery(function($){
 			var	$topPosition = $(window).scrollTop();
 			if($(window).width()>1600){
 				if($topPosition<2080){
-					$('html,body').stop().animate({scrollTop : 2080},4000);
+					$('html,body').stop().animate({scrollTop : 2080},6000);
 				}else if($topPosition<2550){
 					$('html,body').stop().animate({scrollTop : 2550},2000);
 				}else if($topPosition<3295){
@@ -57,7 +57,7 @@ jQuery(function($){
 				}
 			}else{
 				if($topPosition<1920){
-					$('html,body').stop().animate({scrollTop : 1920},2000);
+					$('html,body').stop().animate({scrollTop : 1920},6000);
 				}else if($topPosition<2132){
 					$('html,body').stop().animate({scrollTop : 2132},2000);
 				}else if($topPosition<2770){
@@ -89,7 +89,7 @@ jQuery(function($){
 			}else if($topPosition>=2550){
 				$('html,body').stop().animate({scrollTop : 2080},2000);
 			}else if($topPosition>=2080){
-				$('html,body').stop().animate({scrollTop : 0},4000);
+				$('html,body').stop().animate({scrollTop : 0},6000);
 			}
 		}else{
 			if($topPosition>=4788){
@@ -105,7 +105,7 @@ jQuery(function($){
 			}else if($topPosition>=2132){
 				$('html,body').stop().animate({scrollTop : 1920},2000);
 			}else if($topPosition>=1920){
-				$('html,body').stop().animate({scrollTop : 0},4000);
+				$('html,body').stop().animate({scrollTop : 0},6000);
 			}
 		}
 	});
