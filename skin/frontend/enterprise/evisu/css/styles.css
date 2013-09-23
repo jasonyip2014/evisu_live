@@ -88,6 +88,8 @@ a:hover{text-decoration:underline;}
     width:100%;
     text-align:right;
     padding:0 20px;
+    margin: -15px 0 0 0;
+    background: #333;
 }
 .quick-access > *{
     display:inline-block;
@@ -96,8 +98,9 @@ a:hover{text-decoration:underline;}
     color:#333;
     text-transform:uppercase;
     margin:0 0 0 33px;
+    line-height: 24px;
 }
-.quick-access a{color:#333;}
+.quick-access a{color:#fff;}
 .quick-access .links{overflow:hidden;}
 .quick-access .links li{
     float:left;
