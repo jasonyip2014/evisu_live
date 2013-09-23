@@ -114,9 +114,11 @@ jQuery(function($){
 		var	$topPosition = $(window).scrollTop();
 		//Back Button Enable/Disable
 		if($topPosition>0){
+			$('.quick-navigation .explore-more-btn').addClass('little');
 			$('.quick-navigation .back-btn').fadeIn( 800 );
 		}else if($topPosition==0){
 			$('.quick-navigation .back-btn').fadeOut( 800 );
+			$('.quick-navigation .explore-more-btn').removeClass('little');
 		}
 		
 		//Section One Animation
