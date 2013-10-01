@@ -113,7 +113,7 @@ jQuery(function($){
 	
 	$(window).scroll(function(){
 		var	$topPosition = $(window).scrollTop();
-		console.log($topPosition);
+		//console.log($topPosition);
 		//Back Button Enable/Disable
 		if($topPosition>0){
 			$('.quick-navigation .explore-more-btn').addClass('little');
@@ -202,7 +202,7 @@ jQuery(function($){
 					$('.section-holder-2 .block-2 .categorylink2Stick').css('top','500px');
 				}
 				
-				if($topPosition<5220){
+				if($topPosition<5480){
 					$('.quick-navigation .explore-more-btn').fadeIn(800);
 				}else{
 					$('.quick-navigation .explore-more-btn').fadeOut(800);
@@ -337,7 +337,7 @@ jQuery(function($){
 					$('.section-holder-2 .block-2 .categorylink2Stick').css('top','500px');
 				}
 				
-				if($topPosition<4788){
+				if($topPosition<4987){
 					$('.quick-navigation .explore-more-btn').fadeIn(800);
 				}else{
 					$('.quick-navigation .explore-more-btn').fadeOut(800);
