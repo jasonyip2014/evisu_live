@@ -1,0 +1,119 @@
+<?php
+    /* @var $this RonisBT_EditorialContent_Block_Adminhtml_Catalog_Product_Edit_Tab_Pec_Option */
+    $thl = Mage::helper('ronisbt_editorialcontent');
+    //var_dump(get_class($this));
+?>
+<script type="text/javascript">
+optionTemplate = '<div id="<?php echo $this->getFieldId() ?>_{{index}}"  class="option-box"> ' +
+'<div class="option-title"> ' +
+    '<label for="<?php echo $this->getFieldName() ?>[{{index}}][name]"><?php echo $thl->__('name') ?> </label>' +
+    '<input class="input-text " type="text" name="<?php echo $this->getFieldName() ?>[{{index}}][name]" id="id_<?php echo $this->getFieldName() ?>_{{index}}_name" value="{{name}}">' +
+    <? /*
+        <?php if ($this->isDefaultStore()): ?>
+
+        <?php else: ?>
+        '<input class="input-text required-entry" type="text" name="<?php echo $this->getFieldName() ?>[{{index}}][default_title]" id="id_<?php echo $this->getFieldName() ?>_{{index}}_default_title" value="{{default_title}}">' +
+        <?php endif; ?>
+    */ ?>
+'<?php echo $this->jsQuoteEscape($this->getOptionDeleteButtonHtml()) ?>' +
+'</div>' +
+    '<table class="option-header" cellpadding="5" cellspacing="10">' +
+        '<thead>' +
+            '<tr>' +
+                <?php /*
+                    <?php if (!$this->isDefaultStore()): ?>
+                    '<th class="opt-title"><?php echo $thl->__('Store View Title') ?>  <span class="required">*</span></th>' +
+                    <?php endif; ?>
+                */ ?>
+                '<th class="opt-type"><?php echo $thl->__('Editorial Content Item') ?></th>' +
+                '<th class="opt-req"><?php echo $thl->__('Enabled') ?></th>' +
+                '<th class="opt-order"><?php echo $thl->__('Position') ?></th>' +
+                '<th>&nbsp;</th>' +
+            '</tr>' +
+        '</thead>' +
+        '<tbody>' +
+            '<tr>' +
+                <?php /*
+                    <?php if (!$this->isDefaultStore()): ?>
+                    '<td><input class="input-text required-entry" type="text" name="<?php echo $this->getFieldName() ?>[{{index}}][pec_id]" id="id_<?php echo $this->getFieldName() ?>_{{index}}_title_store" value="{{pec_id}}"></td>' +
+                    <?php endif; ?>
+                */ ?>
+                '<td><?php echo $this->getTypeSelectHtml() ?></td>' +
+                '<td><?php echo $this->getStatusSelectHtml() ?></td>' +
+                '<td><input class="input-text validate-zero-or-greater" type="text" name="<?php echo $this->getFieldName() ?>[{{index}}][position]" value="{{position}}"></td>' +
+            '</tr>' +
+        '</tbody>' +
+    '</table>' +
+'</div>';
+</script>
+
+<script type="text/javascript">
+
+Pec.Option = Class.create();
+Pec.Option.prototype = {
+    idLabel : '<?php echo $this->getFieldId() ?>',
+    top : '',
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : '',
+    itemsCount : 0,
+    initialize : function(template) {
+        this.templateText = template;
+        this.top = $('product_bundle_container_top');
+    },
+
+    add : function(data) {
+        if(!data){
+            data = {};
+            this.top = $('product_bundle_container_top');
+        } else {
+            data.name = data.name.replace('"', "&quot;");
+        }
+
+        data.index = this.itemsCount++; // ToDo
+
+        this.template = new Template(this.templateText, this.templateSyntax);
+
+        Element.insert(this.top, {'after':this.template.evaluate(data)});
+
+        this.top = $(this.idLabel + '_' + data.index);
+
+        //set selected type
+        if (data.pec_id) {
+            $A($(this.idLabel + '_'+data.index+'_pec_id').options).each(function(option){
+                if (option.value==data.pec_id) option.selected = true;
+            });
+        }
+
+        //set selected status
+        if (data.status) {
+            $A($(this.idLabel + '_'+data.index+'_status').options).each(function(option){
+                if (option.value==data.required) option.selected = true;
+            });
+        }
+        // rebind change notifications
+        varienWindowOnload(true);
+
+        return data.index;
+    },
+
+    remove : function(event){
+        var element = $(Event.findElement(event, 'div')).parentNode;
+        if(element){
+            Element.remove(element);
+        }
+    }
+
+};
+pecItem = new Pec.Option(optionTemplate);
+
+var optionIndex = 0;
+
+//adding data to templates
+<?php $pec_options = unserialize($this->getProduct()->getPecOptions()) ?>
+<?php if($pec_options): ?>
+    <?php foreach ($pec_options as $_option): ?>
+        optionIndex = pecItem.add(<?php echo json_encode($_option) ?>);
+    <?php endforeach; ?>
+<?php endIf; ?>
+
+</script>

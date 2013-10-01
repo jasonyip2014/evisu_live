@@ -1,0 +1,63 @@
+<?php
+    /* @var $this RonisBT_EditorialContent_Block_Adminhtml_Catalog_Product_Edit_Tab_Pec */
+    $thl = Mage::helper('ronisbt_editorialcontent');
+?>
+<script type="text/javascript">
+    if(typeof Pec=='undefined') {
+        Pec = {};
+    }
+</script>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $thl->__('Status') ?></h4>
+    </div>
+    <fieldset>
+        <table cellspacing="0" class="form-list">
+        <tr>
+            <td class="label"><label for="pec_status"><?php echo $thl->__('Status') ?></label></td>
+            <td class="value"><select <?php if ($this->isReadonly()): ?>disabled="disabled" <?php endif;?>id="pec_status" name="<?php echo $this->getFieldSuffix() ?>[pec_status]" class="select">
+                <option value="0"><?php echo $thl->__('Disabled') ?></option>
+                <option value="1"<?php if ($this->getProduct()->getPecStatus() == 1): ?> selected="selected"<?php endif; ?>><?php echo $thl->__('Enabled') ?></option>
+            </select>
+            </td>
+        </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div class="entry-edit editorial-content bundle custom-options pec" id="product_pec_container">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Product Editorial Content Items') ?></h4>
+        <div class="right"><?php echo $this->getAddButtonHtml() ?></div>
+    </div>
+
+    <div id="product_options_container bundle" class="box">
+        <div id="product_bundle_container_top"></div>
+        <?php echo $this->getOptionsBoxHtml() ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+// re-bind form elements onchange
+varienWindowOnload(true);
+<?php //if ($this->isReadonly()):?>
+//$('product_bundle_container').select('input', 'select', 'textarea', 'button').each(function(input){
+//    input.disabled = true;
+//    if (input.tagName.toLowerCase() == 'button') {
+//        input.addClassName('disabled');
+//    }
+//});
+<?php //endif; ?>
+Validation.add('validate-greater-zero-based-on-option', '<?php echo $this->__('Please enter a number greater 0 in this field.') ?>', function(v, el) {
+    var optionType = $(el).up('div.grid').previous('table.option-header').select('select.select-product-option-type')[0],
+        v = Number(v) || 0;
+
+    if (optionType && (optionType.value == 'checkbox' || optionType.value == 'multi') && v <= 0) {
+        return false;
+    }
+    return true;
+});
+</script>
+
+<div><input type="hidden" name="affect_pec_product_selections" value="1" /></div>

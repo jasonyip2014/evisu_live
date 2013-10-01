@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <RonisBT_EditorialContent>
+            <version>0.3.4</version>
+        </RonisBT_EditorialContent>
+    </modules>
+    <global>
+        <models>
+            <ronisbt_editorialcontent>
+                <class>RonisBT_EditorialContent_Model</class>
+            </ronisbt_editorialcontent>
+        </models>
+        <blocks>
+            <ronisbt_editorialcontent>
+                <class>RonisBT_EditorialContent_Block</class>
+            </ronisbt_editorialcontent>
+        </blocks>
+        <helpers>
+            <ronisbt_editorialcontent>
+                <class>RonisBT_EditorialContent_Helper</class>
+            </ronisbt_editorialcontent>
+        </helpers>
+        <resources>
+            <ronisbt_editorialcontent_setup>
+                <setup>
+                    <module>RonisBT_EditorialContent</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </ronisbt_editorialcontent_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <pec_container>
+                <name>Product Editorial Content Container</name>
+            </pec_container>
+            <pec_text_box_panel>
+                <name>Product Editorial Content (Text Box Panel)</name>
+                <template>cmsadvanced/product_editorial_content/text_box_panel.phtml</template>
+                <groups>
+                    <pec_tbp_data>
+                        <name>Text Box Data</name>
+                        <attributes>
+                            <pec_tbp_title>
+                                <label>Title</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </pec_tbp_title>
+                            <pec_tbp_description>
+                                <label>Description</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </pec_tbp_description>
+                            <pec_tbp_link_text>
+                                <label>Link Text</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </pec_tbp_link_text>
+                            <pec_tbp_target_url>
+                                <label>Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </pec_tbp_target_url>
+                            <pec_tbp_size>
+                                <label>Block Size</label>
+                                <required>1</required>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>ronisbt_editorialcontent/config_source_size</source>
+                            </pec_tbp_size>
+                        </attributes>
+                    </pec_tbp_data>
+                </groups>
+            </pec_text_box_panel>
+            <pec_text_promo_panel>
+                <name>Product Editorial Content (Text Promo Panel)</name>
+                <template>cmsadvanced/product_editorial_content/text_promo_panel.phtml</template>
+                <groups>
+                    <pec_tpp_data>
+                        <name>Text Promo Data</name>
+                        <attributes>
+                            <pec_tpp_link_text>
+                                <label>Text</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </pec_tpp_link_text>
+                            <pec_tpp_target_url>
+                                <label>Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </pec_tpp_target_url>
+                        </attributes>
+                    </pec_tpp_data>
+                </groups>
+            </pec_text_promo_panel>
+            <pec_video_panel>
+                <name>Product Editorial Content (Video Panel)</name>
+                <template>cmsadvanced/product_editorial_content/video_panel.phtml</template>
+                <groups>
+                    <pec_tvp_data>
+                        <name>Video Data</name>
+                        <attributes>
+                            <pec_tvp_video_code>
+                                <label>Video Code</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </pec_tvp_video_code>
+                            <pec_tvp_cover_image>
+                                <label>Cover Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                            </pec_tvp_cover_image>
+                        </attributes>
+                    </pec_tvp_data>
+                </groups>
+            </pec_video_panel>
+        </pagetypes>
+    </cmsadvanced>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <RonisBT_EditorialContent before="Mage_Adminhtml">RonisBT_EditorialContent_Adminhtml</RonisBT_EditorialContent>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <ronisbt_editorialcontent>
+                    <file>pec.xml</file>
+                </ronisbt_editorialcontent>
+            </updates>
+        </layout>
+        <events>
+            <catalog_product_prepare_save>
+                <observers>
+                    <editorialcontent_observer>
+                        <class>ronisbt_editorialcontent/observer</class>
+                        <method>prepareProductSave</method>
+                    </editorialcontent_observer>
+                </observers>
+            </catalog_product_prepare_save>
+            <catalog_product_edit_action>
+                <observers>
+                    <editorialcontent_observer>
+                        <class>ronisbt_editorialcontent/observer</class>
+                        <method>setAttributeTabBlock</method>
+                    </editorialcontent_observer>
+                </observers>
+            </catalog_product_edit_action>
+            <catalog_product_new_action>
+                <observers>
+                    <editorialcontent_observer>
+                        <class>ronisbt_editorialcontent/observer</class>
+                        <method>setAttributeTabBlock</method>
+                    </editorialcontent_observer>
+                </observers>
+            </catalog_product_new_action>
+        </events>
+    </adminhtml>
+</config>
