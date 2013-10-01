@@ -202,7 +202,7 @@ jQuery(function($){
 					$('.section-holder-2 .block-2 .categorylink2Stick').css('top','500px');
 				}
 				
-				if($topPosition<5480){
+				if($topPosition<6015){
 					$('.quick-navigation .explore-more-btn').fadeIn(800);
 				}else{
 					$('.quick-navigation .explore-more-btn').fadeOut(800);
