@@ -104,6 +104,8 @@
         <design>
             <topmenu>
                 <javascript>onmouseover="toggleMenu(this,1)" onmouseout="toggleMenu(this,0)"</javascript>
+                <advanced_cms_root_id>2</advanced_cms_root_id>
+                <root_category_id>2</root_category_id>
                 <item_template><![CDATA[<li class="level%s nav-%s%s"%s><a href="%s"><span>%s</span></a>%s</li>]]></item_template>
             </topmenu>
         </design>

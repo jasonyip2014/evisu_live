@@ -107,9 +107,17 @@ class RonisBT_TopMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
         return $html;
     }
 
-    protected function getItemHtml($item, $level=0, $last=false)
+    protected function getItemHtml($item, $level=0, $last=false, $customTitle = false)
     {
-        $title = $item->getTitle();
+        if($customTitle)
+        {
+            $title = $customTitle;
+        }
+        else
+        {
+            $title = $this->__($item->getTitle());
+        }
+
         $params = '';
         $url = $item->getUrl() ? $item->getUrl() : 'javascript:void(0);';
 
@@ -139,8 +147,7 @@ class RonisBT_TopMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
             if ($level!=0)
                 $params = Mage::helper('topmenu')->getMenuJS();
         }
-
-        return sprintf($this->helper('topmenu')->getItemTemplate(), $level, $position, $class, $params, $url, $this->__($title), $submenu);
+        return sprintf($this->helper('topmenu')->getItemTemplate(), $level, $position, $class, $params, $url, $title, $submenu);
     }
 
     public function drawCategoryItem($category, $level=0, $last=false)
@@ -200,13 +207,13 @@ class RonisBT_TopMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
         return $html;
     }
 
-    public function drawItem($item, $level=0, $last=false)
+    public function drawItem($item, $level=0, $last=false, $thumbnail = false)
     {
         if (!$this->isActive())
             return parent::drawItem($item, $level, $last);
 
         if ($item instanceof RonisBT_TopMenu_Model_Menu_Item)
-            return $this->getItemHtml($item, $level, $last);
+            return $this->getItemHtml($item, $level, $last, $thumbnail);
 
         return parent::drawItem($item, $level, $last);
     }

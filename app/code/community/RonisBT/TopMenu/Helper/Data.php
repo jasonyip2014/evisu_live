@@ -9,6 +9,7 @@ class RonisBT_TopMenu_Helper_Data extends Mage_Core_Helper_Abstract
     protected $_categoryInstance;
     protected $_layers = array();
     protected $_layerAttributes = array();
+    protected $_cmsMenuItems = null;
 
     public function isActive(){
         return (bool) Mage::getStoreConfigFlag('design/topmenu/enabled');
@@ -164,4 +165,28 @@ class RonisBT_TopMenu_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $url;
     }
+
+    public function getCmsMenuItems()
+    {
+        if(!$this->_cmsMenuItems)
+        {
+            $this->_cmsMenuItems = Mage::getModel('cmsadvanced/page')
+                ->getCollection()->addAttributeToSelect('*')
+                ->addFieldToFilter('parent_id',Mage::getStoreConfig('design/topmenu/advanced_cms_root_id'))
+                ->addFieldToFilter('is_active',1)
+                ->addFieldToFilter('include_in_menu',1)
+                ->setOrder('position', 'asc');
+        }
+        return $this->_cmsMenuItems;
+    }
+
+    public function getDefaultCategoryImage()
+    {
+        $image = Mage::getModel('catalog/category')
+            ->load(Mage::getStoreConfig('design/topmenu/root_category_id'))
+            ->getMenuThumbnailImage();
+
+        return $image;
+    }
+
 }
