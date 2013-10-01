@@ -17,6 +17,8 @@
 </div>
 <?php if($this->getHps2PpX2TbLinkText() && $this->getHps2PpX2TbTargetUrl()): ?>
     <a class="<?php echo $this->escapeHtml($this->getHps2PpX2TbBgColor()) ?> category-link" href="<?php echo $this->escapeHtml($this->getHps2PpX2TbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps2PpX2TbLinkText()) ?>"><span><span><?php echo $this->escapeHtml($this->getHps2PpX2TbLinkText()) ?></span></span></a>
+    <input type="hidden" value="<?php echo $this->escapeHtml($this->getHps2PpX2TbTargetUrl()) ?>" class="block-href" />
+    <input type="hidden" value="<?php echo $this->escapeHtml($this->getHps2PpX2TbLinkText()) ?>" class="block-text" />
 <?php endIf; ?>
 <?php if($this->getHps2PpX2AddText()): ?>
     <div class="add-text">
