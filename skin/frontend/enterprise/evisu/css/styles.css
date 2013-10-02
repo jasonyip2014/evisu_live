@@ -96,7 +96,7 @@ a:hover{text-decoration:underline;}
     width:100%;
     text-align:right;
     padding:0 20px;
-    margin: -15px 0 0 0;
+    margin: -15px 0 25px 0;
     background: #333;
     cursor: pointer;
 }
