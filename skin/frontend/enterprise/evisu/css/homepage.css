@@ -47,10 +47,10 @@
     background-position:0 0;
     width: 69px;
 	height: 58px;
-	left: 150px;
+	left: 8px;
     bottom:80px;
     display:none;
-    background: url(../images/new-back-btn.png) no-repeat 0px 0px !important;
+    background: url(../images/new-back-btn.png) no-repeat 0px 0px;
 }
 .quick-navigation .back-btn:hover{
 	background: url(../images/new-back-btn.png) no-repeat 0px -67px !important;
@@ -672,11 +672,6 @@
         background-position:-61px 0;
         left: 210px;
     }
-    .quick-navigation .back-btn{
-        width: 69px;
-        height: 58px;
-        bottom: 79px;
-    }
     .quick-navigation .back-btn:hover{background-position:0 -80px;}
     .section-holder-3 .home_page_section3_small_box .news-block{
         width:150px;
@@ -760,16 +755,25 @@
     .section-holder-3 .home_page_section3_blog_panel.block-6 img{
         width:75%;
     }
+    .little{
+        background: url(../images/little-more-btn-small.png) no-repeat 0px 0px !important;
+        width: 51px !important;
+        height: 45px !important;
+        left: 8px !important;
+        bottom: 30px !important;
+    }
+    .quick-navigation .back-btn{
+        background: url(../images/new-back-btn-small.png) no-repeat 0px 0px;
+        width: 51px;
+        height: 45px;
+        bottom: 79px;
+        left: 8px;
+    }
+    .little:hover{
+        background: url(../images/little-more-btn-small.png) no-repeat 0px -46px !important;
+    }
+    .quick-navigation .back-btn:hover{
+    background: url(../images/new-back-btn-small.png) no-repeat 0px -50px !important;
+    }
 }
 
-.little{
-	background: url(../images/little-more-btn.png) no-repeat 0px 0px !important;
-	width: 68px !important;
-	height: 60px !important;
-	left: 150px !important;
-	bottom: 12px !important;
-}
-
-.little:hover{
-	background: url(../images/little-more-btn.png) no-repeat 0px -62px !important;
-}
