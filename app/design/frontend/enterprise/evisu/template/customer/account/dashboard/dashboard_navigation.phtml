@@ -1,0 +1,44 @@
+<div class="page-title">
+    <h1><?php echo $this->getChildHtml('hello') ?></h1>
+</div>
+<div class="breadcrumbs">
+    <ul>
+        <li class="home">
+            <a title="<?php echo $this->__('Go to Home Page') ?>" href="/">Home</a>
+            <span class="breadcrumbs-separator"> </span>
+        </li>
+        <li class="my-account">
+            <strong><?php echo $this->__('My Account') ?></strong>
+        </li>
+    </ul>
+</div>
+<div class="dashboard-navigation">
+    <ul>
+        <li>
+            <a href="<?php echo Mage::getUrl('customer/account/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Dashboard') ?>">
+                <?php echo $this->__('My Dashboard') ?>
+            </a>
+        </li><li>
+            <a href="<?php echo $this->getUrl('customer/account/edit/', array('_secure' => true)) ?>" title="<?php echo $this->__('Account Information') ?>">
+                <?php echo $this->__('Account Information') ?>
+            </a>
+        </li><li>
+            <a href="<?php echo Mage::getUrl('customer/address/', array('id'=>Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling(),'_secure' => true)) ?>" title="<?php echo $this->__('Address Book') ?>">
+                <?php echo $this->__('Address Book') ?>
+            </a>
+        </li><li>
+            <a href="<?php echo Mage::getUrl('sales/order/history/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Orders') ?>">
+                <?php echo $this->__('My Orders') ?>
+            </a>
+        </li><li>
+            <a href="<?php echo Mage::getUrl('wishlist', array('_secure' => true)) ?>" title="<?php echo $this->__('My Wishlist') ?>">
+                <?php echo $this->__('My Wishlist') ?>
+            </a>
+        </li><li>
+            <a href="<?php echo $this->getUrl('newsletter/manage/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Subscriptions') ?>">
+                <?php echo $this->__('My Subscriptions') ?>
+            </a>
+        </li>
+    </ul>
+    <div class="link-logout"><a href="<?php echo Mage::getUrl('customer/account/logout')?>"><?php echo $this->__('Log Out') ?></a></div>
+</div>

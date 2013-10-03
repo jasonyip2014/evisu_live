@@ -1,0 +1,21 @@
+<?php /* @var $this Mage_Customer_Block_Account_Dashboard_Address */ ?>
+<p>
+    <address>
+        <?php echo $this->getPrimaryBillingAddressHtml() ?>
+    </address>
+</p>
+<div class="links">
+    <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit') ?></a>
+    <a href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Add New Addresses') ?></a>
+</div>
+
+<?php /*
+<div class="col-2">
+    <div class="info-box">
+        <h3 class="box-title"><?php echo $this->__('Default Shipping Address') ?> <span class="separator">|</span> <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit Address') ?></a></h3>
+        <address class="box-content">
+            <?php echo $this->getPrimaryShippingAddressHtml() ?>
+        </address>
+    </div>
+</div>
+*/ ?>

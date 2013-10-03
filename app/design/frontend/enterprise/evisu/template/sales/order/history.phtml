@@ -1,0 +1,62 @@
+
+<div class="account-wrapper">
+    <?php $_orders = $this->getOrders(); ?>
+    <div class="page-title">
+        <h1><?php echo $this->__('My Orders') ?></h1>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php //echo $this->getChildHtml('info');?>
+    <?php /* echo $this->getPagerHtml(); */ ?>
+    <div class="table-wrapper">
+        <?php if($_orders->getSize()): ?>
+            <table class="data-table" id="my-orders-table">
+                <col width="1" />
+                <col width="1" />
+                <col />
+                <col width="1" />
+                <thead>
+                    <tr>
+                        <th><?php echo $this->__('Order No.') ?></th>
+                        <th><?php echo $this->__('Order date') ?></th>
+                        <th><?php echo $this->__('Description') ?></th>
+                        <th><?php echo $this->__('Details') ?></th>
+                        <?php /*
+                        <th><?php echo $this->__('Ship To') ?></th>
+                        <th><span class="nobr"><?php echo $this->__('Order Total') ?></span></th>
+                        <th><span class="nobr"><?php echo $this->__('Order Status') ?></span></th>
+                         *
+                         */?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $_odd = ''; ?>
+                    <?php foreach ($_orders as $_order): ?>
+                    <tr>
+                        <td title="<?php echo $_order->getStatusLabel() ?>"><?php echo $_order->getRealOrderId() ?></td>
+                        <td><span class="nobr"><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></span></td>
+                        <td>
+                            <?php foreach($_order->getItemsCollection() as $_orderItem): ?>
+                                 <div><?php echo $_orderItem->getName() ?></div>
+                            <?php endForeach; ?>
+                        </td>
+                        <?php /* <td>echo $_order->getShippingAddress() ? $this->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;'</td> ?>
+                        <?php // <td>echo $_order->formatPrice($_order->getGrandTotal()) </td> ?>
+                        <?php //<td><em> echo $_order->getStatusLabel() </em></td> */?>
+                        <td class="a-center">
+                            <span class="nobr"><a href="<?php echo $this->getUrl('*/*/view', array('order_id' => $_order->getId())) ?>"><?php echo $this->__('View Order') ?></a>
+                                <?php /*<span class="separator">|</span><a href="<?php echo $this->getTrackUrl($_order) ?>"><?php echo $this->__('Track Order') ?></a>&nbsp;*/ ?>
+                                <?php /* <?php if ($this->helper('sales/reorder')->canReorder($_order)) : ?>
+                                    <span class="separator">|</span> <a href="<?php echo $this->getReorderUrl($_order) ?>" class="link-reorder"><?php echo $this->__('Reorder') ?></a>
+                                <?php endif ?> */ ?>
+                            </span>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php //echo $this->getPagerHtml(); ?>
+        <?php else: ?>
+            <p style="text-align:center; text-transform:uppercase;"><?php echo $this->__('You have placed no orders.'); ?></p>
+        <?php endif ?>
+    </div>
+</div>

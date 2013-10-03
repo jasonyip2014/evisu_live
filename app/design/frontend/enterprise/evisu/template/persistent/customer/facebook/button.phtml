@@ -1,0 +1,13 @@
+<?php if($this->_facebookEnabled()): ?>
+    <div class="facebook-login-button">
+        <?php echo $this->getTitle() ?>
+        <?php //echo $this->_getButtonText(); ?>
+    </div>
+<?php endIf; ?>
+<script>
+//<![CDATA[
+    jQuery('.facebook-login-button').click(function() {
+        FaceBook.login('<?php echo $this->_getButtonUrl() ?>');
+    });
+//]]>
+</script>

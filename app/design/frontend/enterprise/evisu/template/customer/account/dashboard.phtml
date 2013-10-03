@@ -1,0 +1,90 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<?php echo $this->getChildHtml('dashboard_navigation') ?>
+<div class="dashboard">
+    <?php //echo $this->getChildHtml('top') ?>
+    <div class="block">
+        <h2 class="block-title">
+            <?php echo $this->__('My dashboard') ?>
+        </h2>
+        <div class="block-wrapper">
+            <p><?php echo $this->__('From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link to view or edit information.')?></p>
+            <div class="links">
+                <a href="<?php echo $this->getUrl('customer/account/edit', array('changepass' => '1')) ?>"><?php echo $this->__('Change Password') ?></a>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <h2 class="block-title">
+            <?php echo $this->__('Account info') ?>
+        </h2>
+        <div class="block-wrapper">
+            <p>
+                <span><?php echo $this->escapeHtml($this->getCustomer()->getName()) ?></span>
+                <span><?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?></span>
+            </p>
+            <div class="links">
+                <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
+                <a href="<?php echo $this->getUrl('customer/account/edit', array('changepass' => '1')) ?>"><?php echo $this->__('Change Password') ?></a>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <h2 class="block-title">
+            <?php echo $this->__('Address book') ?>
+        </h2>
+        <div class="block-wrapper">
+            <?php echo $this->getChildHtml('address') ?>
+        </div>
+    </div>
+    <div class="block">
+        <h2 class="block-title">
+            <?php echo $this->__('My orders') ?>
+        </h2>
+        <div class="block-wrapper">
+            <?php echo $this->getChildHtml('orders') ?>
+        </div>
+    </div>
+    <div class="block">
+        <h2 class="block-title">
+            <?php echo $this->__('My wishlist') ?>
+        </h2>
+        <div class="block-wrapper">
+            <?php echo $this->getChildHtml('wishlist') ?>
+        </div>
+    </div>
+    <div class="block">
+        <h2 class="block-title">
+            <?php echo $this->__('Subscriptions') ?>
+        </h2>
+        <div class="block-wrapper">
+            <?php echo $this->getChildHtml('newsletter') ?>
+        </div>
+    </div>
+</div>

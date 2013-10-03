@@ -1,0 +1,15 @@
+<?php /* @var $this Mage_Customer_Block_Account_Dashboard_Newsletter */ ?>
+
+<p>
+    <?php if( $this->getSubscriptionObject()->isSubscribed()): ?>
+        <?php echo $this->__("You are currently subscribed to 'General Subscription'.") ?>
+    <?php else: ?>
+        <?php echo $this->__('You are currently not subscribed to any newsletter.') ?>
+    <?php endif; ?>
+</p>
+<div class="links">
+    <a href="<?php echo $this->getUrl('newsletter/manage') ?>"><?php echo $this->__('Edit') ?></a>
+</div>
+
+<?php /* Extensions placeholder */ ?>
+<?php //echo $this->getChildHtml('customer.account.dashboard.info.extra')?>
