@@ -1,0 +1,96 @@
+<script type="text/javascript">
+//<![CDATA[
+    (function() {
+        var magentoFields = [
+            {
+                Company: "order-billing_address_company",
+                Line1: "order-billing_address_street0",
+                Line2: "order-billing_address_street1",
+                City: "order-billing_address_city",
+                State: "order-billing_address_region",
+                StateSelect: "order-billing_address_region_id",
+                Postcode: "order-billing_address_postcode",
+                CountrySelect: "order-billing_address_country_id"
+            },
+            {
+                Company: "order-shipping_address_company",
+                Line1: "order-shipping_address_street0",
+                Line2: "order-shipping_address_street1",
+                City: "order-shipping_address_city",
+                State: "order-shipping_address_region",
+                StateSelect: "order-shipping_address_region_id",
+                Postcode: "order-shipping_address_postcode",
+                CountrySelect: "order-shipping_address_country_id"
+            }
+        ],
+        key = '<?php echo Mage::getStoreConfig('captureplus/settings/admin_key'); ?>';
+    
+        function load() {
+            function createAddressControl(addressFields) {
+                var countryField = pca.getElement(addressFields.CountrySelect); 
+                    magentoCountries = [];
+                
+                for (var c = 0; c < countryField.options.length; c++)
+                    magentoCountries.push(countryField.options[c].value);
+            
+                var fields = [
+                    { element: addressFields.Company, field: "Company" },
+                    { element: addressFields.Line1, field: "Line1" },
+                    { element: addressFields.Line2, field: "Line2" },
+                    { element: addressFields.City, field: "City" },
+                    { element: addressFields.State, field: "ProvinceName" },
+                    { element: addressFields.StateSelect, field: "ProvinceName" },
+                    { element: addressFields.Postcode, field: "PostalCode" },
+                    { element: addressFields.CountrySelect, field: "CountryIso2", mode: pca.fieldMode.COUNTRY }
+                ],
+                options = { 
+                    key: key,
+                    suppressAutocomplete: true,
+                    countries: { 
+                        codesList: magentoCountries.join(","), 
+                        valueType: pca.countryNameType.ISO2 
+                    }
+                },
+                control = new pca.Address(fields, options);        
+                
+                control.listen("populate", function() {
+                    pca.fire(pca.getElement(addressFields.State), "change");
+                    pca.fire(pca.getElement(addressFields.StateSelect), "change");
+                });
+            }
+    
+            for (var i = 0; i < magentoFields.length; i++) {
+                if (pca.getElement(magentoFields[i].Line1))
+                    createAddressControl(magentoFields[i]);
+            }
+            
+            //customer edit dynamic addresses
+            if (typeof customerAddresses != 'undefined') {
+                var addNewAddressFunction = customerAddresses.addNewAddress.bind(customerAddresses);
+
+                customerAddresses.addNewAddress = function () {
+                    addNewAddressFunction();
+                    
+                    var newAddressIndex = customerAddresses.itemCount;
+
+                    if (pca.getElement("_item" + newAddressIndex + "street0")) {
+                        createAddressControl({
+                            Company: "_item" + newAddressIndex + "company",
+                            Line1: "_item" + newAddressIndex + "street0",
+                            Line2: "_item" + newAddressIndex + "street1",
+                            City: "_item" + newAddressIndex + "city",
+                            State: "_item" + newAddressIndex + "region",
+                            StateSelect: "_item" + newAddressIndex + "region_id",
+                            Postcode: "_item" + newAddressIndex + "postcode",
+                            CountrySelect: "_item" + newAddressIndex + "country_id"
+                        });
+                    }
+                }
+            }
+        }
+        
+        window.reloadCapturePlus = load;
+        pca.ready(load);
+    })();
+//]]>
+</script>

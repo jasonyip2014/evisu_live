@@ -1,0 +1,81 @@
+<script type="text/javascript">
+//<![CDATA[
+    (function() {
+        var magentoFields = [
+                {
+                    Company: "billing:company",
+                    Line1: "billing:street1",
+                    Line2: "billing:street2",
+                    City: "billing:city",
+                    State: "billing:region",
+                    StateSelect: "billing:region_id",
+                    Postcode: "billing:postcode",
+                    CountrySelect: "billing:country_id" 
+                },
+                {
+                    Company: "shipping:company",
+                    Line1: "shipping:street1",
+                    Line2: "shipping:street2",
+                    City: "shipping:city",
+                    State: "shipping:region",
+                    StateSelect: "shipping:region_id",
+                    Postcode: "shipping:postcode",
+                    CountrySelect: "shipping:country_id"
+                },
+                {
+                    Company: "company",
+                    Line1: "street_1",
+                    Line2: "street_2",
+                    City: "city",
+                    State: "region",
+                    StateSelect: "region_id",
+                    Postcode: "zip",
+                    CountrySelect: "country"
+                }
+            ],
+            key = '<?php echo Mage::getStoreConfig('captureplus/settings/website_key'); ?>',
+            countryByIP = !!<?php echo Mage::getStoreConfig('captureplus/settings/ip_country'); ?>;
+    
+        function load() {
+            function createAddressControl(addressFields) {
+                var countryField = pca.getElement(addressFields.CountrySelect); 
+                    magentoCountries = [];
+                
+                for (var c = 0; c < countryField.options.length; c++)
+                    magentoCountries.push(countryField.options[c].value);
+            
+                var fields = [
+                    { element: addressFields.Company, field: "Company" },
+                    { element: addressFields.Line1, field: "Line1" },
+                    { element: addressFields.Line2, field: "Line2" },
+                    { element: addressFields.City, field: "City" },
+                    { element: addressFields.State, field: "ProvinceName" },
+                    { element: addressFields.StateSelect, field: "ProvinceName" },
+                    { element: addressFields.Postcode, field: "PostalCode" },
+                    { element: addressFields.CountrySelect, field: "CountryIso2", mode: pca.fieldMode.COUNTRY }
+                ],
+                options = { 
+                    key: key,
+                    suppressAutocomplete: true,
+                    countries: { 
+                        codesList: magentoCountries.join(","), 
+                        valueType: pca.countryNameType.ISO2 
+                    }
+                },
+                control = new pca.Address(fields, options);
+               
+                //perform IP country lookup if required
+                if (countryByIP)
+                    control.setCountryByIP();
+            }
+    
+            for (var i = 0; i < magentoFields.length; i++) {
+                if (pca.getElement(magentoFields[i].Line1))
+                    createAddressControl(magentoFields[i]);
+            }   
+        }
+        
+        pca.ready(load);
+    })();
+//]]>
+</script>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<layout>
+    <checkout_cart_index>
+        <reference name="content">
+            <block type="captureplus/scriptinclude" name="captureplus_scriptinclude"  template="captureplus/scriptinclude.phtml" />
+        </reference>
+    </checkout_cart_index>
+
+    <checkout_onepage_index>
+        <reference name="content">
+            <block type="captureplus/scriptinclude" name="captureplus_scriptinclude"  template="captureplus/scriptinclude.phtml" />
+        </reference>
+    </checkout_onepage_index>
+
+    <checkout_multishipping_register>
+        <reference name="content">
+            <block type="captureplus/scriptinclude" name="captureplus_scriptinclude"  template="captureplus/scriptinclude.phtml" />
+        </reference>
+    </checkout_multishipping_register>
+
+    <checkout_multishipping_addresses>
+        <reference name="content">
+            <block type="captureplus/scriptinclude" name="captureplus_scriptinclude"  template="captureplus/scriptinclude.phtml" />
+        </reference>
+    </checkout_multishipping_addresses>
+
+    <customer_address_form>
+        <reference name="content">
+            <block type="captureplus/scriptinclude" name="captureplus_scriptinclude"  template="captureplus/scriptinclude.phtml" />
+        </reference>
+    </customer_address_form>
+</layout>
