@@ -10,14 +10,14 @@
             <action method="addItem"><type>skin_js</type><name>js/jquery/customSelect.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/main.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/froogaloop.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.fittext.js</name></action>
         </reference>
         <reference name="root">
             <action method="setTemplate"><template>page/1column.phtml</template></action>
             <action method="unsetChild"><name>left</name></action>
-            <block type="core/text_list" name="top_bar" as="top_bar">
+            <block type="core/template" name="top_bar" as="top_bar" template="catalog/product/list/top_bar.phtml">
                 <action method="insert"><name>left</name><sibling/><after>1</after><alias>left</alias></action>
             </block>
-
         </reference>
         <reference name="top.links">
             <action method="addLink" translate="label title" module="customer"><label>Sign Up</label><url helper="customer/getRegisterUrl" /><title>Sign Up</title><prepare/><urlParams/><position>1</position></action>
@@ -34,17 +34,16 @@
             <remove name="store_switcher" />
             <block type="cms/block" name="social_links"><action method="setBlockId"><block_id>social_links_block</block_id></action></block>
         </reference>
-
     </default>
 
     <catalog_category_layered>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/product_listing.js</name><params/></action>
+        </reference>
         <reference name="root">
-
             <reference name="top_bar">
-                <!--<block type="catalog/layer_view" name="catalog.filter" template="catalog/layer/view.phtml"/>-->
-                <!-- <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml"/> -->
-
                 <action method="insert"><name>product_list_toolbar</name><sibling/><after>1</after><alias>product_list_toolbar</alias></action>
+                <block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />
             </reference>
         </reference>
         <reference name="right">
@@ -57,60 +56,96 @@
         <reference name="breadcrumbs.container">
             <remove name="category.title" />
             <block type="catalog/category_view" name="category.main_title" before="-" template="catalog/category/title.phtml"/>
-            <block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />
-            <!--<action method="unsetChild"><name>category.title</name></action>-->
-            <!--<action method="insert"><blockName>child.block.name</blockName><siblingName>name_of_block</siblingName><after>1</after><alias>child_block_alias</alias></action>-->
+            <block type="core/template" name="product_list_navigation" as="product_list_navigation" after="-" template="catalog/product/list/category_and_navigation.phtml" />
+            <!--<block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />-->
         </reference>
     </catalog_category_layered>
+
     <catalog_product_view>
-
-
         <reference name="head">
-           <action method="removeItem"><type>skin_js</type><name>js/jqzoom/jquery-1.3.1.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/jqzoom/jquery-1.3.1.min.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/jqzoom/jquery.jqzoom1.0.1.js</name></action>
             <action method="removeItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name></action>
             <action method="removeItem"><type>js</type><name>calendar/calendar.js</name></action>
             <action method="removeItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
- <!--
-            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.maketabs.min.js</name><params/></action>-->
-          <!--  <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.arcticmodal-0.3.min.js</name><params/></action>
+            <!--<action method="addItem"><type>skin_js</type><name>js/jquery/jquery.maketabs.min.js</name><params/></action>-->
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.arcticmodal-0.3.min.js</name><params/></action>
             <action method="addItem"><type>skin_css</type><name>css/jquery.arcticmodal-0.3.css</name></action>
-           <action method="addItem"><type>skin_js</type><name>js/jquery/cloud-zoom.1.0.2.min.js</name><params/></action>
--->
-    <!--         <action method="addItem"><type>skin_js</type><name>js/evisu_product.js</name><params/></action>-->
+            <action method="addItem"><type>skin_js</type><name>js/jquery/cloud-zoom.1.0.2.min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/social_share.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/product_detail.js</name><params/></action>
         </reference>
-
-        <!--<reference name="category.products">
-            <block type="catalog/product_view" name="product.clone_prices" as="prices" template="catalog/product/view/price_clone.phtml"/>
-        </reference>-->
-
+        <reference name="product.info.media">
+            <block type="reports/product_viewed" name="product.recently.viewed" as="recently_viewed" template="catalog/product/view/recently_viewed.phtml" />
+            <block type="catalog/product_list_related" name="catalog.product.related" as="relatedProducts" template="catalog/product/list/related.phtml"/>
+        </reference>
         <reference name="product.info">
-         <remove name="html_calendar" />
+            <remove name="html_calendar" />
             <remove name="options_js"/>
-           <!--    <remove name="product.info.options.wrapper.bottom"/>
-
-            <action method="insert"><name>breadcrumbs.container</name><sibling></sibling><after>1</after><alias>breadcrumbsContainer</alias></action>-->
-
-            <!-- Bottom tabs -->
-            <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml">
-                <action method="setTitle"><name>Customers Also Viewed</name></action>
-                <action method="addToParentGroup"><group>detailed_info</group></action>
-            </block>
-
-            <block type="reports/product_viewed" name="product.recently.viewed" as="recently_viewed" template="catalog/product/view/recently_viewed.phtml">
-                <action method="setTitle"><name>Recently Viewed</name></action>
-                <action method="addToParentGroup"><group>detailed_info</group></action>
-            </block>
         </reference>
-
-        <reference name="product.info.options.wrapper.bottom">
-
-            <remove name="product.info.addto" />
-            <remove name="product.clone_prices"/>
+        <reference type="productalert/product_view" name="productalert.stock" as="productalert_stock" template="productalert/product/view.phtml">
+            <action method="setSignupLabel" translate="value"><value>Email Me When Back In Stock</value></action>
         </reference>
-
-        <!--  <reference name="root">
-              <action method="unsetChild"><name>breadcrumbsContainer</name></action>
-          </reference>-->
     </catalog_product_view>
+
+    <!-- ============================ Customer and dashboard ============================================ -->
+    <customer_account translate="label">
+        <reference name="my.account.wrapper">
+            <block type="core/template" name="dashboard_navigation" as="dashboard_navigation" before="-" template="customer/account/dashboard/dashboard_navigation.phtml">
+                <block type="customer/account_dashboard_hello" name="customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>
+            </block>
+        </reference>
+    </customer_account>
+    <customer_account_index translate="label">
+        <reference name="customer_account_dashboard" >
+            <block type="sales/order_history" name="customer_salest_account_dashboard_order_history" as="orders" template="customer/account/dashboard/orders.phtml" />
+            <block type="core/template" name="customer_account_dashboard_wishlist" as="wishlist" template="customer/account/dashboard/wishlist.phtml" />
+        </reference>
+    </customer_account_index>
+    <wishlist_index_index>
+        <!--<update handle="customer_account"/>-->
+        <reference name="my.account.wrapper">
+            <remove name="customer.account.link.back" />
+        </reference>
+        <!-- ======== Wishlist Columns ======== -->
+        <reference name="customer.wishlist.item.image">
+            <action method="setTitle" translate="title">
+                <title>Product</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.item.info">
+            <action method="setTitle" translate="title">
+                <title>Description</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.item.cart">
+            <action method="setTitle" translate="title">
+                <title>Quantity</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.item.remove">
+            <action method="setTitle" translate="title">
+                <title>Remove</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.items">
+            <block type="wishlist/customer_wishlist_item_column_comment" name="customer.wishlist.item.added.on" before="customer.wishlist.item.button" template="wishlist/item/column/added_on.phtml" >
+                <action method="setTitle" translate="title">
+                    <title>Added On</title>
+                </action>
+            </block>
+            <block type="wishlist/customer_wishlist_item_column_cart" name="customer.wishlist.item.button" before="customer.wishlist.item.remove" template="wishlist/item/column/button.phtml" >
+                <action method="setTitle" translate="title">
+                    <title>Add to Bag</title>
+                </action>
+            </block>
+        </reference>
+    </wishlist_index_index>
+    <sales_order_history>
+        <!--<update handle="customer_account"/>-->
+        <reference name="my.account.wrapper">
+            <remove name="customer.account.link.back" />
+        </reference>
+    </sales_order_history>
+
 </layout>

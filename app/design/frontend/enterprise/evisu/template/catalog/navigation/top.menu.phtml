@@ -1,5 +1,5 @@
 <?php /* @var $this RonisBT_TopMenu_Block_Navigation */ ?>
-
+<?php $_afHelper = Mage::helper('adminforms/image'); ?>
 <?php $_menu = $this->getMenuItems() ?>
 
 <?php if (!empty($_menu)): ?>
@@ -14,17 +14,19 @@
             <ul class="level0 no-display">
                 <li class="category-image-holder">
                     <div class="image-holder">
-                        <?php $defaultMenuImage = Mage::helper('adminforms/image')->init('catalog/category/topmenu', Mage::getStoreConfig('design/topmenu/default_menu_image'), '')->resize(200, 300); ?>
+                        <?php $defaultMenuImage = $_afHelper->init('catalog/category', Mage::helper('topmenu')->getDefaultCategoryImage(), '')->resize(200, 300); ?>
                         <img width="200px" height="300px" id="menu-category-image" src="<?php echo $defaultMenuImage ?>" rel="<?php echo $defaultMenuImage ?>" alt="menu-category-image" />
                     </div>
                 </li>
                 <?php foreach ($_menu as $_item): ?>
-                    <?php echo $this->drawItem($_item, 1) ?>
+                    <?php $menuThumbnailImage = $_item->getCategory()->getMenuThumbnailImage() ?>
+                    <?php $customTitle = ($menuThumbnailImage) ? '<img src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(70, 30) . '" alt="" />' : false ; ?>
+                    <?php echo $this->drawItem($_item, 1, false, $customTitle) ?>
                 <?php endforeach ?>
             </ul>
             <?php endif; ?>
         </li>
-
+        <?php /*
         <li class="level0 top-level">
             <a href="<?php echo Mage::getUrl('lookbook'); ?>">
                 <span><?php echo $this->__('Lookbook'); ?></span>
@@ -46,32 +48,18 @@
                 <span><?php echo $this->__('Press'); ?></span>
             </a>
         </li>
-        <?php
-            //$currentPage = Mage::helper('cmsadvanced')->getCurrentPage();
-            //$_allPathIds = $currentPage->getPathIds();
-            //$_allParentIds = array_diff($_allPathIds, array($currentPage->getId()));
-            //$_parentId = $_allPathIds[$level - 1];
-            ////$childrenPages = Mage::getModel('cmsadvanced/page')->getCollection()->addAttributeToSelect('*')->setOrder('position', 'asc');
-
-                //->addFieldToFilter('parent_id',$_parentId)
-                //->addRedirect()
-
-            //$childrens = array();
-
-            ////foreach ($childrenPages as $childrenPage) {
-                ////var_dump($childrenPage->getData());
-                //die;
-                /*$childrens[] = array('url' => $childrenPage->getUrl(),
-                    'label' => $childrenPage->getName(),
-                    'http_url' => $childrenPage->getHttpUrl(),
-                    'type' => $childrenPage->getPageType()*/
-                    //'class' => ($currentPage->getId() == $childrenPage->getId() || in_array($childrenPage->getId(), $_allParentIds)) ? 'current' : '');
-           //// }
-        ?>
-        <li><span class="search-bnt"></span></li>
-        <?php  /*
-
         */ ?>
+
+        <?php if($cmsMenuItems = Mage::helper('topmenu')->getCmsMenuItems()): ?>
+            <?php foreach ($cmsMenuItems as $cmsMenuItem): ?>
+                <li class="level0 top-level">
+                    <a href="<?php echo $cmsMenuItem->getUrl() ?>">
+                        <span><?php echo $cmsMenuItem->getName() ?></span>
+                    </a>
+                </li>
+            <?php endForeach; ?>
+        <?php endIf; ?>
+        <li><span class="search-bnt"></span></li>
     </ul>
 </div>
 <?php endif; ?>

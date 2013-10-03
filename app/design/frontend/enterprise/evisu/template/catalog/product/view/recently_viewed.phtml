@@ -1,0 +1,22 @@
+<?php
+/* @var $this Mage_Reports_Block_Product_Viewed */
+?>
+
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+    <?php $countProducts = $_products->getSize()-1 ?>
+    <div class="recently-viewed">
+        <div class="recently-viewed-holder size-<?php echo $countProducts ?>">
+            <?php $i = 0; foreach ($_products as $_item): ?>
+                <a href="<?php echo $this->getProductUrl($_item) ?>" title="<?php echo Mage::helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?>">
+                    <span class="image-holder">
+                        <img width="100" height="200" src="<?php echo Mage::helper('catalog/image')->init($_item, 'small_image')->backgroundColor(array(255,255,255))->resize(100, 200) ?>" alt="<?php //echo $this->stripTags($_product->getImageLabel()) ?>" />
+                    </span>
+                </a>
+                <?php if(++$i > 3) break; ?>
+            <?php endforeach ?>
+            <div class="recently-viewed-title">
+                <?php echo $this->__('recently viewed'); ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

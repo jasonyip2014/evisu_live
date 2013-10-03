@@ -1,0 +1,63 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+$qty = (int) Mage::getStoreConfig('catalog/product_detail/qty');
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Basket'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <?php if(!$_product->isGrouped()): ?>
+            <?php if($qty): ?>
+                <?php /*
+                    <label for="qty"><?php echo $this->__('Qty:') ?></label>
+                */ ?>
+                <select name="qty" id="qty" class="input-text qty">
+                    <option value="">Qty</option>
+                    <?php for($i = 1; $i <= $qty; $i++): ?>
+                        <option <?php if($this->getProductDefaultQty() * 1 == $i): ?>selected="selected"<?php endIf; ?> value="<?php echo $i ?>"><?php echo $i ?></option>
+                    <?php endFor; ?>
+                </select>
+                <script>
+                //<![CDATA[
+                    jQuery('#qty').customSelect();
+                //]]>
+                </script>
+                <?php /*
+                    <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+                */ ?>
+            <?php endif; ?>
+        <?php endIf; ?>
+        <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+
+        <?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+        <ul class="add-to-links">
+            <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+            <?php endif; ?>
+        </ul>
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+<?php endif; ?>

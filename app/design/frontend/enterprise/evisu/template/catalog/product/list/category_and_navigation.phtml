@@ -1,0 +1,17 @@
+<?php /* @var $this Mage_Catalog_Block_Product_List_Toolbar */ ?>
+
+<div class="">
+    <div class="category-description">
+        <?php $_category = Mage::getSingleton('catalog/layer')->getCurrentCategory(); ?>
+        <?php echo Mage::helper('catalog/output')->categoryAttribute($_category, $_category->getDescription(), 'description') ?>
+    </div>
+    <div class="category-promo">
+        <?php if($_category->getAdditionalPromoCopy()): ?>
+            <?php echo $_category->getAdditionalPromoCopy() ?>
+        <?php endIf; ?>
+    </div>
+</div>
+<div class="quick-navigation">
+    <div class="back-btn"><?php echo $this->__('Back') ?></div>
+    <div class="explore-more-btn"><span><?php echo $this->__('Explore') ?></span><span><?php echo $this->__('More') ?></span></div>
+</div>

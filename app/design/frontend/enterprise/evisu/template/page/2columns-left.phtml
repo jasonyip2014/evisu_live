@@ -40,7 +40,9 @@
     <div class="page">
         <?php echo $this->getChildHtml('header') ?>
         <?php echo $this->getChildHtml('global_messages') ?>
-        <?php echo $this->getChildHtml('breadcrumbsContainer') ?>
+        <div class="breadcrumbs-container">
+            <?php echo $this->getChildHtml('breadcrumbsContainer') ?>
+        </div>
         <div class="main col2-left-layout">
             <div class="col-main">
                 <?php echo $this->getChildHtml('content') ?>

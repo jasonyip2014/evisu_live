@@ -1,0 +1,17 @@
+<?php /* @var $this Mage_Catalog_Block_Product_List_Related */ ?>
+
+<?php if($itemsCount = $this->getItems()->getSize()): ?>
+<div class="related items-<?php echo $itemsCount ?>">
+    <?php $i = 0; foreach($this->getItems() as $_item): ?>
+        <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo Mage::helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?>">
+            <span class="image-holder">
+                <img width="100" height="200" src="<?php echo Mage::helper('catalog/image')->init($_item, 'small_image')->backgroundColor(array(255,255,255))->resize(100, 200) ?>" alt="<?php //echo $this->stripTags($_product->getImageLabel()) ?>" />
+            </span>
+        </a>
+        <?php if(++$i > 3) break; ?>
+    <?php endforeach ?>
+    <div class="related-title">
+        <?php  echo $this->__('you may also like'); ?>
+    </div>
+</div>
+<?php endif ?>

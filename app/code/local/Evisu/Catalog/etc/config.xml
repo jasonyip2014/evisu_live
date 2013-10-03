@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_Catalog>
-            <version>0.1.3</version>
+            <version>0.1.6</version>
         </Evisu_Catalog>
     </modules>
     <global>
@@ -39,6 +39,17 @@
                 </observers>
             </catalog_category_flat_loadnodes_before>
         </events>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <second_name />
+                        <size />
+                        <colour />
+                    </product_attributes>
+                </item>
+            </quote>
+        </sales>
     </global>
     <frontend>
         <product>
@@ -66,4 +77,11 @@
             </collection>
         </product>
     </frontend>
+    <default>
+        <catalog>
+            <product_detail>
+                <qty>10</qty>
+            </product_detail>
+        </catalog>
+    </default>
 </config>
