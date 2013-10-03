@@ -1,20 +1,19 @@
 function SimulateChange(id){
+//    console.log(id);
 	$(id).simulate('change');
 }
 (function($){
-$.fn.customSelect = function(){
-    $(this).each(function(){
+    $.fn.customSelectRefresh = function(){
         var self = this;
-        var customWr = $(self).wrap('<div class="custom-select-wrapper"></div>').parent();
-        customWr.append('<div class="custom-select"></div>');
-        var customSelect = customWr.find('.custom-select:first'),
-//            customValue = $(self).find('option:selected').text();
-            customValue = changeText($(self).find('option:selected').text());
-
+        var customValue = changeText($(self).find('option:selected').text());
+        var customSelect = $(self).parent().find('.custom-select');
+        customSelect.empty();
         customSelect.prepend('<a href="#" class="custom-select-btn">'+customValue+'</a>');
         customSelect.append('<ul class="custom-select-drop"></ul>');
+        customSelect.find('.custom-select-drop').css('display', 'none');
         var customDrop = customSelect.find('.custom-select-drop:first'),
             customBtn = customDrop.prev();
+
         var customDropElements = '';
         var $opts = $(self).find('option');
         for (var i=0; i < $opts.length; i++) {
@@ -44,12 +43,13 @@ $.fn.customSelect = function(){
             customBtn.text($(this).text());
             customDrop.find('li a.selected').removeClass('selected');
             $(this).addClass('selected');
-            //$(self).find('option:selected').removeAttr('selected');
+
+            $(self).find('option:selected').removeAttr('selected');
             $(self).find('option:contains("'+$(this).text()+'")').attr('selected', 'selected');
 
-            $(self).removeAttr('selected');
+            //$(self).removeAttr('selected');
             $(self).val($(this).attr('value'));
-			SimulateChange(self.id);
+            SimulateChange($(self).attr('id'));
 
             e.preventDefault();
         });
@@ -74,28 +74,50 @@ $.fn.customSelect = function(){
                 }
             });
         });
-    });
-    function changeText(textValue, removeIt)
-    {
-        if (textValue === 'Choose an Option...') {
-            textValue = 'Select';
-            if (removeIt) {
-                return false;
+
+        function changeText(textValue, removeIt)
+        {
+            var replacedValues = ['Choose an Option...', 'Please select region, state or province'];
+            //jQuery.inArray
+            if (jQuery.inArray(textValue, replacedValues) != -1) {
+                if (removeIt) {
+                    return false;
+                }
+                if($(self).data('defvalue'))
+                {
+                    textValue = $(self).data('defvalue');
+                }
+                else
+                {
+                    textValue = 'Select';
+                }
             }
+            return textValue;
         }
 
-        return textValue;
-    }
-    $('.custom-select').click(function(e){
-        e.stopPropagation();
-    });
-    $(document).click(function(){
-        $('.custom-select.active').removeClass('active');
-        $('.custom-select-drop').slideUp(100);
-    });
+        $(document).click(function(){
+            $('.custom-select.active').removeClass('active');
+            $('.custom-select-drop').slideUp(100);
+        });
+    };
+    $.fn.customSelect = function(){
+        $(this).each(function(){
+            var self = this;
+            var customWr = $(self).wrap('<div class="custom-select-wrapper"></div>').parent();
+            customWr.append('<div class="custom-select"></div>');
+            var customSelect = customWr.find('.custom-select:first');
+    //            customValue = $(self).find('option:selected').text();
 
-    return this;
-};
+            $('.custom-select').click(function(e){
+                e.stopPropagation();
+            });
+
+            $(self).customSelectRefresh();
+        });
+
+
+        return this;
+    };
 }(jQuery));
 
 function changeState(element)
