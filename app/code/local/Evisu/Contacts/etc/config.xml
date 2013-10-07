@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Evisu_Contacts>
+            <version>0.2.6</version>
+        </Evisu_Contacts>
+    </modules>
+    <frontend>
+        <routers>
+            <contacts>
+                <use>standard</use>
+                <args>
+                    <module>Evisu_Contacts</module>
+                    <frontName>contacts</frontName>
+                </args>
+            </contacts>
+        </routers>
+        <!--<translate>
+            <modules>
+                <Evisu_Contacts>
+                    <files>
+                        <default>Evisu_Contacts.csv</default>
+                    </files>
+                </Evisu_Contacts>
+            </modules>
+        </translate>-->
+        <layout>
+            <updates>
+                <contact>
+                    <file>evisu_contacts.xml</file>
+                </contact>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <evisu_contacts>
+                <class>Evisu_Contacts_Block</class>
+            </evisu_contacts>
+        </blocks>
+        <models>
+            <evisu_contacts>
+                <class>Evisu_Contacts_Model</class>
+            </evisu_contacts>
+        </models>
+        <helpers>
+            <evisu_contacts>
+                <class>Evisu_Contacts_Helper</class>
+            </evisu_contacts>
+        </helpers>
+        <resources>
+            <contacts_setup>
+                <setup>
+                    <module>Evisu_Contacts</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </contacts_setup>
+        </resources>
+        <template>
+            <email>
+                <evisu_contacts_email_email_template translate="label" module="evisu_contacts">
+                    <label>Contact Form</label>
+                    <file>contact_form.html</file>
+                    <type>text</type>
+                </evisu_contacts_email_email_template>
+            </email>
+        </template>
+        <events>
+            <adminforms_block_edit_action_contact_us_grid>
+                <observers>
+                    <evisu_contacts>
+                        <class>evisu_contacts/observer</class>
+                        <method>lockAdminformsFields</method>
+                    </evisu_contacts>
+                </observers>
+            </adminforms_block_edit_action_contact_us_grid>
+        </events>
+    </global>
+
+    <!--<adminhtml>
+        <translate>
+            <modules>
+                <Mage_Contacts>
+                    <files>
+                        <default>Evisu_Contacts.csv</default>
+                    </files>
+                </Mage_Contacts>
+            </modules>
+        </translate>
+    </adminhtml>-->
+    <cmsadvanced>
+        <pagetypes>
+            <contact_us>
+                <name>Contact Us Page</name>
+                <groups>
+                    <content_data>
+                        <label>Content Data</label>
+                        <attributes>
+                            <contact_us_image>
+                                <label>Main Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>resolution 900x600</note>
+                            </contact_us_image>
+                            <block1_link>
+                                <label>1st Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block1_link>
+                            <block1_target_url>
+                                <label>1st Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block1_target_url>
+                            <block2_link>
+                                <label>2st Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block2_link>
+                            <block2_target_url>
+                                <label>2st Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block2_target_url>
+                        </attributes>
+                    </content_data>
+                    <contacts>
+                        <label>Contacts</label>
+                        <attributes>
+                            <contact1_status>
+                                <label>1st Contact Status</label>
+                                <template>status</template>
+                                <default>0</default>
+                            </contact1_status>
+                            <contact1_title>
+                                <label>1st Contact Title</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact1_title>
+                            <contact1_email>
+                                <label>1st Contact Email</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact1_email>
+                            <contact2_status>
+                                <label>2nd Contact Status</label>
+                                <template>status</template>
+                                <default>0</default>
+                            </contact2_status>
+                            <contact2_title>
+                                <label>2nd Contact Title</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact2_title>
+                            <contact2_email>
+                                <label>2nd Contact Email</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact2_email>
+                            <contact3_status>
+                                <label>3rd Contact Status</label>
+                                <template>status</template>
+                                <default>0</default>
+                            </contact3_status>
+                            <contact3_title>
+                                <label>3rd Contact Title</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact3_title>
+                            <contact3_email>
+                                <label>3rd Contact Email</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact3_email>
+                            <contact4_status>
+                                <label>4th Contact Status</label>
+                                <template>status</template>
+                                <default>0</default>
+                            </contact4_status>
+                            <contact4_title>
+                                <label>4th Contact Title</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact4_title>
+                            <contact4_email>
+                                <label>4th Contact Email</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact4_email>
+                            <contact5_status>
+                                <label>5th Contact Status</label>
+                                <template>status</template>
+                                <default>0</default>
+                            </contact5_status>
+                            <contact5_title>
+                                <label>5th Contact Title</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact5_title>
+                            <contact5_email>
+                                <label>5th Contact Email</label>
+                                <required>0</required>
+                                <template>text</template>
+                            </contact5_email>
+                        </attributes>
+                    </contacts>
+                    <contact_us_form>
+                        <name>Responses</name>
+                        <attributes>
+                            <contact_us_grid>
+                                <input>grid</input>
+                            </contact_us_grid>
+                        </attributes>
+                    </contact_us_form>
+                </groups>
+            </contact_us>
+        </pagetypes>
+    </cmsadvanced>
+
+   <default>
+        <evisu_contacts>
+            <contacts>
+                <enabled>1</enabled>
+            </contacts>
+            <email>
+                <recipient_email><![CDATA[hello@example.com]]></recipient_email>
+                <sender_email_identity>custom2</sender_email_identity>
+                <email_template>evisu_contacts_email_email_template</email_template>
+            </email>
+        </evisu_contacts>
+    </default>
+</config>

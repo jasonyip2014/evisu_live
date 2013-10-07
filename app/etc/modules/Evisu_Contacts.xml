@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Contacts>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <RonisBT_Cms/>
+
+            </depends>
+        </Evisu_Contacts>
+    </modules>
+</config>

@@ -1,0 +1,36 @@
+<?php /* @var $this Mage_Core_Block_Template */ ?>
+<?php $page = Mage::helper('evisu_contacts')->getPage() ?>
+<div class="page-title">
+    <h1><?php echo $this->__('Contact') ?></h1>
+</div>
+<div class="breadcrumbs">
+    <ul>
+        <li class="home">
+            <a title="<?php echo $this->__('Go to Home Page') ?>" href="/"><?php echo $this->__('Home') ?></a>
+            <span class="breadcrumbs-separator"> </span>
+        </li>
+        <li class="my-account">
+            <strong><?php echo $this->__('Contact') ?></strong>
+        </li>
+    </ul>
+</div>
+<div class="contacts-page">
+
+    <div class="background-image">
+        <div class="image-holder">
+            <img width="600" height="900" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($page->getContactUsImage()), 'cms_page')->resize(600, 900) ?>" alt="" />
+        </div>
+    </div>
+    <?php echo $this->getChildHtml('contacts') ?>
+    <?php echo $this->getChildHtml('form') ?>
+    <div class="contacts-page-blocks">
+        <?php echo $this->getChildHtml('social_block') ?>
+        <div class="block1">
+            <a href="<?php echo $this->stripTags($page->getBlock1TargetUrl()) ?>" title="<?php echo $this->stripTags($page->getBlock1Link()) ?>"><?php echo $this->stripTags($page->getBlock1Link()) ?></a>
+        </div>
+        <div class="block2">
+            <a href="<?php echo $this->stripTags($page->getBlock2TargetUrl()) ?>" title="<?php echo $this->stripTags($page->getBlock2Link()) ?>"><?php echo $this->stripTags($page->getBlock2Link()) ?></a>
+        </div>
+    </div>
+</div>
+

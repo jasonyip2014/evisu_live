@@ -1,0 +1,61 @@
+<?php /* @var $this Mage_Core_Block_Template */ ?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Leave a message') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><?php echo $this->__('Name') ?><em>*</em></label>
+                    <div class="input-box">
+                        <input name="name" id="name" title="<?php echo $this->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><?php echo $this->__('Email') ?><em>*</em></label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                    </div>
+                </div>
+            </li>
+            <li>
+                <label for="subject"><?php echo $this->__('Subject') ?></label>
+                <div class="input-box">
+                    <?php if($subjects = Mage::getStoreConfig('evisu_contacts/email/email_subjects')): ?>
+                        <select name="subject" id="subject" title="<?php echo $this->__('Subject') ?>" class="input-text required-entry">
+                            <option value=""></option>
+                            <?php foreach(unserialize($subjects) as $subject): ?>
+                                <option value="<?php echo $subject['value'] ?>"><?php echo $subject['value'] ?></option>
+                            <?php endForeach; ?>
+                        </select>
+                        <script>
+                            //<![CDATA[
+                                jQuery('#subject').customSelect();
+                            //]]>
+                        </script>
+                    <?php else: ?>
+                        <input name="subject" id="subject" title="<?php echo $this->__('Subject') ?>" value="" class="input-text required-entry" type="text" />
+                    <?php endIf; ?>
+                </div>
+            </li>
+            <li class="wide">
+                <label for="comment" class="required"><?php echo $this->__('Comment') ?></label>
+                <div class="input-box">
+                    <textarea name="comment" id="comment" title="<?php echo $this->__('Comment') ?>" class="input-text" cols="5" rows="3"></textarea>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="form-ajax-loader"></div>
+    <div id="ajax-result"></div>
+    <div class="buttons-set">
+        <input type="hidden" name="formkey" id="formkey" value="<? echo $this->getFormKey(); ?>" style="display:none !important;" />
+        <button id='sbm-btn' type="submit" title="<?php echo $this->__('Send') ?>" class="button"><?php echo $this->__('Send') ?></button>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

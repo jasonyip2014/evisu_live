@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<adminforms>
+    <entities>
+        <contact_us_grid>
+            <groups>
+                <general>
+                    <attributes>
+                        <page_id>
+                            <input>hidden</input>
+                        </page_id>
+                        <cu_name>
+                            <label>Name</label>
+                            <template>text</template>
+                        </cu_name>
+                        <cu_subject>
+                            <label>Subject</label>
+                            <template>text</template>
+                        </cu_subject>
+                        <cu_email>
+                            <label>Email Address</label>
+                            <template>text</template>
+                        </cu_email>
+                        <cu_comment>
+                            <label>Comment</label>
+                            <template>textarea</template>
+                        </cu_comment>
+                        <cu_store_id>
+                            <label>Store Id</label>
+                            <type>int</type>
+                            <template>hidden</template>
+                            <default>0</default>
+                        </cu_store_id>
+                        <cu_created_at>
+                            <label>Created At</label>
+                            <template>datetime</template>
+                        </cu_created_at>
+                    </attributes>
+                </general>
+            </groups>
+            <grid>
+                <block>evisu_contacts/adminhtml_advancedcms_grid</block>
+                <fields>
+                    <cu_name />
+                    <cu_store_id />
+                    <cu_subject />
+                    <cu_email />
+                    <cu_created_at />
+                </fields>
+            </grid>
+        </contact_us_grid>
+    </entities>
+</adminforms>
