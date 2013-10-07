@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_AboutUs>
+            <version>0.1.1</version>
+        </Evisu_AboutUs>
+    </modules>
+    <global>
+        <models>
+            <evisu_aboutus>
+                <class>Evisu_AboutUs_Model</class>
+            </evisu_aboutus>
+        </models>
+        <blocks>
+            <evisu_aboutus>
+                <class>Evisu_AboutUs_Block</class>
+            </evisu_aboutus>
+        </blocks>
+        <helpers>
+            <evisu_aboutus>
+                <class>Evisu_AboutUs_Helper</class>
+            </evisu_aboutus>
+        </helpers>
+        <resources>
+            <evisu_aboutus_setup>
+                <setup>
+                    <module>Evisu_AboutUs</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_aboutus_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <about_us>
+                <name>About Us Page</name>
+                <template>cmsadvanced/about_us.phtml</template>
+                <groups>
+                    <content_data>
+                        <label>Blocks Data</label>
+                        <attributes>
+                            <about_us_image>
+                                <label>Main Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>resolution 900x600</note>
+                            </about_us_image>
+                            <about_us_title>
+                                <label>Page Title</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </about_us_title>
+                            <about_us_column1_text>
+                                <label>First Column Text</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                                <is_wysiwyg_enabled>1</is_wysiwyg_enabled>
+                            </about_us_column1_text>
+                            <about_us_column2_text>
+                                <label>Second Column Text</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                                <is_wysiwyg_enabled>1</is_wysiwyg_enabled>
+                            </about_us_column2_text>
+                        </attributes>
+                    </content_data>
+                    <blocks_data>
+                        <label>Blocks Data</label>
+                        <attributes>
+                            <block1_link>
+                                <label>1st Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block1_link>
+                            <block1_target_url>
+                                <label>1st Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block1_target_url>
+                            <block1_image>
+                                <label>1st Block Image</label>
+                                <template>image</template>
+                                <note>resolution 200x100</note>
+                            </block1_image>
+                            <block2_link>
+                                <label>2st Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block2_link>
+                            <block2_target_url>
+                                <label>2st Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block2_target_url>
+                            <block2_image>
+                                <label>2nd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 200x100</note>
+                            </block2_image>
+                            <block3_link>
+                                <label>3rd Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block3_link>
+                            <block3_target_url>
+                                <label>3rd Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block3_target_url>
+                            <block3_image>
+                                <label>3rd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 200x100</note>
+                            </block3_image>
+                        </attributes>
+                    </blocks_data>
+                </groups>
+            </about_us>
+        </pagetypes>
+    </cmsadvanced>
+</config>

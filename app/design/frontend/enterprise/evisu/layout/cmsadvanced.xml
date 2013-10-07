@@ -2,7 +2,12 @@
 <layout version="0.1.0">
     <PAGE_TYPE_DEFAULT>
         <reference name="content">
-            <block type="cmsadvanced/page" name="cmsadvanced.page"/>
+            <block type="cmsadvanced/page" name="cmsadvanced.page">
+                <action method="insert"><name>breadcrumbs</name><sibling/><after>1</after><alias>breadcrumbs</alias></action>
+            </block>
+        </reference>
+        <reference name="breadcrumbs.container">
+            <action method="unsetChild"><name>breadcrumbs</name></action>
         </reference>
     </PAGE_TYPE_DEFAULT>
 
