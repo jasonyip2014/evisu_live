@@ -3,20 +3,23 @@
     /* @var $this RonisBT_Cms_Block_Page */
 ?>
 
-<?php if($videoCode = $this->getHps1Ip6Video()): ?>
-    <div class="video-wrapper">
-        <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    </div>
-    <a href="#" class="video-overlay-holder"></a>
-<?php endIf; ?>
-<?php if($videoCode = $this->getHps1Ip6Image()): ?>
-    <div class="image-holder">
-        <?php $imageSize = getimagesize($this->getImage('hps1_ip6_image')) ?>
-        <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip6_image') ?>" alt="" />
-    </div>
-<?php endIf; ?>
-<?php $linkText = $this->getHps1Ip6LinkText(); if($linkText && $this->getHps1Ip6TargetUrl()): ?>
-    <a href="<?php echo $this->escapeHtml($this->getHps1Ip6TargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHps1Ip6LinkText()) ?>"><span class="text-link-holder"><span class="text-link-wrapper"><?php echo $this->escapeHtml($this->getHps1Ip6LinkText()) ?></span></span></a>
-<?php elseif(!$linkText && $this->getHps1Ip6TargetUrl()): ?>
-    <a href="<?php echo $this->escapeHtml($this->getHps1Ip6TargetUrl()) ?>"></a>
-<?php endIf; ?>
+<?php $videoCode = $this->getHps1Ip6Video() ?>
+<div <?php if($videoCode): ?>class="video-panel"<?php endIf; ?>>
+    <?php if($videoCode): ?>
+        <div class="video-wrapper">
+            <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        </div>
+        <a href="#" class="video-overlay-holder"></a>
+    <?php endIf; ?>
+    <?php if($videoCode = $this->getHps1Ip6Image()): ?>
+        <div class="image-holder">
+            <?php $imageSize = getimagesize($this->getImage('hps1_ip6_image')) ?>
+            <img <?php echo $imageSize[3] ?> src="<?php echo $this->getImage('hps1_ip6_image') ?>" alt="" />
+        </div>
+    <?php endIf; ?>
+    <?php $linkText = $this->getHps1Ip6LinkText(); if($linkText && $this->getHps1Ip6TargetUrl()): ?>
+        <a href="<?php echo $this->escapeHtml($this->getHps1Ip6TargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHps1Ip6LinkText()) ?>"><span class="text-link-holder"><span class="text-link-wrapper"><?php echo $this->escapeHtml($this->getHps1Ip6LinkText()) ?></span></span></a>
+    <?php elseif(!$linkText && $this->getHps1Ip6TargetUrl()): ?>
+        <a href="<?php echo $this->escapeHtml($this->getHps1Ip6TargetUrl()) ?>"></a>
+    <?php endIf; ?>
+</div>
