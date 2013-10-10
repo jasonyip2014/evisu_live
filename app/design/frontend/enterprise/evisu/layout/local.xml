@@ -86,6 +86,11 @@
         <reference type="productalert/product_view" name="productalert.stock" as="productalert_stock" template="productalert/product/view.phtml">
             <action method="setSignupLabel" translate="value"><value>Email Me When Back In Stock</value></action>
         </reference>
+        <reference name="product.info.options.wrapper.bottom">
+
+            <remove name="product.info.addto" />
+            <remove name="product.clone_prices"/>
+        </reference>
     </catalog_product_view>
 
     <!-- ============================ Customer and dashboard ============================================ -->

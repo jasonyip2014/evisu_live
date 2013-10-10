@@ -65,7 +65,7 @@
                                 <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
                                 <?php echo $this->getPriceHtml($_product, true) ?>
                                 <?php if($_product->isSaleable()): ?>
-                                    <a title="<?php echo $this->__('Quick By') ?>" class="button btn-cart" href="<?php echo $this->getAddToCartUrl($_product) ?>"><span><span><?php echo $this->__('Quick By') ?></span></span></a>
+                                    <a title="<?php echo $this->__('Quick Buy') ?>" class="button btn-cart" href="<?php echo $this->getAddToCartUrl($_product) ?>"><span><span><?php echo $this->__('Quick Buy') ?></span></span></a>
                                 <?php else: ?>
                                     <?php if ($_product->getIsSalable()): ?>
                                         <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
@@ -142,7 +142,7 @@
 
                     <?php //Product Item ?>
                     <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
-                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                        <div class="product-image">
                             <span class="images-holder">
                                 <span class="image-holder img-1">
                                     <img width="730" height="730" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(730, 730); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
@@ -151,15 +151,16 @@
                                     <img width="730" height="730" src="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(730, 730); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
                                 </span>
                             </span>
-                        </a>
+                        </div>
                         <div class="hover-holder">
-                            <div class="hover-wrapper">
-                                <div class="hover-container">
+                             <div class="hover-wrapper">
+                                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="hover-container">
+
                                     <div onmouseout="return false;" onmouseover="return false" class="product-short-description">
                                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                                     </div>
                                     <?php if($_product->isSaleable()): ?>
-                                        <span title="<?php echo $this->__('Quick By') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><?php echo $this->__('Quick By') ?></span>
+                                        <span title="<?php echo $this->__('Quick Buy') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><?php echo $this->__('Quick Buy') ?></span> <?php //$this->getAddToCartUrl($_product) ?>
                                     <?php else: ?>
                                         <?php if ($_product->getIsSalable()): ?>
                                             <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
@@ -169,7 +170,7 @@
                                     <?php endif; ?>
                                     <ul class="add-to-links">
                                         <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                                            <li><span onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>')" class="link-wishlist"><?php echo $this->__('Save For Leter') ?></span></li>
+                                            <li><span title="<?php echo $this->__('Save For Later') ?>" onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>');return false;" class="link-wishlist"><?php echo $this->__('Save For Later') ?></span></li>
                                         <?php endif; ?>
                                         <?php /*
                                             <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
@@ -177,7 +178,7 @@
                                             <?php endif; ?>
                                         */ ?>
                                     </ul>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>

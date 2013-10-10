@@ -42,59 +42,79 @@
         <?php $images[$_image->getPosition()] = $_image; ?>
     <?php endforeach; ?>
 <?php endif; ?>
-<ul class="more-views">
+<div class="more-views">
     <?php if(!empty($images['2'])): ?>
-        <li class="alt-images-type-1"><div class="image-holder">
-            <img width="400" height="600" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['2']->getFile())->resize(400, 600) ?>"  alt="<?php echo $this->escapeHtml($images['2']->getLabel()) ?>" />
-        </div></li>
+        <div class="alt-images-type-1">
+            <div class="image-holder">
+                <img width="400" height="600" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['2']->getFile())->resize(400, 600) ?>"  alt="<?php echo $this->escapeHtml($images['2']->getLabel()) ?>" />
+            </div>
+        </div>
     <?php endIf; ?>
     <?php if(!empty($images['3'])): ?>
-        <li class="alt-images-type-1"><div class="image-holder">
-            <img width="400" height="600" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['3']->getFile())->resize(400, 600) ?>"  alt="<?php echo $this->escapeHtml($images['3']->getLabel()) ?>" />
-        </div> </li>
+        <div class="alt-images-type-1">
+            <div class="image-holder">
+                <img width="400" height="600" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['3']->getFile())->resize(400, 600) ?>"  alt="<?php echo $this->escapeHtml($images['3']->getLabel()) ?>" />
+            </div>
+        </div>
     <?php endIf; ?>
     <?php if($_product->getPecStatus()): ?>
         <?php //EditorialContent ?>
         <?php if($pec_items = Mage::helper('ronisbt_editorialcontent')->getProductEditorialContent($_product)): ?>
-            <?php foreach($pec_items as $pec_item): ?>
+            <?php $i = 0; foreach($pec_items as $pec_item): ?>
+                <?php if($i == 2): ?>
+                    <?php if(!empty($images['4'])): ?>
+                        <div class="alt-images-type-2">
+                            <div class="image-holder">
+                                <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['2']->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images['2']->getLabel()) ?>" />
+                            </div>
+                        </div>
+                    <?php endIf; ?>
+                    <?php if(!empty($images['5'])): ?>
+                        <div class="alt-images-type-2">
+                            <div class="image-holder">
+                                <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['3']->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images['3']->getLabel()) ?>" />
+                            </div>
+                        </div>
+                    <?php endIf; ?>
+                <?php endIf; ?>
                 <?php if($pec_item['block']):?>
                     <?php switch($pec_item['block']->getPageType()->getCode()):
                         case 'pec_text_box_panel': ?>
-                            <li class="text-box-panel <?php echo $pec_item['block']->getPecTbpSize() ?>">
+                            <div class="text-box-panel <?php echo $pec_item['block']->getPecTbpSize() ?>">
                                 <span class="title"><?php echo nl2br($this->stripTags($pec_item['block']->getPecTbpTitle())) ?></span>
-                                <span><?php echo nl2br($this->stripTags($pec_item['block']->getPecTbpDescription())) ?></span>
+                                <span class="description"><?php echo nl2br($this->stripTags($pec_item['block']->getPecTbpDescription())) ?></span>
                                 <a href="<?php echo $this->stripTags($pec_item['block']->getPecTbpTargetUrl()) ?>" title="<?php echo $this->stripTags($pec_item['block']->getPecTbpLinkText()) ?>">
                                     <?php echo $this->stripTags($pec_item['block']->getPecTbpLinkText()) ?>
                                 </a>
-                            </li>
+                            </div>
                         <?php break; ?>
                         <?php case 'pec_text_promo_panel': ?>
-                            <li class="text-promo-panel">
+                            <div class="text-promo-panel">
                                 <a href="<?php echo $this->stripTags($pec_item['block']->getPecTppTargetUrl()) ?>" title="<?php echo $this->stripTags($pec_item['block']->getPecTppLinkText()) ?>">
                                     <?php echo nl2br($this->stripTags($pec_item['block']->getPecTppLinkText())) ?>
                                 </a>
-                            </li>
+                            </div>
                         <?php break; ?>
                         <?php case 'pec_video_panel': ?>
-                            <li class="video-panel">
-                                <div class="video-wrapper">
-                                    <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($pec_item['block']->getPecTvpVideoCode()) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-                                </div>
-                                <div class="img-holder">
-                                    <img width="200" height="300" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $pec_item['block']->getPecTvpCoverImage() , '')->resize(200, 300) ?>" alt="" />
-                                </div>
-                                <a href="#" class="video-overlay-holder"></a>
-                            </li>
+                            <div class="video_panel">
+                                <?php if($videoCode = $pec_item['block']->getPecTvpVideoCode()): ?>
+                                    <div class="video-wrapper">
+                                        <iframe width="500" height="281" class="fvideo" src="" data-src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                    </div>
+                                    <a href="#" class="video-overlay-holder"></a>
+                                <?php endIf; ?>
+                                <?php if($pec_item['block']->getPecTvpCoverImage()): ?>
+                                    <div class="image-holder">
+                                        <img width="500" height="281" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $pec_item['block']->getPecTvpCoverImage() , '')->resize(500, 281) ?>" alt="" />
+                                    </div>
+                                <?php endIf; ?>
+                            </div>
                         <?php break; ?>
-                    <? endSwitch; ?>
+                    <?php endSwitch; ?>
                 <?php endIf; ?>
-            <?php endForeach; ?>
+            <?php $i++; endForeach; ?>
         <?php endIf; ?>
     <?php endIf; ?>
-    <li>
-        <?php echo $this->getChildHtml('recently_viewed') ?>
-    </li>
-    <li>
-        <?php echo $this->getChildHtml('relatedProducts') ?>
-    </li>
-</ul>
+    <?php echo $this->getChildHtml('recently_viewed') ?>
+    <?php echo $this->getChildHtml('relatedProducts') ?>
+</div>

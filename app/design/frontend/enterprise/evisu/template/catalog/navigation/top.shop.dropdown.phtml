@@ -13,7 +13,7 @@
         <ul class="dropdown-categories">
             <?php $i=0; foreach ($categoryChildren as $child): $i++;?>
                 <li rel="el<?php echo $i; ?>" class="level-<?php echo $_subLevel ?>">
-                    <?php $rel = ($child->getMenuThumbnailImage()) ? $_afHelper->init('catalog/category/', $child->getMenuThumbnailImage(), '')->resize(200, 300) : '' ; ?>
+                    <?php $rel = ($child->getMenuThumbnailImage()) ? $_afHelper->init('catalog/category/', $child->getMenuThumbnailImage(), '')->resize(487, 443) : '' ; ?>
                     <a href="<?php echo $this->urlEscape($_menuHelper->getCategoryUrl($child)) ?>" title="<?php echo $this->escapeHtml($child->getName()); ?>" rel="<?php echo $rel; ?>">
                         <?php echo $child->getName() ?>
                     </a>

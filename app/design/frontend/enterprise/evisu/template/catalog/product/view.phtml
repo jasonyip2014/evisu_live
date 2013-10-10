@@ -23,188 +23,171 @@
 <div class="product-view">
     <?php // Previous Product ?>
     <?php if($previousProduct = $_catalogHelper->getPreviousProduct($_product)): ?>
-        <div class="previous-product-holder"></div>
-            <a class="previous-product-btn" href="<?php echo $previousProduct->getProductUrl() ?>">Prev</a>
+        <div class="previous-product-holder">
+            <a class="previous-product-btn" href="<?php echo $previousProduct->getProductUrl() ?>"><?php echo $this->__('Prev') ?></a>
             <div class="previous-product">
                 <div class="image-holder">
-                    <img width="220" height="495" src="<?php echo Mage::helper('catalog/image')->init($previousProduct, 'image')->resize(220, 495) ?>" alt="<?php echo $previousProduct->getImageLabel() ?>" title="<?php echo $_helper->productAttribute($previousProduct, $previousProduct->getName(), 'name') ?>" />
+                    <img width="268" height="307" src="<?php echo Mage::helper('catalog/image')->init($previousProduct, 'image')->resize(268, 307) ?>" alt="<?php echo $previousProduct->getImageLabel() ?>" title="<?php echo $_helper->productAttribute($previousProduct, $previousProduct->getName(), 'name') ?>" />
                 </div>
-                <span class="product-name"><?php echo $_helper->productAttribute($previousProduct, $previousProduct->getName(), 'name') ?></span>
-                <span class="product-second-name"><?php echo $_helper->productAttribute($previousProduct, $previousProduct->getSecondName(), 'second_name') ?>
+                <div class="description-holder">
+                    <div class="description">
+                        <div class="description-wrapper">
+                            <div class="product-name"><?php echo $_helper->productAttribute($previousProduct, $previousProduct->getName(), 'name') ?></div>
+                            <div class="product-second-name"><?php echo $_helper->productAttribute($previousProduct, $previousProduct->getSecondName(), 'second_name') ?></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     <?php endIf; ?>
     <?php // Next Product ?>
     <?php if($nextProduct = $_catalogHelper->getNextProduct($_product)): ?>
         <div class="next-product-holder">
-            <a class="next-product-btn" href="<?php echo $nextProduct->getProductUrl() ?>">Next</a>
+            <a class="next-product-btn" href="<?php echo $nextProduct->getProductUrl() ?>"><?php echo $this->__('Next') ?></a>
             <div class="next-product">
                 <div class="image-holder">
-                    <img width="220" height="495" src="<?php echo Mage::helper('catalog/image')->init($nextProduct, 'image')->resize(220, 495) ?>" alt="<?php echo $nextProduct->getImageLabel() ?>" title="<?php echo $_helper->productAttribute($nextProduct, $nextProduct->getName(), 'name') ?>" />
+                    <img width="268" height="307" src="<?php echo Mage::helper('catalog/image')->init($nextProduct, 'image')->resize(268, 307) ?>" alt="<?php echo $nextProduct->getImageLabel() ?>" title="<?php echo $_helper->productAttribute($nextProduct, $nextProduct->getName(), 'name') ?>" />
                 </div>
-                <span class="product-name"><?php echo $_helper->productAttribute($nextProduct, $nextProduct->getName(), 'name') ?></span>
-                <span class="product-second-name"><?php echo $_helper->productAttribute($nextProduct, $nextProduct->getSecondName(), 'second_name') ?>
+                <div class="description-holder">
+                    <div class="description">
+                        <div class="description-wrapper">
+                            <div class="product-name"><?php echo $_helper->productAttribute($nextProduct, $nextProduct->getName(), 'name') ?></div>
+                            <div class="product-second-name"><?php echo $_helper->productAttribute($nextProduct, $nextProduct->getSecondName(), 'second_name') ?></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     <?php endIf; ?>
-    <div class="main-image">
-        <?php $bigImage = (string) Mage::helper('catalog/image')->init($_product, 'image') ?>
-        <a class="product-img-zoom cloud-zoom______" href="<?php echo $bigImage ?>" onclick="return false;" rel="position: 'inside' , showTitle: false, adjustX:0, adjustY:0">
-            <?php $smallImage = (string) Mage::helper('catalog/image')->init($_product, 'image')->resize(220, 495) ?>
+    <div class="product-container">
+        <div class="main-image">
+            <div class="full-size-hider"></div>
+            <?php $bigImage = (string) Mage::helper('catalog/image')->init($_product, 'image') ?>
+            <?php $smallImage = (string) Mage::helper('catalog/image')->init($_product, 'image')->resize(692, 889) ?>
             <?php $imageLabel = $this->stripTags($_product->getImageLabel()) ?>
             <div id='main-image' class="image-holder">
-                <img width="220" height="495" src="<?php echo $smallImage ?>" data-image="<?php echo $bigImage ?>" alt="<?php echo $imageLabel ?>" title="<?php echo $imageLabel?>" rel="<?php echo $smallImage ?>" />
+                <a class="product-img-zoom cloud-zoom" href="<?php echo $bigImage ?>" onclick="return false;" rel="position: 'inside' , showTitle: false, adjustX:0, adjustY:0">
+                    <img width="692" height="889" src="<?php echo $smallImage ?>" data-image="<?php echo $bigImage ?>" alt="<?php echo $imageLabel ?>" title="<?php echo $imageLabel?>" rel="<?php echo $smallImage ?>" />
+                </a>
+                <a href="javascript:void(0);" id="full_img_close" title="<?php echo $this->__('Close') ?>" class="btn-close"><?php echo $this->__('Close') ?></a>
             </div>
-        </a>
-        <div class="btn-holder">
-            <a href="javascript:void(0);" title="Full Size" class="btn-fullsize">FS</a>
-            <a href="javascript:void(0);" title="Zoom" class="btn-zoom">ZOOM</a>
-            <a href="javascript:void(0);" id="full_img_close" title="Close" class="btn-close">CLOSE</a>
-            <script type="text/javascript">
-            //<![CDATA[
-                // ToDo Move To .js
-                var FullSizeImage =
-                {
-                    self : FullSizeImage,
-                    fullSize : false,
-                    show : function()
-                    {
-                        if(!self.fullSize)
-                        {
-                            self.fullSize = true;
-                            var image = jQuery('#main-image').find('img');
-                            jQuery('#main-image').width('220px').height('495px'); //ToDo Move To Css
-                            image.height('100%').width('100%'); //ToDo Move To Css
-                            image.animate({opacity:0},'fast').attr('src',image.data('image'));
-                            jQuery('#main-image').animate({width:'600px',height:'900px',top:'200px',left:'300px'});
-                        }
-                    },
-                    close : function()
-                    {
-                        if(self.fullSize)
-                        {
-                            self.fullSize = false;
-                            var image = jQuery('#main-image').find('img');
-                            image.height('100%').width('100%');
-                            image.animate({opacity:0},'fast').attr('src',image.attr('rel'));
-                            jQuery('#main-image').animate({width:'220px',height:'495px',top:0,left:0});
-                        }
-                    }
-                };
-                jQuery('.btn-fullsize').click(function(){FullSizeImage.show()});
-                jQuery('#full_img_close').click(function(){FullSizeImage.close()});
-            //]]>
-            </script>
+            <div class="btn-holder">
+                <a href="javascript:void(0);" title="<?php echo $this->__('Full Size') ?>" class="btn-fullsize"><?php echo $this->__('Full Size') ?></a>
+                <a href="javascript:void(0);" title="<?php echo $this->__('Zoom') ?>" class="btn-zoom"><?php echo $this->__('Zoom') ?></a>
+            </div>
         </div>
-    </div>
-    <div class="product-essential">
-        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-            <?php echo $this->getBlockHtml('formkey') ?>
-            <div class="no-display">
-                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-                <input type="hidden" name="related_product" id="related-products-field" value="" />
-            </div>
-            <div class="product-shop">
-                <div class="product-main-info">
-                    <?php if($_parentCategory && $_parentCategory->getMenuThumbnailImage()): ?>
-                        <div class="image-holder">
-                            <img width="200" height="100" src="<?php echo $_afHelper->init('catalog/category', $_category->getParentCategory()->getMenuThumbnailImage(), '')->resize(200, 100) ?>"
-                        </div>
-                    <?php endIf; ?>
-                    <h1>
-                        <span class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
-                        <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?>
-                    </h1>
-                    <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
-                    <?php //echo ($_product->getCanShowPrice() === false) ? '' : $this->getChildHtml('tierprices'); ?>
-                    <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
-                    <?php //echo $this->getChildHtml('product_type_data') ?>
-                    <?php echo preg_replace("/(\.)(\d{1,2})/", ".<sup>\${2}</sup>", $this->getPriceHtml($_product)) ?>
-                    <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
-                        <div class="options-container-big">
-                            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-                        </div>
-                    <?php endif;?>
+        <div class="product-essential">
+            <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+                <?php echo $this->getBlockHtml('formkey') ?>
+                <div class="no-display">
+                    <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                    <input type="hidden" name="related_product" id="related-products-field" value="" />
                 </div>
-                <?php //echo $this->getChildHtml('extrahint') ?>
-                <?php if (!$this->hasOptions()):?>
-                    <div class="add-to-box">
-                        <?php if($_product->isSaleable()): ?>
-                            <?php echo $this->getChildHtml('addtocart') ?>
-                        <?php endif; ?>
-                        <?php //echo $this->getChildHtml('addto') ?>
+                <div class="product-shop">
+                    <div class="product-main-info">
+                        <?php if($_parentCategory && $_parentCategory->getMenuThumbnailImage()): ?>
+                            <div class="image-holder category-image">
+                                <img width="95" height="24" src="<?php echo $_afHelper->init('catalog/category', $_category->getParentCategory()->getMenuThumbnailImage(), '')->resize(95, 24) ?>" alt="<?php echo $_parentCategory->getName() ?>"/>
+                            </div>
+                        <?php endIf; ?>
+                        <h1>
+                            <div class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
+                            <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?></span>
+                        </h1>
+                        <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
+                        <?php //echo ($_product->getCanShowPrice() === false) ? '' : $this->getChildHtml('tierprices'); ?>
+                        <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                        <?php //echo $this->getChildHtml('product_type_data') ?>
+                        <?php echo preg_replace("/(\.)(\d{1,2})/", ".<sup>\${2}</sup>", $this->getPriceHtml($_product)) ?>
+                        <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
+                            <div class="options-container-big">
+                                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                            </div>
+                        <?php endif;?>
                     </div>
-                <?php else:?>
-                    <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container1') ):?>
-                        <div class="options-container-small">
-                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                    <?php //echo $this->getChildHtml('extrahint') ?>
+                    <?php if (!$this->hasOptions()):?>
+                        <div class="add-to-box">
+                            <?php if($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php else: ?>
+                                <div class="out-of-stock"><?php echo $this->__('Out of Stock' )?></div>
+                                <?php echo $this->getChildHtml('alert_urls') ?>
+                            <?php endif; ?>
+                            <?php //echo $this->getChildHtml('addto') ?>
                         </div>
-                    <?php else: ?>
-                        <span>Out of Stock</span>
-                        <?php echo $this->getChildHtml('alert_urls') ?>
-                        <?php //echo $this->getChildHtml('addto') ?>
-                    <?php endif;?>
-                <?php endif; ?>
-                <?php
-                    $tabs = array(
-                        $this->__('Product Info') => $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description'),
-                        $this->__('Delivery') => $_product->getDelivery(),
-                        $this->__('Size Chart') => $_product->getSizeChart(),
-                        $this->__('Care') => $_product->getCare()
-                    );
-                ?>
-                <div class="product-collateral">
-                    <dl id="collateral-tabs" class="collateral-tabs">
-                        <?php foreach ($tabs as $title => $html):?>
-                            <dt class="tab"><span><?php echo $title ?></span></dt>
-                            <dd class="tab-container">
-                                <div class="tab-content"><?php echo $html ?></div>
-                            </dd>
-                        <?php endforeach;?>
-                    </dl>
-                    <script type="text/javascript">
+                    <?php else:?>
+                        <?php if ($_product->isSaleable() && $this->hasOptions()): //&& $this->getChildChildHtml('container1')?>
+                            <div class="options-container-small">
+
+                                <?php //echo $this->getChildChildHtml('container1', '', true, true) ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="out-of-stok"><?php echo $this->__('Out of Stock') ?></div>
+                            <?php echo $this->getChildHtml('alert_urls') ?>
+                            <?php //echo $this->getChildHtml('addto') ?>
+                        <?php endif;?>
+                    <?php endif; ?>
+                    <?php
+                        $tabs = array(
+                            $this->__('Product Info') => $_helper->productAttribute($_product, $_product->getDescription(), 'description'),
+                            $this->__('Delivery') => $_product->getDelivery(),
+                            $this->__('Size Chart') => $_product->getSizeChart(),
+                            $this->__('Care') => $_product->getCare()
+                        );
+                    ?>
+                    <div class="product-collateral">
+                        <dl id="collateral-tabs" class="collateral-tabs">
+                            <?php foreach ($tabs as $title => $html):?>
+                                <dt class="tab"><span><?php echo $title ?></span></dt>
+                                <dd class="tab-container">
+                                    <div class="tab-content"><?php echo $html ?></div>
+                                </dd>
+                            <?php endforeach;?>
+                        </dl>
+                    </div>
+                    <div class="clearer"></div>
+                    <script>
                     //<![CDATA[
-                        //ToDo Move To .js
+                        // Init enrerprise Tabs
                         var collateralTabs = new Enterprise.Tabs('collateral-tabs');
                         Event.observe(window, 'load', function() {
                             collateralTabs.select();
                         });
                     //]]>
                     </script>
+                    <?php //echo $this->getChildHtml('other');?>
                 </div>
-                <div class="clearer"></div>
-                <?php //echo $this->getChildHtml('other');?>
-            </div>
-        </form>
+            </form>
 
 
-        <div>Snare</div>
-        <ul class="social-media">
-            <?php
-                $shareData = array(
-                    'title' => $_helper->productAttribute($_product, $_product->getName(), 'name'),
-                    'url' => $_product->getProductUrl(),
-                    'image' => $smallImage,
-                    'summary' => $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'shortdescription')
-                );
-            ?>
-            <?php /*
-            <li><a href="http://www.smartaddon.com/?share" title="Mail" class="mail" onclick="return sa_tellafriend(<?php echo $shareData['url'] ?>,'email');">Mail</a></li>
-            */ ?>
-            <?php if ($this->canEmailToFriend()): ?>
-                <li><a onclick="return false;" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" id="send-to-friend-btn" title="Mail To Friend" class="mail">Mail</a>
-            <?php endIf; ?>
-            <li><a onclick="window.open('https://twitter.com/intent/tweet?text=<?php echo urlencode($shareData['title']) ?>: &url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>
-            <li><a onclick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $shareData['title'] ?>&amp;p[summary]=<?php echo $shareData['summary'] ?>&amp;p[url]=<?php echo urlencode($shareData['url']) ?>&amp;&amp;p[images][0]=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>
-            <li><a onclick="window.open('http://service.weibo.com/share/share.php?url=<?php echo urlencode($shareData['url']) ?>&title=<?php echo urlencode($shareData['title'])?>&pic=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" class="weibo" title="Weibo" href="javascript: void(0)">Weibo</a></li>
-            <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($shareData['url']) ?>&media=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>&description=<?php echo urlencode($shareData['title']) ?> - <?php echo urlencode($shareData['summary']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
-            <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
-        </ul>
-        <div class="product-img-box">
-            <?php echo $this->getChildHtml('media') ?>
+            <div class="social-share"><?php echo $this->__('Share'); ?></div>
+            <ul class="social-media">
+                <?php
+                    $shareData = array(
+                        'title' => $_helper->productAttribute($_product, $_product->getName(), 'name'),
+                        'url' => $_product->getProductUrl(),
+                        'image' => $smallImage,
+                        'summary' => $_helper->productAttribute($_product, $_product->getShortDescription(), 'shortdescription')
+                    );
+                ?>
+                <?php /*
+                <li><a href="http://www.smartaddon.com/?share" title="Mail" class="mail" onclick="return sa_tellafriend(<?php echo $shareData['url'] ?>,'email');">Mail</a></li>
+                */ ?>
+                <?php if ($this->canEmailToFriend()): ?>
+                    <li><a onclick="return false;" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" id="send-to-friend-btn" title="Mail To Friend" class="mail">Mail</a>
+                <?php endIf; ?>
+                <li><a onclick="window.open('https://twitter.com/intent/tweet?text=<?php echo urlencode($shareData['title']) ?>: &url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>
+                <li><a onclick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $shareData['title'] ?>&amp;p[summary]=<?php echo $shareData['summary'] ?>&amp;p[url]=<?php echo urlencode($shareData['url']) ?>&amp;&amp;p[images][0]=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>
+                <li><a onclick="window.open('http://service.weibo.com/share/share.php?url=<?php echo urlencode($shareData['url']) ?>&title=<?php echo urlencode($shareData['title'])?>&pic=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" class="weibo" title="Weibo" href="javascript: void(0)">Weibo</a></li>
+                <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($shareData['url']) ?>&media=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>&description=<?php echo urlencode($shareData['title']) ?> - <?php echo urlencode($shareData['summary']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
+                <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
+            </ul>
         </div>
     </div>
-
+    <div class="product-img-box">
+        <?php echo $this->getChildHtml('media') ?>
+    </div>
 
     <?php //echo $this->getChildHtml('upsell_products') ?>
     <?php //echo $this->getChildHtml('productTagList') ?>
@@ -223,7 +206,7 @@
             if (button && button != 'undefined') {
                 button.disabled = true;
             }
-            jQuery('.ajax-basket-loader').css({visibility:'visible'});
+            jQuery('.ajax-basket-loader').fadeIn();
 
             var disabled = jQuery(form).find('select:disabled').attr('disabled', false); // temporarily enable disabled selects to allow serialization
             disabled.attr('disabled', true);
@@ -233,7 +216,7 @@
             jQuery.post(url, form.serialize(), function(data){
                 jQuery('.top-cart-holder').html(jQuery(data).find('.top-cart-holder').html());
                 Enterprise.TopCart.showCart(7);
-                jQuery('.ajax-basket-loader').css({visibility:'hidden'});
+                jQuery('.ajax-basket-loader').fadeOut();
                 disabled.attr('disabled', false);
                 if (button && button != 'undefined') {
                     button.disabled = false;

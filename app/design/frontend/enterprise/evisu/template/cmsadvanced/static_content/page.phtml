@@ -1,0 +1,32 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<div class="page-title">
+    <h1><?php echo $this->stripTags($this->getName()) ?></h1>
+</div>
+<div class="cmsadvanced-breadcrumbs-container">
+    <?php echo $this->getChildHtml('breadcrumbs') ?>
+</div>
+<div class="quick-navigation">
+    <div class="back-btn"><?php echo $this->__('Back') ?></div>
+    <div class="explore-more-btn"><span><?php echo $this->__('Explore') ?></span><span><?php echo $this->__('More') ?></span></div>
+</div>
+<div class="about-us-page-wrapper">
+    <div class="static-content-navigation">
+        <ul>
+            <?php if($navigationItems = Mage::helper('evisu_staticcontent')->getNavigationItems()): ?>
+                <?php foreach($navigationItems as $item): ?>
+                    <li><a href="<?php echo $item->getUrl() ?>"><?php echo $item->getName() ?></a></li>
+                <?php endForeach; ?>
+            <?php endIf; ?>
+        </ul>
+    </div>
+    <div class="static-content">
+        <?php echo $this->getPreparedContent('content') ?>
+    </div>
+</div>
+
+<script>
+    //toDO Move to evisu_static_content.js
+
+</script>

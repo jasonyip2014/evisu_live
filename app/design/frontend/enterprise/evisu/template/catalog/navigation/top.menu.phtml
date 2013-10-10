@@ -10,20 +10,19 @@
                 <?php echo $this->__('Shop'); ?>
             </a>
             <?php if ($_menu): ?>
-
-            <ul class="level0 no-display">
-                <li class="category-image-holder">
-                    <div class="image-holder">
-                        <?php $defaultMenuImage = $_afHelper->init('catalog/category', Mage::helper('topmenu')->getDefaultCategoryImage(), '')->resize(200, 300); ?>
-                        <img width="200px" height="300px" id="menu-category-image" src="<?php echo $defaultMenuImage ?>" rel="<?php echo $defaultMenuImage ?>" alt="menu-category-image" />
-                    </div>
-                </li>
-                <?php foreach ($_menu as $_item): ?>
-                    <?php $menuThumbnailImage = $_item->getCategory()->getMenuThumbnailImage() ?>
-                    <?php $customTitle = ($menuThumbnailImage) ? '<img src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(70, 30) . '" alt="" />' : false ; ?>
-                    <?php echo $this->drawItem($_item, 1, false, $customTitle) ?>
-                <?php endforeach ?>
-            </ul>
+                <ul class="level0 no-display">
+                    <li class="category-image-holder">
+                        <div class="image-holder">
+                            <?php $defaultMenuImage = $_afHelper->init('catalog/category', Mage::helper('topmenu')->getDefaultCategoryImage(), '')->resize(487, 443); ?>
+                            <img width="487" height="443" id="menu-category-image" src="<?php echo $defaultMenuImage ?>" rel="<?php echo $defaultMenuImage ?>" alt="menu-category-image" />
+                        </div>
+                    </li>
+                    <?php foreach ($_menu as $_item): ?>
+                        <?php $menuThumbnailImage = $_item->getCategory()->getMenuThumbnailImage() ?>
+                        <?php $customTitle = ($menuThumbnailImage) ? '<img width="67", height="29" src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(67, 29) . '" alt="" />' : false ; ?>
+                        <?php echo $this->drawItem($_item, 1, false, $customTitle) ?>
+                    <?php endforeach ?>
+                </ul>
             <?php endif; ?>
         </li>
         <?php /*
@@ -59,7 +58,7 @@
                 </li>
             <?php endForeach; ?>
         <?php endIf; ?>
-        <li><span class="search-bnt"></span></li>
+        <li><span class="search-btn"></span></li>
     </ul>
 </div>
 <?php endif; ?>
