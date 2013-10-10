@@ -204,9 +204,8 @@ $helper = Mage::helper('onestepcheckout/checkout');
                 <div class="onestepcheckout-coupons">
                     <div id="coupon-notice" style="display: none;"></div>
                     <?php $_couponcode = $this->getQuote()->getCouponCode(); ?>
-                    <label for="id_couponcode"><?php echo $this->__('Gift Voucher Code'); ?></label><br/>
+                    <label for="id_couponcode"><?php echo $this->__('Gift Voucher Code'); ?></label>
                     <input class="input-text" type="text" name="onestepcheckout-couponcode" id="id_couponcode" value="<?php echo Mage::helper('core')->escapeHtml($_couponcode); ?>" />
-                    <br/>
                     <button id="onestepcheckout-coupon-add" class="form-button-alt button" type="button"><span><span><?php echo $this->__('Apply'); ?></span></span></button>
                     <button id="onestepcheckout-coupon-remove" class="form-button-alt button" type="button" style="<?php if($_couponcode == '') { echo 'display: none;'; } ?>"><span><span><?php echo $this->__('Cancel Coupon'); ?></span></span></button>
                     <script>
