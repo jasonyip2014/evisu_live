@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_StaticContent>
+            <version>0.1.0</version>
+        </Evisu_StaticContent>
+    </modules>
+    <global>
+        <models>
+            <evisu_staticcontent>
+                <class>Evisu_StaticContent_Model</class>
+            </evisu_staticcontent>
+        </models>
+        <blocks>
+            <evisu_staticcontent>
+                <class>Evisu_StaticContent_Block</class>
+            </evisu_staticcontent>
+        </blocks>
+        <helpers>
+            <evisu_staticcontent>
+                <class>Evisu_StaticContent_Helper</class>
+            </evisu_staticcontent>
+        </helpers>
+        <resources>
+            <evisu_staticcontent_setup>
+                <setup>
+                    <module>Evisu_StaticContent</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_staticcontent_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <static_content_main_page>
+                <name>Static Content Main Page</name>
+                <template>cmsadvanced/static_content/page.phtml</template>
+            </static_content_main_page>
+            <static_content_page>
+                <name>Static Content Page</name>
+                <template>cmsadvanced/static_content/page.phtml</template>
+            </static_content_page>
+        </pagetypes>
+    </cmsadvanced>
+</config>
