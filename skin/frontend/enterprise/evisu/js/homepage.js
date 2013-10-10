@@ -1,9 +1,11 @@
 jQuery(function($){
-	
+
+    // videopanel behavior
+    VideoPanel.init('.video-panel');
+
+
 	//Load Page
-	
-	
-	
+
 	$('.main-section .image-holder').css('position','fixed');
 	$('.main-section .image-holder').css('display','none').delay( 1000 ).fadeIn( 800 );
 	$('.main-section > p > span.first').css('display','none').delay( 2000 ).fadeIn( 800 );
@@ -18,7 +20,7 @@ jQuery(function($){
 	$('.section-holder-2 > div.block-1 .category-link').sticky({ topSpacing:450, wrapperClassName:'categorylink1Block', className:'categorylink1Stick'});
 	$('.section-holder-2 > div.block-2 .category-link').sticky({ topSpacing:450, wrapperClassName:'categorylink2Block', className:'categorylink2Stick'});
 	
-	var iframe = $('#fvideo')[0],
+	/*var iframe = $('#fvideo')[0],
 		player = $f(iframe);
 	player.addEvent('ready', function() {
 		player.addEvent('finish', function() {
@@ -33,7 +35,7 @@ jQuery(function($){
 		$this.fadeOut(800);
 		$this.parent().find('div.image-holder').fadeOut(800);
 		player.api("play");
-	});
+	});*/
 	
 	$('.quick-navigation .back-btn').on('click',function(){
 		//$('html,body').stop().animate({scrollTop : 0},1500);

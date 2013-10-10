@@ -57,14 +57,142 @@ var EvisuNavigation =
     }
 };
 
+var AjaxBasket = {
+    currentItem : 0,
+    itemWidth : '33.3333%',
+    itemsCount : 0,
+    itemsVisible : 3,
+    nextButton : null,
+    prevButton : null,
+
+    prev : function(){
+        jQuery('#ajax-basket-item-0').animate({marginLeft:'+=' + this.itemWidth});
+        this.currentItem--;
+        this.buttonBehavior();
+    },
+    buttonBehavior : function()
+    {
+        if(this.itemsCount > this.itemsVisible)
+        {
+            if(this.currentItem == 0){
+                this.nextButton.show();
+                this.prevButton.hide();
+            }
+            else if(this.currentItem == this.itemsCount - this.itemsVisible)
+            {
+                this.nextButton.hide();
+                this.prevButton.show();
+            }
+            else
+            {
+                this.nextButton.show();
+                this.prevButton.show();
+            }
+        }
+    },
+    next : function(){
+        jQuery('#ajax-basket-item-0').animate({marginLeft:'-=' + this.itemWidth});
+        this.currentItem++;
+        this.buttonBehavior();
+    },
+    init : function(itemsCount){
+        this.itemsCount = itemsCount;
+        this.nextButton = jQuery('#basket-next-item');
+        this.prevButton = jQuery('#basket-previous-item');
+
+        var self = this;
+        if(this.itemsCount > this.itemsVisible)
+        {
+            jQuery('#mini-cart').css({textAlign:'left'});
+
+            this.nextButton.show();
+            this.prevButton.on('click', function(){
+                self.prev();
+                return false;
+            });
+            this.nextButton.on('click', function(){
+                self.next();
+                return false;
+            });
+        }
+    },
+    resize : function(){
+        var self = this;
+        if(self.itemsCount > 0)
+        {
+            if(jQuery(window).width() > 1024)
+            {
+                this.itemWidth = '33.3333%';
+                jQuery('#mini-cart li').css({width:this.itemWidth});
+                self.itemsVisible = 3;
+            }
+            else
+            {
+                this.itemWidth = '50%'
+                jQuery('#mini-cart li').css({width:this.itemWidth});
+                self.itemsVisible = 2;
+            }
+            self.buttonBehavior();
+        }
+        //self.itemWidth = jQuery('#ajax-basket-item-0').width();
+        //jQuery('#ajax-basket-item-0').css({marginLeft:'-' + (self.itemWidth * self.currentItem) + 'px'});
+    }
+};
+
+// ============ video_panel behavior=================
+var VideoPanel = {
+    block : '.video_panel',
+    link : '.video-overlay-holder',
+    coverImage : '.image-holder',
+    video : '.video-wrapper',
+
+    init : function(block){
+        console.log('init');
+        this.block = block;
+        var self = this;
+        jQuery(this.block + ' ' + this.link).on('click', function(){
+            self.linkClick(this);
+            return false;
+        });
+
+    },
+
+    linkClick : function(element){
+        var link = jQuery(element);
+        var coverImage = link.next();
+        var frame = link.prev().children(':first');
+
+        frame.attr('src', frame.data('src'));
+        link.addClass('loading');
+
+        frame.load(function() {
+            var player = $f(this);
+
+            player.addEvent('ready', function() {
+                link.removeClass('loading');
+                coverImage.fadeOut('fast');
+                link.hide();
+
+                player.addEvent('finish', function() {
+                    link.show();
+                    coverImage.fadeIn('fast');
+                });
+            });
+        });
+    }
+};
 
 
 
 //============onDocumentReady==============
 jQuery(function($)
 {
+
+    //init page
     $('#custom-currency-selector').customSelect();
 	$('html,body').scrollTop(0);
+
+
     //$('img').css('opacity', 0); //hide img while loading move to begin of onready
 
     // === Navigation Animation
@@ -76,10 +204,15 @@ jQuery(function($)
 
     //==============onDocumentLoad===============
     $(window).load(function(){
+        AjaxBasket.resize();
         //$('body').fadeIn();
-    })
+    });
     $(document).ready(function(){
         //$('body').fadeIn();
        
     });
+});
+
+jQuery(window).resize(function(){
+    AjaxBasket.resize();
 });

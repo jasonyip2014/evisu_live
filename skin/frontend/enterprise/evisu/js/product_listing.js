@@ -150,10 +150,10 @@ jQuery(function($){
     DropDown.init();
     // =============== quick navigation buttons behavior ================
     jQuery('.explore-more-btn').on('click', function(){
-        jQuery('html,body').stop().animate({scrollTop : '+=' + jQuery(window).height()},'slow');
+        jQuery('html,body').stop(true, false).animate({scrollTop : '+=' + jQuery(window).height()},'slow');
     });
     jQuery('.back-btn').on('click', function(){
-        jQuery('html,body').stop().animate({scrollTop : '-=' + jQuery(window).height()},'slow');
+        jQuery('html,body').stop(true, false).animate({scrollTop : '-=' + jQuery(window).height()},'slow');
     });
 
     $(window).load(function(){
@@ -187,6 +187,14 @@ jQuery(function($){
         else{
             $('.explore-more-btn').removeClass('little');
             $('.back-btn').fadeOut(100);
+        }
+        if(window.pageYOffset == jQuery(document).height() - jQuery(window).height())
+        {
+            jQuery('.explore-more-btn').hide();
+        }
+        else
+        {
+            jQuery('.explore-more-btn').show();
         }
     });
 });
