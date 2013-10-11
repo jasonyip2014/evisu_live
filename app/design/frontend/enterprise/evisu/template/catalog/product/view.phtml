@@ -97,8 +97,8 @@
                         <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
                         <?php //echo ($_product->getCanShowPrice() === false) ? '' : $this->getChildHtml('tierprices'); ?>
                         <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
-                        <?php //echo $this->getChildHtml('product_type_data') ?>
-                        <?php echo preg_replace("/(\.)(\d{1,2})/", ".<sup>\${2}</sup>", $this->getPriceHtml($_product)) ?>
+                        <?php echo $this->getChildHtml('product_type_data') //important for GROUPED products ?>
+                        <?php //echo preg_replace("/(\.)(\d{1,2})/", ".<sup>\${2}</sup>", $this->getPriceHtml($_product)) ?>
                         <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
                             <div class="options-container-big">
                                 <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
@@ -111,7 +111,7 @@
                             <?php if($_product->isSaleable()): ?>
                                 <?php echo $this->getChildHtml('addtocart') ?>
                             <?php else: ?>
-                                <div class="out-of-stock"><?php echo $this->__('Out of Stock' )?></div>
+                                <div class="out-of-stock"><span><?php echo $this->__('Out of Stock' )?></span></div>
                                 <?php echo $this->getChildHtml('alert_urls') ?>
                             <?php endif; ?>
                             <?php //echo $this->getChildHtml('addto') ?>
@@ -119,11 +119,10 @@
                     <?php else:?>
                         <?php if ($_product->isSaleable() && $this->hasOptions()): //&& $this->getChildChildHtml('container1')?>
                             <div class="options-container-small">
-
                                 <?php //echo $this->getChildChildHtml('container1', '', true, true) ?>
                             </div>
                         <?php else: ?>
-                            <div class="out-of-stok"><?php echo $this->__('Out of Stock') ?></div>
+                            <div class="out-of-stok"><span><?php echo $this->__('Out of Stock') ?></span></div>
                             <?php echo $this->getChildHtml('alert_urls') ?>
                             <?php //echo $this->getChildHtml('addto') ?>
                         <?php endif;?>
@@ -215,6 +214,8 @@
             }
             jQuery.post(url, form.serialize(), function(data){
                 jQuery('.top-cart-holder').html(jQuery(data).find('.top-cart-holder').html());
+                jQuery('#top-cart-messages').html(jQuery(data).find('.messages').html());
+                jQuery('#top-cart-messages').delay(5000).fadeOut();
                 Enterprise.TopCart.showCart(7);
                 jQuery('.ajax-basket-loader').fadeOut();
                 disabled.attr('disabled', false);
@@ -223,7 +224,7 @@
                 }
             });
         }
-        return false;
+        //return false;
     }.bind(productAddToCartForm);
 
     productAddToCartForm.submitLight = function(button, url){

@@ -8,13 +8,13 @@ $dataHelper = Mage::helper('onestepcheckout');
 
     $billingFields['firstname'] = '
         <div class="input-box input-firstname'.((in_array('firstname', $formErrors)) ? ' input-error' : '').'">
-            <label for="billing:firstname">'.$this->__('First Name').'</label>
-            <input class="input-text" type="text" name="billing[firstname]" id="billing:firstname" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getFirstname()).'" />
+            <label for="billing:firstname">'.$this->__('First Name').' <span class="required">*</span></label>
+            <input class="input-text required-entry" type="text" name="billing[firstname]" id="billing:firstname" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getFirstname()).'" />
         </div>';
     $billingFields['lastname'] = '
         <div class="input-box input-lastname'.((in_array('lastname', $formErrors)) ? ' input-error' : '').'">
-            <label for="billing:lastname">'.$this->__('Last Name').'</label>
-            <input class="input-text" type="text" name="billing[lastname]" id="billing:lastname" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getLastname()).'" />
+            <label for="billing:lastname">'.$this->__('Last Name').' <span class="required">*</span></label>
+            <input class="input-text required-entry" type="text" name="billing[lastname]" id="billing:lastname" value="'.$dataHelper->clearDash($this->getQuote()->getBillingAddress()->getLastname()).'" />
         </div>';
     ?>
 <?php if(!$this->isCustomerLoggedIn() || in_array('email_registered', $formErrors)): ?>

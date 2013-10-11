@@ -147,7 +147,6 @@ var VideoPanel = {
     video : '.video-wrapper',
 
     init : function(block){
-        console.log('init');
         this.block = block;
         var self = this;
         jQuery(this.block + ' ' + this.link).on('click', function(){

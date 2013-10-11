@@ -52,7 +52,7 @@
                         <?php // Product Image ?>
                         <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                             <span class="image-holder">
-                                <img width="850" height="850" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(850, 850); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                <img width="365" height="840" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(365,840); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                             </span>
                         </a>
 
@@ -145,10 +145,10 @@
                         <div class="product-image">
                             <span class="images-holder">
                                 <span class="image-holder img-1">
-                                    <img width="730" height="730" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(730, 730); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    <img width="305" height="680" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(305,680); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                                 </span>
                                 <span class="image-holder img-2">
-                                    <img width="730" height="730" src="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(730, 730); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
+                                    <img width="305" height="680" src="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(305,680); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
                                 </span>
                             </span>
                         </div>
@@ -183,7 +183,12 @@
                         </div>
                         <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
                         <?php $_productSecondNameStripped = $this->stripTags($_product->getSecondName(), null, true); ?>
-                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped . " " . $_productNameStripped ?>"><span><?php echo $_productNameStripped ?></span><span><?php echo $_productSecondNameStripped ?></span></a></h2>
+                        <h2 class="product-name">
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped . " " . $_productNameStripped ?>">
+                                <div class="first-name"><?php echo $_productNameStripped ?></div>
+                                <span class="second-name"><?php echo $_productSecondNameStripped ?></span>
+                            </a>
+                        </h2>
                         <?php if($_product->getRatingSummary()): ?>
                             <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                         <?php endif; ?>

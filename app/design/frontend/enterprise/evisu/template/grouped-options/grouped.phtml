@@ -1,0 +1,93 @@
+<?php
+//die('new');
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Grouped product data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ * @see Mage_Catalog_Block_Product_View_Type_Grouped
+ */
+?>
+<?php $this->setPreconfiguredValue(); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_associatedProducts = $this->getAssociatedProducts(); ?>
+<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
+<?php if ($this->helper('groupedoptions')->isProductAvailable($_product) && $_hasAssociatedProducts): ?>
+    <?php /* <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p> */ ?>
+<?php else: ?>
+    <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+<div class="data-table grouped-items-table" id="super-product-table">
+    <?php if ($_hasAssociatedProducts): ?>
+        <?php foreach ($_associatedProducts as $_item): ?>
+            <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
+            <div class="product-name">
+                <a href="<?php echo $_item->getProductUrl() ?>">
+                    <div class="first-name"><?php echo $this->htmlEscape($_item->getName()) ?></div>
+                    <div class="second-name"><?php echo $this->htmlEscape($_item->getSecondName()) ?></div>
+                </a>
+            </div>
+            <?php if ($this->helper('groupedoptions')->getCanShowProductPrice($this, $_product)): ?>
+                <div class="a-right">
+                    <?php if ($this->helper('groupedoptions')->getCanShowProductPrice($this, $_item)): ?>
+                        <?php echo $this->getPriceHtml($_item, true) ?>
+                        <?php echo $this->getTierPriceHtml($_item) ?>
+                    <?php endif; ?>
+                </div>
+            <?php endif;  ?>
+            <?php if ($_product->isSaleable()): ?>
+                <div class="super-options">
+                    <?php if ($_item->isSaleable()) : ?>
+                        <?php if ($_item->isSuper() || $_item->getHasOptions()) : ?>
+                            <?php echo $this->getChild('groupedoptions')->setProduct($_item)->toHtml(); ?>
+                        <?php endif; ?>
+                        <?php $qty = (int) Mage::getStoreConfig('catalog/product_detail/qty'); ?>
+                        <?php if($qty): ?>
+                            <select id="qty-<?php echo $_item->getId() ?>" name="super_group[<?php echo $_item->getId() ?>]" class="input-text qty no-display">
+                                <option value="">Qty</option>
+                                <?php for($i = 1; $i <= $qty; $i++): ?>
+                                    <option <?php if($_item->getQty() * 1 == $i): ?>selected="selected"<?php endIf; ?> value="<?php echo $i ?>"><?php echo $i ?></option>
+                                <?php endFor; ?>
+                            </select>
+                        <?php else: ?>
+                            <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+                        <?php endIf; ?>
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <script>
+            //<![CDATA[
+            jQuery('.qty').customSelect();
+            jQuery('.super-attribute-select').customSelect();
+            //]]>
+        </script>
+    <?php endIf; ?>
+</div>

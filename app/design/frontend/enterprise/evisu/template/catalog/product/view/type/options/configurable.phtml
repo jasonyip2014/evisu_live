@@ -49,14 +49,6 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
     //<![CDATA[
         var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
         jQuery('.super-attribute-select').customSelect();
-
-        //super_attribute_fix (refresh custom selects)
-        Product.Config.prototype.fillSelect_orig = Product.Config.prototype.fillSelect;
-        Product.Config.prototype.fillSelect = function(element){
-            Product.Config.prototype.fillSelect_orig.apply(this, arguments);
-            //alert(element.config.code);
-            jQuery(element).customSelectRefresh();
-        };
     //]]>
     </script>
 <?php endif;?>

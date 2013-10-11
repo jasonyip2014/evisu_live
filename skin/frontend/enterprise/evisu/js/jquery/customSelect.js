@@ -104,7 +104,7 @@ function SimulateChange(id){
         $(this).each(function(){
             var self = this;
             var customWr = $(self).wrap('<div class="custom-select-wrapper"></div>').parent();
-            customWr.append('<div class="custom-select"></div>');
+            customWr.prepend('<div class="custom-select"></div>');
             var customSelect = customWr.find('.custom-select:first');
     //            customValue = $(self).find('option:selected').text();
 

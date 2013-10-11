@@ -34,7 +34,7 @@
 
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php //echo $this->getChildHtml('form_before') ?>
-    <a href="<?php echo $this->getContinueShoppingUrl() ?>"><?php echo $this->__('Continue Shopping') ?></a>
+    <a class="continue-shopping-btn" href="<?php echo $this->getContinueShoppingUrl() ?>"><?php echo $this->__('Continue Shopping') ?></a>
     <div class="breadcrumbs">
         <ul>
             <li class="home">
@@ -99,7 +99,7 @@
         <?php endif; ?>
         </thead>
         <tbody>
-            <td colspan="50"><?php echo $this->__('Your Basket is empty') ?></td>
+            <td colspan="50"><div class="empty-basket"><?php echo $this->__('Your Basket is empty') ?></div></td>
         </tbody>
     </table>
 </div>

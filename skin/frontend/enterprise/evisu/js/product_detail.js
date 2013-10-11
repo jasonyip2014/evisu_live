@@ -1,4 +1,15 @@
 /* Product Detail Page Scripts */
+
+//super_attribute_fix (refresh custom selects)
+Product.Config.prototype.fillSelect_orig = Product.Config.prototype.fillSelect;
+Product.Config.prototype.fillSelect = function(element){
+    Product.Config.prototype.fillSelect_orig.apply(this, arguments);
+    //alert(element.config.code);
+    jQuery(element).customSelectRefresh();
+};
+
+
+
 var MailToFriend = {
     showModalWindow : function(url){
         console.log(url);
@@ -71,11 +82,11 @@ var FullSizeImage =
         jQuery('.btn-fullsize').click(function(){FullSizeImage.show()});
         jQuery('#full_img_close').click(function(){FullSizeImage.close()});
         jQuery('.full-size-hider').click(function(){FullSizeImage.close()});
+
         jQuery(document).keydown(function(e) {
-            console.log(FullSizeImage.fullSize);
-            if(FullSizeImage.fullSize)
+            if(e.keyCode == 27 && FullSizeImage.fullSize)
             {
-                if (e.keyCode == 27) { FullSizeImage.close() }   // esc
+               FullSizeImage.close();  // esc
             }
         });
     },
@@ -84,7 +95,6 @@ var FullSizeImage =
         if(self.fullSize)
         {
             self.container.css({width:(jQuery(window).width() - parseInt(this.container.parent().parent().css('paddingLeft')) * 2) + 'px'});
-
         }
     }
 };
@@ -136,5 +146,4 @@ jQuery(window).resize(function(){
     jQuery('.mousetrap').width(FullSizeImage.container.width()).height(FullSizeImage.container.height());
     //tabs resize
     jQuery('.product-collateral').height(jQuery('.tab-container').height() + 40);
-    console.log(jQuery('.tab-container').height() + 40);
 });

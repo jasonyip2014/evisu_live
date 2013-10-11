@@ -197,4 +197,5 @@ jQuery(function($){
             jQuery('.explore-more-btn').show();
         }
     });
+
 });
