@@ -1,7 +1,7 @@
 
 <?php if ($this->helper('wishlist')->isAllow()) : ?>
     <div class="account-wrapper">
-        <div class="page-title title-buttons">
+        <div class="block-title title-buttons">
             <?php if ($this->helper('wishlist')->isRssAllow() && $this->hasWishlistItems()): ?>
                 <a href="<?php echo $this->helper('wishlist')->getRssUrl($this->getWishlistInstance()->getId()); ?>" class="link-rss"><?php echo $this->__('RSS Feed') ?></a>
             <?php endif; ?>

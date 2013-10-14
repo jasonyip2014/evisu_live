@@ -80,8 +80,12 @@
             <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
                 <?php echo $this->getBlockHtml('formkey') ?>
                 <div class="no-display">
-                    <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-                    <input type="hidden" name="related_product" id="related-products-field" value="" />
+                    <?php if($_product->getTypeId() == 'grouped'): ?>
+                        <input type="hidden" name="grouped" value="<?php echo $_product->getId() ?>" />
+                    <?php else: ?>
+                        <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                        <input type="hidden" name="related_product" id="related-products-field" value="" />
+                    <?php endIf; ?>
                 </div>
                 <div class="product-shop">
                     <div class="product-main-info">

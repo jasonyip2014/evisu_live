@@ -24,6 +24,12 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
+<div class="image-holder background-message">
+    <img width="1009" height="1233" src="<?php echo $this->getSkinUrl('images/myaccount/login.jpg') ?>" alt="" />
+</div>
 <div class="welcome-msg">
-    <h2 class="sub-title"><?php echo $this->__('Hello, %s!', $this->escapeHtml($this->getCustomerName())) ?></h2>
+    <h2 class="sub-title">
+        <div class="hello"><?php echo $this->__('Hello') ?></div>
+        <div class="customer-name"><?php echo $this->escapeHtml($this->getCustomerName()) ?></div>
+    </h2>
 </div>

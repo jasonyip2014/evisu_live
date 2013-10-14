@@ -24,7 +24,7 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<div class="page-title">
+<div class="block-title">
     <h1><?php echo $this->__('My Subscriptions') ?></h1>
 </div>
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
@@ -34,9 +34,21 @@
     <?php echo $this->getBlockHtml('formkey')?>
     <ul class="form-list">
         <li class="control">
-            <label for="subscription"><?php echo $this->__('General Subscription') ?></label>
             <div class="input-box">
                 <input type="checkbox" name="is_subscribed" id="subscription" value="1" title="<?php echo $this->__('General Subscription') ?>"<?php if($this->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+                <label id="custom-subscription" class="custom-checkbox <?php if($this->getIsSubscribed()): ?> 'checked'<?php endif; ?>" for="subscription"><?php echo $this->__('General Subscription') ?></label>
+                <script>
+                    jQuery('#subscription').on('change', function(){
+                        if(this.checked)
+                        {
+                            jQuery('#custom-subscription').addClass('checked');
+                        }
+                        else
+                        {
+                            jQuery('#custom-subscription').removeClass('checked');
+                        }
+                    });
+                </script>
             </div>
         </li>
         <?php /* Extensions placeholder */ ?>

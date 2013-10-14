@@ -1,4 +1,5 @@
 <?php /* @var $this Mage_Catalog_Block_Product_List */ ?>
+<?php /* @var $this Mage_Catalog_Block_Product_List */ ?>
 <?php
 /**
  * Magento Enterprise Edition
@@ -63,7 +64,14 @@
                                 <?php $_productSecondNameStripped = $this->stripTags($_product->getSecondName(), null, true); ?>
                                 <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped . " " . $_productNameStripped ?>"><span><?php echo $_productNameStripped ?></span><span><?php echo $_productSecondNameStripped ?></span></a></h2>
                                 <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
-                                <?php echo $this->getPriceHtml($_product, true) ?>
+                                <?php if($_product->getTypeId() == 'grouped'): ?>
+                                    <div class="grouped-price">
+                                        <span><?php echo $this->__('started at') ?></span>
+                                        <?php echo Mage::helper('core')->currency(Mage::helper('tax')->getPrice($_product, $_product->getMinPrice(), true), true, false) ?>
+                                    </div>
+                                <?php else: ?>
+                                    <?php echo $this->getPriceHtml($_product, true) ?>
+                                <?php endIf; ?>
                                 <?php if($_product->isSaleable()): ?>
                                     <a title="<?php echo $this->__('Quick Buy') ?>" class="button btn-cart" href="<?php echo $this->getAddToCartUrl($_product) ?>"><span><span><?php echo $this->__('Quick Buy') ?></span></span></a>
                                 <?php else: ?>
@@ -192,8 +200,14 @@
                         <?php if($_product->getRatingSummary()): ?>
                             <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                         <?php endif; ?>
-                        <?php echo $this->getPriceHtml($_product, true) ?>
-
+                        <?php if($_product->getTypeId() == 'grouped'): ?>
+                            <div class="grouped-price">
+                                <span><?php echo $this->__('started at') ?></span>
+                                <?php echo Mage::helper('core')->currency(Mage::helper('tax')->getPrice($_product, $_product->getMinPrice(), true), true, false) ?>
+                            </div>
+                        <?php else: ?>
+                            <?php echo $this->getPriceHtml($_product, true) ?>
+                        <?php endIf; ?>
                     </li>
                     <?php $i++; ?>
                 <?php endforeach ?>

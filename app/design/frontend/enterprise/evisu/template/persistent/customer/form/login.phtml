@@ -1,5 +1,7 @@
 <?php /* @var $this Mage_Customer_Block_Form_Login */ ?>
-
+<div class="image-holder">
+    <img width="1009" height="1233" src="<?php echo $this->getSkinUrl('images/myaccount/login.jpg') ?>" alt="" />
+</div>
 <div class="page-title">
     <h1><?php echo $this->__('My Account') ?></h1>
 </div>
@@ -51,9 +53,9 @@
                     <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
                 </div>
                 <?php if ($this->helper('customer')->isRegistrationAllowed()): ?>
-                    <span class="block-header"><?php echo $this->__('New Customer? Register Now') ?></span>
-                    <span class="block-descr"><?php echo $this->__('By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.') ?></span>
-                    <div class="col-2 new-users">
+                     <div class="col-2 new-users">
+                        <span class="block-header"><?php echo $this->__('New Customer? Register Now') ?></span>
+                        <span class="block-descr"><?php echo $this->__('By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.') ?></span>
                         <h2 class="legend"><?php echo $this->__('Sign Up') ?></h2>
                         <div class="reg-wrapper">
                             <ul class="form-list">

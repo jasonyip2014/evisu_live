@@ -70,7 +70,7 @@
                         <?php if($qty): ?>
                             <select id="qty-<?php echo $_item->getId() ?>" name="super_group[<?php echo $_item->getId() ?>]" class="input-text qty no-display">
                                 <option value="">Qty</option>
-                                <?php for($i = 1; $i <= $qty; $i++): ?>
+                                <?php for($i = 0; $i <= $qty; $i++): ?>
                                     <option <?php if($_item->getQty() * 1 == $i): ?>selected="selected"<?php endIf; ?> value="<?php echo $i ?>"><?php echo $i ?></option>
                                 <?php endFor; ?>
                             </select>
