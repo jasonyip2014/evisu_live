@@ -126,7 +126,19 @@ a:hover{text-decoration:underline;}
 }
 .quick-access .links li:first-child{margin-left:0;}
 .quick-access select{display:none;}
-.form-language{position:relative;}
+.form-language:after{
+    content: '';
+    display: block; 
+    clear: both;
+}
+.form-language{
+    position:relative;
+    height: 24px;
+    display: inline-block;
+    width: 56px;
+    vertical-align: top;
+    margin: 0 18px;
+}
 .form-language label{visibility:hidden;}
 .form-language .custom-select-btn{
     position:absolute;
@@ -141,7 +153,7 @@ a:hover{text-decoration:underline;}
 }
 .form-language .custom-select-drop{
     position:absolute;
-    right:0;
+    right:-10px;
     top:25px;
     text-align:center;
     background:#fff;
@@ -280,14 +292,20 @@ a:hover{text-decoration:underline;}
 
 /* Footer */
 .footer-container{
-    width:980px;
     margin:-230px auto 0;
     height:200px;
     position:relative;
     padding:0 0 30px;
     z-index:1;
+    width: 100%;
+    background: #fff;
 }
-.footer-container .footer{overflow:hidden;}
+.footer-container .footer{
+    overflow:hidden;
+    width: 980px;
+    margin: 0 auto;
+    padding: 20px 0 0 0;
+}
 .footer-container .footer > ul{
     float:left;
 }
@@ -659,7 +677,7 @@ li label{
 
 .catalog-category-view .breadcrumbs-container{
     float: left;
-    padding: 60px 5.16% 0 3.3854166667%;
+    padding: 60px 0 0 8.54%;
     width: 304px;
 }
 
@@ -2097,4 +2115,566 @@ position: absolute;
     text-align: left;
     text-transform: uppercase;
     padding: 50px;
+}
+
+/*=============== MY ACCOUNT =================================================================*/
+
+.customer-account-index .page{
+    padding: 0;
+}
+
+.customer-account-index .col-main{
+    height: 1177px;
+}
+
+.customer-account-index .main{
+    padding: 0 0 0 9.6354166667%;
+    color: #333;
+}
+
+.newsletter-manage-index .main .breadcrumbs,
+.newsletter-manage-index .my-account .page-title,
+.customer-account-index .main .breadcrumbs,
+.customer-account-index .my-account .page-title{
+    padding: 0 0 0 2%;
+}
+
+
+.customer-account-index .my-account .page-title{
+    font: 700 48px 'Open Sans', Arial, sans-serif;
+}
+
+.sidebar:after,
+.my-account:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.my-account .page-title .hello{
+    text-transform: lowercase;
+}
+
+.my-account .page-title .customer-name{
+    text-transform: capitalize;
+}
+
+.dashboard-navigation{
+    float: left;
+    margin: 0 43px 0 0;
+}
+
+.dashboard-navigation ul a{
+    font: 12px Courier, Arial, Helvetica, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.dashboard-navigation ul{
+    width: 171px;
+    background: #333;
+    padding: 30px 40px 65px 20px;  
+}
+
+.dashboard-navigation .link-logout{
+    padding: 0 0 0 20px;
+    font: 700 14px 'Open Sans', Arial, sans-serif;
+    margin: 15px 0 0 0;
+}
+
+.dashboard-navigation .link-logout a:hover{
+    border: none;
+}
+
+.dashboard-navigation .link-logout a{
+    border-bottom: 2px solid #000;
+    color: #000; 
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.dashboard .block{
+    display: inline-block;
+    width: 283px;
+    height: 272px;
+    border: 3px solid #333;
+    background: #fff;
+    vertical-align: top;
+    position: relative;
+    margin: 0 11px 65px 0;
+    font: 12px Courier, Arial, Helvetica, sans-serif;
+}
+
+.dashboard .block .block-wrapper{
+    padding: 35px 28px 0 22px;
+}
+
+.dashboard .block .block-wrapper .links{
+    position: absolute;
+    bottom: 18px;
+}
+
+.dashboard .block .block-wrapper .links a{
+    font: 700 12px 'Open Sans', Arial, sans-serif;
+    color: #ccc;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ccc;
+}
+
+.dashboard .block .block-wrapper .links a:first-child{
+    margin: 0 20px 0 0;
+}
+
+.dashboard .block .block-wrapper .links a:hover{
+    text-decoration: none;
+    border: none;
+}
+
+.dashboard{
+    display: inline-block;
+    width: 906px;
+    margin: 28px 0 0 0;
+}
+
+.dashboard-navigation ul li{
+    line-height: 33px;
+}
+
+/*=============== login ======================================================================*/
+
+.customer-account-login .main{
+    padding: 0 0 0 10.7291666667%;
+}
+
+.customer-account-login .main .breadcrumbs{
+    margin: 0 0 100px;
+}
+
+.customer-account-login .col-main{
+    position: relative;
+    height: 842px;
+    color: #333;
+}
+
+.page-title{
+    position: relative;
+}
+
+.page-title .image-holder,
+.customer-account-login .col-main .image-holder{
+    position: absolute;
+    right: 0px;
+    top: -117px;
+    z-index: -1;
+}
+
+.customer-account-login .page-title{
+    font: 700 48px 'Open Sans', Arial, sans-serif;
+}
+
+.account-login{
+    text-align: center;
+}
+
+.account-login #login-form{
+    display: inline-block;
+}
+
+.account-login .col2-set:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.account-login .new-users{
+    padding: 0 26px 0 26px;
+    width: 302px;
+    height: 466px;
+}
+.account-login .registered-users{
+    width: 354px;
+    height: 466px;
+}
+
+.account-login .registered-users{
+    float: left;
+    text-align: left;
+    border: 3px solid #333;
+    background: #fff;
+    margin: 0 22px 0 0;
+    position: relative;
+}
+
+.account-login .new-users{
+    float: right;
+    background: #fff;
+    border: 3px solid #333;
+    text-align: left;
+    position: relative;
+}
+
+.account-login .registered-users .login-wrapper{
+    padding: 0 70px 0 26px;
+}
+
+.dashboard .block .block-title,
+.account-login .new-users .legend,
+.account-login .registered-users .legend{ 
+    position: absolute;
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    top: -48px;
+    left: 24px;
+}
+
+.new-users .block-header,
+.registered-users .login-wrapper .block-header{
+    font: 700 12px 'Open Sans', Arial, sans-serif;
+    text-transform: uppercase;
+    display: block;
+    padding: 31px 0 17px;
+}
+
+.new-users .block-descr{
+    margin: 0 0 142px !important;
+}
+
+.new-users .block-descr,
+.registered-users .login-wrapper .block-descr{
+    font: 12px Courier, Arial, helvetica, sans-serif;
+    display: block;
+    margin: 0 0 36px;
+}
+
+.login-wrapper .form-list .input-box .input-text{
+    width: 186px;
+    height: 26px;
+    line-height: 26px;
+    color: #999;
+    border: 1px solid #ccc;
+    font: 12px Courier, Arial, helvetica, sans-serif;
+    padding: 0 15px;
+    text-transform: lowercase;
+}
+
+.login-wrapper .form-list li:first-child{
+    margin: 0 0 15px;
+}
+
+.login-wrapper .form-list .note{
+    margin: 14px 0 50px 2px;
+}
+
+.reg-wrapper .facebook{
+    margin: 40px 0 0 !important;
+}
+
+.reg-wrapper .facebook,
+.login-wrapper .form-list .facebook{
+    margin: 43px 0 0 0;
+    font: 700 12px 'Open Sans', Arial, sans-serif;
+    cursor: pointer;
+    line-height: 32px;
+    padding: 0 0 0 42px;
+    background: url(../images/facebook-bg.png) no-repeat 0 0;
+}
+
+.login-wrapper .form-list .note a{
+    font: 12px Courier, Arial, helvetica, sans-serif;
+    color: #333;
+}
+
+.reg-wrapper .buttons-set button{
+    width: 169px !important;
+}
+
+.reg-wrapper .buttons-set button{
+    margin: 0 0 0 5px;
+}
+
+.reg-wrapper .buttons-set button:hover,
+.login-wrapper .form-list .buttons-set button:hover,
+.newsletter-manage-index .my-account #form-validate button:hover{
+    background: #ccc;
+}
+
+.reg-wrapper .buttons-set button,
+.login-wrapper .form-list .buttons-set button,
+.newsletter-manage-index .my-account #form-validate button{
+    width: 120px;
+    height: 39px;
+    background: #333;
+    font: 700 14px/39px 'Open Sans', Arial, sans-serif;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/*=================== newsletter ===========================================================*/
+
+.newsletter-manage-index .col-main{
+    padding: 0 0 470px; 
+}
+
+.newsletter-manage-index .main{
+    padding: 0 0 0 9.6354166667%;
+    color: #333;
+}
+
+.newsletter-manage-index .my-account .block-title{
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    margin: 0 0 4px;
+}
+
+.newsletter-manage-index .my-account #form-validate .checkbox{
+    display: none;
+}
+
+.newsletter-manage-index .my-account #form-validate{
+    float: left;
+    border: 3px solid #333;
+    background: #fff;
+    width: 442px;
+    height: 263px;
+    text-align: center;
+}
+
+.newsletter-manage-index .page-title{
+    font: 700 48px 'Open Sans', Arial, sans-serif;
+}
+
+.newsletter-manage-index .my-account #form-validate .custom-checkbox{
+    background: url(../images/myaccount/checkbox.gif) no-repeat 0 0;
+    padding: 0 0 4px 33px;
+}
+
+.newsletter-manage-index .my-account #form-validate .custom-checkbox.checked{
+    background: url(../images/myaccount/checkbox-checked.gif) no-repeat 0 100%;
+}
+
+.newsletter-manage-index .my-account #form-validate .input-box{
+    padding: 65px 0;
+    text-transform: uppercase;
+}
+
+/*============= my wishlist & orders ===================================================================*/
+
+.sales-order-history .main,
+.wishlist-index-index .main{
+    padding: 0 0 0 9.6354166667%;
+    color: #333;
+}
+
+.my-account .page-title{
+    font: 700 48px 'Open Sans', Arial, sans-serif;
+}
+
+.sales-order-history .main .breadcrumbs,
+.sales-order-history .my-account .page-title,
+.wishlist-index-index .main .breadcrumbs,
+.wishlist-index-index .my-account .page-title{
+    padding: 0 0 0 2%;
+}
+
+.sales-order-history .table-wrapper{
+    float: left;
+    border: 3px solid #333;
+    background: #fff;
+    width: 60.6%;
+}
+
+.sales-order-history .block-title,
+.wishlist-index-index .my-account .block-title{
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    margin: 0 0 4px;
+}
+
+#wishlist-view-form{
+    float: left;
+    border: 3px solid #333;
+    background: #fff;
+    width: 60.6%;
+}
+
+#my-orders-table,
+#wishlist-table{
+    width: 100%;
+}
+
+#my-orders-table thead th,
+#wishlist-table thead th{
+    width: 18%;
+    background: #ccc;
+    color: #fff;
+    text-transform: uppercase;
+    font: 700 14px/35px 'Open Sans', Arial, sans-serif;
+}
+
+#my-orders-table tbody td,
+#wishlist-table tbody td{
+    vertical-align: middle;
+    text-align: center;
+    font: 12px Courier, Arial, sans-serif;
+    height: 155px;
+}
+
+#my-orders-table tbody td .product-name a,
+#wishlist-table tbody td .product-name a{
+    font: 12px Courier, Arial, sans-serif;
+    color: #333;
+}
+
+#my-orders-table tbody td .nobr a:hover{
+    text-decoration: none;
+}
+
+#my-orders-table tbody td .nobr a:hover{
+    background: #333;
+}
+
+#my-orders-table tbody td .nobr a{
+    background: #ccc;
+    display: block;
+    width: 124px;
+    height: 39px;
+    font: 700 14px/39px 'Open Sans', Arial, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 auto;
+}
+
+#my-orders-table tbody td .product-name a .first-name,
+#wishlist-table tbody td .product-name a .first-name{
+    text-transform: uppercase;
+}
+
+#my-orders-table tbody td{
+    text-transform: uppercase;
+}
+
+#my-orders-table tbody td div{
+    text-align: left;
+    text-transform: none;
+}
+
+#my-orders-table tbody td .product-name a .second-name,
+#wishlist-table tbody td .product-name a .second-name{
+    text-transform: lowercase;
+}
+
+#wishlist-table tbody td .add-to-cart-alt button:hover{
+    background: #ccc;
+}
+
+#wishlist-table tbody td .add-to-cart-alt button{
+    background: #333;
+    border: none;
+    width: 124px;
+    height: 39px;
+    font: 600 14px/39px 'Open Sans', Arial, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#wishlist-table tbody td.last a{
+    display: block;
+    width: 13px;
+    height: 15px;
+    background: url(../images/btn-remove.png) no-repeat 0 0;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+
+#wishlist-table tbody td .add-to-cart-alt .out-of-stock span{
+    width: 124px;
+}
+
+#wishlist-table tbody td .custom-select-btn{
+    color: #999;
+    font: 14px Courier, Arial, helvetica, sans-serif;
+    border: 1px solid #ccc;
+    width: 71px;
+    padding: 0 0 0 10px;
+    display: block;
+    text-align: left;
+    margin: 0 auto;
+    background: url(../images/bg-custom-select.png) no-repeat 90% 5px;
+}
+
+#wishlist-table tbody td .custom-select-btn:hover{
+    text-decoration: none;
+}
+
+#wishlist-table tbody td .custom-select-wrapper select{
+    display: none;
+}
+
+#wishlist-table tbody td .custom-select-drop{
+    display: inline-block;
+    width: 81px;
+    border: 1px solid #ccc;
+    border-top: none;
+    position: absolute;
+    left: 49px;
+    background: #fff;
+}
+
+#wishlist-table tbody td .custom-select{
+    position: relative;
+}
+
+#wishlist-table tbody td .custom-select-drop li{
+    text-align: left;
+    padding: 0 0 0 10px;
+}
+
+#wishlist-table tbody td .custom-select.active .custom-select-btn{
+    border-bottom: none; 
+}
+
+#wishlist-table tbody td .custom-select-drop li:hover{
+    background: #ccc;
+}
+
+#wishlist-table tbody td .custom-select-drop li a{
+    color: #999;
+    font: 14px Courier, Arial, helvetica, sans-serif;
+}
+
+/*=============== account edit ===================================================*/
+
+.customer-account-edit .main{
+    padding: 0 0 0 9.6354166667%;
+    color: #333;
+}
+
+
+
+.customer-account-edit #form-validate{
+    float: left;
+}
+
+.customer-account-edit #form-validate .form-list .fields{
+    display: inline-block;
+    width: 283px;
+    height: 272px;
+    border: 3px solid #333;
+    background: #fff;
+    vertical-align: top;
+    position: relative;
+    margin: 0 11px 65px 0;
+    font: 12px Courier, Arial, Helvetica, sans-serif;
+}
+
+.customer-account-edit .main .breadcrumbs,
+.customer-account-edit .my-account .page-title{
+    padding: 0 0 0 2%;
+}
+
+.customer-account-edit #form-validate .form-list li .customer-name-prefix{
+    padding: 35px 28px 0 22px;
 }
