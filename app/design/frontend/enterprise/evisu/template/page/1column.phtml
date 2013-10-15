@@ -1,3 +1,15 @@
+<?php /* @var $this Mage_Page_Block_Html */ ?>
+<?php /* @var $this Mage_Checkout_Block_Onepage_Progress */ ?>
+<?php /* @var $this Mage_Checkout_Block_Onepage_Payment_Methods */ ?>
+<?php /* @var $this Mage_Checkout_Block_Onepage_Shipping_Method_Available */ ?>
+<?php /* @var $this Mage_Checkout_Block_Onepage_Shipping_Method_Additional */ ?>
+<?php /* @var $this Mage_Checkout_Block_Onepage_Review_Info */ ?>
+<?php /* @var $this Mage_Centinel_Block_Authentication_Start */ ?>
+<?php /* @var $this Mage_Centinel_Block_Authentication_Complete */ ?>
+<?php /* @var $this Mage_Paypal_Block_Express_Review_Details */ ?>
+<?php /* @var $this Mage_Core_Block_Template */ ?>
+<?php /* @var $this Enterprise_GiftCardAccount_Block_Check */ ?>
+<?php /* @var $this Enterprise_GiftRegistry_Block_Search_Advanced */ ?>
 <?php
 /**
  * Magento Enterprise Edition
@@ -34,6 +46,11 @@
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <body <?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+    <div id="site-loader" class="site-loader">
+        <div class="image-holder">
+            <img src="<?php echo $this->getSkinUrl('images/Loading_Godhead.gif')?>" alt="evisu-loader" />
+        </div>
+    </div>
     <?php echo $this->getChildHtml('after_body_start') ?>
         <div class="wrapper">
             <?php echo $this->getChildHtml('global_notices') ?>

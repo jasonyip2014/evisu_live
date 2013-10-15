@@ -100,7 +100,7 @@
                     </div>
                     <div class="field">
                         <label for="country" class="required"><?php echo $this->__('Country') ?><em>*</em></label>
-                        <div class="input-box">
+                        <div class="input-box country-input-box">
                             <?php echo $this->getCountryHtmlSelect() ?>
                         </div>
                     </div>
@@ -114,9 +114,22 @@
                         <p><strong><?php //echo $this->__('Default Billing Address') ?></strong></p>
                     <?php elseif($this->canSetAsDefaultBilling()): ?>
                         <div class="input-box">
-                            <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox" />
+                            <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox no-display" />
+                            <label id="custom-primary-billing" class="custom-checkbox" for="primary_billing"><?php echo $this->__('Use as my default billing address') ?></label>
+                            <script>
+                                jQuery('#primary_billing').on('change', function(){
+                                    if(this.checked)
+                                    {
+                                        jQuery('#custom-primary-billing').addClass('checked');
+                                    }
+                                    else
+                                    {
+                                        jQuery('#custom-primary-billing').removeClass('checked');
+                                    }
+                                });
+                            </script>
                         </div>
-                        <label for="primary_billing"><?php echo $this->__('Use as my default billing address') ?></label>
+
                     <?php else: ?>
                         <input type="hidden" name="default_billing" value="1" />
                     <?php endif; ?>
@@ -126,9 +139,21 @@
                         <p><strong><?php //echo $this->__('Default Shipping Address') ?></strong></p>
                     <?php elseif($this->canSetAsDefaultShipping()): ?>
                         <div class="input-box">
-                            <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox" />
+                            <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox no-display" />
+                            <label id="custom-primary-shipping" class="custom-checkbox" for="primary_shipping"><?php echo $this->__('Use as my default shipping address') ?></label>
+                            <script>
+                                jQuery('#primary_shipping').on('change', function(){
+                                    if(this.checked)
+                                    {
+                                        jQuery('#custom-primary-shipping').addClass('checked');
+                                    }
+                                    else
+                                    {
+                                        jQuery('#custom-primary-shipping').removeClass('checked');
+                                    }
+                                });
+                            </script>
                         </div>
-                        <label for="primary_shipping"><?php echo $this->__('Use as my default shipping address') ?></label>
                     <?php else: ?>
                         <input type="hidden" name="default_shipping" value="1" />
                     <?php endif; ?>

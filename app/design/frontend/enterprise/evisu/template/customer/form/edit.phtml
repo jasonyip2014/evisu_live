@@ -36,7 +36,7 @@
         <li class="fields">
             <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
         </li>
-        <li>
+        <li class="email">
             <label for="email" class="required"><?php echo $this->__('Email Address') ?><em>*</em></label>
             <div class="input-box">
                 <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
@@ -61,8 +61,21 @@
         <li class="control">
             <div class="input-box">
                 <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" />
+                <label id="custom-change-password" class="custom-checkbox" for="change_password"><?php echo $this->__('Change Password') ?></label>
+                <script>
+                    jQuery('#change_password').on('change', function(){
+                        if(this.checked)
+                        {
+                            jQuery('#custom-change-password').addClass('checked');
+                        }
+                        else
+                        {
+                            jQuery('#custom-change-password').removeClass('checked');
+                        }
+                    });
+                </script>
             </div>
-            <label for="change_password"><?php echo $this->__('Change Password') ?></label>
+
         </li>
     </ul>
 </div>
