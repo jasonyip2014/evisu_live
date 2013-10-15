@@ -188,9 +188,10 @@ jQuery(function($)
 {
 
     //init page
+
     $('#custom-currency-selector').customSelect();
 	$('html,body').scrollTop(0);
-
+    $('img').css({'opacity': 0 });
 
     //$('img').css('opacity', 0); //hide img while loading move to begin of onready
 
@@ -203,7 +204,9 @@ jQuery(function($)
 
     //==============onDocumentLoad===============
     $(window).load(function(){
+
         AjaxBasket.resize();
+
         //$('body').fadeIn();
     });
     $(document).ready(function(){

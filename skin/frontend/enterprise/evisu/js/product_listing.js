@@ -148,6 +148,10 @@ var DropDown = {
 jQuery(function($){
     // filters and sorters init //
     DropDown.init();
+
+    //loader
+    jQuery('.col-main').css({'opacity':0});
+    jQuery('.site-loader').show();
     // =============== quick navigation buttons behavior ================
     jQuery('.explore-more-btn').on('click', function(){
         jQuery('html,body').stop(true, false).animate({scrollTop : '+=' + jQuery(window).height()},'slow');
@@ -198,4 +202,10 @@ jQuery(function($){
         }
     });
 
+});
+
+jQuery(window).load(function(){
+    //loader
+    jQuery('.col-main').stop(true, true).animate({opacity: 1}, 'fast');
+    jQuery('.site-loader').fadeOut('fast');
 });
