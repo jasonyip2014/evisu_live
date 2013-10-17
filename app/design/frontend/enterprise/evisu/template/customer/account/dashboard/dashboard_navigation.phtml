@@ -12,33 +12,58 @@
         </li>
     </ul>
 </div>
-<div class="dashboard-navigation">
-    <ul>
-        <li>
-            <a href="<?php echo Mage::getUrl('customer/account/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Dashboard') ?>">
-                <?php echo $this->__('My Dashboard') ?>
-            </a>
-        </li><li>
-            <a href="<?php echo $this->getUrl('customer/account/edit/', array('_secure' => true)) ?>" title="<?php echo $this->__('Account Information') ?>">
-                <?php echo $this->__('Account Information') ?>
-            </a>
-        </li><li>
-            <a href="<?php echo Mage::getUrl('customer/address/', array('id'=>Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling(),'_secure' => true)) ?>" title="<?php echo $this->__('Address Book') ?>">
-                <?php echo $this->__('Address Book') ?>
-            </a>
-        </li><li>
-            <a href="<?php echo Mage::getUrl('sales/order/history/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Orders') ?>">
-                <?php echo $this->__('My Orders') ?>
-            </a>
-        </li><li>
-            <a href="<?php echo Mage::getUrl('wishlist', array('_secure' => true)) ?>" title="<?php echo $this->__('My Wishlist') ?>">
-                <?php echo $this->__('My Wishlist') ?>
-            </a>
-        </li><li>
-            <a href="<?php echo $this->getUrl('newsletter/manage/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Subscriptions') ?>">
-                <?php echo $this->__('My Subscriptions') ?>
-            </a>
-        </li>
-    </ul>
-    <div class="link-logout"><a href="<?php echo Mage::getUrl('customer/account/logout')?>"><?php echo $this->__('Log Out') ?></a></div>
+<div class="dashboard-navigation-wrapper">
+    <div id="dashboard-navigation-show-btn" title="<?php echo $this->__('Show Menu') ?>"></div>
+    <div id="shadow-page-holder"></div>
+    <div class="dashboard-navigation">
+        <ul>
+            <li>
+                <a href="<?php echo Mage::getUrl('customer/account/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Dashboard') ?>">
+                    <?php echo $this->__('My Dashboard') ?>
+                </a>
+            </li><li>
+                <a href="<?php echo $this->getUrl('customer/account/edit/', array('_secure' => true)) ?>" title="<?php echo $this->__('Account Information') ?>">
+                    <?php echo $this->__('Account Information') ?>
+                </a>
+            </li><li>
+                <a href="<?php echo Mage::getUrl('customer/address/', array('id'=>Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling(),'_secure' => true)) ?>" title="<?php echo $this->__('Address Book') ?>">
+                    <?php echo $this->__('Address Book') ?>
+                </a>
+            </li><li>
+                <a href="<?php echo Mage::getUrl('sales/order/history/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Orders') ?>">
+                    <?php echo $this->__('My Orders') ?>
+                </a>
+            </li><li>
+                <a href="<?php echo Mage::getUrl('wishlist', array('_secure' => true)) ?>" title="<?php echo $this->__('My Wishlist') ?>">
+                    <?php echo $this->__('My Wishlist') ?>
+                </a>
+            </li><li>
+                <a href="<?php echo $this->getUrl('newsletter/manage/', array('_secure' => true)) ?>" title="<?php echo $this->__('My Subscriptions') ?>">
+                    <?php echo $this->__('My Subscriptions') ?>
+                </a>
+            </li>
+        </ul>
+        <div class="link-logout"><a href="<?php echo Mage::getUrl('customer/account/logout')?>"><?php echo $this->__('Log Out') ?></a></div>
+        <div id="dashboard-navigation-hide-btn"><?php echo $this->__('Hide Menu') ?></div>
+    </div>
+    <script>
+        var DashboardNavigation = {
+            show : function(){
+                jQuery('#shadow-page-holder').fadeIn('fast');
+                jQuery('.dashboard-navigation').slideDown();
+            },
+            hide : function(){
+                jQuery('.dashboard-navigation').slideUp();
+                jQuery('#shadow-page-holder').fadeOut('normal');
+            }
+        };
+
+        jQuery(function(){
+            //events
+            jQuery('#dashboard-navigation-show-btn').on('click', function(){DashboardNavigation.show()});
+            jQuery('#dashboard-navigation-hide-btn').on('click', function(){DashboardNavigation.hide()});
+            jQuery('#shadow-page-holder').on('click', function(){DashboardNavigation.hide()});
+            jQuery(document).keydown(function(e){if(e.keyCode == 27){DashboardNavigation.hide()}});
+        })
+    </script>
 </div>

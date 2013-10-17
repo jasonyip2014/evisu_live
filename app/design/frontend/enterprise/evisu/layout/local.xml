@@ -2,6 +2,7 @@
 
     <default>
         <reference name="head">
+
             <action method="removeItem"><type>js</type><name>varien/menu.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery/jquery-1.9.1.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.noconflict.js</name></action>
@@ -11,6 +12,8 @@
             <action method="addItem"><type>skin_js</type><name>js/main.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/froogaloop.min.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.fittext.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/mageworx/selectreplace.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/mageworx/storeswitcher.css</name></action>
         </reference>
         <reference name="root">
             <action method="setTemplate"><template>page/1column.phtml</template></action>
@@ -28,6 +31,7 @@
             <remove name="wishlist_link"/>
             <remove name="welcome" />
             <remote name="top.search" />
+            <!--<block type="page/switch" name="store_switcher" as="store_switcher" after="-" template="storeswitcher/country-switcher.phtml"/>-->
         </reference>
         <reference name="footer">
             <remove name="footer_links" />
@@ -105,6 +109,7 @@
         <reference name="customer_account_dashboard" >
             <block type="sales/order_history" name="customer_salest_account_dashboard_order_history" as="orders" template="customer/account/dashboard/orders.phtml" />
             <block type="core/template" name="customer_account_dashboard_wishlist" as="wishlist" template="customer/account/dashboard/wishlist.phtml" />
+            <block type="cms/block" name="customer-dashboard-promo" as="customer-dashboard-promo"><action method="setBlockId"><block_id>customer-dashboard-promo</block_id></action></block>
         </reference>
     </customer_account_index>
     <wishlist_index_index>
@@ -152,5 +157,10 @@
             <remove name="customer.account.link.back" />
         </reference>
     </sales_order_history>
-
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <block type="cms/block" name="basket-promo" as="basket-promo"><action method="setBlockId"><block_id>basket-promo</block_id></action></block>
+            <block type="cms/block" name="basket-help" as="basket-help"><action method="setBlockId"><block_id>basket-help</block_id></action></block>
+        </reference>
+    </checkout_cart_index>
 </layout>

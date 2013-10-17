@@ -1,3 +1,5 @@
+jQuery('img').css({'opacity': 0 });
+
 var EvisuNavigation =
 {
     /* Main menu animation class */
@@ -191,7 +193,7 @@ jQuery(function($)
 
     $('#custom-currency-selector').customSelect();
 	$('html,body').scrollTop(0);
-    $('img').css({'opacity': 0 });
+
 
     //$('img').css('opacity', 0); //hide img while loading move to begin of onready
 
@@ -206,6 +208,7 @@ jQuery(function($)
     $(window).load(function(){
 
         AjaxBasket.resize();
+        $(this).stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded fiximgloadevent!!!
 
         //$('body').fadeIn();
     });

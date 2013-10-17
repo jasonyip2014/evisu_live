@@ -32,6 +32,8 @@
             </li>
         </ul>
     </div>
+    <div class="basket-promo-static-block"><?php echo $this->getChildHtml('basket-promo'); ?></div>
+    <div class="basket-help-static-block"><?php echo $this->getChildHtml('basket-help'); ?></div>
     <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
         <fieldset>
             <table id="shopping-cart-table" class="data-table cart-table" border='1'>
@@ -131,7 +133,7 @@
     <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
     <div class="totals">
         <?php /* @var $this Mage_Checkout_Block_Cart */?>
-        <span class="items-count">Items: <?php echo count($this->getItems()) ?></span>
+        <span class="items-count"><?php echo $this->__('Items') ?>: <?php echo count($this->getItems()) ?></span>
         <?php echo $this->getChildHtml('totals'); ?>
     </div>
     <?php if($this->getContinueShoppingUrl()): ?>
@@ -146,7 +148,6 @@
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
-
 
     <div class="cart-collaterals<?php if($this->getChildHtml('crosssell')) echo ' cross-inside'; ?>">
         <?php //echo $this->getChildHtml('crosssell') ?>
