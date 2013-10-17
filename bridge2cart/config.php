@@ -41,5 +41,5 @@
 
 
 // Security token
-define('M1_TOKEN', '54d29cbba5bd572b3b5c1f608300c988');
+define('M1_TOKEN', '7a216ab065a6cab3dd2436ee1ae4c53c');
 
