@@ -1883,6 +1883,7 @@ position: absolute;
 
 .checkout-cart-index .col-main .cart{
     padding: 0 12%;
+    position: relative;
 }
 
 #shopping-cart-table{
@@ -2170,6 +2171,7 @@ position: absolute;
 .dashboard-navigation{
     float: left;
     margin: 0 43px 0 0;
+    display: block;
 }
 
 .dashboard-navigation ul a{
@@ -2188,6 +2190,8 @@ position: absolute;
     padding: 0 0 0 20px;
     font: 700 14px 'Open Sans', Arial, sans-serif;
     margin: 15px 0 0 0;
+    display: inline-block;
+    float: left;
 }
 
 .dashboard-navigation .link-logout a:hover{
@@ -2504,10 +2508,10 @@ position: absolute;
     float: left;
     border: 3px solid #333;
     background: #fff;
-    width: 60.6%;
+    width: 978px;
 }
 
-.sales-order-history .block-title,
+.sales-order-history .my-account .block-title,
 .wishlist-index-index .my-account .block-title{
     font: 700 28px 'Open Sans', Arial, sans-serif;
     color: #333;
@@ -2518,7 +2522,7 @@ position: absolute;
     float: left;
     border: 3px solid #333;
     background: #fff;
-    width: 60.6%;
+    width: 978px;
 }
 
 #my-orders-table,
@@ -2795,6 +2799,7 @@ position: absolute;
 
 .customer-account-edit .my-account .name-prefix label{
     float: left;
+    line-height: 28px;
 }
 
 .customer-account-edit .my-account .name-prefix .input-box:after{
@@ -2819,7 +2824,7 @@ position: absolute;
 
 .customer-account-edit .my-account .control .input-box{
     display: block;
-    margin: 10px;
+    margin: 43px 20px;
 }
 
 .customer-account-edit .my-account .control .custom-checkbox{
@@ -2940,7 +2945,7 @@ position: absolute;
     font: 700 14px 'Open Sans', Arial, sans-serif;
 }
 
-.customer-address-index .block-title{
+.customer-address-index .my-account .block-title{
     font: 700 24px 'Open Sans', Arial, sans-serif;
 }
 
@@ -3000,7 +3005,7 @@ position: absolute;
 .customer-address-form .my-account #form-validate .fieldset{
     background: #fff;
     border: 3px solid #333;
-    min-height: 456px;
+    min-height: 487px;
     width: 442px;    
 }
 
@@ -3336,4 +3341,241 @@ position: absolute;
 
 .customer-account-create .account-create .fieldset .button:hover{
     color: #ccc;
+}
+
+.gm-style-iw{
+    background: red;
+}
+
+#dashboard-navigation-show-btn{
+    background: url(../images/burger-btn.png) no-repeat 0 100%;
+    width: 35px;
+    height: 21px;
+    cursor: pointer;
+    margin: 0 0 40px 25px;
+    display: none;
+}
+
+#dashboard-navigation-show-btn:hover{
+    background-position: 0 0;
+}
+
+#shadow-page-holder{
+    height: 2000px;
+    position: absolute;
+    width: 3000px;
+    left: -300px;
+    top: -500px;
+    background: rgba(255, 255, 255, .8);
+    z-index: 1;
+    display: none;
+}
+
+#dashboard-navigation-hide-btn:hover{
+    border-bottom: none;
+}
+
+#dashboard-navigation-hide-btn{
+    font: 700 14px 'Open Sans', Arial, sans-serif;
+    color: #999;
+    border-bottom: 2px solid #999;
+    float: left;
+    margin: 15px 0 0 65px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: none;
+}
+
+.customer-dashboard-promo-static-block{
+    font: 700 24px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    display: none;
+}
+
+
+.page-title .image-holder img,
+.customer-account-create .image-holder img{
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width:1170px){
+    .customer-dashboard-promo-static-block{
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width:1410px){
+    
+    .dashboard-navigation-wrapper{
+        position: relative;
+    }
+    #dashboard-navigation-hide-btn{
+        display: inline-block;
+    }
+    .dashboard-navigation{
+        display: none;
+        position: absolute;
+        z-index: 10;
+    }
+
+    .customer-address-index #dashboard-navigation-show-btn{
+        margin: 0 0 10px 25px;
+    }
+
+    .customer-address-index .my-account .block-title {
+        margin:  0 25px;
+    }
+
+    .sales-order-history .main .breadcrumbs,
+    .sales-order-history .my-account .page-title, 
+    .wishlist-index-index .main .breadcrumbs, 
+    .wishlist-index-index .my-account .page-title{
+        padding: 0 0 0 10px;
+    }
+
+    .sales-order-history #dashboard-navigation-show-btn{
+        margin: 0 0 10px 10px;
+    }
+
+    .sales-order-history .block-title,
+    .wishlist-index-index .my-account .block-title{
+        margin: 0 0 0 20px;
+    }
+
+    .customer-account-create .main,
+    .customer-account-login .main,
+    .customer-address-index .main,
+    .customer-address-form .main,
+    .customer-account-edit .main,
+    .customer-account-index .main,
+    .sales-order-history .main,
+    .wishlist-index-index .main {
+        padding: 0 0 0 1.5%;
+    }
+
+    .welcome-msg{
+        font-size: 28px;
+    }
+
+    .my-account .page-title .hello{
+        display: inline-block;
+        float: left;
+        margin: 0 8px 0 0;
+    }
+
+    .page-title .image-holder,
+    .customer-account-login .col-main .image-holder,
+    .customer-account-create .col-main .image-holder{
+        width: 80%;
+        right: -76px;
+    }
+
+    .customer-address-form #dashboard-navigation-show-btn{
+        margin: 0 0 60px 21px;
+    }
+
+    .sales-order-history .page, 
+    .wishlist-index-index .page{
+        padding: 0 0 800px;
+    }
+
+    #dashboard-navigation-show-btn{
+        display: block;
+    }
+
+    .customer-account-create .registration-description{
+        display: none;
+    }
+
+    .customer-address-form .page-title .image-holder{
+        width: 80%;
+        right: -76px;
+    }
+}
+
+/*=============== static content page ==================================================================*/
+
+.static-content-page .main,
+.static-content-main-page .main{
+    padding: 0 0 0 9.6354166667%;
+}
+
+.static-content-page .page-title{
+    margin: 0 0 10px;   
+}
+
+.static-content-page .page-title,
+.static-content-main-page .page-title{
+    font: 700 48px/48px 'Open Sans', Arial, sans-serif;
+    width: 300px;
+}
+
+.static-content-page .page-title,
+.static-content-main-page .page-title,
+.static-content-page .cmsadvanced-breadcrumbs-container,
+.static-content-main-page .cmsadvanced-breadcrumbs-container{
+    padding: 0 0 0 1.09375%;
+}
+
+.static-content-page .static-content-navigation,
+.static-content-main-page .static-content-navigation{
+    float: left;
+    background: #333;
+    width: 304px;
+    min-height: 352px;
+    margin: 0 107px 0 0;
+}
+
+.static-content-page .static-content-navigation ul li a,
+.static-content-main-page .static-content-navigation ul li a{
+    color: #fff;
+    font: 12px Courier, Arial, Helvetica, sans-serif;
+}
+
+.static-content-page .static-content-navigation ul li,
+.static-content-main-page .static-content-navigation ul li{
+    line-height: 20px;
+}
+
+.static-content-page .static-content-navigation ul,
+.static-content-main-page .static-content-navigation ul{
+    padding: 21px 40px;
+}
+
+.static-content-page .static-content,
+.static-content-main-page .static-content{
+    color: #333;
+    font: 12px Courier, Arial, Helvetica, sans-serif;
+    float: left;
+    width: 70%;
+}
+
+.static-content-page .static-content h1,
+.static-content-main-page .static-content h1{
+    font: 600 18px 'Open Sans', Arial, sans-serif;
+    text-transform: uppercase;
+    margin: 0 0 28px;
+}
+
+.static-content-page .static-content h2,
+.static-content-main-page .static-content h2{
+    text-transform: uppercase;
+    margin: 0 0 26px;
+    border-top: 1px solid #ccc;
+}
+
+/*.static-content-page .static-content h2:first-child,
+.static-content-main-page .static-content h2:first-child{
+    border: none;
+}*/
+
+.static-content h2:first-child{
+    border-top: none; 
+}
+
+.static-content-page .static-content p,
+.static-content-main-page .static-content p{
+    padding: 0 0 26px;
 }
