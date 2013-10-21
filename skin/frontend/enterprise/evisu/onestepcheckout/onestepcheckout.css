@@ -19,7 +19,10 @@ ol.checkout-agreements {
     padding: 2px 0;
 }
 
-
+.onestepcheckout-summary-wrapper .loading-ajax{
+    border: 3px solid #000;
+    border-top: none; 
+}
 
 /* Button CSS */
 .onestepcheckout-button, .onestepcheckout-button:visited {
@@ -1232,4 +1235,26 @@ label,
 .custom-payment-types li{
     text-align: center;
     height: 20px;
+}
+
+#billing_address .custom-select-wrapper{
+    float: left;
+    width: 300px;
+    margin: 0 0 0 15px;
+}
+
+#billing_address .custom-select-wrapper .custom-select-drop{
+    width: 298px;
+    overflow-y: hidden;
+}
+
+#billing_address .custom-select-wrapper .custom-select{
+    background-position:  97% 9px;
+}
+
+#billing_address .custom-select-wrapper .custom-select-btn{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;   
+    padding: 0 20px 0 10px;  
 }
