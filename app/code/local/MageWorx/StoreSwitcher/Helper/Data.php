@@ -141,8 +141,8 @@ class MageWorx_StoreSwitcher_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $result = array();
         $allCountries = Mage::getSingleton('adminhtml/system_config_source_country')->toOptionArray(true);
-        $selected = explode(',', Mage::getStoreConfig(self::XML_GEOIP_SWITCHABLE_COUNTRIES));
 
+        $selected = explode(',', Mage::getStoreConfig(self::XML_GEOIP_SWITCHABLE_COUNTRIES));
         foreach ($allCountries as $country) {
             if (in_array($country['value'], $selected)) {
                 $result[] = $country;
