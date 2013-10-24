@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_AlertOOS>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <RonisBT_AdminForms/>
+
+            </depends>
+        </Evisu_AlertOOS>
+    </modules>
+</config>

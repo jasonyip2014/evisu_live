@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+    RONIS BT
+-->
+<config>
+    <menu>
+        <storefinder translate="title" module="sales">
+            <title>Alert OOS</title>
+            <action>adminforms/adminhtml_block/index/block_key/alertoos/</action>
+            <sort_order>55</sort_order>
+        </storefinder>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <alertoos>
+                                        <title>Alert OOS</title>
+                                    </alertoos>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
