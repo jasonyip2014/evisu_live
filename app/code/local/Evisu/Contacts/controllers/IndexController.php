@@ -38,7 +38,7 @@ class Evisu_Contacts_IndexController extends Mage_Core_Controller_Front_Action
             //$translate = Mage::getSingleton('core/translate');
             /* @var $translate Mage_Core_Model_Translate */
             //$translate->setTranslateInline(false);
-
+            try {
 
                 $postObject = new Varien_Object();
                 $postObject->setData($post);
@@ -87,8 +87,6 @@ class Evisu_Contacts_IndexController extends Mage_Core_Controller_Front_Action
                     ->setPageId($this->getEntityPageId())
                     ->setAttributeSetId($this->_getDefaultAttributeSetId($entityType));
 
-                var_dump(Mage::app()->getStore()->getId());
-
                 $model->setCuName($post['name'])
                     ->setCuEmail($post['email'])
                     ->setCuSubject($post['subject'])
@@ -96,8 +94,8 @@ class Evisu_Contacts_IndexController extends Mage_Core_Controller_Front_Action
                     ->setCuCreatedAt(date('Y-m-d H:m:s'))
                     ->setCuStoreId(Mage::app()->getStore()->getId())
                     ->save();
-            try {
-                $message = Mage::helper('contacts')->__('Your inquiry was submitted and will be responded to as soon as possible. Thank you for contacting us.');
+
+                $message = Mage::helper('contacts')->__('Thank you for your message. We will be in touch soon');
                 echo $message;
                 return;
             } catch (Exception $e) {

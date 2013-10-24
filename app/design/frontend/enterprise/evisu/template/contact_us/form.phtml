@@ -1,7 +1,7 @@
 <?php /* @var $this Mage_Core_Block_Template */ ?>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 
-<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post" class="no-display">
     <div class="fieldset">
         <h2 class="legend"><?php echo $this->__('Leave a message') ?></h2>
         <ul class="form-list">
@@ -20,7 +20,7 @@
                 </div>
             </li>
             <li>
-                <label for="subject"><?php echo $this->__('Subject') ?></label>
+                <label for="subject"><?php echo $this->__('Subject') ?><em>*</em></label>
                 <div class="input-box">
                     <?php if($subjects = Mage::getStoreConfig('evisu_contacts/email/email_subjects')): ?>
                         <select name="subject" id="subject" title="<?php echo $this->__('Subject') ?>" class="input-text required-entry">
