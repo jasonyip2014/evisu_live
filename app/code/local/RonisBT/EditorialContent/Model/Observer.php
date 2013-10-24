@@ -66,8 +66,12 @@ class RonisBT_EditorialContent_Model_Observer
             }
             else
             {
-                $product->setPecOptions('');
+                $product->setPecOptions(null);
             }
+        }
+        else
+        {
+            $product->setPecOptions(null);
         }
         return $this;
     }
