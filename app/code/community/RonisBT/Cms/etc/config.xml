@@ -96,11 +96,11 @@
                 </cmsadvanced>
             </updates>
         </layout>
-       <!-- <cache>
+        <cache>
             <requests>
                 <cmsadvanced>enterprise_pagecache/processor_default</cmsadvanced>
             </requests>
-        </cache>-->
+        </cache>
     </frontend>
     <admin>
         <routers>
@@ -212,7 +212,7 @@
                 <class>RonisBT_Cms_Block_Adminhtml_Helper_Form_Gridfield_Sorted</class>
             </gridfield_sorted>
         </elementtypes>
-
+        
         <!-- Custom Setup Templates
         Define:
             <setuptemplates>

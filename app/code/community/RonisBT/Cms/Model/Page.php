@@ -114,7 +114,7 @@ class RonisBT_Cms_Model_Page extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Checks if page has children use chilren count attribute
+     * Checks if page has children use children count attribute
      *
      * @return bool
      */

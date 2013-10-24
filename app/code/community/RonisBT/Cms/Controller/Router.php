@@ -13,7 +13,7 @@ class RonisBT_Cms_Controller_Router extends Mage_Core_Controller_Varien_Router_A
 
     protected function _matchRequest($request)
     {
-        // Fix for Full Page Cache.
+        //fix FPC
         if ($request->isStraight()) {
             return;
         }

@@ -17,10 +17,11 @@ class RonisBT_AdminForms_Helper_Image extends Mage_Core_Helper_Abstract
             $entity = 'adminforms';
         } elseif ($entity instanceof RonisBT_AdminForms_Model_Block){
             $entity = 'adminforms'.DS.$entity->getEntityType();
-        } elseif (is_string($entity)) //Fix for hotspoteditor module
+        } elseif (is_string($entity)) //Fix for other modules using
         {
             $entity = $entity;
         }
+
 
         $model = $this->_getModel()
             ->setEntity($entity)
@@ -91,9 +92,9 @@ class RonisBT_AdminForms_Helper_Image extends Mage_Core_Helper_Abstract
 
     public function __toString(){
         try {
-
             $this->_getModel()
                 ->setBaseFile($this->getFile());
+
             // Return cached image
             if ($this->_getModel()->isCached()) {
                 return $this->_getModel()->getUrl();
@@ -110,7 +111,6 @@ class RonisBT_AdminForms_Helper_Image extends Mage_Core_Helper_Abstract
 
             $url = $this->_getModel()->saveFile()->getUrl();
         } catch(Exception $e){
-            echo $e->getMessage();
             $url = Mage::getDesign()->getSkinUrl($this->getPlaceholder());
         }
         return $url;
