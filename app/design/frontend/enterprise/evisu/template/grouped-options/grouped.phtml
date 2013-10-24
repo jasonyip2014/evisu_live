@@ -47,10 +47,8 @@
         <?php foreach ($_associatedProducts as $_item): ?>
             <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
             <div class="product-name">
-                <a href="<?php echo $_item->getProductUrl() ?>">
-                    <div class="first-name"><?php echo $this->htmlEscape($_item->getName()) ?></div>
-                    <div class="second-name"><?php echo $this->htmlEscape($_item->getSecondName()) ?></div>
-                </a>
+                <div class="first-name"><?php echo $this->htmlEscape($_item->getName()) ?></div>
+                <div class="second-name"><?php echo $this->htmlEscape($_item->getSecondName()) ?></div>
             </div>
             <?php if ($this->helper('groupedoptions')->getCanShowProductPrice($this, $_product)): ?>
                 <div class="a-right">

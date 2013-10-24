@@ -94,23 +94,34 @@ class Brim_Groupedoptions_Model_Product_Type_Grouped extends Mage_Catalog_Model_
                     $subProductId = $subProduct->getId();
                     if(isset($productsInfo[$subProductId])) {
                         $qty = $productsInfo[$subProductId];
+
                         if (!empty($qty) && is_numeric($qty)) {
 
                             /* BEGIN Brim Grouped-Options Customizations */
+
                             if ($subProduct->getTypeId() == Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE) {
+
                                 $isConfigurable = true;
 
                                 $configBuyRequest = clone $buyRequest;
-
                                 $superAttr = $buyRequest->getSuperAttribute();
                                 if (array_key_exists($subProductId, $superAttr)) {
                                     $configBuyRequest->setSuperAttribute($superAttr[$subProductId]);
                                 }
 
                                 $configBuyRequest->setQty($qty);
-
                                 $superOptions = $buyRequest->getOptions();
+
+
+                                // RonisBT fix if no options
+                                if(!$superOptions)
+                                {
+                                    $superOptions = array();
+                                }
+
+
                                 if (array_key_exists($subProductId, $superOptions)) {
+
                                     $optionIds = join(',', array_keys($superOptions[$subProductId]));
                                     $subProduct->addCustomOption('option_ids', $optionIds);
 
@@ -123,7 +134,6 @@ class Brim_Groupedoptions_Model_Product_Type_Grouped extends Mage_Catalog_Model_
 
                                     $configBuyRequest->setOptions($superOptions[$subProductId]);
                                 }
-
                                 $_result = $subProduct->getTypeInstance(true)
                                     ->_prepareProduct($configBuyRequest, $subProduct, $processMode);
                             } else {
@@ -193,7 +203,6 @@ class Brim_Groupedoptions_Model_Product_Type_Grouped extends Mage_Catalog_Model_
                     }
                 }
             }
-
             if (!$isStrictProcessMode || count($associatedProductsInfo)) {
                 $product->addCustomOption('product_type', self::TYPE_CODE, $product);
                 $product->addCustomOption('info_buyRequest',serialize($buyRequest));
