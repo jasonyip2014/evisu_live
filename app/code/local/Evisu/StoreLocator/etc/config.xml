@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_StoreLocator>
+            <version>0.3.2</version>
+        </Evisu_StoreLocator>
+    </modules>
+    <global>
+        <models>
+            <evisu_storelocator>
+                <class>Evisu_StoreLocator_Model</class>
+            </evisu_storelocator>
+        </models>
+        <blocks>
+            <evisu_storelocator>
+                <class>Evisu_StoreLocator_Block</class>
+            </evisu_storelocator>
+        </blocks>
+        <helpers>
+            <evisu_storelocator>
+                <class>Evisu_StoreLocator_Helper</class>
+            </evisu_storelocator>
+        </helpers>
+        <resources>
+            <evisu_storelocator_setup>
+                <setup>
+                    <module>Evisu_StoreLocator</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_storelocator_setup>
+        </resources>
+        <events>
+            <adminforms_block_prepare_save>
+                <observers>
+                    <evisu_storelocator>
+                        <class>evisu_storelocator/observer</class>
+                        <method>setLatLngByAddress</method>
+                    </evisu_storelocator>
+                </observers>
+            </adminforms_block_prepare_save>
+        </events>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <store_locator>
+                <name>Store Locator</name>
+                <template>cmsadvanced/store_locator/landing_page.phtml</template>
+                <groups>
+                    <sl_settings>
+                        <name>Map Settings</name>
+                        <attributes>
+                            <sl_localization>
+                                <label>Map Localization</label>
+                                <template>text</template>
+                                <required>1</required>
+                                <default>en</default>
+                            </sl_localization>
+                            <sl_default_lat>
+                                <label>Default Latitude</label>
+                                <template>text</template>
+                                <required>1</required>
+                                <default>0</default>
+                            </sl_default_lat>
+                            <sl_default_long>
+                                <label>Default Longtitude</label>
+                                <template>text</template>
+                                <required>1</required>
+                                <default>0</default>
+                            </sl_default_long>
+                            <sl_default_zoom>
+                                <label>Default Zoom</label>
+                                <template>text</template>
+                                <required>1</required>
+                                <default>12</default>
+                            </sl_default_zoom>
+                        </attributes>
+                    </sl_settings>
+                   <!-- <sl_groups>
+                        <name>Groups</name>
+                        <attributes>
+                            <store_locator_groups_grid>
+                                <input>grid</input>
+                            </store_locator_groups_grid>
+                        </attributes>
+                    </sl_groups>-->
+                    <sl_stores>
+                        <name>Stores</name>
+                        <attributes>
+                            <store_locator_grid>
+                                <input>grid</input>
+                            </store_locator_grid>
+                        </attributes>
+                    </sl_stores>
+                </groups>
+            </store_locator>
+        </pagetypes>
+        <elementtypes>
+            <times_gridfield>
+                <class>Evisu_StoreLocator_Helper_Adminhtml_Advancedcms_Gridfield</class>
+            </times_gridfield>
+        </elementtypes>
+    </cmsadvanced>
+</config>

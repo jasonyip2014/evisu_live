@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<adminforms>
+    <entities>
+        <store_locator_grid>
+            <groups>
+                <general>
+                    <attributes>
+                        <page_id>
+                            <input>hidden</input>
+                        </page_id>
+                        <sl_name>
+                            <label>Name</label>
+                            <template>text</template>
+                            <required>1</required>
+                        </sl_name>
+                        <sl_type>
+                            <label>Type</label>
+                            <type>varchar</type>>
+                            <template>dropdown</template>
+                            <source>evisu_storelocator/config_source_storetype</source>
+                            <required>1</required>
+                        </sl_type>
+                        <sl_country>
+                            <label>Country</label>
+                            <template>text</template>
+                            <required>1</required>
+                        </sl_country>
+                        <sl_address>
+                            <label>Address</label>
+                            <template>text</template>
+                            <required>1</required>
+                        </sl_address>
+                        <sl_telephone>
+                            <label>Telephone</label>
+                            <template>text</template>
+                            <required>1</required>
+                        </sl_telephone>
+                        <sl_times>
+                            <label>Opening Times</label>
+                            <input>times_gridfield</input>
+                            <template>gridfield_sorted</template>
+                            <type>text</type>
+                            <required>1</required>
+                        </sl_times>
+                        <sl_long>
+                            <label>Long Coordinate</label>
+                            <template>text</template>
+                            <note>Leave empty for automatic setting</note>
+                        </sl_long>
+                        <sl_lat>
+                            <label>Lat Coordinate</label>
+                            <template>text</template>
+                            <note>Leave empty for automatic setting</note>
+                        </sl_lat>
+                        <sl_zoom>
+                            <label>Zoom</label>
+                            <type>int</type>
+                            <template>text</template>
+                            <required>1</required>
+                        </sl_zoom>
+                        <sl_position>
+                            <label>Position</label>
+                            <type>int</type>
+                            <template>text</template>
+                            <default>0</default>
+                        </sl_position>
+                        <status>
+                            <label>Status</label>
+                            <template>status</template>
+                            <default>0</default>
+                        </status>
+                    </attributes>
+                </general>
+            </groups>
+            <grid>
+                <fields>
+                    <sl_name />
+                    <sl_type />
+                    <sl_country />
+                    <sl_position />
+                    <status />
+                </fields>
+            </grid>
+        </store_locator_grid>
+        <!--<store_locator_groups_grid>
+            <groups>
+                <general>
+                    <attributes>
+                        <page_id>
+                            <input>hidden</input>
+                        </page_id>
+                        <slg_name>
+                            <label>Name</label>
+                            <template>text</template>
+                            <required>1</required>
+                        </slg_name>
+                        <slg_position>
+                            <label>Position</label>
+                            <type>int</type>
+                            <template>text</template>
+                            <default>0</default>
+                        </slg_position>
+                        <status>
+                            <label>Status</label>
+                            <template>status</template>
+                            <default>0</default>
+                        </status>
+                    </attributes>
+                </general>
+            </groups>
+            <grid>
+                <fields>
+                    <slg_name />
+                    <slg_position />
+                    <status />
+                </fields>
+            </grid>
+        </store_locator_groups_grid>-->
+    </entities>
+</adminforms>
