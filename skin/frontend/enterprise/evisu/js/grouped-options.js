@@ -158,7 +158,6 @@ Product.GroupedConfig = Class.create(Product.Config, {
 
         // try retireve options from url TODO WHY NOT WORKING???!!!!
         var separatorIndex = window.location.href.indexOf('#');
-        console.log(separatorIndex);
         /*if (separatorIndex!=-1) {
             var paramsStr = window.location.href.substr(separatorIndex+1);
             this.values = paramsStr.toQueryParams();

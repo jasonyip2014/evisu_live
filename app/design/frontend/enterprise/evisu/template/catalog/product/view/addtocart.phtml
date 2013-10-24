@@ -26,29 +26,44 @@
  */
 $qty = (int) Mage::getStoreConfig('catalog/product_detail/qty');
 ?>
-<?php $_product = $this->getProduct(); ?>
-<?php $buttonTitle = $this->__('Add to Basket'); ?>
+<?php
+    $_product = $this->getProduct();
+    if( $_product->getStockItem()->getQty() <= 0 && $_product->getTypeId() == 'simple')
+    {
+        $buttonTitle = $this->__('Preorder');
+    }
+    else
+    {
+        $buttonTitle = $this->__('Add to Basket');
+    }
+?>
+<script>
+    AlertOOS.labels['add_button'] = 'Add to Basket';
+    AlertOOS.labels['preorder_button'] = 'Preorder';
+</script>
 <?php if($_product->isSaleable()): ?>
     <?php if(!$_product->isGrouped()): ?>
-        <?php if($qty): ?>
-            <?php /*
-                    <label for="qty"><?php echo $this->__('Qty:') ?></label>
-                */ ?>
-            <select name="qty" id="qty" class="input-text qty">
-                <option value="">Qty</option>
-                <?php for($i = 1; $i <= $qty; $i++): ?>
-                    <option <?php if($this->getProductDefaultQty() * 1 == $i): ?>selected="selected"<?php endIf; ?> value="<?php echo $i ?>"><?php echo $i ?></option>
-                <?php endFor; ?>
-            </select>
-            <script>
-                //<![CDATA[
-                jQuery('#qty').customSelect();
-                //]]>
-            </script>
+        <div class="qty-block">
+            <?php if($qty): ?>
+                <?php /*
+                        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+                    */ ?>
+                <select name="qty" id="qty" class="input-text qty">
+                    <option value="">Qty</option>
+                    <?php for($i = 1; $i <= $qty; $i++): ?>
+                        <option <?php if($this->getProductDefaultQty() * 1 == $i): ?>selected="selected"<?php endIf; ?> value="<?php echo $i ?>"><?php echo $i ?></option>
+                    <?php endFor; ?>
+                </select>
+                <script>
+                    //<![CDATA[
+                    jQuery('#qty').customSelect();
+                    //]]>
+                </script>
 
             <?php else: ?>
                 <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     <?php endIf; ?>
     <div class="add-to-cart">
         <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>

@@ -86,12 +86,12 @@
         <reference name="product.info">
             <remove name="html_calendar" />
             <remove name="options_js"/>
+            <block type="core/template" name="alertoos" as="alertoos" template="catalog/product/view/alertoos.phtml" />
         </reference>
         <reference type="productalert/product_view" name="productalert.stock" as="productalert_stock" template="productalert/product/view.phtml">
             <action method="setSignupLabel" translate="value"><value>Email Me When Back In Stock</value></action>
         </reference>
         <reference name="product.info.options.wrapper.bottom">
-
             <remove name="product.info.addto" />
             <remove name="product.clone_prices"/>
         </reference>

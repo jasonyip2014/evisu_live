@@ -65,6 +65,9 @@ $helper = Mage::helper('onestepcheckout/checkout');
                     <label for="billing-address-select"><?php echo $this->__('Select a billing address from your address book or enter a new address.') ?></label>
                     <div class="input-box">
                         <?php echo $this->getAddressesHtmlSelect('billing') ?>
+                        <script>
+                            jQuery('#billing-address-select').customSelect();
+                        </script>
                     </div>
                 </li>
                 <?php endif; ?>

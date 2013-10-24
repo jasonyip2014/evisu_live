@@ -41,7 +41,7 @@
             <block type="core/template" name="contact_landing" template="contact_us/landing_page.phtml">
                 <block type="core/template" name="contacts" as="contacts" template="contact_us/contacts.phtml"/>
                 <block type="core/template" name="contact_form" as="form" template="contact_us/form.phtml"/>
-                <block type="cms/block" name="social_links" as='social_block'><action method="setBlockId"><block_id>social_links_block</block_id></action></block>
+                <block type="cms/block" name="contacts_social_links" as='social_block'><action method="setBlockId"><block_id>social_media_block_homepage</block_id></action></block>
             </block>
         </reference>
     </contacts_index_index>

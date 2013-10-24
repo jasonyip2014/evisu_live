@@ -1,58 +1,66 @@
 <?php
-/**
- * Magento Enterprise Edition
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Magento Enterprise Edition License
- * that is bundled with this package in the file LICENSE_EE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.magentocommerce.com/license/enterprise-edition
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category    design
- * @package     enterprise_default
- * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
- * @license     http://www.magentocommerce.com/license/enterprise-edition
- */
-?>
-<?php
-/**
- * Language switcher template
- *
- * @see Mage_Page_Block_Switch
- */
-?>
+/* @var $location MageWorx_GeoIP_Model_Geoip */
 
-<?php if(count($this->getStores())>1): ?>
-<div class="switch switcher-language">
-    <label><?php echo $this->__('Language') ?>:</label>
-    <div class="switch-wrapper" id="languageSelect">
-        <strong class="current language-<?php echo $this->escapeHtml(Mage::app()->getStore()->getCode()) ?>">
-            <?php echo $this->escapeHtml(Mage::app()->getStore()->getName()) ?>
-        </strong>
-        <span class="switcher-holder">(<span onclick="popUpMenu(this);" class="switcher"><?php echo $this->__('Change')?></span>)</span>
-        <ul style="display:none" id="popId-languageSelect">
-            <li class="current language-<?php echo $this->escapeHtml(Mage::app()->getStore()->getCode()) ?>">
-                <span><?php echo $this->escapeHtml(Mage::app()->getStore()->getName()) ?></span>
-            </li>
-            <?php foreach ($this->getStores() as $_lang): ?>
-                <?php if($_lang->getId()!=$this->getCurrentStoreId()): ?>
-                    <li class="language-<?php echo $this->escapeHtml($_lang->getCode()); ?>">
-                        <a href="<?php echo $_lang->getCurrentUrl() ?>"><?php echo $this->escapeHtml($_lang->getName()) ?></a>
-                    </li>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-</div>
+$location = Mage::getSingleton('mwgeoip/geoip')->getCurrentLocation();
+$countries = Mage::helper('storeswitcher')->getSwitchableCountries();
+
+
+if (count($countries) > 0): ?>
+
+    <?php if (Mage::helper('storeswitcher')->getSwitcherDisplayMode() == MageWorx_StoreSwitcher_Model_System_Config_Source_Mode::DISPLAY_MODE_NAMES_FLAGS): ?>
+        <?php /* Disaply mode: Flags + Names */ ?>
+        <div class="form-language">
+            <?php /*Delete comment tag to see current store code  ?>
+        <div style="color: #fff"><?php echo Mage::app()->getStore()->getCode() ?></div>
+        <?php */ ?>
+            <label for="select-country"><?php echo $this->__('You are currently shipping to the:') ?></label>
+            <?php if(!Mage::helper('storeswitcher')->getForceStoreView()): ?>
+                <select id="select-country" class="replacemeselect" title="<?php echo $this->__('Your Shipping Country') ?>">
+                    <?php foreach ($countries as $country): ?>
+                        <option <?php if($country['value'] == $location->getCode()){ echo 'selected="selected"'; } ?> value="<?php echo $country['value'] ?>" imgsrc="<?php echo Mage::helper('mwgeoip')->getFlagPath($country['value']); ?>"><?php echo $country['label'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <script type="text/javascript">
+                    var selreplace = new SelectReplace('select-country', {}, '<?php echo Mage::helper('storeswitcher')->getCountryUrl();  ?>');
+                </script>
+            <?php else: ?>
+                <span class="geoip-country"><img src="<?php echo Mage::helper('mwgeoip')->getFlagPath($location->getCode()); ?>" /><?php echo $location->getCountry(); ?></span>
+            <?php endif; ?>
+        </div>
+
+    <?php elseif (Mage::helper('storeswitcher')->getSwitcherDisplayMode() == MageWorx_StoreSwitcher_Model_System_Config_Source_Mode::DISLPAY_MODE_NAMES): ?>
+        <?php /* Display mode: Names */ ?>
+
+        <div class="form-language">
+            <?php /* Delete comment tag to see current store code  ?>
+        <div style="color: #fff"><?php echo Mage::app()->getStore()->getCode() ?></div>
+        <?php  */ ?>
+            <?php if(!Mage::helper('storeswitcher')->getForceStoreView()): ?>
+                <label class="label-for-country-select" for="select-country"><?php echo $this->__('You are currently shipping to the: (') ?></label>
+                <select id="select-country" class="replacemeselect" title="<?php echo $this->__('You are currently shipping to the ') ?>">
+                    <?php foreach ($countries as $country): ?>
+                        <option <?php if($country['value'] == $location->getCode()){ echo 'selected="selected"'; } ?> value="<?php echo $country['value'] ?>"><?php echo $country['label'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="fl-left">)</div>
+                <script type="text/javascript">
+                    $('select-country').observe('change', function(event){
+                        console.log('change');
+                        countryCode = $('select-country').value;
+                        onChangeUrl = '<?php echo Mage::helper('storeswitcher')->getCountryUrl();  ?>';
+                        url = onChangeUrl.replace('%geoip_code%', countryCode);
+                        setLocation(url);
+                        event.stop();
+                    })
+                </script>
+            <?php else: ?>
+                <span class="geoip-country"><?php echo $location->getCountry(); ?></span>
+            <?php endif; ?>
+        </div>
+
+    <?php endif; ?>
+    <script>
+        jQuery('#select-country').customSelect();
+    </script>
 <?php endif; ?>
-

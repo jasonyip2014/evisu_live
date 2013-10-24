@@ -1,5 +1,6 @@
 <?php /* @var $this Mage_Catalog_Block_Product_View */ ?>
 
+
 <?php
     $_helper = $this->helper('catalog/output');
     $_afHelper = Mage::helper('adminforms/image');
@@ -109,6 +110,11 @@
                             </div>
                         <?php endif;?>
                     </div>
+                    <?php //echo $this->getChildHtml('alert_urls') ?>
+                    <div id="oos-block" class="no-display">
+                        <div class="out-of-stock"><span><?php echo $this->__('Out of Stock' )?></span></div>
+                        <div id="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
+                    </div>
                     <?php //echo $this->getChildHtml('extrahint') ?>
                     <?php if (!$this->hasOptions()):?>
                         <div class="add-to-box">
@@ -116,7 +122,7 @@
                                 <?php echo $this->getChildHtml('addtocart') ?>
                             <?php else: ?>
                                 <div class="out-of-stock"><span><?php echo $this->__('Out of Stock' )?></span></div>
-                                <?php echo $this->getChildHtml('alert_urls') ?>
+                                <div id="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
                             <?php endif; ?>
                             <?php //echo $this->getChildHtml('addto') ?>
                         </div>
@@ -126,16 +132,40 @@
                                 <?php //echo $this->getChildChildHtml('container1', '', true, true) ?>
                             </div>
                         <?php else: ?>
-                            <div class="out-of-stok"><span><?php echo $this->__('Out of Stock') ?></span></div>
-                            <?php echo $this->getChildHtml('alert_urls') ?>
-                            <?php //echo $this->getChildHtml('addto') ?>
+                            <div class="add-to-box">
+                                <div class="out-of-stock"><span><?php echo $this->__('Out of Stock') ?></span></div>
+                                <div id="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
+                                <?php //echo $this->getChildHtml('alert_urls') ?>
+                                <?php //echo $this->getChildHtml('addto') ?>
+                            </div>
                         <?php endif;?>
                     <?php endif; ?>
+                    <?php echo $this->getChildHtml('alertoos') ?>
+                    <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
+                    <script>
+                        jQuery('#size-chart').on('click', function(){
+                            var c = '<div class="box-modal">' +
+                                    '<div class="box-modal_close arcticmodal-close">X</div>' +
+                                    '<div class="size-chart">' +
+                                        '<div class="size-chart-head">' +
+                                            '<img src="<?php echo $this->getSkinUrl('images/logo-size-chart.png') ?>" />' +
+                                            '<div class="size-chart-title"><?php echo $this->__('Size Chart') ?></div>' +
+                                            '<div class="size-chart-product-name"><span class="size-chart-name"><?php echo $_product->getName() ?></span><?php if($_product->getSecondName()): ?> - <span class="seze-chart-second-name"><?php echo $_product->getSecondName() ?></span><?php endIf; ?></div>' +
+                                            '<div class="size-chart-description"><?php echo $this->__('All items are individually measured by EVISU in centimetres') ?></div>' +
+                                        '</div>' +
+                                        <?php echo json_encode($_product->getSizeChart()) ?> +
+                                    '</div>' +
+                                '</div>'
+                            jQuery.arcticmodal({
+                                content: c
+                            });
+                        });
+                    </script>
                     <?php
                         $tabs = array(
                             $this->__('Product Info') => $_helper->productAttribute($_product, $_product->getDescription(), 'description'),
                             $this->__('Delivery') => $_product->getDelivery(),
-                            $this->__('Size Chart') => $_product->getSizeChart(),
+                            //$this->__('Size Chart') => $_product->getSizeChart(),
                             $this->__('Care') => $_product->getCare()
                         );
                     ?>

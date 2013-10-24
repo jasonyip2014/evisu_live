@@ -76,7 +76,7 @@ if($helper->settings['hide_nonfree_payment_methods'])   {
         <dl id="checkout-payment-method-load">
         <?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
         <?php if($hide_nonfree_methods && $_code != 'free') continue; ?>
-            <dt class="no-display">
+            <dt class="no-display1">
             <?php if( sizeof($this->getMethods()) > 1 ): ?>
                 <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->escapeHtml($_method->getTitle()) ?>" class="radio validate-one-required-by-name" <?php if($this->getSelectedMethodCode()==$_code || ($hide_nonfree_methods && $_code == 'free')): ?> checked="checked"<?php endif; ?> />
             <?php else: ?>

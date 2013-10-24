@@ -11,7 +11,7 @@
             <?php if($_code == $this->getCurrentCurrencyCode()): ?>
                 selected="selected"
             <?php endif; ?>>
-            <?php echo Mage::app()->getLocale()->currency($_code)->getSymbol(); ?>
+            <?php echo '&nbsp;' . Mage::app()->getLocale()->currency($_code)->getSymbol(); ?>
         </option>
         <?php endforeach; ?>
     </select>

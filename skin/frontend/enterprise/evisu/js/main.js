@@ -101,7 +101,6 @@ var AjaxBasket = {
         this.itemsCount = itemsCount;
         this.nextButton = jQuery('#basket-next-item');
         this.prevButton = jQuery('#basket-previous-item');
-
         var self = this;
         if(this.itemsCount > this.itemsVisible)
         {
@@ -208,7 +207,7 @@ jQuery(function($)
     $(window).load(function(){
 
         AjaxBasket.resize();
-        $(this).stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded fiximgloadevent!!!
+        $('.img').stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded fiximgloadevent!!!
 
         //$('body').fadeIn();
     });
