@@ -1,0 +1,32 @@
+
+<?php
+/* @var $this RonisBT_Cms_Block_Page */
+?>
+
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+
+
+<div class="text-holder">
+    <h2>
+        <?php echo $this->escapeHtml($this->getLpIplHeader()) ?>&nbsp;
+        <span><?php echo $this->escapeHtml($this->getLp3IplTitle()) ?></span>
+    </h2>
+    <p><?php echo nl2br($this->escapeHtml($this->getLpIplText())) ?></p>
+    <a href="<?php echo $this->escapeHtml($this->getLpIplTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getLpIplLinkText()) ?>"><?php echo $this->escapeHtml($this->getLpIplLinkText()) ?></a>
+</div>
+<?php $videoCode = $this->getLpIprVideo() ?>
+<div <?php if($videoCode): ?>class="video-panel"<?php endIf; ?>>
+    <?php if($videoCode): ?>
+        <div class="video-wrapper">
+            <iframe width="<?php echo $this->stripTags($this->getLpIplWidth()) ?>px" height="<?php echo $this->escapeHtml($this->getLpIplHeight()) ?>px" class="fvideo" src="" data-src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        </div>
+        <a href="#" class="video-overlay-holder"></a>
+    <?php endIf; ?>
+    <?php if($this->getLpIplImage()): ?>
+        <div class="image-holder">
+            <img width="<?php echo $this->escapeHtml($this->getLpIplWidth()) ?>px" height="<?php echo $this->escapeHtml($this->getLpIplHeight()) ?>px" src="<?php echo $_afHelper->init($afModel, $this->getLpIplImage() , '')->resize($this->getLpIplWidth(), $this->getLpIplHeight()); ?>" alt="" />
+        </div>
+    <?php endIf; ?>
+</div>
+

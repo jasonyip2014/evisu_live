@@ -1,0 +1,42 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+<div class="landing-page-holder">
+    <div class="yoffset" style="position:fixed; z-index:10000; font-size: 35px;background: yellow;"></div>
+    <div class="main-section-holder section-holder">
+        <div class="main-section">
+            <div class="image-holder main-image-holder" data-640="top:0%;" data-3640="top:-400%;">
+                <img width="1366px" height="1541px" src="<?php echo $_afHelper->init($afModel, $this->getLpMainImage() , '')->resize(1366, 1541); ?>" alt="" />
+            </div>
+
+            <div class="left-description"data-480="top:21%;" data-1240="top:-100%;">
+                <div class="image-holder">
+                    <img width="231px" height="52px" src="<?php echo $_afHelper->init($afModel, $this->getLpMainLogo() , '')->resize(231, 52); ?>" alt="" />
+                </div>
+                <div class="cmsadvanced-breadcrumbs-container">
+                    <?php echo $this->getChildHtml('breadcrumbs') ?>
+                </div>
+                <div class="description"><?php echo $this->getPreparedContent('lp_main_description') ?></div>
+                <a href="<?php echo $this->stripTags($this->getLpMainTargetUrl()) ?>"><?php echo $this->__('View More') ?></a>
+            </div>
+        </div>
+        <div class="quick-navigation">
+            <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
+            <a href="javascript:void(null);" class="back-btn"><?php echo $this->__('Back') ?></a>
+        </div>
+    </div>
+    <div class="sections">
+        <?php $i = 1; ?>
+        <?php $sections = $this->getSections() ?>
+        <?php if(count($sections) > 0): ?>
+            <?php foreach ($sections as $_section): ?>
+                <div class="section-holder section-holder-<?php echo $i ?>" <?php echo Mage::helper('evisu_landingpage')->getScrollrData($_section->getLpSectionAnimation()) ?>>
+                    <?php echo $_section->toHtml(); ?>
+                </div>
+                <?php $i++; ?>
+            <?php endforeach ?>
+        <?php endIf; ?>
+    </div>
+</div>

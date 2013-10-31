@@ -1,0 +1,773 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_LandingPage>
+            <version>0.3.9</version>
+        </Evisu_LandingPage>
+    </modules>
+    <global>
+        <models>
+            <evisu_landingpage>
+                <class>Evisu_LandingPage_Model</class>
+            </evisu_landingpage>
+        </models>
+        <blocks>
+            <evisu_landingpage>
+                <class>Evisu_LandingPage_Block</class>
+            </evisu_landingpage>
+        </blocks>
+        <helpers>
+            <evisu_landingpage>
+                <class>Evisu_LandingPage_Helper</class>
+            </evisu_landingpage>
+        </helpers>
+        <resources>
+            <evisu_landingpage_setup>
+                <setup>
+                    <module>Evisu_LandingPage</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_landingpage_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <landing_page>
+                <name>Landing Page</name>
+                <template>cmsadvanced/landing_page/landing_page.phtml</template>
+                <block>evisu_landingpage/landingpage</block>
+                <groups>
+                    <lp_main>
+                        <name>Main</name>
+                        <attributes>
+                            <lp_main_image>
+                                <label>Main Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                            </lp_main_image>
+                            <lp_main_logo>
+                                <label>Logo</label>
+                                <required>1</required>
+                                <template>image</template>
+                            </lp_main_logo>
+                            <lp_main_description>
+                                <label>Description</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                                <is_wysiwyg_enabled>1</is_wysiwyg_enabled>
+                            </lp_main_description>
+                            <lp_main_target_url>
+                                <label>Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </lp_main_target_url>
+                        </attributes>
+                    </lp_main>
+                </groups>
+            </landing_page>
+
+            <landing_page_section>
+                <name>Landing Page Section</name>
+                <template>cmsadvanced/landing_page/section.phtml</template>
+                <block>evisu_landingpage/landingpage</block>
+                <groups>
+                    <lp_section_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_section_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_section_animation>
+                        </attributes>
+                    </lp_section_animation>
+                </groups>
+            </landing_page_section>
+
+            <lp_text_block>
+                <name>Landing Page Text Block</name>
+                <template>cmsadvanced/landing_page/blocks/text_block.phtml</template>
+                <groups>
+                    <lp_data_text_block>
+                        <name>Data</name>
+                        <attributes>
+                            <lp_text_block_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_text_block_header>
+                            <lp_text_block_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </lp_text_block_text>
+                        </attributes>
+                    </lp_data_text_block>
+                    <lp_text_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_text_panel_animation>
+                </groups>
+            </lp_text_block>
+
+            <lp_image_panel>
+                <name>Landing Page Image Panel</name>
+                <template>cmsadvanced/landing_page/blocks/image_panel.phtml</template>
+                <groups>
+                    <lp_data_image_panel>
+                        <name>Data</name>
+                        <attributes>
+                            <lp_ip_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </lp_ip_video>
+                            <lp_ip_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </lp_ip_image>
+                            <lp_ip_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                            </lp_ip_link_text>
+                            <lp_ip_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                            </lp_ip_target_url>
+                            <lp_ip_top_text>
+                                <label>Top Text</label>
+                                <template>textarea</template>
+                            </lp_ip_top_text>
+                            <lp_ip_bottom_text>
+                                <label>Bottom Text</label>
+                                <template>textarea</template>
+                            </lp_ip_bottom_text>
+                        </attributes>
+                    </lp_data_image_panel>
+                    <lp_image_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                                <required>1</required>
+                            </lp_block_animation>
+                            <lp_ip_width>
+                                <label>Image Width (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ip_width>
+                            <lp_ip_height>
+                                <label>Image Height (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                            </lp_ip_height>
+                        </attributes>
+                    </lp_image_panel_animation>
+                </groups>
+            </lp_image_panel>
+
+            <lp_product_promo_x2>
+                <name>Landing Page Product Promo x2</name>
+                <template>cmsadvanced/landing_page/blocks/product_promo_x2.phtml</template>
+                <groups>
+                    <lp_data_product_promo_x2>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <lp_pp_x2_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x2_image1>
+                            <lp_pp_x2_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_image1_link_title>
+                            <lp_pp_x2_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_image1_target_url>
+                            <!--Image2-->
+                            <lp_pp_x2_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x2_image2>
+                            <lp_pp_x2_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_image2_link_title>
+                            <lp_pp_x2_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_image2_target_url>
+                            <lp_pp_x2_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_image2_target_url>
+                            <!--Text Box-->
+                            <lp_pp_x2_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_tb_link_text>
+                            <lp_pp_x2_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2_tb_target_url>
+                            <lp_pp_x2_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_landingpage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </lp_pp_x2_tb_bg_color>
+                            <!--Additional-->
+                            <lp_pp_x2_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </lp_pp_x2_add_text>
+                        </attributes>
+                    </lp_data_product_promo_x2>
+                    <lp_product_promo_x2_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_product_promo_x2_animation>
+                </groups>
+            </lp_product_promo_x2>
+
+            <lp_product_promo_x2s>
+                <name>Landing Page Product Promo x2 Small</name>
+                <template>cmsadvanced/landing_page/blocks/product_promo_x2s.phtml</template>
+                <groups>
+                    <lp_data_product_promo_x2s>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <lp_pp_x2s_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image1>
+                            <lp_pp_x2s_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image1_link_title>
+                            <lp_pp_x2s_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image1_target_url>
+                            <!--Image2-->
+                            <lp_pp_x2s_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image2>
+                            <lp_pp_x2s_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image2_link_title>
+                            <lp_pp_x2s_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image2_target_url>
+                            <lp_pp_x2s_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_image2_target_url>
+                            <!--Text Box-->
+                            <lp_pp_x2s_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_tb_link_text>
+                            <lp_pp_x2s_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x2s_tb_target_url>
+                            <lp_pp_x2s_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_landingpage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </lp_pp_x2s_tb_bg_color>
+                            <!--Additional-->
+                            <lp_pp_x2s_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </lp_pp_x2s_add_text>
+                        </attributes>
+                    </lp_data_product_promo_x2s>
+                    <lp_product_promo_x2s_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_product_promo_x2s_animation>
+                </groups>
+            </lp_product_promo_x2s>
+
+            <lp_product_promo_x3>
+                <name>Landing Page Product Promo x3</name>
+                <template>cmsadvanced/landing_page/blocks/product_promo_x3.phtml</template>
+                <groups>
+                    <lp_data_product_promo_x3>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <lp_pp_x3_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x3_image1>
+                            <lp_pp_x3_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image1_link_title>
+                            <lp_pp_x3_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image1_target_url>
+                            <!--Image2-->
+                            <lp_pp_x3_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x3_image2>
+                            <lp_pp_x3_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image2_link_title>
+                            <lp_pp_x3_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image2_target_url>
+                            <lp_pp_x3_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image2_target_url>
+                            <!--Image3-->
+                            <lp_pp_x3_image3>
+                                <label>3rd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x3_image3>
+                            <lp_pp_x3_image3_link_title>
+                                <label>3rd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image3_link_title>
+                            <lp_pp_x3_image3_target_url>
+                                <label>3rd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_image3_target_url>
+                            <!--Text Box-->
+                            <lp_pp_x3_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_tb_link_text>
+                            <lp_pp_x3_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x3_tb_target_url>
+                            <lp_pp_x3_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </lp_pp_x3_tb_bg_color>
+                            <!--Additional-->
+                            <lp_pp_x3_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </lp_pp_x3_add_text>
+                        </attributes>
+                    </lp_data_product_promo_x3>
+                    <lp_product_promo_x3_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_product_promo_x3_animation>
+                </groups>
+            </lp_product_promo_x3>
+
+            <lp_product_promo_x4>
+                <name>Landing Page Product Promo x4</name>
+                <template>cmsadvanced/landing_page/blocks/product_promo_x4.phtml</template>
+                <groups>
+                    <lp_data_product_promo_x4>
+                        <name>Data</name>
+                        <attributes>
+                            <!--Image1-->
+                            <lp_pp_x4_image1>
+                                <label>1st Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x4_image1>
+                            <lp_pp_x4_image1_link_title>
+                                <label>1st Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image1_link_title>
+                            <lp_pp_x4_image1_target_url>
+                                <label>1st Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image1_target_url>
+                            <!--Image2-->
+                            <lp_pp_x4_image2>
+                                <label>2nd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x4_image2>
+                            <lp_pp_x4_image2_link_title>
+                                <label>2nd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image2_link_title>
+                            <lp_pp_x4_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image2_target_url>
+                            <lp_pp_x4_image2_target_url>
+                                <label>2nd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image2_target_url>
+                            <!--Image3-->
+                            <lp_pp_x4_image3>
+                                <label>3rd Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x4_image3>
+                            <lp_pp_x4_image3_link_title>
+                                <label>3rd Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image3_link_title>
+                            <lp_pp_x4_image3_target_url>
+                                <label>3rd Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image3_target_url>
+                            <!--Image4-->
+                            <lp_pp_x4_image4>
+                                <label>4th Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                            </lp_pp_x4_image4>
+                            <lp_pp_x4_image4_link_title>
+                                <label>4th Image Link Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image4_link_title>
+                            <lp_pp_x4_image4_target_url>
+                                <label>4th Image Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_image4_target_url>
+                            <!--Text Box-->
+                            <lp_pp_x4_tb_link_text>
+                                <label>Text Box Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_tb_link_text>
+                            <lp_pp_x4_tb_target_url>
+                                <label>Text Box Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_pp_x4_tb_target_url>
+                            <lp_pp_x4_tb_bg_color>
+                                <label>Text Box Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </lp_pp_x4_tb_bg_color>
+                            <!--Additional-->
+                            <lp_pp_x4_add_text>
+                                <label>Additional Text</label>
+                                <template>text</template>
+                            </lp_pp_x4_add_text>
+                        </attributes>
+                    </lp_data_product_promo_x4>
+                    <lp_product_promo_x4_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_product_promo_x4_animation>
+                </groups>
+            </lp_product_promo_x4>
+
+            <lp_image_panel_right>
+                <name>Landing Page Image Panel Right</name>
+                <template>cmsadvanced/landing_page/blocks/image_panel_right.phtml</template>
+                <groups>
+                    <lp_data_image_panel_right>
+                        <name>Data</name>
+                        <attributes>
+                            <lp_ipr_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </lp_ipr_video>
+                            <lp_ipr_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </lp_ipr_image>
+                            <lp_ipr_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipr_header>
+                            <lp_ipr_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipr_title>
+                            <lp_ipr_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </lp_ipr_text>
+                            <lp_ipr_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipr_link_text>
+                            <lp_ipr_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipr_target_url>
+                        </attributes>
+                    </lp_data_image_panel_right>
+                    <lp_image_panel_right_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </lp_block_animation>
+                            <lp_ipr_width>
+                                <label>Image Width (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipr_width>
+                            <lp_ipr_height>
+                                <label>Image Height (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                            </lp_ipr_height>
+                        </attributes>
+                    </lp_image_panel_right_animation>
+                </groups>
+            </lp_image_panel_right>
+
+            <lp_image_panel_left>
+                <name>Landing Page Image Panel Left</name>
+                <template>cmsadvanced/landing_page/blocks/image_panel_left.phtml</template>
+                <groups>
+                    <lp_data_image_panel_left>
+                        <name>Data</name>
+                        <attributes>
+                            <lp_ipl_video>
+                                <label>Video Code</label>
+                                <template>text</template>
+                            </lp_ipl_video>
+                            <lp_ipl_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </lp_ipl_image>
+                            <lp_ipl_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipl_header>
+                            <lp_ipl_title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipl_title>
+                            <lp_ipl_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </lp_ipl_text>
+                            <lp_ipl_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipl_link_text>
+                            <lp_ipl_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipl_target_url>
+                        </attributes>
+                    </lp_data_image_panel_left>
+                    <lp_image_panel_left_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                                <required>1</required>
+                            </lp_block_animation>
+                            <lp_ipl_width>
+                                <label>Image Width (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_ipl_width>
+                            <lp_ipl_height>
+                                <label>Image Height (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                            </lp_ipl_height>
+                        </attributes>
+                    </lp_image_panel_left_animation>
+                </groups>
+            </lp_image_panel_left>
+
+            <lp_small_box>
+                <name>Landing Page Small Box</name>
+                <template>cmsadvanced/landing_page/blocks/small_box.phtml</template>
+                <groups>
+                    <lp_data_small_box>
+                        <name>Data</name>
+                        <attributes>
+                            <lp_sb_link_text>
+                                <label>Link Text</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_sb_link_text>
+                            <lp_sb_target_url>
+                                <label>Target Url</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </lp_sb_target_url>
+                            <lp_sb_bg_color>
+                                <label>Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_landingpage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </lp_sb_bg_color>
+                        </attributes>
+                    </lp_data_small_box>
+                    <lp_small_box_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                                <required>1</required>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_small_box_animation>
+                </groups>
+            </lp_small_box>
+
+            <lp_follow_box>
+                <name>Landing Page Follow Box</name>
+                <template>cmsadvanced/landing_page/blocks/follow_box.phtml</template>
+                <groups>
+                    <lp_data_follow_box>
+                        <name>Data</name>
+                        <attributes>
+                            <lp_fb_bg_color>
+                                <label>Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_landingpage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </lp_fb_bg_color>
+                        </attributes>
+                    </lp_data_follow_box>
+                    <lp_follow_box_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <lp_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                                <required>1</required>
+                            </lp_block_animation>
+                        </attributes>
+                    </lp_follow_box_animation>
+                </groups>
+            </lp_follow_box>
+        </pagetypes>
+        <elementtypes>
+            <animation_gridfield>
+                <class>Evisu_LandingPage_Helper_Adminhtml_Advancedcms_Animation</class>
+            </animation_gridfield>
+        </elementtypes>
+    </cmsadvanced>
+</config>

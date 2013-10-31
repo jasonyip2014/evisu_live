@@ -1,0 +1,37 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php
+    $imageWidth = 245;
+    $imageHeight = 311;
+?>
+
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+
+<div class="image-holder image-1">
+    <a href="<?php echo $this->escapeHtml($this->getLpPpX3Image1TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getLpPpX3Image1LinkTitle()) ?>">
+        <img width="<?php echo $imageWidth ?>px" height="<?php echo $imageHeight ?>px" src="<?php echo $_afHelper->init($afModel, $this->getLpPpX3Image1() , '')->resize($imageWidth, $imageHeight); ?>" alt="" />
+    </a>
+</div>
+<div class="image-holder image-2">
+    <a href="<?php echo $this->escapeHtml($this->getLpPpX3Image2TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getLpPpX3Image2LinkTitle()) ?>">
+        <img width="<?php echo $imageWidth ?>px" height="<?php echo $imageHeight ?>px" src="<?php echo $_afHelper->init($afModel, $this->getLpPpX3Image2() , '')->resize($imageWidth, $imageHeight); ?>" alt="" />
+    </a>
+</div>
+<div class="image-holder image-3">
+    <a href="<?php echo $this->escapeHtml($this->getLpPpX3Image3TargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getLpPpX3Image3LinkTitle()) ?>">
+        <img width="<?php echo $imageWidth ?>px" height="<?php echo $imageHeight ?>px" src="<?php echo $_afHelper->init($afModel, $this->getLpPpX3Image3() , '')->resize($imageWidth, $imageHeight); ?>" alt="" />
+    </a>
+</div>
+<?php if($this->getLpPpX3TbLinkText() && $this->getLpPpX3TbTargetUrl()): ?>
+    <a class="<?php echo $this->escapeHtml($this->getLpPpX3TbBgColor()) ?> category-link" href="<?php echo $this->escapeHtml($this->getLpPpX3TbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getLpPpX3TbLinkText()) ?>">
+        <?php echo $this->escapeHtml($this->getLpPpX3TbLinkText()) ?>
+    </a>
+<?php endIf; ?>
+<?php if($this->getLpPpX3AddText()): ?>
+    <div class="add-text">
+        <p><?php echo $this->escapeHtml($this->getLpPpX3AddText()) ?></p>
+    </div>
+<?php endIf; ?>

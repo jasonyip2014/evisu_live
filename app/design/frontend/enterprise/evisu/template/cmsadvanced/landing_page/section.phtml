@@ -1,0 +1,15 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+
+<?php $i = 1; ?>
+<?php $sections = $this->getSections() ?>
+<?php if(count($sections) > 0): ?>
+    <?php foreach ($this->getSections() as $_block): ?>
+        <div class="block-holder-<?php echo $i ?> <?php echo $_block->getPageType() ?>" <?php echo Mage::helper('evisu_landingpage')->getScrollrData($_block->getLpBlockAnimation()) ?>>
+            <?php echo $_block->toHtml(); ?>
+        </div>
+        <?php $i++; ?>
+    <?php endforeach ?>
+<?php endIf; ?>
