@@ -115,7 +115,7 @@ var DropDown = {
         if(!animate)
         {
             jQuery('.block-subtitle').addClass('active');
-            jQuery('.main').css('opacity',0.4);
+            jQuery('.main').css({opacity:0.4});
             jQuery('.breadcrumbs-container').css('opacity',0.4);
             jQuery('.block-layered-nav .block-content').css('display','block');
             self.filter_display = true;

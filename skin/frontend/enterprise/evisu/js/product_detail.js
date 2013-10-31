@@ -22,37 +22,47 @@ Product.Config.prototype.configureElement = function(element){
         $qtyField.customSelectRefresh();
     }
 
-    // OOS & Preorder puttons behavior
-    var optionId = element.value;
-    var options = element.config.options;
-    for(var option in options)
+    if(AlertOOS.productType == 'grouped')
     {
-        if(options.hasOwnProperty(option))
-        {
-            if(options[option].id == optionId)
-            {
-                if(options[option].outOfStock)
-                {
-                    jQuery('.add-to-cart').hide();
-                    jQuery('.qty-block').hide();
+        //disable grouped error message
+        jQuery('#grouped-error-msg').fadeOut();
+    }
 
-                    AlertOOS.productId = options[option].productId;
-                    AlertOOS.sku = options[option].sku;
-                    jQuery('#oos-block').show();
-                }
-                else
+    if(AlertOOS.productType != 'grouped') //disable preorder behavior for grouped product
+    {
+
+        // OOS & Preorder puttons behavior
+        var optionId = element.value;
+        var options = element.config.options;
+        for(var option in options)
+        {
+            if(options.hasOwnProperty(option))
+            {
+                if(options[option].id == optionId)
                 {
-                    if(parseInt(options[option].qty) <= 0)
+                    if(options[option].outOfStock)
                     {
-                        jQuery(".btn-cart").html(AlertOOS.labels['preorder_button']);
+                        jQuery('.add-to-cart').hide();
+                        jQuery('.qty-block').hide();
+
+                        AlertOOS.productId = options[option].productId;
+                        AlertOOS.sku = options[option].sku;
+                        jQuery('#oos-block').show();
                     }
                     else
                     {
-                        jQuery(".btn-cart").html(AlertOOS.labels['add_button']);
+                        if(parseInt(options[option].qty) <= 0)
+                        {
+                            jQuery(".btn-cart").html(AlertOOS.labels['preorder_button']);
+                        }
+                        else
+                        {
+                            jQuery(".btn-cart").html(AlertOOS.labels['add_button']);
+                        }
+                        jQuery('#oos-block').hide();
+                        jQuery('.qty-block').show();
+                        jQuery('.add-to-cart').show();
                     }
-                    jQuery('#oos-block').hide();
-                    jQuery('.qty-block').show();
-                    jQuery('.add-to-cart').show();
                 }
             }
         }
@@ -88,6 +98,7 @@ var MailToFriend = {
 
 var AlertOOS = {
     labels : {},
+    productType : null,
     productId : null,
     sku : null,
     varienForm : null,
@@ -174,6 +185,14 @@ var FullSizeImage =
 
 
 jQuery(function($){
+    //disable grouped error message when qty is changed
+    if(AlertOOS.productType == 'grouped')
+    {
+        jQuery('.qty').on('change', function(){
+            jQuery('#grouped-error-msg').fadeOut();
+        });
+    }
+
     //PEC videopanel behavior
     VideoPanel.init('.video_panel');
 

@@ -13,7 +13,7 @@
                         '<input type="hidden" name="sku" value="' + AlertOOS.sku + '" />' +
                         '<div class="header-first"><?php echo $this->__('Email Me') ?></div>' +
                         '<div class="header-second"><?php echo $this->__('When back in stock') ?></div>' +
-                        '<div><span class="name"><?php echo $_product->getName() ?></span><?php if($_product->getSecondName()): ?> - <span class="second-name"><?php echo $_product->getSecondName() ?></span><?php endIf; ?></div>' +
+                        '<div><span class="name">' + <?php echo json_encode($_product->getName()) ?> + '</span><?php if($_product->getSecondName()): ?> - <span class="second-name">' + <?php echo json_encode($_product->getSecondName()) ?> + '</span><?php endIf; ?></div>' +
                         '<div class="form-fields">' +
                             '<div class="form-field"><input value="<?php echo Mage::helper('evisu_alertoos')->getUserFirstName() ?>" class="input-text required-entry" name="first_name" type="text" placeholder="<?php echo $this->__('First Name') ?>"/></div>' +
                             '<div class="form-field"><input value="<?php echo Mage::helper('evisu_alertoos')->getUserLastName() ?>" class="input-text required-entry" name="last_name" type="text" placeholder="<?php echo $this->__('Last Name') ?>"/></div>' +

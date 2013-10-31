@@ -184,7 +184,7 @@ var StoreLocator = {
             self.styleInfoWindow();
         }, 500);
         jQuery('html,body').animate({scrollTop:0},'normal');
-        setTimeOut(function(){
+        setTimeout(function(){
             self.displayClosestStore(store.coordinates.lat,store.coordinates.long);
         },500);
     },

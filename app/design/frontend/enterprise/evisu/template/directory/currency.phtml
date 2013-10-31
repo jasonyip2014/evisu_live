@@ -2,7 +2,7 @@
 	/* Currency drop down */
 ?>
 <?php if($this->getCurrencyCount() > 1): ?>
-<div class="form-language">
+<div class="form-language currency">
     <label for="custom-currency-selector"><?php echo $this->__('Currency') ?></label>
     <select onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector">
         <?php foreach ($this->getCurrencies() as $_code => $_name): ?>

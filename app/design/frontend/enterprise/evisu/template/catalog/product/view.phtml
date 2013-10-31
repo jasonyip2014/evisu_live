@@ -150,7 +150,7 @@
                                         '<div class="size-chart-head">' +
                                             '<img src="<?php echo $this->getSkinUrl('images/logo-size-chart.png') ?>" />' +
                                             '<div class="size-chart-title"><?php echo $this->__('Size Chart') ?></div>' +
-                                            '<div class="size-chart-product-name"><span class="size-chart-name"><?php echo $_product->getName() ?></span><?php if($_product->getSecondName()): ?> - <span class="seze-chart-second-name"><?php echo $_product->getSecondName() ?></span><?php endIf; ?></div>' +
+                                            '<div class="size-chart-product-name"><span class="size-chart-name">' + <?php echo json_encode($_product->getName()) ?> + '</span><?php if($_product->getSecondName()): ?> - <span class="seze-chart-second-name">' + <?php echo json_encode($_product->getSecondName()) ?> + '</span><?php endIf; ?></div>' +
                                             '<div class="size-chart-description"><?php echo $this->__('All items are individually measured by EVISU in centimetres') ?></div>' +
                                         '</div>' +
                                         <?php echo json_encode($_product->getSizeChart()) ?> +
@@ -231,7 +231,37 @@
 //<![CDATA[
     //ToDo Move to .js
     var productAddToCartForm = new VarienForm('product_addtocart_form');
-    productAddToCartForm.submit = function(button, url) {
+    productAddToCartForm.submit = function(button) {
+        if(AlertOOS.productType == 'grouped')
+        {
+            var error = true;
+            jQuery.each(jQuery('.super-attribute-select'), function(index, select){
+                var productId = jQuery(select).data('productid');
+                if(select.value != '' && jQuery('#qty-' + productId).val() > 0)
+                {
+                    var optionId = select.value;
+                    var options = select.config.options;
+                    for(var option in options)
+                    {
+                        if(options.hasOwnProperty(option))
+                        {
+                            if(options[option].id == optionId)
+                            {
+                                if(!options[option].outOfStock)
+                                {
+                                    error = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            if(error)
+            {
+                jQuery('#grouped-error-msg').fadeIn('fast');
+                return false;
+            }
+        }
         if (this.validator.validate()) {
             jQuery('html,body').animate({scrollTop:0},300);
             var form = this.form;

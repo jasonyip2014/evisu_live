@@ -38,6 +38,7 @@ $qty = (int) Mage::getStoreConfig('catalog/product_detail/qty');
     }
 ?>
 <script>
+    AlertOOS.productType = '<?php echo $_product->getTypeId() ?>';
     AlertOOS.labels['add_button'] = 'Add to Basket';
     AlertOOS.labels['preorder_button'] = 'Preorder';
 </script>

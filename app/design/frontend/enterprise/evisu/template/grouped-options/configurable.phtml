@@ -43,7 +43,7 @@ $_formJsVar = "productAddToCartForm".$_product->getId();
         <div class="grouped-option">
             <?php /* <label class="grouped-option-title"><span class="required">*&nbsp;</span><?php echo $_attribute->getLabel() ?></label> */ ?>
             <?php $attributeId = $this->helper('groupedoptions')->getHtmlConfigAttributeId($_attribute);?>
-            <select data-defvalue="<?php echo $_attribute->getLabel() ?>" name="super_attribute[<?php echo $_product->getId() ?>][<?php echo $_attribute->getAttributeId() ?>]" id="<?php echo $attributeId ?>" class="go-qty-required-entry super-attribute-select super-attribute-<?php echo $_product->getId() ?>">
+            <select data-productid="<?php echo $_product->getId() ?>" data-defvalue="<?php echo $_attribute->getLabel() ?>" name="super_attribute[<?php echo $_product->getId() ?>][<?php echo $_attribute->getAttributeId() ?>]" id="<?php echo $attributeId ?>" class="go-qty-required-entry super-attribute-select super-attribute-<?php echo $_product->getId() ?>">
                 <option><?php echo $this->__('Choose an Option...') ?></option>
             </select>
         </div>

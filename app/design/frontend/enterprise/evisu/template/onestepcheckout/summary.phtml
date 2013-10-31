@@ -9,7 +9,6 @@ $checkoutHelper = Mage::helper('onestepcheckout/checkout');
             <tr>
                 <th class="name"><?php echo $this->__('Product'); ?></th>
                 <th class="size"><?php echo $this->__('Size'); ?></th>
-                <th class="colour"><?php echo $this->__('CLR'); ?></th>
                 <th class="qty"><?php echo $this->__('Qty'); ?></th>
                 <th class="total"><?php echo $this->__('Subtotal'); ?></th>
             </tr>
@@ -48,7 +47,6 @@ $checkoutHelper = Mage::helper('onestepcheckout/checkout');
                 <?php endif; ?>
             </td>
             <td class="size"><?php echo $item->getProduct()->getAttributeText('size') ?></td>
-            <td class="colour"><?php echo $item->getProduct()->getAttributeText('colour') ?></td>
             <td class="qty"><?php echo $item->getQty() ?></td>
             <td class="total">
                 <?php if($checkoutHelper->settings['display_tax_included']): ?>
