@@ -15,6 +15,11 @@
             <evisu_catalog>
                 <class>Evisu_Catalog_Block</class>
             </evisu_catalog>
+            <catalogsearch>
+                <rewrite>
+                    <autocomplete>Evisu_Catalog_Block_Search_Autocomplete</autocomplete>
+                </rewrite>
+            </catalogsearch>
         </blocks>
         <helpers>
             <evisu_catalog>

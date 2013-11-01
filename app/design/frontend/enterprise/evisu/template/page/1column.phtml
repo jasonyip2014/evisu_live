@@ -42,10 +42,12 @@
  */
 ?>
 <!DOCTYPE html>
+<html>
 <head>
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <body <?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+
     <div id="site-loader" class="site-loader">
         <div class="image-holder">
             <img src="<?php echo $this->getSkinUrl('images/Loading_Godhead.gif')?>" alt="evisu-loader" />
@@ -53,6 +55,7 @@
     </div>
     <?php echo $this->getChildHtml('after_body_start') ?>
         <div class="wrapper">
+            <div id="site-hidder" class="no-display"></div>
             <?php echo $this->getChildHtml('global_notices') ?>
             <div class="page">
                 <?php echo $this->getChildHtml('header') ?>

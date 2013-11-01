@@ -1,0 +1,46 @@
+<?php /* @var $this Mage_CatalogSearch_Block_Result */ ?>
+<?php /* @var $this Mage_Tag_Block_Product_Result */ ?>
+
+
+<?php if($getParam = Mage::app()->getRequest()->getParam('ajax')): //ajax search ?>
+    <div id="quick-search-result-list">
+        <?php if($this->getResultCount()): ?>
+            <?php echo $this->getProductListHtml() ?>
+            <div id="quick-search-view-all-btn">
+                <?php echo $this->__('View All') ?>
+            </div>
+        <?php else: ?>
+            <div class="note-msg">
+                <?php echo $this->__('Your search returns no results.') ?>
+            </div>
+        <?php endif; ?>
+        <div class="quick-search-results"><?php echo $this->__('results') ?>: <?php echo $this->getResultCount() ?></div>
+    </div>
+    <?php die(); ?>
+<?php else: // search result page ?>
+    <?php if($this->getResultCount()): ?>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <div class="page-title">
+            <?php if ($this->helper('rss/catalog')->getTagFeedUrl()): ?>
+                <a href="<?php echo $this->helper('rss/catalog')->getTagFeedUrl() ?>" class="nobr link-rss"><?php echo $this->__('Subscribe to Feed') ?></a>
+            <?php endif; ?>
+            <h1><?php echo ($this->getHeaderText() || $this->getHeaderText() === false) ? $this->getHeaderText() : $this->__("Search results for '%s'", $this->helper('catalogsearch')->getEscapedQueryText()) ?></h1>
+            <div class="quick-navigation">
+                <div class="back-btn"><?php echo $this->__('Back') ?></div>
+                <div class="explore-more-btn"><span><?php echo $this->__('Explore') ?></span><span><?php echo $this->__('More') ?></span></div>
+            </div>
+        </div>
+        <?php echo $this->getProductListHtml() ?>
+    <?php else: ?>
+        <div class="page-title">
+            <h1><?php echo ($this->getHeaderText() || $this->getHeaderText() === false) ? $this->getHeaderText() : $this->__("Search results for '%s'", $this->helper('catalogsearch')->getEscapedQueryText()) ?></h1>
+        </div>
+        <div class="note-msg">
+            <?php echo $this->__('Your search returns no results.') ?>
+
+        </div>
+    <?php endif; ?>
+<?php endIF; ?>
+
+
+

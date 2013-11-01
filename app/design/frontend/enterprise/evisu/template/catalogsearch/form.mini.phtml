@@ -1,0 +1,18 @@
+<?php
+/* @var $this Mage_Core_Block_Template */
+/* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
+$catalogSearchHelper =  $this->helper('catalogsearch');
+?>
+<div class="quick-search no-display">
+    <div class="block-title"><?php echo $this->__('Search') ?></div>
+    <div class="form-search">
+        <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+            <input autocomplete="off" id="main-search-input" placeholder="Search" type="text" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" />
+            <button type="submit" title="<?php echo $this->__('Search') ?>" class="button"><?php echo $this->__('Go') ?></button>
+        </form>
+    </div>
+    <div id="search_autocomplete" class="search-autocomplete"></div>
+    <div id="search-autocomplete-loader" class="no-display"></div>
+    <div id="search-autocomplete-close-btn"><?php echo $this->__('Close') ?></div>
+</div>
+

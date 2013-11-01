@@ -6,6 +6,7 @@ var EvisuNavigation =
     over : false,
     self : null,
     menuCategoryImage : null,
+    timer : null,
 
     init : function(container){
         var self = this;
@@ -13,7 +14,8 @@ var EvisuNavigation =
         menuCategoryImage = jQuery(container + ' #menu-category-image');
 
         //Shop Open|Close
-        navLi.on('mouseenter', function() {self.shopMouseEnter(jQuery(this))});
+        navLi.on('mouseenter', function(){clearTimeout(self.timer)});
+        navLi.on('click', '.main-menu-item', function() {self.shopMouseEnter(jQuery(this).parent())});
         navLi.on('mouseleave', function() {self.shopMouseLeave(jQuery(this))});
 
         //Category thumbnail change
@@ -29,24 +31,32 @@ var EvisuNavigation =
 
     shopMouseEnter : function(element){
         var self = this;
-        navLiChild = element.find(' > ul');
-        if (!navLiChild){
-            return;
+        if(!self.over)
+        {
+            navLiChild = element.find(' > ul');
+            if (!navLiChild){
+                return;
+            }
+            else{
+                navLiChild.stop(true,true).fadeIn('fast');
+            }
+            self.over = true;
         }
-        else{
-            navLiChild.stop(true,true).fadeIn('fast');
+        else
+        {
+            navLiChild.stop(true,true).fadeOut('fast');
+            self.over = false;
         }
-        self.over = true;
     },
 
     shopMouseLeave : function(element){
         var self = this;
-        navLiChild = element.find(' > ul');
+        navLiChild = element.parent().find(' ul');
         if (!navLiChild){
             return;
         }
         else{
-            setTimeout(function(){
+            self.timer = setTimeout(function(){
                 if (self.over == true){
                     return;
                 }
@@ -140,6 +150,76 @@ var AjaxBasket = {
     }
 };
 
+// ajax search ==========================================
+var SearchAutocomplete = {
+    minQuery : 2,
+    timeout : null,
+
+    init : function(){
+        var self = this;
+        jQuery('#main-search-input').on('keyup', function(){
+            var query = this.value;
+
+            if (query.length >= self.minQuery)
+            {
+                clearTimeout(self.timeout);
+
+                self.timeout = setTimeout(function() {
+                    jQuery('#search-autocomplete-loader').fadeIn('fast');
+                    jQuery.ajax(
+                    {
+                        type: 'get',
+                        url: jQuery('#search_mini_form').attr('action'),
+                        data: 'q=' + query + '&ajax=1',
+                        dataType: 'html',
+                        cache: true,
+
+                        success: function(data)
+                        {
+                            jQuery('#search-autocomplete-loader').fadeOut('fast');
+
+                            jQuery('#search_autocomplete').html(jQuery(data).find('#quick-search-result-list'));
+                        },
+                        error:  function(xhr, str)
+                        {
+                            console.log('error');
+                        }
+                    });
+                }, 500);
+            }
+        });
+
+        jQuery(document).on('click', '#quick-search-view-all-btn', function(){
+            jQuery('#search_mini_form').submit();
+        });
+
+        jQuery('#search_mini_form').submit(function(){
+            if(jQuery('#main-search-input').val().length < self.minQuery)
+            {
+                return false;
+            }
+        });
+
+        jQuery('.search-btn').on('click',function(){
+            Enterprise.TopCart.hideCart();
+            jQuery('.quick-search').stop(true,false).slideToggle('normal');
+            jQuery('#site-hidder').fadeToggle('fast');
+
+        });
+
+        jQuery('#search-autocomplete-close-btn').on('click',function(){
+            jQuery('.quick-search').stop(true,false).slideUp('normal');
+            jQuery('#site-hidder').fadeOut('fast');
+        });
+
+        jQuery(document).on('click', '.top-cart > .block-title', function(){
+            jQuery('.quick-search').stop(true,false).slideUp('normal');
+            jQuery('#site-hidder').fadeOut('fast');
+        });
+    }
+};
+
+
 // ============ video_panel behavior=================
 var VideoPanel = {
     block : '.video_panel',
@@ -187,6 +267,7 @@ var VideoPanel = {
 //============onDocumentReady==============
 jQuery(function($)
 {
+    SearchAutocomplete.init();
 
     //init page
 
