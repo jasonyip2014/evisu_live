@@ -85,7 +85,6 @@ a:hover{text-decoration:underline;}
     min-height:100%;
     width:100%;
     overflow:hidden;
-    position: relative;
 }
 .page{
     padding:0 0 330px;
@@ -4712,6 +4711,7 @@ position: absolute;
     height: 100%;
     top: 140px;
     z-index: 100;
+    display: none !important; 
 }
 
 .quick-search .block-title{
