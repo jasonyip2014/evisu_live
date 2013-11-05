@@ -89,8 +89,7 @@ var DropDown = {
     {
         var self = this;
         jQuery('.sort-by-title').addClass('active');
-        jQuery('.main').animate({opacity:0.4}, 'fast');
-        jQuery('.breadcrumbs-container').animate({opacity:0.4}, 'fast');
+        jQuery('#site-hidder').fadeIn();
         jQuery('.sort-by-holder').stop(true, true).slideDown('normal', function(){
             self.sort_display = true;
         });
@@ -103,30 +102,29 @@ var DropDown = {
         jQuery('.sort-by-holder').stop(true, true).slideUp('normal', function(){
             self.sort_display = false;
         });
-        jQuery('.main').animate({opacity:1}, 'fast');
-        jQuery('.breadcrumbs-container').animate({opacity:1},'fast');
+        jQuery('#site-hidder').fadeOut();
     },
 
     // ===================== filter by functions ===============================
     filter_show : function (animate)
     {
         var self = this;
-        console.log(animate);
         if(!animate)
         {
             jQuery('.block-subtitle').addClass('active');
-            jQuery('.main').css({opacity:0.4});
-            jQuery('.breadcrumbs-container').css('opacity',0.4);
+            jQuery('#site-hidder').show('fast');
             jQuery('.block-layered-nav .block-content').css('display','block');
-            self.filter_display = true;
         }
         else
         {
             jQuery('.block-subtitle').addClass('active');
-            jQuery('.main').animate({opacity:0.4}, 'fast');
-            jQuery('.breadcrumbs-container').animate({opacity:0.4}, 'fast');
+            jQuery('#site-hidder').fadeIn();
             jQuery('.block-layered-nav .block-content').stop(true, true).slideDown('normal', function(){self.filter_display = true});
         }
+        self.filter_display = true;
+        self.filter_timeout = setTimeout(function(){
+            self.filter_hide();
+        }, 3000);
     },
 
     filter_hide : function()
@@ -134,8 +132,7 @@ var DropDown = {
         var self = this;
         jQuery('.block-subtitle').removeClass('active');
         jQuery('.block-layered-nav .block-content').stop(true, true).slideUp('normal', function(){self.filter_display = false;});
-        jQuery('.main').animate({opacity:1}, 'fast');
-        jQuery('.breadcrumbs-container').animate({opacity:1},'fast');
+        jQuery('#site-hidder').fadeOut();
     },
 
     changeFilter : function(url)

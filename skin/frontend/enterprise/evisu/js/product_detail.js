@@ -73,7 +73,6 @@ Product.Config.prototype.configureElement = function(element){
 
 var MailToFriend = {
     showModalWindow : function(url){
-        console.log(url);
         jQuery.arcticmodal({
             type: 'ajax',
             url: url,

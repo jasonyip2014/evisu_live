@@ -33,7 +33,6 @@ var ContactUs = {
         });
     },
     animate : function(){
-        console.log('animate');
         jQuery('#contactForm').delay(500).fadeIn('slow');
         var bloks = jQuery('.contacts-page-blocks');
         bloks.find('.block2').delay(1000).animate({opacity:1},'slow');
