@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_FitGuide>
+            <version>0.2.3</version>
+        </Evisu_FitGuide>
+    </modules>
+    <global>
+        <models>
+            <evisu_fitguide>
+                <class>Evisu_FitGuide_Model</class>
+            </evisu_fitguide>
+        </models>
+        <blocks>
+            <evisu_fitguide>
+                <class>Evisu_FitGuide_Block</class>
+            </evisu_fitguide>
+        </blocks>
+        <helpers>
+            <evisu_fitguide>
+                <class>Evisu_FitGuide_Helper</class>
+            </evisu_fitguide>
+        </helpers>
+        <resources>
+            <evisu_fitguide_setup>
+                <setup>
+                    <module>Evisu_FitGuide</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_fitguide_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <fit_guide_main_page>
+                <name>Fit Guide Main Page</name>
+            </fit_guide_main_page>
+
+            <fit_guide_page>
+                <name>Fit Guide Page</name>
+                <template>cmsadvanced/fit_guide/page.phtml</template>
+                <block>evisu_fitguide/fitguide</block>
+                <groups>
+                    <fgp_data>
+                        <name>Data</name>
+                        <attributes>
+                            <title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </title>
+                            <sub_title>
+                                <label>Sub Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </sub_title>
+                            <menu_title>
+                                <label>Menu Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </menu_title>
+                        </attributes>
+                    </fgp_data>
+                </groups>
+            </fit_guide_page>
+
+            <fit_guide_item>
+                <name>Fit Guide Item</name>
+                <template>cmsadvanced/fit_guide/item.phtml</template>
+                <groups>
+                    <fgi_data>
+                        <name>Data</name>
+                        <attributes>
+                            <title>
+                                <label>Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </title>
+                            <sub_title>
+                                <label>Sub Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </sub_title>
+                            <description>
+                                <label>Description</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </description>
+                            <left_image>
+                                <label>Left Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                                <note>Multiple resolution 478x986px</note>
+                            </left_image>
+                            <right_image>
+                                <label>Right Image</label>
+                                <template>image</template>
+                                <required>1</required>
+                                <note>Multiple resolution 478x986px</note>
+                            </right_image>
+                            <thumbnail>
+                                <label>Thumbnail</label>
+                                <template>image</template>
+                                <required>1</required>
+                                <note>For use in Next/Previous and Fit Menu. Multiple resolution 78x196px</note>
+                            </thumbnail>
+                            <menu_title>
+                                <label>Menu Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </menu_title>
+                            <size_chart>
+                                <label>Size Chart</label>
+                                <template>image</template>
+                                <!--<is_wysiwyg_enabled>1</is_wysiwyg_enabled>-->
+                            </size_chart>
+                            <category>
+                                <label>Category</label>
+                                <type>int</type>
+                                <template>dropdown</template>
+                                <source>evisu_fitguide/config_source_category</source>
+                                <required>1</required>
+                            </category>
+                            <fit_attribute>
+                                <label>Fit Attribute</label>
+                                <type>int</type>>
+                                <template>dropdown</template>
+                                <source>evisu_fitguide/config_source_fitattribute</source>
+                                <required>1</required>
+                            </fit_attribute>
+                        </attributes>
+                    </fgi_data>
+                </groups>
+            </fit_guide_item>
+        </pagetypes>
+    </cmsadvanced>
+</config>

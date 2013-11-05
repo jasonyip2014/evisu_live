@@ -4842,10 +4842,14 @@ position: absolute;
 
 /*=========== fit-guide ================================*/
 
+.fit-guide-page .page {
+    padding: 0 0 230px;
+}
+
 .fit-guide-container{
-    height: 980px;
     overflow: hidden;
     position: relative;
+    height: 700px;
 }
 
 .fit-guide-container .center-container,
@@ -4866,46 +4870,67 @@ position: absolute;
 
 .fit-guide-container .item .left-image{
     position: absolute;
-    left: 0px;
+    left: 9%;
+    width: 26%;
+}
+
+.fit-guide-container .item img{
+    max-width: 100%;
+    height: auto;
 }
 
 .fit-guide-container .item .right-image{
     position: absolute;
-    right: 0px;
+    right: 9%;
+    width: 26%;
 }
 
 .fit-guide-container .center-container{
     text-align: center;
     position: absolute;
-    left: 43%;
+    z-index: 1;
+    width: 100%;
     top: 10%;
 }
 
 .fit-guide-container .item-text-container{
     position: absolute;
-    left: 43%;
     text-align: center;
-    top: 330px;
-    background: #333;
+    top: 230px;
     color: #fff;
+    width: 100%;
+    z-index: 1;
 }
 
 .fit-guide-container .item-text-container .title{
     font: 700 28px 'Open Sans', Arial, sans-serif;
     text-transform: uppercase;
+    padding: 45px 40px 5px;
+    background: #333;
+    width: 386px;
+    margin: 0 auto;
 }
 
 .fit-guide-container .item-text-container .sub-title{
     font: 700 14px 'Open Sans', Arial, sans-serif;
     text-transform: uppercase;
+    padding: 0 40px;
+    background: #333;
+    width: 386px;
+    margin: 0 auto;
 }
 
 .fit-guide-container .item-text-container .description{
     font: 12px Courier, Arial, Helvetica, sans-serif;
+    padding: 0 40px 45px;
+    background: #333;
+    width: 386px;
+    margin: 0 auto;
 }
 
 .fit-guide-container .item-text-container .buttons{
-    background: #fff;   
+    width: 466px;
+    margin: 0 auto;
 }
 
 .fit-guide-container .item-text-container .buttons a:hover{
@@ -4916,7 +4941,6 @@ position: absolute;
 .fit-guide-btn{
     position: absolute;
     margin: 0 0 0 200px;
-
 }
 
 .fit-guide-container .item-text-container .buttons a:first-child{
@@ -4927,7 +4951,11 @@ position: absolute;
     text-transform: uppercase;
 }
 
-#size-chart-btn-80{
+.fit-guide-container .item-text-container .buttons a:first-child:hover{
+    border: none;
+}
+
+.fit-guide-container .item-text-container .buttons .size-chart-btn{
     font: 700 14px/38px 'Open Sans', Arial, sans-serif;
     color: #333;
     background: url(../images/size-chart.png) no-repeat 0 100%;
@@ -4941,10 +4969,18 @@ position: absolute;
 .fit-guide-navigation .thumbnail-navigation .thumbnail{
     display: inline-block;
     padding: 0 0 38px;
-    margin: 0 80px 0 0px;
+    width: 11%;
     opacity: .3;
+    cursor: pointer;
 }
 
+.fit-guide-navigation .thumbnail-navigation .thumbnail img{
+    max-width: 58%;
+    height: auto;
+}
+
+.fit-guide-navigation .thumbnail-navigation .thumbnail:hover,
+.fit-guide-navigation .thumbnail-navigation .thumbnail.active,
 .fit-guide-navigation .thumbnail-navigation .thumbnail.hover{
     opacity: 1;
 }
@@ -4958,17 +4994,9 @@ position: absolute;
     text-align: center;
 }
 
-.fit-guide-navigation .main-navigation{
-    text-align: center;
-}
-
-.fit-guide-navigation .main-navigation > a.item.active{
-    background: #333;
-}
-
-.fit-guide-navigation .main-navigation > a.item.active:hover{
-    background: #ccc;
-}
+.fit-guide-navigation .main-navigation{text-align: center;}
+.fit-guide-navigation .main-navigation > a.item.active{background: #333;}
+.fit-guide-navigation .main-navigation > a.item.active:hover{background: #ccc;}
 
 .fit-guide-navigation .main-navigation > a:hover{
     background: #333;
@@ -4998,12 +5026,15 @@ position: absolute;
 .fit-guide-navigation .text-navigation .text{
     display: inline-block;
     cursor: pointer;
-    margin: 0 80px 0 0;
+    width: 10%;
+    overflow: hidden;
+    height: 24px;
 }
 
 .fit-guide-container .page-title{
-    font: 700 72px 'Open Sans', Arial, sans-serif;
+    font: 700 72px/82px 'Open Sans', Arial, sans-serif;
     color: #333;
+    text-transform: lowercase;
 }
 
 .fit-guide-container .page-sub-title{
@@ -5011,6 +5042,86 @@ position: absolute;
     color: #333;
     text-transform: uppercase;
 }
+
+.fit-guide-container #prev-btn{left: 1%; cursor: pointer;}
+.fit-guide-container #next-btn{right: 1%; cursor: pointer;}
+
+.fit-guide-container #prev-btn,
+.fit-guide-container #next-btn{ 
+    position: absolute;
+    top: 40%;
+    height: 19px;
+    overflow: hidden;
+    width: 8%;
+    z-index: 2;
+/*     transition: height .5s ease-out;
+    -moz-transition: height .5s ease-out;
+    -webkit-transition: height .5s ease-out;
+    -o-transition: height .5s ease-out;*/
+}
+
+.fit-guide-container #next-btn:hover,
+.fit-guide-container #prev-btn:hover{
+    height: auto;
+}
+
+.fit-guide-container #prev-btn .link:hover{
+    color: #333;
+    background: url(../images/black-prev-next-arrows.png) no-repeat 0 3px;
+}
+
+.fit-guide-container #next-btn .link:hover{
+    color: #333;
+    background: url(../images/black-prev-next-arrows.png) no-repeat 103% -22px;
+}
+
+#next-btn img,
+#prev-btn img{
+    max-width: 100%;
+    height: auto;
+}
+
+#next-btn .link,
+#prev-btn .link{
+    font: 700 14px 'Open Sans', Arial, sans-serif;
+    color: #ccc;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#prev-btn .link{
+    padding: 0 0 0 19px;
+    background: url(../images/prev-arrow.gif) no-repeat 0 5px;    
+}
+
+#next-btn .link{
+    padding: 0 19px 0 0;
+    text-align: right;
+    background: url(../images/next-arrow.gif) no-repeat 100% 5px;    
+}
+
+@media screen and (max-width:1500px){
+    .fit-guide-container .item .left-image{
+        left: 4%;
+    }
+    .fit-guide-container .item .right-image{
+        right: 4%;
+    }
+    .fit-guide-container #prev-btn,
+    .fit-guide-container #next-btn{
+        display: none;
+    }
+}
+
+@media screen and (max-width:1124px){
+    .fit-guide-container .item-text-container{
+        top: 160px;
+    }
+    .fit-guide-container .center-container{
+        top: 5%;
+    }
+}
+
 
 /*========== style reset ===============================*/
 
