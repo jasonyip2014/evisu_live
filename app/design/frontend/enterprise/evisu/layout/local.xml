@@ -18,6 +18,55 @@
             <action method="addItem"><type>skin_css</type><name>css/jquery.arcticmodal-0.3.css</name></action>
         </reference>
 
+        <!--remove trash-->
+
+        <reference name="topCart.extra_actions">
+            <remove name="paypal.partner.top_cart.shortcut" />
+            <remove name="paypaluk.partner.top_cart.shortcut" />
+        </reference>
+        <reference name="cart_sidebar.extra_actions">
+            <remove name="paypal.partner.cart_sidebar.shortcut" />
+            <remove name="paypaluk.partner.cart_sidebar.shortcut" />
+        </reference>
+        <reference name="right">
+            <remove name="right.reports.product.viewed" />
+            <remove name="right.permanent.callout" />
+            <remove name="right.reports.product.compared" />
+            <remove name="catalog.compare.sidebar" />
+            <remove name="paypal.partner.right.logo" />
+            <remove name="sagepaysuite.right.logo" />
+            <remove name="right.poll" />
+            <remove name="wishlist_sidebar" />
+            <remove name="cart_sidebar" />
+            <remove name="sale.reorder.sidebar" />
+        </reference>
+        <reference name="left">
+            <remove name="tags_popular"/>
+        </reference>
+        <remove name="head_rss" />
+        <reference name="before_body_end">
+            <remove name="wishlist_behaviour" />
+        </reference>
+        <reference name="header">
+            <remove name="account.links" />
+            <remove name="checkout.links" />
+            <remove name="wishlist_link"/>
+            <remove name="welcome" />
+            <remove name="header.callout" />
+            <action method="unsetChild"><alias>topSearch</alias></action>
+            <!-- <remove name="top.search" />-->
+            <!--<block type="page/switch" name="store_switcher" as="store_switcher" after="-" template="storeswitcher/country-switcher.phtml"/>-->
+        </reference>
+        <!--end remove trash-->
+
+
+        <!--Experiment-->
+        <!--<remove name="header" />-->
+       <!-- <reference name="left">
+            <remove name="currency" />
+        </reference>-->
+
+
         <reference name="top.links">
             <action method="addLink" translate="label title" module="customer"><label>Sign Up</label><url helper="customer/getRegisterUrl" /><title>Sign Up</title><prepare/><urlParams/><position>1</position></action>
         </reference>
@@ -29,15 +78,7 @@
                 <action method="insert"><name>top.search</name><sibling/><after>1</after><alias>topSearch</alias></action>
             </block>
         </reference>
-        <reference name="header">
-            <remove name="account.links" />
-            <remove name="checkout.links" />
-            <remove name="wishlist_link"/>
-            <remove name="welcome" />
-            <action method="unsetChild"><alias>topSearch</alias></action>
-            <!-- <remove name="top.search" />-->
-            <!--<block type="page/switch" name="store_switcher" as="store_switcher" after="-" template="storeswitcher/country-switcher.phtml"/>-->
-        </reference>
+
         <reference name="footer">
             <remove name="footer_links" />
             <remove name="store_switcher" />
