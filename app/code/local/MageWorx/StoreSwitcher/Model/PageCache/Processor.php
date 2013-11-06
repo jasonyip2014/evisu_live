@@ -24,7 +24,7 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 
-class MageWorx_StoreSwitcher_Model_PageCache_Processor extends MageWorx_StoreSwitcher_Model_PageCache_Processor_Abstract // Enterprise_PageCache_Model_Processor
+class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCache_Model_Processor // Enterprise_PageCache_Model_Processor
 {
     /**
      * Load geoip modules
@@ -106,6 +106,7 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends MageWorx_StoreSwi
      *
      * @return Enterprise_PageCache_Model_Processor
      */
+
     protected function _createRequestIds()
     {
         $this->_loadGeoipModules();
@@ -120,9 +121,11 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends MageWorx_StoreSwi
         }
 
         $geoipStore = Mage::helper('mwgeoip')->getCookie('geoip_store_code');
+
         if (!$geoipStore) {
             $this->_requestCacheId = false;
             $this->_requestId = false;
+            var_dump($geoipStore);
             return $this;
         }
 
