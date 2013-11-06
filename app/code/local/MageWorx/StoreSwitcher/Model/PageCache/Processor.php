@@ -126,11 +126,11 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         if ($cookie = $hlCookie->get('geoip_store_code')) {
             $geoipStore = $cookie;
         }
-
+        var_dump($geoipStore);
         if (!$geoipStore) {
             $this->_requestCacheId = false;
             $this->_requestId = false;
-            return $this;
+            //return $this;
         }
 
         if ($this->_getForceStoreView()) {
