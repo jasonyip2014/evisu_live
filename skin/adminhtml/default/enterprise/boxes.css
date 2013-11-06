@@ -444,7 +444,7 @@ button { -webkit-border-fit:lines; } /* <- Safari & Google Chrome Fix */
 button,
 .form-button { height: 22px; border: none; padding:1px 7px 2px 7px; background:#333 ; color:#fff; font:bold 12px arial, helvetica, sans-serif; cursor:pointer; text-align:center !important; white-space:nowrap; }
 button:hover                    { background:#ccc; }
-button:active                   { background:#f77c16 url(images/btn_on_bg.gif) repeat-x 0 0; }
+button:active                   { background:#ccc; }
 button span                     { line-height:1.35em; background-repeat:no-repeat; background-position:0 50%; }
 button span span                { background:none !important; padding:0 !important; margin:0 !important; display:inline !important; }
 button.delete,
@@ -465,13 +465,13 @@ button.back { border-color:#ccc #aaa #aaa #ccc; background-color:#fff; backgroun
 button.back span { background-image:url(images/icon_btn_back.gif); }
 button.fail,
 button.cancel,
-button.delete { border-color:#d24403 #a92000 #a92000 #d24403; background-image:url(images/cancel_btn_bg.gif); background-color:#fcaf81; color:#fff; }
+button.delete { background-color:#333; color:#fff; }
 button.fail:hover,
 button.cancel:hover,
-button.delete:hover { background-image:url(images/cancel_btn_over_bg.gif); }
+button.delete:hover { background:#ccc; }
 button.fail:active,
 button.cancel:active,
-button.delete:active { background-image:url(images/cancel_btn_active_bg.gif); background-color:#e0612f; }
+button.delete:active { background:#ccc; }
 button.cancel span,
 button.delete span { background-image:url(images/cancel_btn_icon.gif); }
 button.add span { background-image:url(images/add_btn_icon.gif); }

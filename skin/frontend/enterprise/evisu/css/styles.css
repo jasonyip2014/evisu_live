@@ -4096,7 +4096,7 @@ position: absolute;
     vertical-align: top;
 }
 
-.store-locator-page-wrapper .search-form .search-btn{
+.store-locator-page-wrapper .search-form .sl-search-btn{
     padding: 0;
     border: none;
     background: url(../images/btn-search-big.png) no-repeat 0 0;
@@ -5154,4 +5154,53 @@ height: auto;
 position: static;
 z-index: 0;
 opacity: 1;
+}
+
+/*================ about us ===================================================*/
+
+.about-us-page-wrapper{
+    position: relative;
+    color: #333;
+}
+
+.about-us-background-image{
+    position: absolute;
+    right: 0px;
+    z-index: -1;
+    top: -212px;
+}
+
+.about-us .page-title{
+    font: 700 48px 'Open Sans', Arial, sans-serif;
+    color: #333;
+}
+
+.about-us .page-title,
+.about-us .cmsadvanced-breadcrumbs-container{
+    padding: 0 0 0 10.7291666667%;
+}
+
+.about-us .breadcrumbs-container:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.about-us-page-wrapper > h1{
+    font: 700 48px 'Open Sans', Arial, sans-serif;
+    padding: 0 0 0 7.96875%;
+    width: 740px;
+}
+
+.about-us-page-content{
+    font: 12px Courier, Arial, Helveticam, sans-serif;
+    padding: 0 0 0 10.7291666667%;
+}
+
+.about-us-page-content .column-1,
+.about-us-page-content .column-2{
+    width: 343px;
+    text-align: justify;
+    display: inline-block;
+    vertical-align: top;
 }
