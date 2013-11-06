@@ -23,7 +23,7 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 
-.nav-bar { border-top:1px solid #2d444f; border-bottom:1px solid #2d444f; background:url(images/nav1_bg.gif) repeat-x 0 100% #666e73; padding:0 30px;  }
+.nav-bar { border-top:1px solid #2d444f; border-bottom:1px solid #2d444f; background: #333; padding:0 30px;  }
 
 #nav { float:left; }
 
@@ -39,10 +39,10 @@
 
 /************ 1ST LEVEL  ***************/
 #nav li { float:left; background:url(images/nav1_sep.gif) no-repeat 100% 0;  }
-#nav li.active { margin-left:-1px; background:url(images/nav1_active.gif) no-repeat; color:#fff; font-weight:bold;  }
+#nav li.active, #nav li:hover { background: #ccc; color:#fff; font-weight:bold;  }
 #nav li.active em { display:block; position:absolute; top:0; right:-1px; width:3px; height:27px; background:url(images/nav1_active.gif) no-repeat 100% 0; }
-#nav a { float:left; padding:0 14px; color:#fff; line-height:27px; }
-#nav li.over a { color:#d6e2e5; }
+#nav a { float:left; padding:0 14px; color:#fff; line-height:27px; font: 700 12px/28px 'Open Sans', Helvetica, sans-serif; text-transform: uppercase; }
+#nav li.over a { color:#fff; }
 
 
 /************ 1ST LEVEL RESET ************/

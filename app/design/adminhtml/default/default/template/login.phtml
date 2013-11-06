@@ -63,10 +63,12 @@
                     <?php echo $this->getChildHtml('form.additional.info'); ?>
                     <div class="clear"></div>
                     <div class="form-buttons">
-                        <a class="left" href="<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/index/forgotpassword', array('_nosecret' => true)) ?>"><?php echo Mage::helper('adminhtml')->__('Forgot your password?') ?></a>
-                        <input type="submit" class="form-button" value="<?php echo Mage::helper('adminhtml')->__('Login') ?>" title="<?php echo Mage::helper('adminhtml')->__('Login') ?>" /></div>
+                        <a class="login-forgot left" href="<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/index/forgotpassword', array('_nosecret' => true)) ?>"><?php echo Mage::helper('adminhtml')->__('Forgot your password?') ?></a>
+                        <input type="submit" class="login-btn form-button" value="<?php echo Mage::helper('adminhtml')->__('Login') ?>" title="<?php echo Mage::helper('adminhtml')->__('Login') ?>" /></div>
                 </div>
+                <?php /*
                 <p class="legal"><?php echo Mage::helper('adminhtml')->__('Magento is a trademark of Magento Inc. Copyright &copy; %s Magento Inc.', date('Y')) ?></p>
+                */?>
             </form>
             <div class="bottom"></div>
             <script type="text/javascript">

@@ -126,7 +126,7 @@
 
 /* Grid - General */
 .grid                           { border-bottom:0; padding-bottom:.5em; }
-.grid table                     { width:100%; border:1px solid #cbd3d4; border-bottom:none; }
+.grid table                     { width:100%; border:1px solid #cbd3d4; border-bottom:none; font-size: 1em; }
 .grid table.border              { border:1px solid #cbd3d4; }
 .grid tbody                     { background:#fff; }    /* Zebra odd-row */
 .grid tr.even, .grid tr.even tr { background:#f6f6f6; } /* Zebra even-row */
@@ -166,20 +166,20 @@ table.actions td                { vertical-align:top; }
 
 
 /* Grid - Headings */
-.grid tr.headings { background:url(images/sort_row_bg.gif) 0 50% repeat-x; }
+.grid tr.headings { background:#ccc; }
 .grid tr.headings th { border-width:1px; border-color:#f9f9f9 #d1cfcf #f9f9f9 #f9f9f9; border-style:solid; padding-top:1px; padding-bottom:0; font-size:.9em; }
 .grid tr.headings th.last { border-right:0; }
 .grid tr.headings th.no-link { /* Grid th with no sorting functionality */ padding-top:2px; padding-bottom:1px; color:#67767e; }
 .grid tr.headings th span.nobr { display:block; /* FF3 fix */ }
-.grid tr.headings th a { display:block; padding:2px 4px 1px 0; color:#2d444f; text-decoration:none; }
-.grid tr.headings th a:hover { color:#d85909; text-decoration:none; }
+.grid tr.headings th a { display:block; padding:2px 4px 1px 0; color:#fff; text-decoration:none; text-transform: uppercase; }
+.grid tr.headings th a:hover { color:#fff; text-decoration:none; }
 .grid tr.headings th a.sort-arrow-desc,
-.grid tr.headings th a.sort-arrow-asc { background:url(images/sort_on_bg.gif) 0 0 no-repeat; border-bottom:1px solid #fff; border-right:1px solid #fff; padding-bottom:2px; }
+.grid tr.headings th a.sort-arrow-asc { background:#333; border-bottom:1px solid #fff; border-right:1px solid #fff; padding-bottom:2px; }
 .grid tr.headings th span.sort-title { display:block; padding:3px 12px 4px 0; line-height:1; }
 .grid tr.headings th a.sort-arrow-desc span.sort-title,
 .grid tr.headings th a.sort-arrow-asc span.sort-title { background-position:right 50%; background-repeat:no-repeat; padding:3px 12px 2px 8px; }
 .grid tr.headings th a.sort-arrow-desc span.sort-title { background-image:url(images/grid_sort_desc.gif); }
-.grid tr.headings th a.sort-arrow-asc span.sort-title { background-image:url(images/grid_sort_asc.gif); }
+.grid tr.headings th a.sort-arrow-asc span.sort-title { background:#333; }
 
 
 /* Grid - Mass Action */
@@ -235,7 +235,7 @@ tr.dynamic-grid input.input-text { width:154px; }
 *******************************************************************************/
 dl.accordion .grid      { margin-bottom:0; }
 dl.accordion dt,
-.entry-edit .entry-edit-head { background:#6f8992; padding:2px 10px; }
+.entry-edit .entry-edit-head { background:#333; padding:2px 10px; }
 dl.accordion dt, div.collapseable { margin-top:1px; }
 dl.accordion dt a, div.collapseable a { background:url(images/entry_edit_head_arrow_down.gif) 100% 50% no-repeat; color:#fff; display:block; font-weight:bold; text-decoration:none; }
 div.disabled { background:#c6cbc9 !important; }
@@ -276,7 +276,7 @@ ul.tabs a.changed               { font-style:italic; }
 /* Horizontal Tabs */
 ul.tabs-horiz                   { margin:0 0 18px 0; background:url(images/horiz_tabs_ul_bg.gif) repeat-x 0 100% #f8f8f8; padding:8px 0 0 5px; }
 ul.tabs-horiz li                { float:left; margin:0 4px; }
-ul.tabs-horiz li a              { display:block; background:#e2e2e2; border:1px solid #ccc; padding:2px 10px; color:#333 !important; text-decoration:none !important; }
+ul.tabs-horiz li a              { font-size: 1em; display:block; background:#e2e2e2; border:1px solid #ccc; padding:2px 10px; color:#333 !important; text-decoration:none !important; }
 ul.tabs-horiz li a.notloaded    { /* not used for now */ }
 ul.tabs-horiz li a.active       { border-bottom:1px solid #fff; background:#fff; }
 
@@ -341,7 +341,7 @@ table.form-edit                         { width:100%; }
 .box,
 .entry-edit fieldset,
 .entry-edit .fieldset                   { padding:10px 15px; margin-bottom:15px; }
-.entry-edit .entry-edit-head h4         { float:left; padding:0; background:none; margin:0; color:#fff; font-size:1em; line-height:18px; min-height:0; }
+.entry-edit .entry-edit-head h4         { float:left; padding:0; background:none; margin:0; color:#fff; font-size:0.8em; line-height:18px; min-height:0; text-transform: uppercase; }
 .entry-edit .entry-edit-head .tools     { float:right;}
 .entry-edit .entry-edit-head strong,
 .entry-edit .entry-edit-head a          { color:#fff; font-size:1em; line-height:18px; min-height:0; font-weight:bold}
@@ -360,7 +360,7 @@ label.inline                            { float:none !important; width:auto !imp
 #coupon_container .entry-edit { min-width:310px; }
 
 /* Form Elements */
-input.input-text,textarea,select { border-width:1px; border-style:solid; border-color:#aaa #c8c8c8 #c8c8c8 #aaa; background:#fff; font:12px arial, helvetica, sans-serif; }
+input.input-text,textarea,select { border-width:1px; border-style:solid; border-color:#aaa #c8c8c8 #c8c8c8 #aaa; background:#fff; color: #333; font:12px Courier, arial, helvetica, sans-serif; }
 select { min-height:17px; /* to set the height for empty selects */ }
 input.input-text,textarea       { padding:2px; }
 input.qty                       { width:40px !important; }
@@ -442,8 +442,8 @@ span.delete-file                { padding:0; }
 button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
 button { -webkit-border-fit:lines; } /* <- Safari & Google Chrome Fix */
 button,
-.form-button { border-width:1px; border-style:solid; border-color:#ed6502 #a04300 #a04300 #ed6502; padding:1px 7px 2px 7px; background:#ffac47 url(images/btn_bg.gif) repeat-x 0 100%; color:#fff; font:bold 12px arial, helvetica, sans-serif; cursor:pointer; text-align:center !important; white-space:nowrap; }
-button:hover                    { background:#f77c16 url(images/btn_over_bg.gif) repeat-x 0 0; }
+.form-button { height: 22px; border: none; padding:1px 7px 2px 7px; background:#333 ; color:#fff; font:bold 12px arial, helvetica, sans-serif; cursor:pointer; text-align:center !important; white-space:nowrap; }
+button:hover                    { background:#ccc; }
 button:active                   { background:#f77c16 url(images/btn_on_bg.gif) repeat-x 0 0; }
 button span                     { line-height:1.35em; background-repeat:no-repeat; background-position:0 50%; }
 button span span                { background:none !important; padding:0 !important; margin:0 !important; display:inline !important; }
@@ -503,7 +503,7 @@ button.icon-btn span { text-indent:-999em; display:block; width:16px; padding:0;
 
 /* SWITCHER
 *******************************************************************************/
-.switcher { margin-bottom:10px; border:1px solid #cddddd; background:#e7efef; padding:10px; }
+.switcher { margin-bottom:10px; border:1px solid #cddddd; background:#ccc; padding:10px; }
 .side-col .switcher { padding-right:26px; }
 .side-col .switcher label { display:block; }
 .side-col .switcher .link-store-scope { float:right; margin-right:-19px; margin-left:3px; }
@@ -582,7 +582,7 @@ td.divider              { font-size:1px; line-height:0; }
 *******************************************************************************/
 .wrapper { min-width:960px; }
 .wrapper-popup { min-width:750px; }
-.header { background:url(images/header_top_bg.gif) repeat-x #425e66; text-align:right; }
+.header { background:#fff; text-align:right; }
 .middle { min-height:450px; background:url(images/simple_container_bg.gif) repeat-x #fff; padding:23px 27px 0 27px; }
 .middle-popup { border-bottom:3px solid #fff; background:url(images/middle_bg.gif) repeat-x 0 100% #fff; padding:0 0 0 0; background:yellow; }
 .container-collapsed { padding:1.8em 2.2em 1.8em 2em; padding-top:0; }
@@ -605,20 +605,24 @@ div.main-col-inner { float:left; /* Fixes some inner clears in the liquid main-c
 /* HEADER & FOOTER
 *******************************************************************************/
 
-.logo                                   { float:left; margin:10px 20px 11px 27px; height:32px; }
+.logo                                   { float:left; margin:13px 20px 0px 27px; }
 .header-top                             { border-bottom:1px solid #5F767F; }
 
 /* Header right */
-.header-right                           { padding:10px 25px 0 15px; font-size:.95em; color:#fff; }
-.header-right a, .header-right a:hover  { color:#fcce77; }
+.header-right                           { padding:0px 25px 0 15px; font-size:.95em; color:#fff;}
+.header-right a                         { color:#333; font: 700 12px 'Open Sans', Helvetica, sans-serif; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid #333; }
+.header-right a:hover                   { border: none; }
 .header-right .separator                { color:#999; }
-.header-right fieldset                  { display:inline; padding-left:10px; }
+.header-right fieldset                  { display:inline; padding-left:10px; margin: 30px 0 0;}
 .header-right fieldset input.input-text { width:18em; }
 .header-right .super {
     float:right;
     line-height:1.8em;
-    margin-bottom:14px;
+    margin-bottom:0px;
     margin-left:1.3em;
+    color: #333;
+    font-family: Courier; 
+    line-height: 77px;
     }
 
 /* Search autocomplete */
@@ -658,7 +662,7 @@ div.autocomplete ul li { padding:.5em .7em; min-height:32px; cursor:pointer; tex
     padding-bottom:.25em;
     }
 .content-header table           { width:100%; }
-.content-header h3              { float:left; margin:.3em .5em 0 0; color:#eb5e00; font-size:1.25em; line-height:1.2em; }
+.content-header h3              { float:left; margin:.3em .5em 0 0; color:#333; line-height:1.2em; font: 700 2em 'Open Sans', Helvetica, sans-serif;}
 .content-header .head h3        { float:none; }
 .content-header .button-set     { white-space:nowrap; text-align:right; }
 .content-header .content-buttons  { white-space:nowrap!important; margin:0; }
@@ -736,8 +740,8 @@ div.autocomplete ul li { padding:.5em .7em; min-height:32px; cursor:pointer; tex
 /* LOGIN
 *******************************************************************************/
 #page-login                             { background:#f8f8f8; text-align:center; }
-.login-container                        { width:581px; margin:170px auto; padding-left:32px; background:url(images/login_logo.gif) no-repeat; }
-.login-form                             { padding:27px 57px 35px 57px; background:url(images/login_box_bg.jpg) no-repeat; text-align:left; }
+.login-container                        { width:581px; margin:170px auto; padding: 60px 0 0; background:url(images/logo2.png) no-repeat; }
+.login-form                             { padding:27px 57px 35px 57px; background:url(images/main-bg.jpg) no-repeat; text-align:left; }
 .login-form .input-left                 { float:left; }
 .login-form .input-right                { float:right; }
 .login-form .input-box input.input-text { width:224px; }
@@ -753,6 +757,10 @@ div.autocomplete ul li { padding:.5em .7em; min-height:32px; cursor:pointer; tex
 .login-form .captcha-image img          { vertical-align:bottom; }
 .login-form .captcha-reload             { cursor:pointer; position: absolute; top:2px; right:2px; }
 .login-form .captcha-reload.refreshing  { animation:rotate 1.5s infinite linear; -webkit-animation:rotate 1.5s infinite linear; -moz-animation:rotate 1.5s infinite linear; }
+.login-btn                              { background: #333; text-transform: uppercase; border: none; width: 100px; height: 26px;}
+.login-btn:hover                        { background: #ccc; }
+.login-forgot                           { font: 14px Courier, Helvetica, sans-serif; color: #333; }
+.login-forgot:hover                     { text-decoration: none; color: #333; }
 
 @-webkit-keyframes rotate {
     0% { -webkit-transform:rotate(0); }

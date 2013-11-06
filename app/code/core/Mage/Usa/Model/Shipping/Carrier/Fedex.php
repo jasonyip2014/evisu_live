@@ -627,6 +627,7 @@ class Mage_Usa_Model_Shipping_Carrier_Fedex
         $request = $xml->asXML();
 
         $responseBody = $this->_getCachedQuotes($request);
+        Mage::log($responseBody);
         if ($responseBody === null) {
             $debugData = array('request' => $request);
             try {
@@ -641,6 +642,8 @@ class Mage_Usa_Model_Shipping_Carrier_Fedex
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
                 $responseBody = curl_exec($ch);
+                Mage::log($responseBody, true, 'fedEx.log');
+
                 curl_close ($ch);
 
                 $debugData['result'] = $responseBody;
@@ -651,6 +654,7 @@ class Mage_Usa_Model_Shipping_Carrier_Fedex
                 $responseBody = '';
             }
             $this->_debug($debugData);
+            Mage::log($debugData, true, 'fedExData.log');
         }
         return $this->_parseXmlResponse($responseBody);
     }
