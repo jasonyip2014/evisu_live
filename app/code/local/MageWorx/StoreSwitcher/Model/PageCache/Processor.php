@@ -121,22 +121,7 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         }
 
         $geoipStore = Mage::helper('mwgeoip')->getCookie('geoip_store_code');
-
-        $currStore = 'asia';
-        $uri = $this->_getFullPageUrl();
-        $code =  explode('/', $uri);
-        if(count($code) > 1)
-        {
-            $stores = Mage::getModel('core/store')->getCollection();
-            foreach($stores as $store){
-               if($store->getCode() == $code[1])
-               {
-                   $currStore = $code[1];
-               }
-            }
-        }
-        //var_dump($currStore);
-        if (!$geoipStore || $geoipStore != $currStore) {
+        if (!$geoipStore) {
             $this->_requestCacheId = false;
             $this->_requestId = false;
             return $this;
@@ -145,7 +130,6 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         if ($this->_getForceStoreView()) {
             Mage::helper('mwgeoip')->setCookie('store', $geoipStore, false);
         }
-
         if (isset($_COOKIE['currency_code'])) {
             Mage::helper('mwgeoip')->setCookie('currency', base64_decode($_COOKIE['currency_code']), false);
         }
