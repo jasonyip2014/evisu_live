@@ -177,10 +177,11 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         var_dump('set Cookie');
         $stores = Mage::getModel('core/store')->getCollection();
         foreach($stores as $store){
-            $urlParse = parse_url($store->getBaseUrl());
-            $path = rtrim(str_replace('index.php', '', $urlParse['path']), '/');
-
-//            $cookie->setLifetime($lifetime);
+            $path = '/';
+            if($store->getCode() != 'asia')
+            {
+                $path .= $store->getCode() . '/';
+            }
             $cookie->set($key, $value, true, $path);
             var_dump('set Cookie Store' . $value);
         }
