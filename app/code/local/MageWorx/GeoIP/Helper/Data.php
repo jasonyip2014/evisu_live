@@ -151,13 +151,23 @@ class MageWorx_GeoIP_Helper_Data extends Mage_Core_Helper_Abstract
             $value = base64_encode($value);
         }
 
-        foreach(Mage::app()->getStores() as $store){
+       /* foreach(Mage::app()->getStores() as $store){
             $urlParse = parse_url($store->getBaseUrl());
             $path = rtrim(str_replace('index.php', '', $urlParse['path']), '/');
 
 //            $cookie->setLifetime($lifetime);
             $cookie->set($key, $value, true, $path);
-        }
+        }*/
+
+        //RonisBT fix for smoothly store force
+        //foreach(Mage::app()->getStores() as $store){
+            $urlParse = parse_url(Mage::app()->getStore()->getBaseUrl());
+            $path = rtrim(str_replace('index.php', '', $urlParse['path']), '/');
+
+//            $cookie->setLifetime($lifetime);
+            $cookie->set($key, $value, true, $path);
+        //}
+
 
         return true;
     }
