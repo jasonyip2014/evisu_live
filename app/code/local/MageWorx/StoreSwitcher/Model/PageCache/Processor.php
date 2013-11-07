@@ -109,7 +109,7 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
 
     protected function _createRequestIds()
     {
-        /*$this->_loadGeoipModules();
+        $this->_loadGeoipModules();
 
         if (!Mage::helper('mwgeoip')
             || !Mage::helper('mwgeoip')->isModuleEnabled()
@@ -118,14 +118,9 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
             || !$this->_getConfigValue(MageWorx_StoreSwitcher_Helper_Data::XML_GEOIP_ENABLE_STORE_SWITCHER)
         ) {
             return parent::_createRequestIds();
-        }*/
-
-        //$geoipStore = Mage::helper('mwgeoip')->getCookie('geoip_store_code');
-        $geoipStore = null;
-        $hlCookie = Mage::getModel('core/cookie');
-        if ($cookie = $hlCookie->get('geoip_store_code')) {
-            $geoipStore = $cookie;
         }
+
+        $geoipStore = Mage::helper('mwgeoip')->getCookie('geoip_store_code');
         if (!$geoipStore) {
             $this->_requestCacheId = false;
             $this->_requestId = false;
@@ -133,24 +128,13 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         }
 
         if ($this->_getForceStoreView()) {
-            $this->setCookie('store', $geoipStore);
+            Mage::helper('mwgeoip')->setCookie('store', $geoipStore, false);
         }
         if (isset($_COOKIE['currency_code'])) {
-            $this->setCookie('currency', base64_decode($_COOKIE['currency_code']));
+            Mage::helper('mwgeoip')->setCookie('currency', base64_decode($_COOKIE['currency_code']), false);
         }
 
         return parent::_createRequestIds();
-    }
-
-    private function setCookie($key, $value)
-    {
-        $cookie = Mage::getModel('core/cookie');
-        foreach(Mage::app()->getStores() as $store){
-            $urlParse = parse_url($store->getBaseUrl());
-            $path = rtrim(str_replace('index.php', '', $urlParse['path']), '/');
-            $cookie->set($key, $value, true, $path);
-        }
-        return true;
     }
 
     public function extractContent($content)

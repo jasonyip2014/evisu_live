@@ -37,7 +37,6 @@
             <remove name="sagepaysuite.right.logo" />
             <remove name="right.poll" />
             <remove name="wishlist_sidebar" />
-            <remove name="cart_sidebar" />
             <remove name="sale.reorder.sidebar" />
         </reference>
         <reference name="left">
