@@ -148,6 +148,7 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         {
             var_dump('bad-store');
             Mage::helper('mwgeoip')->setCookie('geoip_store_code', '', false);
+            Mage::helper('mwgeoip')->setCookie('store', $currStore, false);
             $this->_requestCacheId = false;
             $this->_requestId = false;
             return $this;
