@@ -364,7 +364,7 @@
     left:5%;
     position:absolute;
     top:0;
-    z-index:2;
+    z-index:3;
 }
 .section-holder-3 .section-description{
     width:264px;
@@ -630,10 +630,11 @@
 .section-holder-3 .newsBlock{
     left:2%;
     bottom:0;
+    z-index: 2;
 }
 
 /* Media Queries */
-@media screen and (max-width:1500px){
+@media screen and (max-width:1590px){
 	.section-holder-2{
 		height:1800px;
 	}
@@ -742,6 +743,7 @@
     .section-holder-3 .home_page_section3_small_box{
         left:2%;
         margin-top: -98px;
+        width: 150px;
     }
     .section-holder-3 .home_page_section3_blog_panel.block-5{
         left:21%;
