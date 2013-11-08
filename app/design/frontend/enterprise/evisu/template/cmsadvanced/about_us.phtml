@@ -1,6 +1,14 @@
 <?php
     /* @var $this RonisBT_Cms_Block_Page */
 ?>
+<?php
+    $backgroundImageWidth = 1250;
+    $backgroundImageHeight = 1315;
+
+    $blockImageWidth = 230;
+    $blockImageHeight = 170;
+?>
+
 <div class="page-title">
     <h1><?php echo $this->stripTags($this->getName()) ?></h1>
 </div>
@@ -10,7 +18,7 @@
 <div class="about-us-page-wrapper">
     <div class="about-us-background-image">
         <div class="image-holder">
-            <img width="600" height="900" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getAboutUsImage()), 'cms_page')->resize(600, 900) ?>" alt="Evisu. About Us" />
+            <img width="<?php echo $backgroundImageWidth ?>" height="<?php echo $backgroundImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getAboutUsImage()), 'cms_page')->resize($backgroundImageWidth, $backgroundImageHeight) ?>" alt="Evisu. About Us" />
         </div>
     </div>
     <h1><?php echo $this->stripTags($this->getAboutUsTitle()) ?></h1>
@@ -19,22 +27,28 @@
         <div class="column-2"><?php echo $this->getAboutUsColumn2Text() ?></div>
     </div>
     <div class="contacts-page-blocks">
-        <div class="block1">
+        <div class="block1 cu-block">
             <a href="<?php echo $this->stripTags($this->getBlock1TargetUrl()) ?>" title="<?php echo $this->stripTags($this->getBlock1Link()) ?>">
-                <img width="200" height="100" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock1Image()), 'cms_page')->resize(200, 100) ?>" alt="<?php echo $this->stripTags($this->getBlock1Link()) ?>" />
+                <img width="<?php echo $blockImageWidth ?>" height="<?php echo $blockImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock1Image()), 'cms_page')->resize($blockImageWidth, $blockImageHeight) ?>" alt="<?php echo $this->stripTags($this->getBlock1Link()) ?>" />
                 <?php echo $this->stripTags($this->getBlock1Link()) ?>
             </a>
         </div>
-        <div class="block2">
+        <div class="block2 cu-block">
             <a href="<?php echo $this->stripTags($this->getBlock2TargetUrl()) ?>" title="<?php echo $this->stripTags($this->getBlock2Link()) ?>">
-                <img width="200" height="100" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock2Image()), 'cms_page')->resize(200, 100) ?>" alt="<?php echo $this->stripTags($this->getBlock2Link()) ?>" />
+                <img width="<?php echo $blockImageWidth ?>" height="<?php echo $blockImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock2Image()), 'cms_page')->resize($blockImageWidth, $blockImageHeight) ?>" alt="<?php echo $this->stripTags($this->getBlock2Link()) ?>" />
                 <?php echo $this->stripTags($this->getBlock2Link()) ?>
             </a>
         </div>
-        <div class="block3">
+        <div class="block3 cu-block">
             <a href="<?php echo $this->stripTags($this->getBlock3TargetUrl()) ?>" title="<?php echo $this->stripTags($this->getBlock3Link()) ?>">
-                <img width="200" height="100" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock3Image()), 'cms_page')->resize(200, 100) ?>" alt="<?php echo $this->stripTags($this->getBlock3Link()) ?>" />
+                <img width="<?php echo $blockImageWidth ?>" height="<?php echo $blockImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock3Image()), 'cms_page')->resize($blockImageWidth, $blockImageHeight) ?>" alt="<?php echo $this->stripTags($this->getBlock3Link()) ?>" />
                 <?php echo $this->stripTags($this->getBlock3Link()) ?>
+            </a>
+        </div>
+        <div class="block4 cu-block">
+            <a href="<?php echo $this->stripTags($this->getBlock4TargetUrl()) ?>" title="<?php echo $this->stripTags($this->getBlock4Link()) ?>">
+                <img width="<?php echo $blockImageWidth ?>" height="<?php echo $blockImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getBlock4Image()), 'cms_page')->resize($blockImageWidth, $blockImageHeight) ?>" alt="<?php echo $this->stripTags($this->getBlock4Link()) ?>" />
+                <?php echo $this->stripTags($this->getBlock4Link()) ?>
             </a>
         </div>
     </div>

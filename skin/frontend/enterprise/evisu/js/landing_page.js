@@ -104,10 +104,10 @@ jQuery(function($){
 
     // =============== quick navigation buttons behavior ================
     jQuery('.explore-more-btn').on('click', function(){
-        jQuery('html,body').stop(true, false).animate({scrollTop : '+=' + jQuery(window).height()},'slow');
+        jQuery('html,body').stop(true, false).animate({scrollTop : '+=' + jQuery(window).height()},3000);
     });
     jQuery('.back-btn').on('click', function(){
-        jQuery('html,body').stop(true, false).animate({scrollTop : '-=' + jQuery(window).height()},'slow');
+        jQuery('html,body').stop(true, false).animate({scrollTop : '-=' + jQuery(window).height()},3000);
     });
 
     $(window).load(function(){

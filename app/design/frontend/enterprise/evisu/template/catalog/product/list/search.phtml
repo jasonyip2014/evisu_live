@@ -52,7 +52,7 @@
                 <li>
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName()) ?>">
                         <span class="image-holder">
-                            <img width="100" height="200" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(100,200); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                            <img width="160" height="280" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(160,280); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                         </span>
                         <?php
                         $category = $_product->getCategoryCollection()->addAttributeToSelect('name')->addFilter('level', 3)->getFirstItem() ?>
@@ -62,7 +62,7 @@
                         </span>
                     </a>
                 </li>
-                <?php if($i == 6) break; ?>
+                <?php if($i >= 5) break; ?>
             <?php $i++; endForeach; ?>
         </ul>
     <?php endif; ?>

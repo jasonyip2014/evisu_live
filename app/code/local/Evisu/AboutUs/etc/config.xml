@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_AboutUs>
-            <version>0.1.1</version>
+            <version>0.1.4</version>
         </Evisu_AboutUs>
     </modules>
     <global>
@@ -43,7 +43,7 @@
                                 <label>Main Image</label>
                                 <required>1</required>
                                 <template>image</template>
-                                <note>resolution 900x600</note>
+                                <note>resolution 1089x1275</note>
                             </about_us_image>
                             <about_us_title>
                                 <label>Page Title</label>
@@ -80,7 +80,7 @@
                             <block1_image>
                                 <label>1st Block Image</label>
                                 <template>image</template>
-                                <note>resolution 200x100</note>
+                                <note>resolution 230x170</note>
                             </block1_image>
                             <block2_link>
                                 <label>2st Block Link</label>
@@ -95,7 +95,7 @@
                             <block2_image>
                                 <label>2nd Block Image</label>
                                 <template>image</template>
-                                <note>resolution 200x100</note>
+                                <note>resolution 230x170</note>
                             </block2_image>
                             <block3_link>
                                 <label>3rd Block Link</label>
@@ -110,8 +110,23 @@
                             <block3_image>
                                 <label>3rd Block Image</label>
                                 <template>image</template>
-                                <note>resolution 200x100</note>
+                                <note>resolution 230x170</note>
                             </block3_image>
+                            <block4_link>
+                                <label>4th Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block4_link>
+                            <block4_target_url>
+                                <label>4rd Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </block4_target_url>
+                            <block4_image>
+                                <label>4rd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 230x170</note>
+                            </block4_image>
                         </attributes>
                     </blocks_data>
                 </groups>

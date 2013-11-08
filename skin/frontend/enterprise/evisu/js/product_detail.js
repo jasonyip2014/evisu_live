@@ -233,10 +233,14 @@ jQuery(window).resize(function(){
     //full size image resize
     FullSizeImage.resize();
     //jZoom resize
-    if(FullSizeImage.fullSize)
-    {
+    //if(FullSizeImage.fullSize)
+    //{
         jQuery('.mousetrap').width(FullSizeImage.container.width()).height(FullSizeImage.container.height());
-    }
+    //}
     //tabs resize
-    jQuery('.product-collateral').height(jQuery('.tab-container').height() + 40);
+    jQuery('.product-collateral').height(jQuery('.tab-container').height() + 60);
+});
+
+jQuery(window).load(function(){
+    jQuery('.product-collateral').height(jQuery('.tab-container').height() + 60);
 });
