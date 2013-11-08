@@ -24,7 +24,7 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 
-class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCache_Model_Processor // Enterprise_PageCache_Model_Processor
+class MageWorx_StoreSwitcher_Model_PageCache_Processor extends MageWorx_StoreSwitcher_Model_PageCache_Processor_Abstract // Enterprise_PageCache_Model_Processor
 {
     /**
      * Load geoip modules
@@ -106,7 +106,6 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
      *
      * @return Enterprise_PageCache_Model_Processor
      */
-
     protected function _createRequestIds()
     {
         $this->_loadGeoipModules();
@@ -121,43 +120,15 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         }
 
         $geoipStore = Mage::helper('mwgeoip')->getCookie('geoip_store_code');
-        $store = $geoipStore = Mage::helper('mwgeoip')->getCookie('store');
+        if (!$geoipStore || !empty($_GET['geoip_country'])) {
+            $this->_requestCacheId = false;
+            $this->_requestId = false;
+            return $this;
+        }
 
-        $currStore = 'asia';
-        $uri = $this->_getFullPageUrl();
-        $code =  explode('/', $uri);
-        if(count($code) > 1)
-        {
-            $stores = Mage::getModel('core/store')->getCollection();
-            foreach($stores as $store){
-               if($store->getCode() == $code[1])
-               {
-                   $currStore = $code[1];
-               }
-            }
-        }
-        var_dump($currStore);
-        var_dump($geoipStore);
-        if (!$geoipStore) {
-            var_dump('no-store');
-            $this->_requestCacheId = false;
-            $this->_requestId = false;
-            return $this;
-        }
-        if($geoipStore != $currStore)
-        {
-            var_dump('bad-store');
-            $this->setCookie('geoip_store_code', '', false);
-            $this->setCookie('store', '', false);
-            $this->_requestCacheId = false;
-            $this->_requestId = false;
-            return $this;
-        }
-        var_dump('good-store');
         if ($this->_getForceStoreView()) {
             Mage::helper('mwgeoip')->setCookie('store', $geoipStore, false);
         }
-
         if (isset($_COOKIE['currency_code'])) {
             Mage::helper('mwgeoip')->setCookie('currency', base64_decode($_COOKIE['currency_code']), false);
         }
@@ -165,29 +136,6 @@ class MageWorx_StoreSwitcher_Model_PageCache_Processor extends Enterprise_PageCa
         return parent::_createRequestIds();
     }
 
-
-    private function setCookie($key, $value, $encode = true)
-    {
-        $version = Mage::getVersion();
-        $cookie = Mage::getModel('core/cookie');
-        $lifetime = 180;
-        if($encode){
-            $value = base64_encode($value);
-        }
-        var_dump('set Cookie');
-        $stores = Mage::getModel('core/store')->getCollection();
-        foreach($stores as $store){
-            $path = '/';
-            if($store->getCode() != 'asia')
-            {
-                $path .= $store->getCode() . '/';
-            }
-            $cookie->set($key, $value, true, $path);
-            var_dump('set Cookie Store' . $value);
-        }
-
-        return true;
-    }
     public function extractContent($content)
     { 
         if(!version_compare(Mage::getVersion(), '1.10.0', '>=')){
