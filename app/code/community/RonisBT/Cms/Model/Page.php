@@ -337,10 +337,45 @@ class RonisBT_Cms_Model_Page extends Mage_Core_Model_Abstract
     public function getRedirectUrl()
     {
 		$url = null;
-        if ($redirectUrl = $this->getData('redirect_url')) {
-            $url = Mage::helper('cmsadvanced')->getUrl($redirectUrl);
-        } elseif ((RonisBT_Cms_Model_Config::REDIRECT_PAGE_TYPE === $this->getTypeCode()) && $redirectPage = $this->getRedirectPage()) {
-			$url = $redirectPage->getUrl();
+        if ($this->getTypeCode() === RonisBT_Cms_Model_Config::REDIRECT_PAGE_TYPE)
+        {
+            switch($this->getRedirectType())
+            {
+                case 'url':
+                    if($redirectUrl = $this->getData('redirect_url'))
+                    {
+                        $url = Mage::helper('cmsadvanced')->getUrl($redirectUrl);
+                    }
+                break;
+                case 'page':
+                    if($redirectPage = $this->getRedirectPage())
+                    {
+                        $url = $redirectPage->getUrl();
+                    }
+                break;
+                case 'child_last':
+                    $children = $this->getChildren();
+                    if($children->getSize() > 0)
+                    {
+                        if($redirectPage = $children->getLastItem())
+                        {
+                            $url = $redirectPage->getUrl();
+                        }
+                    }
+                break;
+                case 'child_first':
+                    $children = $this->getChildren();
+                    if($children->getSize() > 0)
+                    {
+                        if($redirectPage = $children->getFirstItem())
+                        {
+                            $url = $redirectPage->getUrl();
+                        }
+                    }
+                break;
+                default:
+                    $url = null;
+            }
 		}
 
 		return $url;

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <RonisBT_Cms>
-            <version>1.7.6</version>
+            <version>1.7.6.2</version>
         </RonisBT_Cms>
     </modules>
     <global>
@@ -185,6 +185,12 @@
                             <redirect_url>
                                 <template>text</template>
                             </redirect_url>
+                            <redirect_type>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>cmsadvanced/config_source_redirecttype</source>
+                                <required>1</required>
+                            </redirect_type>
                         </attributes>
                     </properties>
                 </groups>
