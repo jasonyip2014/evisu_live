@@ -20,7 +20,7 @@
                     <?php foreach ($_menu as $_item): ?>
                         <?php $menuThumbnailImage = $_item->getCategory()->getMenuThumbnailImage() ?>
                         <?php $customTitle = ($menuThumbnailImage) ? '<img width="67", height="29" src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(67, 29) . '" alt="" />' : false ; ?>
-                        <?php echo $this->drawItem($_item, 1, false, $customTitle) ?>
+                        <?php echo $this->drawItem($_item, 1, false)//, $customTitle) ?>
                     <?php endforeach ?>
                 </ul>
             <?php endif; ?>

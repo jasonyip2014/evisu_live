@@ -90,10 +90,13 @@
                 </div>
                 <div class="product-shop">
                     <div class="product-main-info">
-                        <?php if($_parentCategory && $_parentCategory->getMenuThumbnailImage()): ?>
-                            <div class="image-holder category-image">
-                                <img width="95" height="24" src="<?php echo $_afHelper->init('catalog/category', $_category->getParentCategory()->getMenuThumbnailImage(), '')->resize(95, 24) ?>" alt="<?php echo $_parentCategory->getName() ?>"/>
-                            </div>
+                        <?php if($_parentCategory): ?>
+                            <div class="category-name"><?php echo $_parentCategory->getName() ?></div>
+                            <?php /*
+                                <div class="image-holder category-image">
+                                    <img width="95" height="24" src="<?php echo $_afHelper->init('catalog/category', $_category->getParentCategory()->getMenuThumbnailImage(), '')->resize(95, 24) ?>" alt="<?php echo $_parentCategory->getName() ?>"/>
+                                </div>
+                            */ ?>
                         <?php endIf; ?>
                         <h1>
                             <div class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
