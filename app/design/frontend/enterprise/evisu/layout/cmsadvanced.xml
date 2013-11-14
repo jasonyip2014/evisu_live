@@ -68,4 +68,14 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
     </PAGE_TYPE_FIT_GUIDE_PAGE>
+
+    <PAGE_TYPE_LOOKBOOK>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/social_share.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/evisu_lookbook.js</name></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </PAGE_TYPE_LOOKBOOK>
 </layout>

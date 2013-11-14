@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_LookBook>
+            <version>0.2.1</version>
+        </Evisu_LookBook>
+    </modules>
+    <global>
+        <models>
+            <evisu_lookbook>
+                <class>Evisu_LookBook_Model</class>
+            </evisu_lookbook>
+        </models>
+        <blocks>
+            <evisu_lookbook>
+                <class>Evisu_LookBook_Block</class>
+            </evisu_lookbook>
+        </blocks>
+        <helpers>
+            <evisu_lookbook>
+                <class>Evisu_LookBook_Helper</class>
+            </evisu_lookbook>
+        </helpers>
+        <resources>
+            <evisu_lookbook_setup>
+                <setup>
+                    <module>Evisu_LookBook</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_lookbook_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <lookbook>
+                <name>Lookbook Page</name>
+                <template>cmsadvanced/lookbook/page.phtml</template>
+                <groups>
+                    <lookbook_data>
+                        <label>Look Book Data</label>
+                        <attributes>
+                            <lb_title>
+                                <label>Title</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </lb_title>
+                            <lb_description>
+                                <label>Description</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </lb_description>
+                            <lb_thumbnail_image>
+                                <label>Archive Thumbnail Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>multiply resolution 000x000</note>
+                            </lb_thumbnail_image>
+                        </attributes>
+                    </lookbook_data>
+                 </groups>
+            </lookbook>
+            <lookbook_look>
+                <name>Lookbook Look Item</name>
+                <template>cmsadvanced/lookbook/item.phtml</template>
+                <groups>
+                    <lookbook_look_data1>
+                        <label>Look Data</label>
+                        <attributes>
+                            <lbi_title>
+                                <label>Title</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </lbi_title>
+                            <lbi_main_image>
+                                <label>Main Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>multiply resolution 000x000</note>
+                            </lbi_main_image>
+                            <lbi_thumbnail_image>
+                                <label>Thumbnail Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>multiply resolution 000x000</note>
+                            </lbi_thumbnail_image>
+                            <lbi_product_sku>
+                                <label>Product SKU</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </lbi_product_sku>
+                        </attributes>
+                    </lookbook_look_data1>
+                </groups>
+            </lookbook_look>
+        </pagetypes>
+    </cmsadvanced>
+</config>
