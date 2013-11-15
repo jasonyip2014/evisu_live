@@ -36,27 +36,60 @@ if (count($countries) > 0): ?>
             <?php /* Delete comment tag to see current store code  ?>
         <div style="color: #fff"><?php echo Mage::app()->getStore()->getCode() ?></div>
         <?php  */ ?>
-            <?php if(!Mage::helper('storeswitcher')->getForceStoreView()): ?>
-                <label class="label-for-country-select" for="select-country"><?php echo $this->__('You are currently shipping to the: (') ?></label>
-                <select id="select-country" class="replacemeselect" title="<?php echo $this->__('You are currently shipping to the ') ?>">
-                    <?php foreach ($countries as $country): ?>
-                        <option <?php if($country['value'] == $location->getCode()){ echo 'selected="selected"'; } ?> value="<?php echo $country['value'] ?>"><?php echo $country['label'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <div class="fl-left">)</div>
-                <script type="text/javascript">
-                    $('select-country').observe('change', function(event){
-                        console.log('change');
-                        countryCode = $('select-country').value;
-                        onChangeUrl = '<?php echo Mage::helper('storeswitcher')->getCountryUrl();  ?>';
-                        url = onChangeUrl.replace('%geoip_code%', countryCode);
-                        setLocation(url);
-                        event.stop();
-                    })
-                </script>
-            <?php else: ?>
+            <?php //if(!Mage::helper('storeswitcher')->getForceStoreView()): ?>
+                <div class="country-select-label">
+                    <?php
+                        $defCountryCode = Mage::getStoreConfig('general/country/default');
+                        $defCountry = Mage::getModel('directory/country')->loadByCode($defCountryCode);
+                        if(!$displayCountry = $location->getCountry())
+                        {
+                            $displayCountry = $defCountry->getName();
+                        }
+                    ?>
+                    <?php echo $this->__('You are currently shipping to the:') . ' (<span id="change-country-btn">' . $displayCountry . '('.$location->getCode() . ')' . '</span>)' ?>
+                </div>
+                <div id="change-country-popup" class="no-display">
+
+                    <div class="close-btn">X</div>
+                    <div class="header"><?php echo $this->__('Change Country') ?></div>
+                    <div class="description"><?php echo $this->__('Please select the country where your order will be shipped to. This will give you the correct pricing, delivery times and shipping costs for your destination') ?></div>
+                    <div class="field-row">
+                        <label for="select-country"><?php echo $this->__('Delivery Country: ') ?></label>
+                        <select id="select-country" class="replacemeselect">
+                            <?php foreach ($countries as $country): ?>
+                                <option <?php if($country['value'] == $location->getCode()){ echo 'selected="selected"'; } ?> value="<?php echo $country['value'] ?>"><?php echo $country['label'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
+                    </div>
+                    <?php //var_dump($location->getData()) ?>
+                    <div class="field-row">
+                        <label for=""><?php echo $this->__('Order Billed In: ') ?></label>
+                        <span><?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getName() ?></span>
+                    </div>
+                    <div class="field-row">
+                        <label for=""><?php echo $this->__('Order Dispatched From: ') ?></label>
+                        <span><?php echo $defCountry->getName() ?></span>
+                    </div>
+                    <div class="field-row-btn">
+                        <button id="change-country-popup-update-btn"><?php echo $this->__('Update') ?></button>
+                    </div>
+                    <script type="text/javascript">
+                        //jQuery('#select-country').customSelect();
+                        $('change-country-popup-update-btn').observe('click', function(event){
+                            countryCode = $('select-country').value;
+                            onChangeUrl = '<?php echo Mage::helper('storeswitcher')->getCountryUrl();  ?>';
+                            url = onChangeUrl.replace('%geoip_code%', countryCode);
+                            setLocation(url);
+                            event.stop();
+                        })
+                    </script>
+                </div>
+            <?php //else: ?>
+            <?php /*
                 <span class="geoip-country"><?php echo $location->getCountry(); ?></span>
-            <?php endif; ?>
+                */ ?>
+            <?php //endif; ?>
         </div>
 
     <?php endif; ?>

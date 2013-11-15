@@ -296,7 +296,112 @@ a:hover{text-decoration:underline;}
     float: left;
 }
 
+#change-country-popup{
+    border: 3px solid #333;
+    background: #fff;
+    color: #333;
+    text-align: center;
+    position: relative;
+    width: 579px;
+}
 
+#change-country-popup-update-btn:hover{
+    background: #ccc;
+}
+
+#change-country-popup-update-btn{
+    background: #333;
+    border: none;
+    color: #fff;
+    font: 700 14px/40px 'Open Sans', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    margin: 35px 0 40px;
+}
+
+#change-country-popup .close-btn{
+    text-indent: -9999px;
+    display: inline-block;
+    right: 26px;
+    top: 21px;  
+    background: url(../images/btn-close.png) no-repeat 0 0 #fff; 
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    cursor: pointer;
+}
+
+#change-country-popup .field-row{
+    width: 370px;
+    margin: 0 auto;
+}
+
+#change-country-popup .field-row:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#change-country-popup .description{
+    font: 12px Courier, Arial, Helvetica, sans-serif;
+    width: 500px;
+    text-transform: none;
+    margin: 0 auto 35px;
+}
+
+#change-country-popup .header{
+    font: 700 24px 'Open Sans', Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    margin: 35px 0 25px;
+}
+
+#change-country-popup .custom-select-btn{
+    border: 1px solid #ccc;
+    width: 206px;
+    display: inline-block;
+    background: url(../images/bg-custom-select.png) no-repeat 95% 50%; 
+    color: #333;
+    text-align: left;
+    font: 12px/26px Courier, Arial, Helvetica, sans-serif;
+    padding: 0 0 0 10px;
+}
+
+#change-country-popup .field-row span{
+    float: right;
+}
+#change-country-popup .custom-select-wrapper{
+    float: right;
+    position: relative;
+}
+
+#change-country-popup .custom-select.active .custom-select-btn{
+    border-bottom: 1px solid #fff;
+    text-decoration: none;  
+}
+
+#change-country-popup .custom-select.active .custom-select-btn:hover{
+    text-decoration: none;
+}
+
+#change-country-popup .custom-select-drop{
+    width: 216px;
+    border: 1px solid #ccc !important;
+    border-top: none !important;
+    left: 0px !important;
+}
+
+#change-country-popup .custom-select-drop a:hover{
+    background: #ccc !important;
+    text-decoration: none;
+}
+
+#change-country-popup .custom-select-drop a{
+    font: 12px/16px Courier, Arial, Helvetica, sans-serif !important;
+    color: #333 !important;
+    text-decoration: none;
+}
 
 @media screen and (min-width:1600px) and (max-width:1720px){.level0 .category-image-holder{margin-left: -31px;}}
 @media screen and (min-width:1500px) and (max-width:1600px){.level0 .category-image-holder{margin-left: -61px;}}

@@ -296,6 +296,18 @@ jQuery(function($)
         //$('body').fadeIn();
        
     });
+
+    // change country behavior
+    jQuery('#change-country-btn').on('click', function(){
+        console.log('changePopUp');
+        jQuery('#change-country-popup').fadeIn('slow');
+        jQuery('#site-hidder').stop(true,true).fadeIn();
+    });
+    jQuery('#change-country-popup .close-btn').on('click', function(){
+        jQuery('#change-country-popup').fadeOut('fast');
+        jQuery('#site-hidder').stop(true,true).fadeOut();
+    });
+
 });
 
 jQuery(window).resize(function(){
