@@ -153,7 +153,7 @@ a:hover{text-decoration:underline;}
     clear: both;
 }
 .form-language{
-    position:relative;
+/*    position:relative;*/
     height: 24px;
     display: inline-block;
 /*    width: 56px;*/
@@ -301,8 +301,11 @@ a:hover{text-decoration:underline;}
     background: #fff;
     color: #333;
     text-align: center;
-    position: relative;
+    position: absolute;
     width: 579px;
+    top: 139px;
+    left: 50%;
+    margin-left: -290px;
 }
 
 #change-country-popup-update-btn:hover{
@@ -319,6 +322,10 @@ a:hover{text-decoration:underline;}
     height: 40px;
     cursor: pointer;
     margin: 35px 0 40px;
+}
+
+#change-country-btn{
+    cursor: pointer;
 }
 
 #change-country-popup .close-btn{
