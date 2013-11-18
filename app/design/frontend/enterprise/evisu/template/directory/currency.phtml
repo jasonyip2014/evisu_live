@@ -1,3 +1,4 @@
+<?php /* @var $this Mage_Directory_Block_Currency */ ?>
 <?php
 	/* Currency drop down */
 ?>
@@ -6,13 +7,12 @@
     <label for="custom-currency-selector"><?php echo $this->__('Currency') ?></label>
     <select onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector">
         <?php foreach ($this->getCurrencies() as $_code => $_name): ?>
-        
-        <option value="<?php echo $this->getSwitchCurrencyUrl($_code)?>"
-            <?php if($_code == $this->getCurrentCurrencyCode()): ?>
-                selected="selected"
-            <?php endif; ?>>
-            <?php echo '&nbsp;' . Mage::app()->getLocale()->currency($_code)->getSymbol(); ?>
-        </option>
+            <option value="<?php echo $this->getSwitchCurrencyUrl($_code)?>"
+                <?php if($_code == $this->getCurrentCurrencyCode()): ?>
+                    selected="selected"
+                <?php endif; ?>>
+                <?php echo '&nbsp;' . Mage::app()->getLocale()->currency($_code)->getSymbol(); ?>
+            </option>
         <?php endforeach; ?>
     </select>
 </div>

@@ -143,11 +143,13 @@
                             </div>
                         <?php endif;?>
                     <?php endif; ?>
-                    <?php if($fitAttributeId = $_product->getFitGuide()): ?>
-                        <?php if($fitGuideUrl = Mage::helper('evisu_fitguide')->getProductUrl($fitAttributeId)): ?>
-                            <a class="fit-guide-btn" href="<?php echo $fitGuideUrl ?>"><?php echo $this->__('Fit Guide') ?></a>
+                    <?php /*
+                        <?php if($fitAttributeId = $_product->getFitGuide()): ?>
+                            <?php if($fitGuideUrl = Mage::helper('evisu_fitguide')->getProductUrl($fitAttributeId)): ?>
+                                <a class="fit-guide-btn" href="<?php echo $fitGuideUrl ?>"><?php echo $this->__('Fit Guide') ?></a>
+                            <?php endIf; ?>
                         <?php endIf; ?>
-                    <?php endIf; ?>
+                    */ ?>
                     <?php echo $this->getChildHtml('alertoos') ?>
                     <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
                     <script>
