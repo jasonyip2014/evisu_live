@@ -38,9 +38,11 @@ if (count($countries) > 0): ?>
         <?php  */ ?>
             <?php //if(!Mage::helper('storeswitcher')->getForceStoreView()): ?>
                 <div class="country-select-label">
-                    <?php $countryName = Mage::getModel('directory/country')->loadByCode($location->getCode())->getName();  ?>
-                    <?php echo $this->__('You are currently shipping to the:') ?>
-                    <span id="change-country-btn"> <?php echo $countryName ?> </span>
+                    <?php  $defCountryCode = Mage::getStoreConfig('general/country/default'); ?>
+                    <?php $defCountry = Mage::getModel('directory/country')->loadByCode($defCountryCode);?>
+                    <?php ($location->getCode()) ? $countryCode = $location->getCode() : $defCountryCode?>
+                    <?php $countryName = Mage::getModel('directory/country')->loadByCode($location->getCode())->getName();?>
+                    <?php echo $this->__('You are currently shipping to the:') . ' (<span id="change-country-btn">' . $countryName . '('.$location->getCode() . ')' . '</span>)' ?>
                 </div>
                 <div id="change-country-popup" class="no-display">
 
@@ -63,7 +65,8 @@ if (count($countries) > 0): ?>
                     </div>
                     <div class="field-row">
                         <label for=""><?php echo $this->__('Order Dispatched From: ') ?></label>
-                        <span><?php echo $countryName ?></span>
+
+                        <span><?php echo $defCountry->getName() ?></span>
                     </div>
                     <div class="field-row-btn">
                         <button id="change-country-popup-update-btn"><?php echo $this->__('Update') ?></button>
