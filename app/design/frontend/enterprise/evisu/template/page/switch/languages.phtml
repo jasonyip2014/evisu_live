@@ -40,9 +40,19 @@ if (count($countries) > 0): ?>
                 <div class="country-select-label">
                     <?php  $defCountryCode = Mage::getStoreConfig('general/country/default'); ?>
                     <?php $defCountry = Mage::getModel('directory/country')->loadByCode($defCountryCode);?>
-                    <?php ($location->getCode()) ? $countryCode = $location->getCode() : $defCountryCode?>
-                    <?php $countryName = Mage::getModel('directory/country')->loadByCode($location->getCode())->getName();?>
-                    <?php echo $this->__('You are currently shipping to the:') . ' (<span id="change-country-btn">' . $countryName . '('.$location->getCode() . ')' . '</span>)' ?>
+                    <?php
+                        if($location->getCode())
+                        {
+                            $countryCode = $location->getCode();
+                        }
+                        else
+                        {
+                            $countryCode = $defCountryCode;
+
+                        }
+                    ?>
+                    <?php $countryName = Mage::getModel('directory/country')->loadByCode($countryCode)->getName();?>
+                    <?php echo $this->__('You are currently shipping to the:') . ' <span id="change-country-btn">' . $countryName . '</span>' ?>
                 </div>
                 <div id="change-country-popup" class="no-display">
 

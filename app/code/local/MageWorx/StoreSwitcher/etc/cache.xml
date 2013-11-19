@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <placeholders>
+        <store_language>
+            <block>page/switch</block>
+            <placeholder>GEOIP_STORE_SWITCHER</placeholder>
+            <name>store_language</name>
+            <container>MageWorx_StoreSwitcher_Model_Container_Switcher</container>
+            <cache_lifetime>86400</cache_lifetime>
+        </store_language>
+    </placeholders>
+</config>
