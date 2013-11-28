@@ -1,0 +1,240 @@
+.heritage-page #time-line{
+	position:absolute;
+	left:50%;
+	top:120px;
+}
+
+.heritage-page{
+	height: auto !important;
+}
+
+.heritage-page .line{
+	width:4px;
+	background-color:#333;
+	position:relative;
+}
+
+.heritage-page #time-line img{
+	margin: 0 0 0 -30px;	
+}
+
+.heritage-page .header{
+	background-color: #ededed;
+}
+
+.heritage-page .grey{
+	background-color: #ededed;
+	background-image: url(../images/bg-heritage.png);
+	background-repeat: no-repeat;;
+	background-position: 50% 117%; 
+}
+
+.heritage-page .white{
+	background-color: #fff;
+	background-image: url(../images/bg-heritage-white.png);
+	background-repeat: no-repeat;;
+	background-position: 50% 117%; 
+}
+
+.heritage-page .section .image-holder img{
+	max-width: 100%;
+	height: auto;
+}
+
+.heritage-page-holder .end-text{
+	padding: 0 !important
+}
+
+.heritage-page-holder .end-text,
+.heritage-page-holder .begin-text{
+	font: 700 72px 'Open Sans', Arial, sans-serif;
+	color: #333;
+	text-transform: lowercase;
+	text-align: center;
+	background-color: #ededed;
+	display: none;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+
+.heritage-page-holder{
+	background-color: #ededed;
+}
+
+.heritage-page .h_text_block{
+	display: inline-block;
+	background-color: #333;
+	color: #fff;
+}
+
+.white{
+	background-color: #fff;
+}
+
+.begin-img,
+.end-img{
+	display: none;
+}
+
+.heritage-page .h_text_block{
+	padding: 30px;
+	position: absolute;
+}
+
+.heritage-page .h_text_block .text{
+	font: 12px Courier, Arial, sans-serif;
+	text-align: left;
+}
+
+.heritage-page .h_text_block .reader{
+	text-align: left;
+	font: 700 28px 'Open Sans', Arial, sans-serif;
+	margin: 0 0 15px;
+}
+
+.heritage-page .section{
+	position: relative;
+}
+
+.heritage-page .section .image-holder{
+	display: inline-block;
+	width: 100%;
+	background: none;
+}
+
+.heritage-page .section .block,
+.heritage-page .section .block .item{
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+/*======= section 1 =====================================*/
+
+.heritage-page .section-1{
+	position: relative;
+	text-align: center;
+	padding: 10% 0 0;
+}
+
+.heritage-page .section-1 .block-1{
+	position: absolute;
+	left: -60%;
+}
+
+.heritage-page .section-1 .block{
+	width: 26.4%;
+}
+
+.heritage-page .section-1 .block-1 .item-2{
+	position: absolute;
+	width: 255px;
+	top: -64px;
+	right: -70px;
+	text-align: left;
+}
+
+.heritage-page .section .block .h_image_panel{
+	position: relative;
+	width: 100%;
+}
+
+.align-right{
+	text-align: right !important;
+}
+
+.heritage-page .section-1 .block-2 {
+	position: relative;
+	opacity: 0;
+}
+
+.heritage-page .section-1 .block-2 .item-1{
+	position: absolute;
+	width: 232px;
+	top: 108px;
+	right: -121px;
+}
+
+.heritage-page .section-1 .block-3{
+	position: absolute;
+	right: 0%;
+}
+
+.heritage-page .section-1 .block-3 .item-1{
+	position: absolute;
+}
+
+@media screen and (max-width: 1500px){
+	.heritage-page .h_text_block .text {
+		font: 10px Courier, Arial, sans-serif;
+		text-align: left;
+	}
+	.heritage-page .h_text_block .reader {
+		text-align: left;
+		font: 700 18px 'Open Sans', Arial, sans-serif;
+		margin: 0 0 10px;
+	}
+	.heritage-page .h_text_block {
+		padding: 15px;
+		position: absolute;
+	}
+	.heritage-page-holder .end-text, .heritage-page-holder .begin-text {
+		font: 700 52px 'Open Sans', Arial, sans-serif;
+	}
+	.heritage-page .section-1 .block-2 .item-1{
+		top: 15px;
+		right: -62px;
+	}
+	.heritage-page .section-1 .block-3 .item-1 {
+		width: 179px !important;
+		left: 10px !important;
+		top: -44px !important;
+	}
+	.heritage-page .section-1 .block-1 .item-2{
+		top: -41px !important;
+	}
+	.heritage-page .section-2 .block-2 {
+		left: 45px !important;
+	}
+}
+
+/*======= section 2 =====================================*/
+
+.heritage-page .section{
+	text-align: center;
+}
+
+.heritage-page .section-2 .block-1,
+.heritage-page .section-2 .block-3{
+	position: absolute;
+}
+
+.heritage-page .section-2 .block-2{
+	position: relative;
+	z-index: 12;
+}
+
+.heritage-page .section-2 .block-1 .item-3{
+	position: absolute;
+}
+
+.heritage-page .section-2 .block{
+	width: 27%;
+}
+
+/*======= sections =====================================*/
+
+.heritage-page .section .left,
+.heritage-page .section .right{
+	position: absolute;
+}
+
+.heritage-page .section .center{
+	position: relative;
+	z-index: 12;
+}
+
+.heritage-page .section .slave{
+	position: absolute !important;
+}

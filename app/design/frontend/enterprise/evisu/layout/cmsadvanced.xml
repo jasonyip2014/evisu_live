@@ -78,4 +78,16 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
     </PAGE_TYPE_LOOKBOOK>
+
+    <PAGE_TYPE_HERITAGE_PAGE>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/evisu_heritage.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/skrollr.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/evisu_heritage.js</name></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <remove name="global_messages" />
+        </reference>
+    </PAGE_TYPE_HERITAGE_PAGE>
 </layout>

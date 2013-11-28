@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Heritage>
+            <version>0.2.2</version>
+        </Evisu_Heritage>
+    </modules>
+    <global>
+        <models>
+            <evisu_heritage>
+                <class>Evisu_Heritage_Model</class>
+            </evisu_heritage>
+        </models>
+        <blocks>
+            <evisu_heritage>
+                <class>Evisu_Heritage_Block</class>
+            </evisu_heritage>
+        </blocks>
+        <helpers>
+            <evisu_heritage>
+                <class>Evisu_Heritage_Helper</class>
+            </evisu_heritage>
+        </helpers>
+        <resources>
+            <evisu_heritage_setup>
+                <setup>
+                    <module>Evisu_Heritage</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_heritage_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <heritage_page>
+                <name>Heritage Page</name>
+                <template>cmsadvanced/heritage/page.phtml</template>
+                <block>evisu_heritage/heritage</block>
+                <groups>
+                    <h_main_data>
+                        <name>Main Data</name>
+                        <attributes>
+                            <h_main_begin_text>
+                                <label>Begin Text</label>
+                                <template>text</template>
+                            </h_main_begin_text>
+                            <h_main_end_text>
+                                <label>End Text</label>
+                                <template>text</template>
+                            </h_main_end_text>
+                        </attributes>
+                    </h_main_data>
+                </groups>
+            </heritage_page>
+
+            <heritage_page_section>
+                <name>Heritage Page Section</name>
+                <template>cmsadvanced/heritage/section.phtml</template>
+                <block>evisu_heritage/heritage</block>
+                <groups>
+                    <h_section_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <h_section_bgcolor>
+                                <label>Section Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_heritage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </h_section_bgcolor>
+                            <h_section_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </h_section_animation>
+                        </attributes>
+                    </h_section_animation>
+                </groups>
+            </heritage_page_section>
+            <heritage_section_block>
+                <name>Heritage Section Block</name>
+                <template>cmsadvanced/heritage/block.phtml</template>
+                <block>evisu_heritage/heritage</block>
+                <groups>
+                    <h_block_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <h_left>
+                                <label>Left (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_left>
+                            <h_right>
+                                <label>Right (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_right>
+                            <h_top>
+                                <label>Top (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_top>
+                            <h_block_type>
+                                <label>Block Type</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_heritage/config_source_blocktype</source>
+                                <required>1</required>
+                            </h_block_type>
+                            <h_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </h_block_animation>
+                        </attributes>
+                    </h_block_animation>
+                </groups>
+            </heritage_section_block>
+            <h_text_block>
+                <name>Heritage Text Block</name>
+                <template>cmsadvanced/heritage/blocks/text_block.phtml</template>
+                <groups>
+                    <h_data_text_block>
+                        <name>Data</name>
+                        <attributes>
+                            <h_text_block_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </h_text_block_header>
+                            <h_text_block_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </h_text_block_text>
+                            <h_header_align>
+                                <label>Header Text Align</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_heritage/config_source_align</source>
+                                <required>1</required>
+                            </h_header_align>
+                        </attributes>
+                    </h_data_text_block>
+                    <h_text_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <h_left>
+                                <label>Left (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_left>
+                            <h_right>
+                                <label>Right (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_right>
+                            <h_top>
+                                <label>Top (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_top>
+                            <h_tb_width>
+                                <label>Block Width (css)</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </h_tb_width>
+                            <h_tb_min_height>
+                                <label>Min Height (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_tb_min_height>
+                        </attributes>
+                    </h_text_panel_animation>
+                </groups>
+            </h_text_block>
+
+            <h_image_panel>
+                <name>Heritage Image Panel</name>
+                <template>cmsadvanced/heritage/blocks/image_panel.phtml</template>
+                <groups>
+                    <h_data_image_panel>
+                        <name>Data</name>
+                        <attributes>
+                            <h_ip_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </h_ip_image>
+                        </attributes>
+                    </h_data_image_panel>
+                    <h_image_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <h_left>
+                                <label>Left (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_left>
+                            <h_right>
+                                <label>Right (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_right>
+                            <h_top>
+                                <label>Top (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </h_top>
+                            <h_ip_width>
+                                <label>Image Width (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                                <required>1</required>
+                            </h_ip_width>
+                            <h_ip_height>
+                                <label>Image Height (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                            </h_ip_height>
+                            <h_image_type>
+                                <label>Image Type</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_heritage/config_source_imagetype</source>
+                                <required>1</required>
+                            </h_image_type>
+                        </attributes>
+                    </h_image_panel_animation>
+                </groups>
+            </h_image_panel>
+        </pagetypes>
+    </cmsadvanced>
+</config>

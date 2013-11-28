@@ -1,0 +1,33 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+    $defWindowHeight = 1080;
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+<div class="heritage-page-holder">
+    <div class="yoffset" style="position:fixed; z-index:10000; font-size: 35px;background: yellow;"></div>
+    <div class="begin-text"><?php echo $this->StripTags($this->getHMainBeginText()) ?></div>
+
+    <div class="end-text"><?php echo $this->StripTags($this->getHMainEndText()) ?></div>
+
+    <div class="sections">
+        <?php $i = 1; ?>
+
+        <?php $sections = $this->getSections() ?>
+        <?php if(count($sections) > 0): ?>
+            <?php foreach ($sections as $_section): ?>
+                <?php Mage::register('heritage_current_section', $i); ?>
+                <div class="<?php echo $_section->getHSectionBgcolor() ?> section section-<?php echo $i ?>" <?php echo Mage::helper('evisu_heritage')->getScrollrData($_section->getHSectionAnimation(), $defWindowHeight * $i - 1) ?> data-section-id="<?php echo $i -1 ?>">
+                    <?php echo $_section->toHtml(); ?>
+                </div>
+                <?php Mage::unregister('heritage_current_section'); ?>
+                <?php $i++; ?>
+            <?php endforeach ?>
+        <?php endIf; ?>
+    </div>
+    <div id="time-line">
+        <img class="begin-img" src="<?php echo $this->getSkinUrl('images/heritage/time-line.png') ?>" />
+        <div class="line" data-0="height:0px;" data-<?php echo ($defWindowHeight * $i - 1) ?>="height:<?php echo ($defWindowHeight * ($i))  ?>;"></div>
+        <img class="end-img" src="<?php echo $this->getSkinUrl('images/heritage/time-line.png') ?>" />
+    </div>
+</div>
