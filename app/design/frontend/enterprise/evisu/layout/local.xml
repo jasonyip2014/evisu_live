@@ -142,6 +142,9 @@
 
     <!-- ============================ Customer and dashboard ============================================ -->
     <customer_account translate="label">
+        <reference name="left">
+            <remove name="customer_account_navigation" />
+        </reference>
         <reference name="my.account.wrapper">
             <block type="core/template" name="dashboard_navigation" as="dashboard_navigation" before="-" template="customer/account/dashboard/dashboard_navigation.phtml">
                 <block type="customer/account_dashboard_hello" name="customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>

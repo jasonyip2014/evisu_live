@@ -114,22 +114,18 @@ jQuery(function($){
     $(window).load(function(){
         $('.explore-more-btn').fadeIn('slow');
         LPScrollr.videoPanelsResize();
+
+        //=========== left description fade in ==========================
+        setTimeout(function(){
+            $('.left-description').fadeIn('slow');
+        }, 2000);
+
+        setTimeout(function(){
+            $('.landing-page .main-section .main-image-holder').fadeIn('slow');
+        }, 1000);
     });
 
 	$(window).resize(function(){
         LPScrollr.refresh();
 	});
-	//$(window).resize();
-	//$('html,body').scrollTop(0);
-
-    //=========== left description fade in ==========================
-
-    setTimeout(function(){
-        $('.left-description').fadeIn('slow');
-    }, 2000);
-
-    setTimeout(function(){
-        $('.landing-page .main-section .main-image-holder').fadeIn('slow');
-    }, 1000);
-
 });

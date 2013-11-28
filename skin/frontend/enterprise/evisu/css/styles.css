@@ -757,6 +757,10 @@ li label{
     text-align: center;
 }
 
+.success-msg{
+    color: green;
+}
+
 .breadcrumbs{margin: 0 0 15px 0;}
 .breadcrumbs ul li{float: left;}
 .breadcrumbs ul li:last-child{font: 12px Courier, arial, Helvetica, sans-serif;}
@@ -2504,6 +2508,83 @@ position: absolute;
 }
 
 /*=============== MY ACCOUNT =================================================================*/
+
+.customer-account-resetpassword .col-main,
+.customer-account-forgotpassword .col-main{
+    text-align: center;
+}
+
+.customer-account-resetpassword .col-main .page-title h1,
+.customer-account-forgotpassword .col-main .page-title h1{
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    margin: 0 0 15px;   
+}
+
+.customer-account-resetpassword #form-validate .input-text,
+.customer-account-forgotpassword #form-validate .input-text{
+    font: 12px Courier, sans-serif;
+    width: 200px;
+}
+
+.customer-account-resetpassword #form-validate .button:hover,
+.customer-account-forgotpassword #form-validate .button:hover{
+    background: #ccc;
+}
+
+.customer-account-resetpassword #form-validate .button{
+    width: auto !important;
+    padding: 0 15px;
+}
+
+.customer-account-resetpassword #form-validate .button,
+.customer-account-forgotpassword #form-validate .button{
+    background: #333;
+    display: block;
+    width: 124px;
+    height: 39px;
+    font: 700 14px/39px 'Open Sans', Arial, sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.customer-account-resetpassword #form-validate{
+    padding: 0 50px 50px !important;
+}
+
+.customer-account-resetpassword #form-validate,
+.customer-account-forgotpassword #form-validate{
+    border: 3px solid #333;
+    width: 500px;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.customer-account-resetpassword #form-validate .fieldset .form-list,
+.customer-account-resetpassword #form-validate .fieldset > p,
+.customer-account-forgotpassword #form-validate .fieldset .form-list,
+.customer-account-forgotpassword #form-validate .fieldset > p{
+    margin: 0 0 25px;
+}
+
+.customer-account-resetpassword #form-validate .fieldset > p,
+.customer-account-forgotpassword #form-validate .fieldset > p{
+    font: 12px Courier, sans-serif;
+}
+
+.error-msg{
+    color: red;
+}
+
+.account-login .messages{
+    position: absolute;
+    width: 100%;
+    top: -70px;
+    font: 12px Courier, sans-serif;
+}
 
 .customer-account-index .page{
     padding: 0;

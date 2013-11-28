@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_LandingPage>
-            <version>0.3.9</version>
+            <version>0.4.0</version>
         </Evisu_LandingPage>
     </modules>
     <global>
@@ -45,11 +45,11 @@
                                 <required>1</required>
                                 <template>image</template>
                             </lp_main_image>
-                            <lp_main_logo>
-                                <label>Logo</label>
+                            <lp_main_title>
+                                <label>Title</label>
                                 <required>1</required>
-                                <template>image</template>
-                            </lp_main_logo>
+                                <template>text</template>
+                            </lp_main_title>
                             <lp_main_description>
                                 <label>Description</label>
                                 <required>1</required>
