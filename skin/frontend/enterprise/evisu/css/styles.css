@@ -15,7 +15,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+3	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -1722,8 +1722,8 @@ position: absolute;
 .product-view .more-views .recently-viewed-title,
 .product-view .more-views .related .related-title{
     position: absolute;
-    top: 35%;
-    left: 35%;
+    top: 40%;
+    left: 25%;
     background: #ccc;
     color: #fff;
     font: 18px Courier, arial, helvetica, sans-serif;
@@ -1828,7 +1828,10 @@ position: absolute;
 }
 
 .product-view .more-views .also-like,
-.product-view .more-views .recently-viewed{display: inline-block;}
+.product-view .more-views .recently-viewed{
+    display: inline-block;
+    width: 36%;
+}
 
 .product-view .more-views .recently-viewed-holder{
     width: 100%;
@@ -1838,7 +1841,7 @@ position: absolute;
 
 .product-view .more-views .recently-viewed-holder a{
     display: inline-block;
-    width: 50%;
+    width: 34%;
     float: left;
     text-align: center;
 }

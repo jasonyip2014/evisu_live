@@ -47,8 +47,8 @@ body{
     display: inline-block;
     padding: 0 0 0 9.6354166667%;
     display: none;
-    position: fixed;
-    top: 21%;
+    position: absolute;
+    top: 2%;
 }
 
 .landing-page .main-section .left-description .image-holder{
@@ -659,4 +659,8 @@ body{
 
 .landing-page .yoffset{
     display: none;
+}
+
+.skrollable{
+    position: fixed;
 }
