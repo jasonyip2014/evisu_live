@@ -18,6 +18,10 @@
             <action method="addItem"><type>skin_css</type><name>css/jquery.arcticmodal-0.3.css</name></action>
         </reference>
 
+        <reference name="after_body_start">
+            <block type="cms/block" name="cms_after_body_scripts"><action method="setBlockId"><block_id>after_body_scripts</block_id></action></block>
+        </reference>
+
         <!--remove trash-->
 
         <reference name="topCart.extra_actions">
