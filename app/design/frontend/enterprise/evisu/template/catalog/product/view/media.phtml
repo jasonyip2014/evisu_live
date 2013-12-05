@@ -62,14 +62,14 @@
         <?php if($pec_items = Mage::helper('ronisbt_editorialcontent')->getProductEditorialContent($_product)): ?>
             <?php $i = 0; foreach($pec_items as $pec_item): ?>
                 <?php if($i == 2): ?>
-                    <?php if(!empty($images['4'])): ?>
+                    <?php if(!empty($images[2 + $i])): ?>
                         <div class="alt-images-type-2">
                             <div class="image-holder">
                                 <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['4']->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images['4']->getLabel()) ?>" />
                             </div>
                         </div>
                     <?php endIf; ?>
-                    <?php if(!empty($images['5'])): ?>
+                    <?php if(!empty($images[3 + $i])): ?>
                         <div class="alt-images-type-2">
                             <div class="image-holder">
                                 <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['5']->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images['5']->getLabel()) ?>" />
@@ -114,7 +114,20 @@
                 <?php endIf; ?>
             <?php $i++; endForeach; ?>
         <?php endIf; ?>
+    <?php else: ?>
+        <?php if(count($images) > 0): ?>
+            <?php for($i = 4; $i < count($images); $i++): ?>
+                <?php if(!empty($images[$i])): ?>
+                    <div class="alt-images-type-2">
+                        <div class="image-holder">
+                            <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images[$i]->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images[$i]->getLabel()) ?>" />
+                        </div>
+                    </div>
+                <?php endIf; ?>
+            <?php endFor; ?>
+        <?php endIf; ?>
     <?php endIf; ?>
+
     <?php echo $this->getChildHtml('recently_viewed') ?>
     <?php echo $this->getChildHtml('relatedProducts') ?>
 </div>

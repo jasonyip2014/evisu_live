@@ -125,19 +125,19 @@
                                     <span class="promo-description"><?php echo nl2br($this->stripTags($_category->getFirstPromoPanelDescription())) ?></span>
                                     <a href="<?php echo $this->stripTags($_category->getFirstPromoPanelTargetUrl()) ?>"><?php echo $this->stripTags($_category->getFirstPromoPanelLinkText()) ?></a>
                                 </div>
-                                <?php $promoImage1 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getFirstPromoPanelImage() , '')->resize(200, 300); ?>
+                                <?php $promoImage1 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getFirstPromoPanelImage() , '')->resize(442, 682); ?>
                                 <span class="image-holder">
-                                    <img width="200px" height="300px" src="<?php echo $promoImage1 ?>" alt="<?php echo $this->stripTags($_category->getFirstPromoPanelTitle()) ?>" />
+                                    <img width="442px" height="682px" src="<?php echo $promoImage1 ?>" alt="<?php echo $this->stripTags($_category->getFirstPromoPanelTitle()) ?>" />
                                 </span>
                             </li>
                         <?php endIf; ?>
                     <?php endif ?>
                     <?php if($i == 9): ?>
                         <?php if($_category->getSecondPromoPanelEnabled()): ?>
-                            <?php $promoImage2 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getSecondPromoPanelImage() , '')->resize(200, 300); ?>
+                            <?php $promoImage2 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getSecondPromoPanelImage() , '')->resize(442, 682); ?>
                             <li class="second-promo">
                                 <span class="image-holder">
-                                    <img width="200px" height="300px" src="<?php echo $promoImage2 ?>" alt="<?php echo $this->stripTags($_category->getSecondPromoPanelTitle()) ?>" />
+                                    <img width="442px" height="682px" src="<?php echo $promoImage2 ?>" alt="<?php echo $this->stripTags($_category->getSecondPromoPanelTitle()) ?>" />
                                 </span>
                                 <div class="second-text-holder">
                                     <span class="second-title"><?php echo $this->stripTags($_category->getSecondPromoPanelTitle()) ?></span>
