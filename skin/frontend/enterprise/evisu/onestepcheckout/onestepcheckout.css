@@ -1238,14 +1238,14 @@ label,
 }
 
 #billing_address .custom-select-wrapper{
-    float: left;
-    width: 300px;
+    float: right;
+    width: 170px;
     margin: 0 0 0 15px;
 }
 
 #billing_address .custom-select-wrapper .custom-select-drop{
-    width: 298px;
-    overflow-y: hidden;
+    width: 168px;
+    overflow-y: scroll;
 }
 
 #billing_address .custom-select-wrapper .custom-select{
