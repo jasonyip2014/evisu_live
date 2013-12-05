@@ -13,6 +13,8 @@
             <?php if($_block->getHLeft()): ?>left:<?php echo $_block->getHLeft() ?>;<?php endIf; ?>
             <?php if($_block->getHRight()): ?>right:<?php echo $_block->getHRight() ?>;<?php endIf; ?>
             <?php if($_block->getHTop()): ?>top:<?php echo $_block->getHTop() ?>;<?php endIf; ?>
+            <?php if($_block->getHIpWidthCss()): ?>width:<?php echo $_block->getHIpWidthCss() ?>;<?php endIf; ?>
+            <?php if($_block->getHIpHeightCss()): ?>height:<?php echo $_block->getHIpHeightCss() ?>;<?php endIf; ?>
             "
             class="item item-<?php echo $i ?> <?php echo $_block->getPageType() ?> <?php echo $_block->getHImageType() ?>">
             <?php echo $_block->toHtml(); ?>

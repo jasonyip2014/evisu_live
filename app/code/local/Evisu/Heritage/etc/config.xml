@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_Heritage>
-            <version>0.2.2</version>
+            <version>0.3.1</version>
         </Evisu_Heritage>
     </modules>
     <global>
@@ -218,10 +218,19 @@
                                 <label>Image Height (px)</label>
                                 <type>int</type>
                                 <template>text</template>
+                                <required>1</required>
                             </h_ip_height>
+                            <h_ip_width_css>
+                                <label>Image Width (css)</label>
+                                <template>text</template>
+                            </h_ip_width_css>
+                            <h_ip_height_css>
+                                <label>Image Height (css)</label>
+                                <template>text</template>
+                            </h_ip_height_css>
                             <h_image_type>
                                 <label>Image Type</label>
-                                <type>varchar</type>>
+                                <type>varchar</type>
                                 <template>dropdown</template>
                                 <source>evisu_heritage/config_source_imagetype</source>
                                 <required>1</required>

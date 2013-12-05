@@ -238,3 +238,11 @@
 .heritage-page .section .slave{
 	position: absolute !important;
 }
+
+.heritage-page .section-5 .left .item-3{
+	width: auto;
+}
+
+.heritage-page .section:last-child{
+	padding: 0 0 200px;
+}
