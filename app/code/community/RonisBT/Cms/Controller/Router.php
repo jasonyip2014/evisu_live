@@ -28,6 +28,7 @@ class RonisBT_Cms_Controller_Router extends Mage_Core_Controller_Varien_Router_A
         } elseif ($identifier) {
             $pages = Mage::getResourceModel('cmsadvanced/page_collection')
                    ->addFieldToFilter('url_path', $identifier)
+                   ->addFieldToFilter('no_route', 0)
                    ->setStoreId(Mage::app()->getStore()->getId())
                    ->setPage(1,1)
                    ;

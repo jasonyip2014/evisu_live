@@ -2,7 +2,7 @@
 <config>
     <modules>
         <RonisBT_Cms>
-            <version>1.7.6.2</version>
+            <version>1.7.6.3</version>
         </RonisBT_Cms>
     </modules>
     <global>
@@ -143,6 +143,9 @@
                             <include_in_menu>
                                 <template>yesno</template>
                             </include_in_menu>
+                            <no_route>
+                                <template>yesno</template>
+                            </no_route>
                         </attributes>
                     </general>
                     <meta>
