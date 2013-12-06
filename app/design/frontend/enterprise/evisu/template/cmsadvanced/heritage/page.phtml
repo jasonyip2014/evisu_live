@@ -8,7 +8,7 @@
     <div class="yoffset" style="position:fixed; z-index:10000; font-size: 35px;background: yellow;"></div>
     <div class="begin-text"><?php echo $this->StripTags($this->getHMainBeginText()) ?></div>
 
-    <div class="end-text"><?php echo $this->StripTags($this->getHMainEndText()) ?></div>
+
 
     <div class="sections">
         <?php $i = 1; ?>
@@ -26,8 +26,13 @@
         <?php endIf; ?>
     </div>
     <div id="time-line">
-        <img class="begin-img" src="<?php echo $this->getSkinUrl('images/heritage/time-line.png') ?>" />
-        <div class="line" data-0="height:0px;" data-<?php echo ($defWindowHeight * $i - 1) ?>="height:<?php echo (($defWindowHeight * $i) - 384)  ?>;"></div>
-        <img class="end-img" src="<?php echo $this->getSkinUrl('images/heritage/time-line.png') ?>" />
+        <div class="begin-img-holder">
+            <img class="begin-img" src="<?php echo $this->getSkinUrl('images/heritage/time-line.png') ?>" />
+        </div>
+        <div class="line" data-0="height:0px" data-<?php echo (($defWindowHeight * ($i-1)) - 60) ?>=""></div>
+        <div class="end-img-holder" data-0="opacity:0">
+            <img class="end-img" src="<?php echo $this->getSkinUrl('images/heritage/time-line.png') ?>" />
+        </div>
+        <div class="end-text" data-0="opacity:0"><?php echo $this->StripTags($this->getHMainEndText()) ?></div>
     </div>
 </div>
