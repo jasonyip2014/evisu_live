@@ -44,6 +44,7 @@ var HeritageScrollr = {
 
     sectionsResize : function(){
 
+        var self = this;
         $windowHeight = jQuery(window).height();
 
         jQuery.each(jQuery('.section'), function(index, section)
@@ -53,18 +54,13 @@ var HeritageScrollr = {
         var timeLine = jQuery('.line');
         var endImgHolder = jQuery('.end-img-holder');
         var endText = jQuery('.end-text');
-        jQuery.each(timeLine.data(), function(index, value)
-        {
-            if(index!=0)
-            {
-                timeLine.attr('data-' + index, 'height:' + (jQuery('.section').length * $windowHeight - 60) + 'px');
-                endImgHolder.attr('data-' + index, 'opacity:1');
-                endImgHolder.attr('data-' + (parseInt(index)-1), 'opacity:0');
-                endText.attr('data-' + (parseInt(index)+40), 'opacity:1');
-                endText.attr('data-' + (parseInt(index)+39), 'opacity:0');
-            }
-        });
-    },
+        var index = jQuery('.section').length * self.defWindowHeight - 340;
+        timeLine.attr('data-' + index, 'height:' + (jQuery('.section').length * $windowHeight - 60) + 'px');
+        endImgHolder.attr('data-' + index, 'opacity:1');
+        endImgHolder.attr('data-' + (parseInt(index)-1), 'opacity:0');
+        endText.attr('data-' + (parseInt(index)), 'opacity:1');
+        endText.attr('data-' + (parseInt(index)-1), 'opacity:0');
+},
 
 
     windowResize : function(){
