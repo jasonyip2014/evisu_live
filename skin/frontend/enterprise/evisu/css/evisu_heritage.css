@@ -259,14 +259,15 @@
 	position: absolute !important;
 }
 
-.heritage-page .section-5 .left .item-3{
-	width: auto;
-}
 
 .heritage-page .section:last-child{
-	padding: 0 0 200px;
+	padding: 0 0 240px;
 }
 
-.heritage-page .section:last-child .h_text_block{
+.heritage-page .section:last-child .right .item-1{
 	word-break: break-word;
+}
+
+.end-img-holder{
+	margin: 0px 0 60px;
 }
