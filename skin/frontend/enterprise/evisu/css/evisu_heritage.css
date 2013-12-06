@@ -199,6 +199,9 @@
 	.heritage-page-holder .end-text, .heritage-page-holder .begin-text {
 		font: 700 52px 'Open Sans', Arial, sans-serif;
 	}
+	.heritage-page-holder .end-text{
+		margin: 0 0 0 -134px;
+	}
 	.heritage-page .section-1 .block-2 .item-1{
 		top: 15px;
 		right: -62px;
