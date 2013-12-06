@@ -36,8 +36,8 @@
 
 
 <?php $imagesCount = count($this->getGalleryImages()) ?>
+<?php $images = array() ?>
 <?php if ($imagesCount > 0): ?>
-    <?php $images = array() ?>
     <?php foreach ($this->getGalleryImages() as $_image): ?>
         <?php $images[$_image->getPosition()] = $_image; ?>
     <?php endforeach; ?>

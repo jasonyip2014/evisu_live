@@ -11,6 +11,8 @@
         <div style="<?php if($_block->getHLeft()): ?>left:<?php echo $_block->getHLeft() ?>;<?php endIf; ?>
                     <?php if($_block->getHRight()): ?>right:<?php echo $_block->getHRight() ?>;<?php endIf; ?>
                     <?php if($_block->getHTop()): ?>top:<?php echo $_block->getHTop() ?>;<?php endIf; ?>
+                    <?php if($_block->getHWidthCss()): ?>width:<?php echo $_block->getHWidthCss() ?>;<?php endIf; ?>
+                    <?php if($_block->getHHeightCss()): ?>height:<?php echo $_block->getHHeightCss() ?>;<?php endIf; ?>
             "
             class="block block-<?php echo $i ?> <?php echo $_block->getPageType() ?> <?php echo $_block->getHBlockType() ?>" <?php echo Mage::helper('evisu_heritage')->getScrollrData($_block->getHBlockAnimation(), $defWindowHeight * (Mage::registry('heritage_current_section') - 1)) ?>>
             <?php echo $_block->toHtml(); ?>
