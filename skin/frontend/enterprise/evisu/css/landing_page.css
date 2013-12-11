@@ -9,6 +9,11 @@ body{
     clear: both;
 }
 
+.evisu-genes .left-description .title{
+    color: #333;
+    font: 700 45px/65px 'Open Sans', sans-serif;
+}
+
 .landing-page .main-section .image-holder.main-image-holder{
     position: fixed;
     z-index: -1;
@@ -47,7 +52,7 @@ body{
     display: inline-block;
     padding: 0 0 0 9.6354166667%;
     display: none;
-    position: absolute;
+    position: fixed;
     top: 2%;
 }
 
