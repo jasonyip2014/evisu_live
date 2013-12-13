@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_LookBook>
-            <version>0.2.1</version>
+            <version>0.2.2</version>
         </Evisu_LookBook>
     </modules>
     <global>
@@ -53,7 +53,7 @@
                                 <label>Archive Thumbnail Image</label>
                                 <required>1</required>
                                 <template>image</template>
-                                <note>multiply resolution 000x000</note>
+                                <note>multiply resolution 266x166</note>
                             </lb_thumbnail_image>
                         </attributes>
                     </lookbook_data>
@@ -75,13 +75,13 @@
                                 <label>Main Image</label>
                                 <required>1</required>
                                 <template>image</template>
-                                <note>multiply resolution 000x000</note>
+                                <note>multiply resolution 1199x900</note>
                             </lbi_main_image>
                             <lbi_thumbnail_image>
                                 <label>Thumbnail Image</label>
                                 <required>1</required>
                                 <template>image</template>
-                                <note>multiply resolution 000x000</note>
+                                <note>multiply resolution XXXx336</note>
                             </lbi_thumbnail_image>
                             <lbi_product_sku>
                                 <label>Product SKU</label>
