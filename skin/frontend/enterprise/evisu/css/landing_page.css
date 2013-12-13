@@ -89,7 +89,7 @@ body{
 
 .landing-page .sections .section-holder-1{
     position: relative;
-    height: 580px;
+    height: 2300px;
 }
 
 .landing-page .sections .section-holder-1 .block-holder-1{
@@ -226,7 +226,7 @@ body{
 .section-holder-2{
     text-align: center;
     background: #fff;
-    height: 805px;
+    height: 1100px;
     position: relative;
 } 
 
@@ -276,7 +276,7 @@ body{
 }
 
 .landing-page .sections .section-holder-4{
-    height: 430px;
+    height: 1300px;
 }
 
 .landing-page .sections .section-holder-4 .block-holder-1,
@@ -643,6 +643,11 @@ body{
     }
 }
 
+.landing-page .main-section-holder{
+    padding: 141px 0 0 0;
+    margin: -141px 0 0 0; 
+}
+
 /*.landing-page .main-section-holder{
     background-color: red;
 }
@@ -662,9 +667,9 @@ body{
     background-color: yellow;
 }*/
 
-.landing-page .yoffset{
+/*.landing-page .yoffset{
     display: none;
-}
+}*/
 
 .skrollable{
     position: fixed;

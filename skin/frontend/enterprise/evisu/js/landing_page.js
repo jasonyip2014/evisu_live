@@ -4,12 +4,12 @@ var LPScrollr = {
     defWindowWidth : 1920,
     sectionsHeight : {},
     isMac : false,
+    sectionCounts : 0,
 
     init : function(){
         var self = this;
         self.getUserAgent();
         self.windowResize();
-
         // init scrollr
         if(!self.isMac)
         {
@@ -126,11 +126,30 @@ jQuery(function($){
 
     // =============== quick navigation buttons behavior ================
     jQuery('.explore-more-btn').on('click', function(){
-        jQuery('html,body').stop(true, false).animate({scrollTop : '+=' + jQuery(window).height()},5000); //* LPScrollr.scale
-        //console.log(5000 / LPScrollr.scale)
+        var windowHeight = jQuery(window).height();
+        jQuery.each(jQuery('.section-holder'), function(index, section)
+        {
+            if((jQuery(section).offset().top) >= (jQuery(window).scrollTop()  + 1))
+            {
+                jQuery('html, body').animate({scrollTop: jQuery(section).offset().top}, 2000);
+                return false;
+            }
+        });
+
     });
     jQuery('.back-btn').on('click', function(){
-        jQuery('html,body').stop(true, false).animate({scrollTop : '-=' + jQuery(window).height()},5000); //* LPScrollr.scale
+        var windowHeight = jQuery(window).height();
+        jQuery.each(jQuery('.section-holder'), function(index, section)
+        {
+            if((jQuery(section).offset().top) >= (jQuery(window).scrollTop() - 5))
+            {
+                if(index > 0)
+                {
+                    jQuery('html, body').animate({scrollTop: jQuery('.section-holder-'+(index-1)).offset().top}, 2000);
+                }
+                return false;
+            }
+        });
     });
 
     $(window).load(function(){
