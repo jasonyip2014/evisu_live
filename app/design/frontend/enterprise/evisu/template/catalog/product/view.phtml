@@ -22,7 +22,7 @@
 </script>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->setEscapeMessageFlag(true)->toHtml() ?></div>
 <div class="product-view">
-    <?php // Previous Product ?>
+    <?php /* // Previous Product ?>
     <?php if($previousProduct = $_catalogHelper->getPreviousProduct($_product)): ?>
         <div class="previous-product-holder">
             <a class="previous-product-btn" href="<?php echo $previousProduct->getProductUrl() ?>"><?php echo $this->__('Prev') ?></a>
@@ -40,8 +40,8 @@
                 </div>
             </div>
         </div>
-    <?php endIf; ?>
-    <?php // Next Product ?>
+    <?php endIf; */?>
+    <?php /* // Next Product ?>
     <?php if($nextProduct = $_catalogHelper->getNextProduct($_product)): ?>
         <div class="next-product-holder">
             <a class="next-product-btn" href="<?php echo $nextProduct->getProductUrl() ?>"><?php echo $this->__('Next') ?></a>
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-    <?php endIf; ?>
+    <?php endIf; */?>
     <div class="product-container">
         <div class="main-image">
             <div class="full-size-hider"></div>
