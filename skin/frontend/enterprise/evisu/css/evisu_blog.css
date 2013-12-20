@@ -212,8 +212,8 @@
 	display: block;
 }
 
-.is-blog .breadcrumbs-container .prev-post-btn,
-.is-blog .breadcrumbs-container .next-post-btn{
+.is-blog .breadcrumbs-container .prev-post-btn a,
+.is-blog .breadcrumbs-container .next-post-btn a{
 	position: absolute;
 	background: url(../images/blog-prev.png) no-repeat 0 0;
 	width: 23px;
@@ -224,12 +224,12 @@
 	cursor: pointer;
 }
 
-.is-blog .breadcrumbs-container .prev-post-btn:hover,
-.is-blog .breadcrumbs-container .next-post-btn:hover{
+.is-blog .breadcrumbs-container .prev-post-btn a:hover,
+.is-blog .breadcrumbs-container .next-post-btn a:hover{
 	background-position: -57px 0; 
 }
 
-.is-blog .breadcrumbs-container .next-post-btn{
+.is-blog .breadcrumbs-container .next-post-btn a{
 	left: auto;
 	right: 60px;
 	-moz-transform: rotate(180deg); 
@@ -1390,7 +1390,7 @@
 	.is-blog .page .post-view .col-2 {
 		width: 67%;
 	}
-	.is-blog .breadcrumbs-container .prev-post-btn{
+	.is-blog .breadcrumbs-container .prev-post-btn a{
 		left: 280px;
 	}
 }
