@@ -15,7 +15,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-3	font: inherit;
+	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -191,9 +191,11 @@ a:hover{text-decoration:underline;}
     margin: 0 0px 0 0;
 }
 
-.form-language.currency .custom-select-drop{
-    overflow: hidden;
+.form-language.currency .custom-select{
+    position: relative;
 }
+
+.form-language.currency .custom-select-drop
 
 .form-language .custom-select-btn{  
     left:0;
@@ -215,6 +217,12 @@ a:hover{text-decoration:underline;}
     overflow-y: scroll;
     left: -50px !important;
 }
+
+.form-language.currency .custom-select-drop{
+    overflow: hidden;
+    width: 52px;
+}
+
 .form-language .custom-select-drop:before{
     content:'';
     width:0;
@@ -479,6 +487,11 @@ a:hover{text-decoration:underline;}
     width: 100%;
     background: #fff;
 }
+
+.footer .v-fix .validation-advice{
+    position: static;
+}
+
 .footer-container .footer{
     overflow:hidden;
     width: 980px;
@@ -764,14 +777,14 @@ li label{
 .breadcrumbs{margin: 0 0 15px 0;}
 .breadcrumbs ul li{float: left;}
 .breadcrumbs ul li:last-child{font: 12px Courier, arial, Helvetica, sans-serif;}
-.breadcrumbs ul li a:hover{text-decoration: none; color: #000;} 
+.breadcrumbs ul li a:hover{text-decoration: none; color: #000 !important;} 
 
 .breadcrumbs ul li a{
     font: 12px Courier, arial, Helvetica, sans-serif !important;
     color: #ccc !important;
     text-transform: none !important;
     padding: 0 13px 0 0;
-    background: url(../images/dot.png) no-repeat 100% 4px;
+    background: url(../images/dot.png) no-repeat 100% 50%;
     margin: 0 8px 0 0 !important;
     border: none !important;    
 }
@@ -2971,11 +2984,17 @@ position: absolute;
     padding: 0 0 0 2%;
 }
 
+.sales-order-history .table-wrapper > p{
+    line-height: 100px;
+    font: 700 14px/100px 'Open Sans', Arial, sans-serif;
+}
+
 .sales-order-history .table-wrapper{
     float: left;
     border: 3px solid #333;
     background: #fff;
     width: 978px;
+    min-height: 100px;
 }
 
 .sales-order-history .my-account .block-title,
@@ -5902,3 +5921,5 @@ position: absolute;
         left: 20px;
     }
 }
+
+.footer{}
