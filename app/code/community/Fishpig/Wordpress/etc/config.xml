@@ -121,6 +121,11 @@
 				</args>
 			</wordpress>
 		</routers>
+       <!-- <cache>
+            <requests>
+                <wordpress>enterprise_pagecache/processor_default</wordpress>
+            </requests>
+        </cache>-->
 	</frontend>
 	<adminhtml>
 		<translate>

@@ -1,0 +1,24 @@
+<?php $helper = Mage::helper('evisu_blog')?>
+<?php if($post = $helper->getTopPost()): ?>
+    <div class="top-post">
+        <div class="top-post-holder">
+            <a href="<?php echo $post->getPermalink() ?>" class="top-post-image">
+                <div class="image-holder">
+                    <img src="<?php echo $helper->getImageUrl($post, 'top_banner_image') ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" />
+                </div>
+            </a>
+            <div class="top-post-descr">
+                <p class="post-date when"><?php echo date('d F, Y', strtotime($post->getData('post_date'))) ?></p>
+                <h2 class="post-title">
+                    <?php echo $this->escapeHtml($post->getPostTitle()) ?>
+                </h2>
+                <div class="post-descr">
+                    <?php if($description = $post->getMetaValue('Short Description')) echo $description ?>
+                </div>
+                <div class="post-more-holder">
+                    <a href="<?php echo $post->getPermalink() ?>" class="post-more-link"><?php echo $this->__('READ MORE') ?></a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endIf; ?>

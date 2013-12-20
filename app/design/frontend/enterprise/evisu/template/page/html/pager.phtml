@@ -1,3 +1,5 @@
+<?php /* @var $this Mage_Page_Block_Html_Pager */ ?>
+<?php /* @var $this Mage_Catalog_Block_Seo_Sitemap_Tree_Pager */ ?>
 <?php
 /**
  * Magento Enterprise Edition
@@ -37,7 +39,7 @@
     <div class="pager">
     <?php endif ?>
 
-    <?php if($this->getShowAmounts()): ?>
+    <?php /*if($this->getShowAmounts()): ?>
     <p class="amount">
         <?php if($this->getLastPageNum()>1): ?>
             <?php echo $this->__('Items %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
@@ -45,9 +47,9 @@
             <strong><?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?></strong>
         <?php endif; ?>
     </p>
-    <?php endif ?>
+    <?php endif */?>
 
-    <?php if($this->getShowPerPage()): ?>
+    <?php /*if($this->getShowPerPage()): ?>
     <div class="limiter">
         <label><?php echo $this->__('Show') ?></label>
         <select onchange="setLocation(this.value)">
@@ -58,11 +60,13 @@
         <?php endforeach; ?>
         </select> <?php echo $this->__('per page') ?>
     </div>
-    <?php endif ?>
+    <?php endif */?>
 
     <?php if($this->getLastPageNum()>1): ?>
     <div class="pages">
+        <?php /*
         <strong><?php echo $this->__('Page:') ?></strong>
+        */?>
         <ol>
         <?php if (!$this->isFirstPage()): ?>
             <li>
@@ -75,7 +79,7 @@
                 </a>
             </li>
         <?php endif;?>
-
+        <?php /*
         <?php if ($this->canShowFirst()): ?>
             <li><a class="first" href="<?php echo $this->getFirstPageUrl() ?>">1</a></li>
         <?php endif;?>
@@ -100,7 +104,7 @@
         <?php if ($this->canShowLast()): ?>
           <li><a class="last" href="<?php echo $this->getLastPageUrl() ?>"><?php echo $this->getLastPageNum() ?></a></li>
         <?php endif;?>
-
+        */?>
         <?php if (!$this->isLastPage()): ?>
             <li>
                 <a class="next<?php if(!$this->getAnchorTextForNext()): ?> i-next<?php endif; ?>" href="<?php echo $this->getNextPageUrl() ?>" title="<?php echo $this->__('Next') ?>">

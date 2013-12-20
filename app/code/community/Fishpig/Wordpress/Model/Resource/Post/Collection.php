@@ -109,8 +109,7 @@ class Fishpig_Wordpress_Model_Resource_Post_Collection extends Fishpig_Wordpress
 		else if (count($categoryIds) > 0) {
 			$this->getSelect()->where("{$categorySql}");	
 		}
-
-		return $this;	
+		return $this;
 	}
 
 

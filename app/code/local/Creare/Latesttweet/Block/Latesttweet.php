@@ -200,10 +200,9 @@ class Creare_Latesttweet_Block_Latesttweet extends Mage_Core_Block_Template
 		$twitterconn = new TwitterOAuth($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
  
 		$latesttweets = $twitterconn->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".$screen_name."&count=".$not);		
-		
-		if(!$latesttweets->errors){
+		//var_dump($latesttweets);
+		if($latesttweets){
 			return($this->getTweets($latesttweets));
 		}
-  		
 	}
 }

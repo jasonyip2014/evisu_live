@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Blog>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Fishpig_Wordpress/>
+
+            </depends>
+        </Evisu_Blog>
+    </modules>
+</config>

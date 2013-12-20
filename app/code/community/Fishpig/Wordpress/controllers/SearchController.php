@@ -5,7 +5,6 @@
  * @license     http://fishpig.co.uk/license.txt
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
-
 class Fishpig_Wordpress_SearchController extends Fishpig_Wordpress_Controller_Abstract
 {
 	/**
@@ -45,7 +44,7 @@ class Fishpig_Wordpress_SearchController extends Fishpig_Wordpress_Controller_Ab
 		$this->_title($this->__("Search results for: '%s'", $searchTerm));
 		
 		$this->addCrumb('search_label', array('link' => '', 'label' => $this->__('Search')));
-		$this->addCrumb('search_value', array('link' => '', 'label' => $searchTerm));
+		//$this->addCrumb('search_value', array('link' => '', 'label' => $searchTerm));
 		
 		$this->renderLayout();
 	}

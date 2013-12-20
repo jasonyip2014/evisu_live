@@ -1,0 +1,21 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<div class="block block-blog block-blog-search">
+	<div class="block-content">
+		<form method="get" action="<?php echo $this->getFormActionUrl() ?>" id="blog-search-form">
+			<div class="blog-search">
+				<input type="text" name="s" class="input-text" placeholder="<?php echo $this->__('Search Blog') ?>" title="<?php echo $this->__('Search Blog') ?>" value="<?php echo $this->escapeHtml($this->getSearchTerm()) ?>"/>
+				<button class="button" title="<?php echo $this->__('Search') ?>" type="submit"><?php echo $this->__('Search') ?></button>
+                <?php /*
+				<script type="text/javascript">new fishpig.WP.Search.Form('blog-search-form');</script>
+                */?>
+			</div>
+		</form>
+	</div>
+</div>

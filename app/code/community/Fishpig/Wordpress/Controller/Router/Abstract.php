@@ -56,6 +56,10 @@ abstract class Fishpig_Wordpress_Controller_Router_Abstract extends Mage_Core_Co
 	 */
 	public function match(Zend_Controller_Request_Http $request)
 	{
+        //fix FPC
+        if ($request->isStraight()) {
+            return false;
+        }
 		try {
 			if (!$this->_canMatch()) {
 				return false;

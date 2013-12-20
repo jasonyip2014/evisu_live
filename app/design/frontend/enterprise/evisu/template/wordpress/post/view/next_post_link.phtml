@@ -1,0 +1,28 @@
+<?php /* @var $this Fishpig_Wordpress_Block_Post_Meta */ ?>
+
+<?php $helper = Mage::helper('evisu_blog')?>
+<?php $post = Mage::registry('wordpress_post') ?>
+<?php if ($post): ?>
+    <div class="top-post">
+        <div class="post-baner-holder">
+            <div class="image-holder">
+                <img src="<?php echo $helper->getImageUrl($post, 'first_post_banner_image') ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" />
+            </div>
+            <div class="image-holder">
+                <img src="<?php echo $helper->getImageUrl($post, 'second_post_banner_image') ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" />
+            </div>
+        </div>
+    </div>
+    <?php if ($this->canDisplayPreviousNextLinks()): ?>
+        <span class="prev-post-btn">
+            <?php if (($previous = $post->getPreviousPost()) !== false): ?>
+                <a href="<?php echo $previous->getPermalink() ?>" class="post-skip-previous" title="<?php echo $this->escapeHtml($previous->getPostTitle()) ?>"><?php echo $this->__('Previous Post') ?></a>
+            <?php endif; ?>
+        </span>
+        <span class="next-post-btn">
+            <?php if (($next = $post->getNextPost()) !== false): ?>
+                <a href="<?php echo $next->getPermalink() ?>" class="post-skip-next right" title="<?php echo $this->escapeHtml($next->getPostTitle()) ?>"><?php echo $this->__('Next Post') ?></a>
+            <?php endif; ?>
+        </span>
+    <?php endIf; ?>
+<?php endif; ?>

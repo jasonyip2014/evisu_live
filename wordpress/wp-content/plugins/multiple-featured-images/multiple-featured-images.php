@@ -66,7 +66,7 @@ if( !class_exists( 'kdMultipleFeaturedImages' ) ) {
             
             $this->post_meta_key= 'kd_'.$this->id.'_'.$this->post_type.'_id';
             
-            $this->nonce        = 'mfi-'.$this->args['id'].$this->args['post_type'];
+            $this->nonce        = 'mfi-'.$this->id.$this->post_type;
             
             if( !current_theme_supports( 'post-thumbnails' ) ) {
                 add_theme_support( 'post-thumbnails' );
@@ -370,4 +370,91 @@ function kd_mfi_the_featured_image( $image_id, $post_type, $size = 'full', $post
     return kdMultipleFeaturedImages::the_featured_image( $image_id, $post_type, $size, $post_id );
 }
 
-?>
+if( class_exists( 'kdMultipleFeaturedImages' ) )
+{
+    //registration featured images type
+    $featuredImages = array(
+        //Post Top Banner Image
+        array(
+            'id' => 'top_banner_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'Post Top Banner Image',
+                'set'       => 'Set Top Banner Image',
+                'remove'    => 'Remove Top Banner Image',
+                'use'       => 'Use as Post Top Banner Image',
+            )
+        ),
+
+        //Post listing images
+        array(
+            'id' => 'list_small_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'Post List Small Image',
+                'set'       => 'Set List Small Image',
+                'remove'    => 'Remove List Small Image',
+                'use'       => 'Use as List Small Image',
+            )
+        ),
+        array(
+            'id' => 'list_portrait_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'Post List Portrait Image',
+                'set'       => 'Set List Portrait Image',
+                'remove'    => 'Remove List Portrait Image',
+                'use'       => 'Use as List Portrait Image',
+            )
+        ),
+        array(
+            'id' => 'list_small_landscape_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'Post List Small Landscape Image',
+                'set'       => 'Set List Small Landscape Image',
+                'remove'    => 'Remove List Small Landscape Image',
+                'use'       => 'Use as List Small Landscape Image',
+            )
+        ),
+        array(
+            'id' => 'list_big_landscape_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'Post List Big Landscape Image',
+                'set'       => 'Set List Big Landscape Image',
+                'remove'    => 'Remove List Big Landscape Image',
+                'use'       => 'Use as List Big Landscape Image',
+            )
+        ),
+
+        // Post Banner Images
+        array(
+            'id' => 'first_post_banner_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'First Post Banner Image',
+                'set'       => 'Set First Post Banner Image',
+                'remove'    => 'Remove First Post Banner Image',
+                'use'       => 'Use as First Post Banner Image',
+            )
+        ),
+        array(
+            'id' => 'second_post_banner_image',
+            'post_type' => 'post',      // Set this to post or page
+            'labels' => array(
+                'name'      => 'Second Post Banner Image',
+                'set'       => 'Set Second Post Banner Image',
+                'remove'    => 'Remove Second Post Banner Image',
+                'use'       => 'Use as Second Post Banner Image',
+            )
+        ),
+    );
+
+    foreach($featuredImages as $featuredImage)
+    {
+        //var_dump($featuredImage);
+        new kdMultipleFeaturedImages($featuredImage);
+        //die('123');
+    }
+}

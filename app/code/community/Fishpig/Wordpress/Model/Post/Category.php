@@ -8,6 +8,9 @@
 
 class Fishpig_Wordpress_Model_Post_Category extends Fishpig_Wordpress_Model_Term
 {
+
+    private $_isActive = null;
+
 	public function _construct()
 	{
 		$this->_init('wordpress/post_category');
@@ -70,4 +73,46 @@ class Fishpig_Wordpress_Model_Post_Category extends Fishpig_Wordpress_Model_Term
 			? $this->getTaxonomyType()
 			: $base;
 	}
+
+    /**
+     * Retrieve the URL for this term
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+
+        if (!$this->hasUrl()) {
+            $helper = Mage::helper('core/url');
+            $param = 'cat['.$this->getId().']';
+            $url = $helper->removeRequestParam($helper->getCurrentUrl(),$param);
+            if(!$this->isActive())
+            {
+                $url =  $helper->addRequestParam($url, array($param => 1));
+            }
+
+            $this->setUrl($url);
+        }
+
+        return $this->_getData('url');
+    }
+
+    //filter by current category is active
+    public function isActive()
+    {
+        if(is_null($this->_isActive))
+        {
+            $filter = Mage::app()->getRequest()->getParam('cat');
+            if(!empty($filter[$this->getId()]))
+            {
+                $this->_isActive = true;
+            }
+            else
+            {
+                $this->_isActive = false;
+            }
+        }
+        return $this->_isActive;
+    }
+
 }

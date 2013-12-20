@@ -95,12 +95,12 @@ class Fishpig_Wordpress_Controller_Router extends Fishpig_Wordpress_Controller_R
 	 */	
 	protected function _getSimpleRoutes($uri = '')
 	{
-		$this->addRoute(array('/^' . Mage::getSingleton('wordpress/post_tag')->getUriPrefix() . '\/(.*)$/' => array('tag')), '*/post_tag/view');
-		$this->addRoute(array('/^author\/([^\/]{1,})/' => array('author')), '*/author/view');
-		$this->addRoute(array('/^([1-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})$/' => array('year', 'month')), '*/archive/view');
-		$this->addRoute(array('/^([1-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})$/' => array('year', 'month')), '*/archive/view');
-		$this->addRoute(array('/^([1-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})\/([0-3]{1}[0-9]{1})$/' => array('year', 'month', 'day')), '*/archive/view');
-		$this->addRoute(array('/^search\/(.*)$/' => array('s')), '*/search/index');
+		//$this->addRoute(array('/^' . Mage::getSingleton('wordpress/post_tag')->getUriPrefix() . '\/(.*)$/' => array('tag')), '*/post_tag/view');
+		//$this->addRoute(array('/^author\/([^\/]{1,})/' => array('author')), '*/author/view');
+		//$this->addRoute(array('/^([1-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})$/' => array('year', 'month')), '*/archive/view');
+		//$this->addRoute(array('/^([1-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})$/' => array('year', 'month')), '*/archive/view');
+		//$this->addRoute(array('/^([1-2]{1}[0-9]{3})\/([0-1]{1}[0-9]{1})\/([0-3]{1}[0-9]{1})$/' => array('year', 'month', 'day')), '*/archive/view');
+		$this->addRoute('/^search\/(.*)$/', '*/search/index');
 		$this->addRoute('/^index.php/i', '*/index/forward');
 		$this->addRoute('/^wp-content\/(.*)/i', '*/index/forwardFile');
 		$this->addRoute('/^wp-includes\/(.*)/i', '*/index/forwardFile');

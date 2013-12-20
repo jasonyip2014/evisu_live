@@ -1,0 +1,64 @@
+<?php
+/* @var $this Fishpig_Wordpress_Block_Post_List_Renderer */
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $helper = Mage::helper('evisu_blog')?>
+<?php $post = $this->getPost() ?>
+<?php if($helper->getViewType() == 'grid'): ?>
+    <?php $imageType = $helper->getListImageType($post->getPosition())?>
+    <div class="post-list-item <?php echo $imageType . ' post-' . ($post->getPosition() + 1) ?>">
+        <div class="post-entry">
+            <?php if ($postImage = $helper->getImageUrl($post, $imageType)): ?>
+                <div class="featured-image">
+                    <a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>">
+                        <div class="image-holder">
+                            <img src="<?php echo $helper->getImageUrl($post, $imageType) ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" />
+                        </div>
+                    </a>
+                </div>
+            <?php endif; ?>
+            <div class="post-essential">
+                <h2><a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a></h2>
+                <span><?php echo date('d F y', strtotime($post->getData('post_date'))) ?></span>
+                <?php //<span>echo $post->getParentCategories() </span> ?>
+                <?php echo $this->getAfterPostContentHtml() ?>
+                <div class="post-descr">
+                    <?php if($description = $post->getMetaValue('Short Description')) echo $description ?>
+                </div>
+                <a class="read-more" href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->__('Read More') ?>"><?php echo $this->__('Read More') ?></a>
+            </div>
+
+        </div>
+    </div>
+<?php else: ?>
+    <div class="post-list-item">
+        <div class="post-entry">
+            <span><?php echo date('d F, 2013', strtotime($post->getData('post_date'))) ?></span>
+            <h2><a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a></h2>
+            <div class="post-descr">
+                <?php if($description = $post->getMetaValue('Short Description')) echo $description ?>
+            </div>
+            <?php $sharedData = Mage::helper('evisu_blog')->getSocialShareData($post) ?>
+            <div class="post-bottom">
+                <a href="<?php echo $post->getPermalink() ?>"><?php echo $this->__('Read More') ?></a>
+                <div class="bottom-comments"><?php echo $this->__('COMMENTS') ?> (<?php echo $post->getComments()->getSize() ?>)</div>
+                <div class="social-media-share">
+                    <ul>
+                        <li><a href="http://www.smartaddon.com/?share" title="Mail" class="mail" onclick="return sa_tellafriend('<?php echo urldecode($sharedData->getUrl()) ?>','email');">Mail</a></li>
+                        <li><a onclick="window.open('https://twitter.com/intent/tweet?text=<?php echo $sharedData->getTitle() ?>: &url=<?php echo $sharedData->getUrl() ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>
+                        <li><a onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=<?php echo $sharedData->getTitle() ?>&p[summary]=<?php echo $sharedData->getSummary() ?>&p[url]=<?php echo $sharedData->getUrl() ?>&p[images][0]=<?php if($sharedData->getImage()) echo $sharedData->getImage() ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>
+                        <li><a onclick="window.open('http://service.weibo.com/share/share.php?url=<?php echo $sharedData->getUrl() ?>&title=<?php echo $sharedData->getTitle() ?>&pic=<?php if($sharedData->getImage()) echo urlencode($sharedData->getImage()) ?>','sharer','toolbar=0,status=0,width=548,height=325')" class="weibo" title="Weibo" href="javascript: void(0)">Weibo</a></li>
+                        <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo $sharedData->getUrl() ?>&media=<?php if($sharedData->getImage()) echo $sharedData->getImage() ?>&description=<?php echo $sharedData->getTitle() ?> - <?php echo $sharedData->getSummary() ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
+                        <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo $sharedData->getUrl() ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->getAfterPostContentHtml() ?>
+    </div>
+<?php endIf; ?>

@@ -22,7 +22,15 @@ abstract class Fishpig_Wordpress_Block_Post_List_Wrapper_Abstract extends Mage_C
 			else {
 				$collection->addStatusFilter('publish');
 			}
-			
+
+            //custom filter by categories
+            $filter = Mage::app()->getRequest()->getParam('cat');
+            if(!empty($filter) && is_array($filter))
+            {
+                $collection->addCategoryAndPostIdFilter(array(), array_keys($filter));
+            }
+            //and custom filter by category
+
 			$this->setPostCollection($collection->addOrder('post_date', 'desc'));
 			
 			$collection->setFlag('after_load_event_name', $this->_getPostCollectionEventName() . '_after_load');
@@ -79,6 +87,7 @@ abstract class Fishpig_Wordpress_Block_Post_List_Wrapper_Abstract extends Mage_C
 	public function getPostListBlock()
 	{
 		if (($postListBlock = $this->getChild('post_list')) !== false) {
+            /* @var $postListBlock Fishpig_Wordpress_Block_Post_List */
 			if (!$postListBlock->getWrapperBlock()) {
 				$postListBlock->setWrapperBlock($this);
 			}

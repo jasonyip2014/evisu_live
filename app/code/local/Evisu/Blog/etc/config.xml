@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Blog>
+            <version>0.1.0</version>
+        </Evisu_Blog>
+    </modules>
+    <global>
+        <models>
+            <evisu_blog>
+                <class>Evisu_Blog_Model</class>
+            </evisu_blog>
+        </models>
+        <blocks>
+            <evisu_blog>
+                <class>Evisu_Blog_Block</class>
+            </evisu_blog>
+        </blocks>
+        <helpers>
+            <evisu_blog>
+                <class>Evisu_Blog_Helper</class>
+            </evisu_blog>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <evisu_blog>
+                <use>standard</use>
+                <args>
+                    <module>Evisu_Blog</module>
+                    <frontName>evisu_blog</frontName>
+                </args>
+            </evisu_blog>
+        </routers>
+    </frontend>
+</config>

@@ -4,6 +4,9 @@
         <Fishpig_Wordpress>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Enterprise_PageCache/>
+            </depends>
         </Fishpig_Wordpress>
 		<Fishpig_Wordpress_Addon_WordPressSEO>
 			<active>true</active>

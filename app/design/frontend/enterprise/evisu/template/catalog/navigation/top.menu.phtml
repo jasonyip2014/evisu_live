@@ -37,17 +37,14 @@
                 <span><?php echo $this->__('Heritage'); ?></span>
             </a>
         </li>
-        <li class="level0 top-level">
-            <a href="<?php echo Mage::getUrl('blog'); ?>">
-                <span><?php echo $this->__('Blog'); ?></span>
-            </a>
-        </li>
+
         <li class="level0 top-level">
             <a href="<?php echo Mage::getUrl('press'); ?>">
                 <span><?php echo $this->__('Press'); ?></span>
             </a>
         </li>
         */ ?>
+
 
         <?php if($cmsMenuItems = Mage::helper('topmenu')->getCmsMenuItems()): ?>
             <?php foreach ($cmsMenuItems as $cmsMenuItem): ?>
@@ -58,6 +55,11 @@
                 </li>
             <?php endForeach; ?>
         <?php endIf; ?>
+        <li class="level0 top-level">
+            <a href="<?php echo Mage::getUrl('blog'); ?>">
+                <span><?php echo $this->__('Blog'); ?></span>
+            </a>
+        </li>
     </ul>
     <span class="search-btn"></span>
 </div>

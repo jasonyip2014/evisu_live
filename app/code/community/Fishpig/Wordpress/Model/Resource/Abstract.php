@@ -50,11 +50,9 @@ abstract class Fishpig_Wordpress_Model_Resource_Abstract extends Mage_Core_Model
 				->where($object->getMetaObjectField() . '=?', $object->getId())
 				->where('meta_key=?', $metaKey)
 				->limit(1);
-
 			if(($value = $this->_getReadAdapter()->fetchOne($select)) !== false) {
 				return trim($value);
 			}
-			
 			return false;
 		}
 		

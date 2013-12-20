@@ -1,0 +1,53 @@
+<?php /* @var $this Evisu_Blog_Block_Archive */ ?>
+<div class="archive-container no-display">
+    <div id="calendar">
+        <div class="prev-month" onclick="EvisuBlog.getArchiveCalendar('<?php echo $this->getPreviousUrl() ?>')">
+            <?php echo $this->__('Previous Month') ?>
+        </div>
+        <ul class="calendar">
+            <?php foreach($this->getArchiveCalendar() as $month): ?>
+                <li class="month">
+                    <?php foreach($month as $week): ?>
+                        <?php if(!is_array($week)): ?>
+                            <div class="caption">
+                                <?php echo $week ?>
+                            </div>
+                            <?php continue; ?>
+                        <?php endIf; ?>
+                        <div class="week">
+                            <?php foreach ($week as $day) : ?>
+                                <?php if(!empty($day['fulldate'])): ?>
+                                    <a href="<?php echo $day['url'] ?>">
+                                        <?php /*
+                                            <strong class="archive-image">
+                                                <?php if(!empty($day['thumbnail'])): ?>
+                                                    <img src="<?php echo $day['thumbnail'] ?>" alt="" />
+                                                <?php endIf; ?>
+                                            </strong>
+                                        */?>
+                                        <em><?php echo $day['date'] ?></em>
+                                        <?php if(!empty($day['caption'])): ?>
+                                            <span class="tooltip">
+                                                 <span class="tooltip-date"><?php echo $day['post_date'] ?></span>
+                                                <span class="tooltip-heading"><?php echo $day['caption'] ?></span>
+                                                <span class="link"><?php echo $this->__('Read Postsdf') ?></span>
+                                            </span>
+                                        <?php endIf; ?>
+                                    </a>
+                                <?php else: ?>
+                                    <span class="<?php if(empty($day['date'])) echo 'empty' ?>"><?php echo $day['date'] ?></span>
+                                <?php endIf; ?>
+                            <?php endForeach; ?>
+                        </div>
+                    <?php endForeach; ?>
+                </li>
+            <?php endForeach; ?>
+        </ul>
+        <div class="calendar-hider no-display"></div>
+        <?php if($this->showNextUrl()): ?>
+            <div class="next-month" onclick="EvisuBlog.getArchiveCalendar('<?php echo $this->getNextUrl() ?>');">
+                <?php echo $this->__('Next Month') ?>
+            </div>
+        <?php endIf; ?>
+    </div>
+</div>

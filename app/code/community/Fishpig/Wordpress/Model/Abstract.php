@@ -143,8 +143,8 @@ abstract class Fishpig_Wordpress_Model_Abstract extends Mage_Core_Model_Abstract
 	{
 		if ($this->hasMeta()) {
 			if (!isset($this->_meta[$key])) {
+                /* @var $resource Fishpig_Wordpress_Model_Resource_Post */
 				$value = $this->getResource()->getMetaValue($this, $this->_getRealMetaKey($key));
-				
 				$meta = new Varien_Object(array(
 					'key' => $key,
 					'value' => $value,
@@ -154,10 +154,8 @@ abstract class Fishpig_Wordpress_Model_Abstract extends Mage_Core_Model_Abstract
 				
 				$this->_meta[$key] = $meta->getValue();
 			}
-			
 			return $this->_meta[$key];
 		}
-		
 		return false;
 	}
 	

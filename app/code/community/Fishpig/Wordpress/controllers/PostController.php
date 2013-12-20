@@ -78,11 +78,12 @@ class Fishpig_Wordpress_PostController extends Fishpig_Wordpress_Controller_Abst
 			}
 			
 			foreach($categories as $category) {
-				$this->addCrumb('post_category_' . $category->getId(), array('label' => $category->getName(), 'link' => $category->getUrl()));
+				//$this->addCrumb('post_category_' . $category->getId(), array('label' => $category->getName(), 'link' => $category->getUrl()));
 			}
 		}
-		
-		$this->addCrumb('post', array('label' => $post->getPostTitle()));
+
+        $this->addCrumb('post', array('label' => 'Blog Post'));
+		//$this->addCrumb('post', array('label' => $post->getPostTitle()));
 
 		$this->renderLayout();
 	}
