@@ -5,13 +5,13 @@
 <?php $afModel = $this->getPage()->getBlockModel() ?>
 <div class="landing-page-holder">
     <div class="yoffset" style="position:fixed; z-index:10000; font-size: 35px;background: yellow;"></div>
-    <div class="main-section-holder section-holder">
+    <div class="main-section-holder section-holder section-holder-0">
         <div class="main-section">
-            <div class="image-holder main-image-holder" data-640="top:0%;" data-3640="top:-400%;">
+            <div class="image-holder main-image-holder" data-1640="top:0%;" data-4640="top:-400%;">
                 <img width="1366px" height="1541px" src="<?php echo $_afHelper->init($afModel, $this->getLpMainImage() , '')->resize(1366, 1541); ?>" alt="" />
             </div>
 
-            <div class="left-description"data-480="top:21%;" data-1240="top:-100%;">
+            <div class="left-description"data-480="top:21%;" data-2240="top:-100%;">
                 <div class="title"><?php echo $this->getLpMainTitle() ?></div>
                 <div class="cmsadvanced-breadcrumbs-container">
                     <?php echo $this->getChildHtml('breadcrumbs') ?>
