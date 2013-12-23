@@ -5973,3 +5973,189 @@ position: absolute;
 .checkout-onepage-success .col-main .buttons-set button:hover{
     background: #ccc;
 }
+
+/*===== order view ============*/
+
+.sales-order-view .page .main{
+    padding: 0 0 0 9.6354166667%;
+    color: #333;
+}
+
+.sales-order-view .page .main .page-title,
+.sales-order-view .page .main .breadcrumbs{
+    padding: 0 0 0 2%;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper{
+    display: inline-block;
+    width: 906px;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .account-btn-holder{
+    margin: 0 0 50px;   
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .account-btn-holder .separator{
+    display: none;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .account-btn-holder a{
+    display: inline-block;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .account-btn-holder a:hover{
+    background: #333;
+    text-decoration: none;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .col2-set,
+.sales-order-view .page .main .my-account .account-wrapper .order-page .order-info-block{
+    display: inline-block;
+    width: 283px;
+    height: 272px;
+    border: 3px solid #333;
+    background: #fff;
+    vertical-align: top;
+    font: 12px Courier, georgia, serif;
+    position: relative;
+    margin: 0 11px 0 0;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .order-info-block .order-info,
+.sales-order-view .page .main .my-account .account-wrapper .order-page .order-info-block .order-date{
+    padding: 35px 28px 0 22px;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .order-info-block .order-info > dt{
+    position: absolute;
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    top: -48px;
+    left: 24px;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .col2-set .col-1 .box-title{
+    position: absolute;
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    top: -48px;
+    left: 24px;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .order-page .col2-set .info-box{
+    padding: 35px 28px 0 22px;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .data-table{
+    background: #fff;
+    border: 3px solid #333;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .data-table tfoot tr{
+    padding: 0 20px;
+    font: 700 14px 'Open Sans', Arial, sans-serif;
+    text-align: center;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper .data-table tfoot .subtotal td:first-child,
+.sales-order-view .page .main .my-account .account-wrapper .data-table tfoot .shipping td:first-child,
+.sales-order-view .page .main .my-account .account-wrapper .data-table tfoot .grand_total td:first-child{
+    text-align: right;
+}
+
+.sales-order-view .page .main .my-account .account-wrapper:last-child{
+    padding: 0 0 0 274px;
+}
+
+@media screen and (max-width: 1410px){
+   .sales-order-view .page .main .my-account .account-wrapper:last-child{
+        padding: 0 0 0 0;
+    }
+}
+
+/*====== order print =========*/
+
+.sales-order-print .print-head > *{
+    display: inline-block;
+}
+
+.sales-order-print .print-head .logo{
+    width: auto;
+    height: 120px;
+    margin: 28px 0 0;
+}
+
+.sales-order-print .print-head address{
+    margin: 28px 0 0 50px;
+    font: 12px Courier, georgia, serif;
+}
+
+.sales-order-print .print-head:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.sales-order-print .print-head,
+.sales-order-print .main-section{
+    width: 978px;
+    margin: 0 auto;
+}
+
+.sales-order-print .main-section > h1,
+.sales-order-print .main-section > h2,
+.sales-order-print .main-section > .order-date{
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+}
+
+.sales-order-print .main-section > h2{
+    margin: -40px 0 0;
+}
+
+.sales-order-print .main-section > .order-date{
+    margin: 0 0 50px;
+}
+
+.sales-order-print .main-section .col2-set .col-1,
+.sales-order-print .main-section .col2-set .col-2{
+    display: inline-block;
+    width: 233px;
+    height: 237px;
+    border: 3px solid #333;
+    background: #fff;
+    vertical-align: top;
+    font: 12px Courier, georgia, serif;
+    position: relative;
+    margin: 0 20px 50px 0;
+    padding: 35px 28px 0 22px;
+}
+
+.sales-order-print .main-section .col2-set .col-1 h2,
+.sales-order-print .main-section .col2-set .col-2 h2{
+    position: absolute;
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+    color: #333;
+    top: -48px;
+    left: 24px;
+}
+
+.sales-order-print .main-section .data-table{
+    background: #fff;
+    border: 3px solid #333;
+}
+
+.sales-order-print .main-section .data-table tfoot tr{
+    padding: 0 20px;
+    font: 700 14px 'Open Sans', Arial, sans-serif;
+    text-align: center;
+}
+
+.sales-order-print .main-section .data-table tfoot .subtotal td:first-child,
+.sales-order-print .main-section .data-table tfoot .shipping td:first-child,
+.sales-order-print .main-section .data-table tfoot .grand_total td:first-child{
+    text-align: right;
+}
