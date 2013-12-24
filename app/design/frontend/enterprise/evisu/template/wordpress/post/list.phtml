@@ -1,3 +1,4 @@
+<?php /* @var $this Fishpig_Wordpress_Block_Post_List */ ?>
 <?php
 /**
  * @category    Fishpig
@@ -32,5 +33,6 @@
 		</ul>
 		<script type="text/javascript">decorateList($('post-list'));</script>
 		<?php echo $this->getPagerHtml() ?>
+        <?php echo $this->getChildHtml('instagram') ?>
 	</div>
 <?php endif; ?>

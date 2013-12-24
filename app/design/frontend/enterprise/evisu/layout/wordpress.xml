@@ -61,7 +61,6 @@
             <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.masonry.js</name><params/></action>
             <action method="addItem"><type>skin_js</type><name>js/evisu_blog.js</name><params/></action>
             <action method="addItem"><type>skin_css</type><name>css/evisu_blog.css</name><params/></action>
-
 		</reference>
 		<reference name="left">
 			<action method="unsetChildren" ifconfig="wordpress/misc/sidebar_left_empty" />
@@ -110,7 +109,9 @@
 	<wordpress_homepage>
 		<reference name="content">
 			<block type="wordpress/homepage" name="wordpress_homepage" as="wp.home" template="wordpress/homepage.phtml">
-				<block type="wordpress/post_list" name="wordpress_post_list" as="post_list" template="wordpress/post/list.phtml" />
+				<block type="wordpress/post_list" name="wordpress_post_list" as="post_list" template="wordpress/post/list.phtml">
+                    <block type="instagramconnect/blog" name="instagram" as="instagram" template="wordpress/instagram.phtml"/>
+				</block>
 			</block>
 		</reference>
 	</wordpress_homepage>
@@ -227,6 +228,7 @@
 			<block type="wordpress/search_result" name="wp.search.result" template="wordpress/search/result.phtml">
 				<block type="wordpress/post_list" name="wordpress_post_list" as="post_list" template="wordpress/post/list.phtml" />
 			</block>
+            <block type="instagramconnect/blog" name="instagram" as="instagram" template="wordpress/instagram.phtml" />
 		</reference>
 	</wordpress_search_index>	
 	<!--
