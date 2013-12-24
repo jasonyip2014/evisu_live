@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Rules>
+            <version>0.1.8</version>
+        </Evisu_Rules>
+    </modules>
+    <global>
+        <models>
+            <evisu_rules>
+                <class>Evisu_Rules_Model</class>
+            </evisu_rules>
+        </models>
+        <blocks>
+            <evisu_rules>
+                <class>Evisu_Rules_Block</class>
+            </evisu_rules>
+        </blocks>
+        <helpers>
+            <evisu_rules>
+                <class>Evisu_Rules_Helper</class>
+            </evisu_rules>
+        </helpers>
+        <resources>
+            <evisu_rules_setup>
+                <setup>
+                    <module>Evisu_Rules</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_rules_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <rules_page>
+                <name>Rules Page</name>
+                <template>cmsadvanced/rules/page.phtml</template>
+                <block>evisu_rules/rules</block>
+                <groups>
+                    <r_main_data>
+                        <name>Main Data</name>
+                        <attributes>
+                            <r_main_title>
+                                <label>Main Title</label>
+                                <template>text</template>
+                            </r_main_title>
+                            <r_main_sub_title>
+                                <label>Main Sub Title</label>
+                                <template>text</template>
+                            </r_main_sub_title>
+                            <r_main_text>
+                                <label>Main Text</label>
+                                <template>textarea</template>
+                            </r_main_text>
+                            <r_main_end_text>
+                                <label>End Text</label>
+                                <template>text</template>
+                            </r_main_end_text>
+                        </attributes>
+                    </r_main_data>
+                </groups>
+            </rules_page>
+            <rules_page_section>
+                <name>Rules Page Section</name>
+                <template>cmsadvanced/rules/section.phtml</template>
+                <block>evisu_rules/rules</block>
+                <groups>
+                    <r_section_data>
+                        <name>Section Data</name>
+                        <attributes>
+                            <r_menu_title>
+                                <label>Menu Title</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </r_menu_title>
+                        </attributes>
+                    </r_section_data>
+                    <r_section_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <r_section_bgcolor>
+                                <label>Section Background Color</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_rules/config_source_bgcolor</source>
+                                <required>1</required>
+                            </r_section_bgcolor>
+                            <r_section_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </r_section_animation>
+                        </attributes>
+                    </r_section_animation>
+                </groups>
+            </rules_page_section>
+            <r_text_block>
+                <name>Rules Text Block</name>
+                <template>cmsadvanced/rules/blocks/text_block.phtml</template>
+                <groups>
+                    <r_data_text_block>
+                        <name>Data</name>
+                        <attributes>
+                            <r_text_block_header>
+                                <label>Header</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </r_text_block_header>
+                            <r_text_block_sub-header>
+                                <label>Sub Header</label>
+                                <template>text</template>
+                            </r_text_block_sub-header>
+                            <r_text_block_text>
+                                <label>Text</label>
+                                <template>textarea</template>
+                                <required>1</required>
+                            </r_text_block_text>
+                        </attributes>
+                    </r_data_text_block>
+                    <r_text_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <r_left>
+                                <label>Left (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_left>
+                            <r_right>
+                                <label>Right (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_right>
+                            <r_top>
+                                <label>Top (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_top>
+                            <r_tb_width>
+                                <label>Block Width (css)</label>
+                                <template>text</template>
+                                <required>1</required>
+                            </r_tb_width>
+                            <r_tb_min_height>
+                                <label>Min Height (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_tb_min_height>
+                            <r_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </r_block_animation>
+                        </attributes>
+                    </r_text_panel_animation>
+                </groups>
+            </r_text_block>
+           <!-- <r_round_text_block>
+                <name>Rules Round Text Block</name>
+                <template>cmsadvanced/rules/blocks/round_text_block.phtml</template>
+                <groups>
+                    <r_text_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <r_left>
+                                <label>Left (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_left>
+                            <r_right>
+                                <label>Right (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_right>
+                            <r_top>
+                                <label>Top (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_top>
+                            <r_tb_width>
+                                <label>Block Width (css)</label>
+                                <template>text</template>
+                            </r_tb_width>
+                            <r_tb_min_height>
+                                <label>Min Height (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_tb_min_height>
+                            <r_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </r_block_animation>
+                        </attributes>
+                    </r_text_panel_animation>
+                </groups>
+            </r_round_text_block>-->
+            <r_image_panel>
+                <name>Rules Image Panel</name>
+                <template>cmsadvanced/rules/blocks/image_panel.phtml</template>
+                <groups>
+                    <r_data_image_panel>
+                        <name>Data</name>
+                        <attributes>
+                            <r_ip_image>
+                                <label>Image</label>
+                                <template>image</template>
+                            </r_ip_image>
+                        </attributes>
+                    </r_data_image_panel>
+                    <r_image_panel_animation>
+                        <name>Animation Settings</name>
+                        <attributes>
+                            <r_left>
+                                <label>Left (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_left>
+                            <r_right>
+                                <label>Right (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_right>
+                            <r_top>
+                                <label>Top (css)</label>
+                                <template>text</template>
+                                <required>0</required>
+                            </r_top>
+                            <r_ip_width>
+                                <label>Image Width (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                                <required>1</required>
+                            </r_ip_width>
+                            <r_ip_height>
+                                <label>Image Height (px)</label>
+                                <type>int</type>
+                                <template>text</template>
+                                <required>1</required>
+                            </r_ip_height>
+                            <r_ip_widtr_css>
+                                <label>Image Width (css)</label>
+                                <template>text</template>
+                            </r_ip_widtr_css>
+                            <r_ip_height_css>
+                                <label>Image Height (css)</label>
+                                <template>text</template>
+                            </r_ip_height_css>
+                            <r_ip_image_type>
+                                <label>Image Type</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_rules/config_source_imagetype</source>
+                                <required>1</required>
+                            </r_ip_image_type>
+                            <r_block_animation>
+                                <label>Animation Rules</label>
+                                <input>animation_gridfield</input>
+                                <template>gridfield</template>
+                                <type>text</type>
+                            </r_block_animation>
+                        </attributes>
+                    </r_image_panel_animation>
+                </groups>
+            </r_image_panel>
+        </pagetypes>
+    </cmsadvanced>
+</config>
