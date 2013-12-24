@@ -49,6 +49,6 @@ class Fishpig_Wordpress_Block_Post_List_Pager extends Mage_Page_Block_Html_Pager
             '_query' => array(),
         )), '/'));
 
-		return $url[0] .((substr($url[0], -1,1) !='/')?'/':''). $slug . '?' . $url[1];
+		return $url[0] .((substr($url[0], -1,1) !='/')?'/':''). $slug . '?' . (isset($url[1])?$url[1]:'');
 	}
 }
