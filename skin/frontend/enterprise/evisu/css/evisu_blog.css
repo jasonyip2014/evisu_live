@@ -15,7 +15,7 @@
 	color: #fff;
 	padding: 40px 21px;	
 	position: absolute;
-	top: 180px;
+	top: 93px
 }
 
 .is-blog .top-bar .archive-container{
@@ -241,7 +241,7 @@
 }
 
 .is-blog .page .breadcrumbs-container h1{
-	margin: 0 0 5px 21px;
+	margin: -16px 0 0px 21px;
 }
 
 .is-blog .page .breadcrumbs-container .breadcrumbs{
@@ -252,6 +252,10 @@
 .is-blog .page .breadcrumbs-container{
 	padding: 0 12.3958333333% 0 9.6354166667%;
 	position: relative;
+}
+
+.is-blog .page .top-bar{
+	margin: 14px 0 0 0;
 }
 
 .is-blog .page .top-bar .wp-sidebar{
@@ -691,7 +695,7 @@
 @media screen and (max-width: 1500px){
 	.wordpress-search-index .breadcrumbs-container .social-links,
 	.wordpress-index-index .breadcrumbs-container .social-links{
-		top: 110px;
+		top: 70px;
 	}
 	.wordpress-index-index .breadcrumbs-container .top-post-holder .top-post-image,
 	.wordpress-search-index .breadcrumbs-container .top-post-holder .top-post-image{
@@ -701,12 +705,19 @@
 	.wordpress-search-index .breadcrumbs-container .top-post-holder .top-post-descr{
 		padding: 110px 0 0 50px;
 	}
+	.is-blog .line-top {
+		width: 96%;
+	}
+	.wordpress-index-index .breadcrumbs-container > .breadcrumbs,
+	.wordpress-search-index .breadcrumbs-container > .breadcrumbs{
+		top: 35px !important;
+	}
 }
 
 @media screen and (max-width: 1220px){
 	.wordpress-index-index .breadcrumbs-container .top-post-holder .top-post-descr,
 	.wordpress-search-index .breadcrumbs-container .top-post-holder .top-post-descr{
-		padding: 110px 0 0 80px;
+		padding: 70px 0 0 80px;
 	}
 }
 
@@ -717,7 +728,7 @@
 
 .wordpress-index-index .breadcrumbs-container > .breadcrumbs,
 .wordpress-search-index .breadcrumbs-container > .breadcrumbs{
-	top: 70px;
+	top: 55px;
 }
 
 .wordpress-index-index .breadcrumbs-container .top-post,
@@ -1339,6 +1350,18 @@
 	.instagram-view .image-holder:nth-child(5){
 		display: none;
 	}
+	.instagram-view .image-holder:last-child{
+		float: right;
+	}
+	.instagram-view .image-holder:first-child{
+		float: left;
+	}
+	.instagram-block{
+		padding: 0 !important;
+	}
+	.is-blog .page .breadcrumbs-container h1{
+		font-size: 28px;
+	}
 }
 
 .wordpress-post-view .top-post .post-baner-holder .image-holder:first-child{
@@ -1352,15 +1375,18 @@
 	font: 700 28px 'Open Sans', arial, sans-serif;
 	text-transform: uppercase;
 	color: #333;
+	letter-spacing: 4px;
+	margin: 19px 0 11px 0;
 }
 
 .instagram-block > a{
-	font: 700 14px 'Open Sans', arial, sans-serif;
-	text-transform: uppercase;
+		font: 700 14px 'Open Sans', arial, sans-serif;
+		text-transform: uppercase;
 	color: #333;
 	border-bottom: 2px solid #333;
 	display: inline-block;
-	margin: 0 0 10px; 
+	margin: 0 0 27px 11px;
+	letter-spacing: 1px;
 }
 
 .instagram-block > a:hover{
@@ -1382,4 +1408,14 @@
 	width: 19%;
 	display: inline-block;
 	vertical-align: top;
+	margin: 0 1% 0 0;
+}
+
+.instagram-view .image-holder:last-child{
+	margin: 0;
+}
+
+.instagram-block{
+	border-top: 1px solid #ccc;
+	padding: 0 90px; 
 }
