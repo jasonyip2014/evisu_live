@@ -1,4 +1,4 @@
-jQuery('img').css({'opacity': 0 });
+jQuery('img:not(.loaded)').css({'opacity': 0 });
 
 var EvisuNavigation =
 {
@@ -280,7 +280,7 @@ jQuery(function($)
     // === Navigation Animation
     EvisuNavigation.init('#nav');
 
-    $('img').on('load', function() {
+    $('img:not(.loaded)').on('load', function() {
         $(this).stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded
     });
 
@@ -288,7 +288,7 @@ jQuery(function($)
     $(window).load(function(){
 
         AjaxBasket.resize();
-        $('.img').stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded fiximgloadevent!!!
+        $('.img:not(.loaded)').stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded fiximgloadevent!!!
 
         //$('body').fadeIn();
     });
