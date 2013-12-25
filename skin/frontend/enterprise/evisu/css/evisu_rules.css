@@ -51,7 +51,7 @@
 	vertical-align: middle;
 }
 
-.sections .last-section{
+.sections .section:last-child{
 	height: 0 !important;
 }
 
