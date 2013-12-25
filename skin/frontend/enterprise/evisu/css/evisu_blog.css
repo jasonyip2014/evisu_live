@@ -1365,7 +1365,7 @@
 
 .instagram-block > a:hover{
 	text-decoration: none;
-	border: none;
+	border-bottom: 2px solid #fff;
 }
 
 .instagram-view{
