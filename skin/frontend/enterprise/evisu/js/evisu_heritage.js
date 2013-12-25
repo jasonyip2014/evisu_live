@@ -3,23 +3,28 @@ var HeritageScrollr = {
     scale : 1,
     defWindowWidth : 1920,
     defWindowHeight : 1080,
+    isMac : false,
 
     init : function(){
         var self = this;
+        self.getUserAgent();
         self.windowResize();
         self.sectionsResize();
         // init scrollr
         console.log(this.scale);
-        self.scrollr = skrollr.init({
-            edgeStrategy : 'set',
-            scale : self.scale,
-            easing: {
-                WTF: Math.random,
-                inverted: function(p) {
-                    return 1-p;
+        if(!self.isMac)
+        {
+            self.scrollr = skrollr.init({
+                edgeStrategy : 'set',
+                scale : self.scale,
+                easing: {
+                    WTF: Math.random,
+                    inverted: function(p) {
+                        return 1-p;
+                    }
                 }
-            }
-        });
+            });
+        }
         //jQuery('body,html').height('auto');
 
         //block Items behavior
@@ -38,7 +43,9 @@ var HeritageScrollr = {
         var self = this;
         self.windowResize();
         self.sectionsResize();
-        self.scrollr.refresh(undefined, self.scale);
+        if(!self.isMac){
+            self.scrollr.refresh(undefined, self.scale);
+        }
         //jQuery('body,html').height('auto');
     },
 
@@ -60,8 +67,15 @@ var HeritageScrollr = {
         endImgHolder.attr('data-' + (parseInt(index)-1), 'opacity:0');
         endText.attr('data-' + (parseInt(index)), 'opacity:1');
         endText.attr('data-' + (parseInt(index)-1), 'opacity:0');
-},
+    },
 
+    getUserAgent : function(){
+        var userAgent = navigator.userAgent.toLowerCase();
+        if(!(userAgent.indexOf('ipod') == -1 && userAgent.indexOf('ipad') == -1 && userAgent.indexOf('iphone') == -1))
+        {
+            this.isMac = true;
+        }
+    },
 
     windowResize : function(){
         var self = this;

@@ -22,6 +22,10 @@
 	background-color: #ededed;
 }
 
+.yoffset{
+	display: none;
+}
+
 .heritage-page .grey{
 	background-color: #ededed;
 	background-image: url(../images/bg-heritage.png);
