@@ -128,7 +128,7 @@ var RulesScrollr = {
         var timeLine = jQuery('.line');
         var endImgHolder = jQuery('.end-img-holder');
         var endText = jQuery('.end-text');
-        var sectionCount = jQuery('.section').length;
+        var sectionCount = jQuery('.section').length - 1;
         var animationStart = jQuery('.begin-img-holder').offset().top+jQuery('.begin-img-holder').height();
         console.log(animationStart);
         var animationEnd = (sectionCount) * self.defWindowHeight + 65 + 180 - animationStart;
@@ -142,7 +142,7 @@ var RulesScrollr = {
         endImgHolder.attr('data-' + (parseInt(animationEnd)-1), 'opacity:0');
         endText.attr('data-' + (parseInt(animationEnd)), 'opacity:1');
         endText.attr('data-' + (parseInt(animationEnd)-1), 'opacity:0');
-
+        //jQuery('.begin-img').animate({opacity:1}, 1000);
 
         self.setImagePosition();
     },
@@ -169,6 +169,7 @@ var RulesScrollr = {
 jQuery(function($){
 
     RulesScrollr.init();
+    jQuery('.begin-img').css({opacity: 0});
 
     $(window).scroll(function(){
         var	$topPosition = $(window).scrollTop();
