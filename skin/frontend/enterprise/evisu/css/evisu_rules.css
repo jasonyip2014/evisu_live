@@ -26,8 +26,26 @@
 	height: 100%;
 }
 
+.section-description .links li{
+	display: inline-block;
+	margin: 0 64px 0 0;
+}
+
+.section-description .links{
+	margin: 0 0 35px;
+}
+
+.section-description .links li:last-child{
+	margin: 0;
+}
+
+.section-description .links li a{
+	color: #fff;
+	text-transform: uppercase;
+	font: 700 28px 'Open Sans', arial, sans-serif; 
+}
+
 .sections{
-	border-bottom: 1px solid #333;
 	padding: 0 0 227px;
 	background: #fff;
 }
@@ -157,7 +175,7 @@
 .section-description .header{
 	font: 700 28px 'Open Sans', arial, sans-serif;
 	text-transform: uppercase;
-	margin: 0 0 29px;
+	margin: 0 0 11px;
 	letter-spacing: 4px;
 }
 

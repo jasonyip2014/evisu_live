@@ -17,10 +17,10 @@
     height:auto;
 }
 .homepage-holder .main-section-holder p{
-    font:700 72px/95px 'Open Sans', sans-serif;
+    font:700 54pt/71.25pt 'Open Sans', sans-serif;
     letter-spacing:10px;
     position:absolute;
-    width:680px;
+    width:660px;
     left:13%;
     top:1%;
 }
@@ -87,13 +87,13 @@
     z-index:3;
 }
 .section-holder h2{
-    font:700 72px/80px 'Open Sans', sans-serif;
+    font:700 48pt/48pt 'Open Sans', sans-serif;
     text-transform:uppercase;
     width:530px;
     position:static;
 }
 .section-holder h3{
-    font:700 72px/80px 'Open Sans', sans-serif;
+    font:700 48pt/48pt 'Open Sans', sans-serif;
     text-transform:lowercase;
     width:530px;
 }
@@ -470,16 +470,16 @@
 }
 .section-holder-3 .home_page_section3_image_panel_left h2{
     position:static;
-    font-size:48px;
-    line-height:48px;
+    font-size:48pt;
+    line-height:48pt;
     text-transform:uppercase;
     margin:0 0 0 19%;
     letter-spacing:5px;
 }
 .section-holder-3 .home_page_section3_image_panel_left h3{
     position:static;
-    font-size:48px;
-    line-height:48px;
+    font-size:48pt;
+    line-height:48pt;
     text-transform:lowercase;
     margin:0 0 3.94% 19%;
     letter-spacing:5px;
@@ -588,16 +588,16 @@
 }
 .section-holder-3 .home_page_section3_image_panel_right h2{
     position:static;
-    font-size:48px;
-    line-height:48px;
+    font-size:48pt;
+    line-height:48pt;
     text-transform:uppercase;
     letter-spacing:5px;
     margin:0 0 5.95%;
 }
 .section-holder-3 .home_page_section3_image_panel_right h2 span{
     position:static;
-    font-size:48px;
-    line-height:48px;
+    font-size:48pt;
+    line-height:48pt;
     text-transform:lowercase;
 }
 .section-holder-3 .home_page_section3_image_panel_right p{
@@ -772,10 +772,10 @@
         left: 8px;
     }
     .little:hover{
-        background: url(../images/little-more-btn-small.png) no-repeat 0px -46px !important;
+        background: url(../images/little-more-btn-small.png) no-repeat 0px -47px !important;
     }
     .quick-navigation .back-btn:hover{
-    background: url(../images/new-back-btn-small.png) no-repeat 0px -50px !important;
+    background: url(../images/new-back-btn-small.png) no-repeat 0px -51px !important;
     }
 }
 
