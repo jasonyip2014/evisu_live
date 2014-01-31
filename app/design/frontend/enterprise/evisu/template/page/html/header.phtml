@@ -27,6 +27,10 @@
  * @var Mage_Page_Block_Html_Header $this
  */
 ?>
+<script>
+    //init mobile
+    Mobile.init('<?php echo $this->getSkinUrl('/css/mobile/styles.css') ?>');
+</script>
 <div class="header-container">
     <div class="header-panel">
         <p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?></p>

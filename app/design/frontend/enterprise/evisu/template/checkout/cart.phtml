@@ -138,9 +138,11 @@
         </form>
         <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
         <div class="totals">
-            <?php /* @var $this Mage_Checkout_Block_Cart */?>
-            <span class="items-count"><?php echo $this->__('Items') ?>: <?php echo count($this->getItems()) ?></span>
-            <?php echo $this->getChildHtml('totals'); ?>
+            <div class="totals-holder">
+                <?php /* @var $this Mage_Checkout_Block_Cart */?>
+                <span class="items-count"><?php echo $this->__('Items') ?>: <?php echo count($this->getItems()) ?></span>
+                <?php echo $this->getChildHtml('totals'); ?>
+            </div>
         </div>
         <?php if($this->getContinueShoppingUrl()): ?>
             <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>

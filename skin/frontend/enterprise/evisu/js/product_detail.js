@@ -15,7 +15,7 @@ Product.Config.prototype.configureElement = function(element){
     Product.Config.prototype.configureElement_orig.apply(this, arguments);
 
     // set default qty value
-    $qtyField = jQuery('#qty')
+    $qtyField = jQuery('#qty');
     if($qtyField.val() == '')
     {
         $qtyField.val(1);
@@ -81,7 +81,6 @@ var MailToFriend = {
                 cache: false,
                 dataType: 'html',
                 success: function(data, el, responce) {
-                    //console.log(responce);
                     var content = jQuery('<div class="box-modal">' +
                         '<div class="box-modal_close arcticmodal-close">X</div>' +
                         '<p><b /></p><p />' +
@@ -135,6 +134,7 @@ var FullSizeImage =
             jQuery('.mousetrap').hide();//jzoom hide
             image.animate({opacity:0},'fast').attr('src',image.data('image'));
             this.container.css({zIndex:'1001'});
+            this.container.addClass('full-size-state');
             this.container.animate({width:(jQuery(window).width() - parseInt(this.container.parent().parent().css('paddingLeft')) * 2) + 'px'}, function(){
                 jQuery('#full_img_close').show();
                 jQuery('.full-size-hider').fadeIn();
@@ -153,6 +153,7 @@ var FullSizeImage =
             this.container.animate({width:'87.1%',left:0}, function(){
                 self.container.css({zIndex:'0'});
                 jQuery('.mousetrap').show(); //jzoom show
+                self.container.removeClass('full-size-state');
             });
 
             jQuery('#full_img_close').hide();
@@ -197,7 +198,6 @@ jQuery(function($){
 
     // mail to friend //
     jQuery('#send-to-friend-btn').on('click', function() {
-        //console.log(jQuery(this).attr('href'));
         MailToFriend.showModalWindow(jQuery(this).attr('href'));
         return false;
     });

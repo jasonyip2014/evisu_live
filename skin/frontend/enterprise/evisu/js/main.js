@@ -101,6 +101,11 @@ var AjaxBasket = {
                 this.prevButton.show();
             }
         }
+        else
+        {
+            this.nextButton.hide();
+            this.prevButton.hide();
+        }
     },
     next : function(){
         jQuery('#ajax-basket-item-0').animate({marginLeft:'-=' + this.itemWidth});
@@ -112,19 +117,21 @@ var AjaxBasket = {
         this.nextButton = jQuery('#basket-next-item');
         this.prevButton = jQuery('#basket-previous-item');
         var self = this;
+
+            //jQuery('#mini-cart').css({textAlign:'left'});
+
+
+        this.prevButton.on('click', function(){
+            self.prev();
+            return false;
+        });
+        this.nextButton.on('click', function(){
+            self.next();
+            return false;
+        });
         if(this.itemsCount > this.itemsVisible)
         {
-            jQuery('#mini-cart').css({textAlign:'left'});
-
             this.nextButton.show();
-            this.prevButton.on('click', function(){
-                self.prev();
-                return false;
-            });
-            this.nextButton.on('click', function(){
-                self.next();
-                return false;
-            });
         }
     },
     resize : function(){
@@ -139,7 +146,7 @@ var AjaxBasket = {
             }
             else
             {
-                this.itemWidth = '50%'
+                this.itemWidth = '50%';
                 jQuery('#mini-cart li').css({width:this.itemWidth});
                 self.itemsVisible = 2;
             }
@@ -262,11 +269,62 @@ var VideoPanel = {
     }
 };
 
+var Mobile = {
+    yes: false,
+    isIPad: false,
+    cssFile: null,
 
+    mobileUserAgents: [
+        'android',
+        'iphone',
+        'blackberry',
+        'blazer',
+        'bolt',
+        'symbian',
+        'doris',
+        'dorothy',
+        'fennec',
+        'gobrowser',
+        'iemobile',
+        'iris',
+        'maemo',
+        'minimo',
+        'netfront',
+        'opera mini',
+        'opera mobi',
+        'semc-browser',
+        'skyfire',
+        'teasharck',
+        'teleca',
+        'uzard web'
+    ],
+    // Returns the version of Internet Explorer or a -1 for other browsers.
+    init: function(cssFile){
+        var self = this;
+        self.cssFile = cssFile;
+        jQuery.each(self.mobileUserAgents, function(index, userAgent){
+            if(navigator.userAgent.toLowerCase().indexOf(userAgent) != -1){
+                self.yes = true;
+                return false;
+            }
+        });
+        if(navigator.userAgent.toLowerCase().indexOf('ipad') != -1)
+        {
+            self.isIPad = true;
+        }
+        if(self.yes)
+        {
+            //add mobile css
+            jQuery('head').append('<link rel="stylesheet" href="' + Mobile.cssFile + '" type="text/css" />');
+        }
+    }
+};
 
 //============onDocumentReady==============
 jQuery(function($)
 {
+
+
     SearchAutocomplete.init();
 
     //init page
@@ -299,13 +357,31 @@ jQuery(function($)
 
     // change country behavior
     jQuery('#change-country-btn').on('click', function(){
-        console.log('changePopUp');
         jQuery('#change-country-popup').fadeIn('slow');
         jQuery('#site-hidder').stop(true,true).fadeIn();
+        jQuery('#top-hider').stop(true,true).fadeIn();
+    });
+    jQuery('#site-hidder').on('click', function(){
+        jQuery('#change-country-popup').fadeOut('fast');
+        jQuery('#site-hidder').stop(true,true).fadeOut();
+        jQuery('#top-hider').stop(true,true).fadeOut();
+    });
+    jQuery(document).on('keydown', function(e){
+        if (e.keyCode == 27) { //escape
+            jQuery('#change-country-popup').fadeOut('fast');
+            jQuery('#site-hidder').stop(true,true).fadeOut();
+            jQuery('#top-hider').stop(true,true).fadeOut();
+        }
+    });
+    jQuery('#top-hider').on('click', function(){
+        jQuery('#change-country-popup').fadeOut('fast');
+        jQuery('#site-hidder').stop(true,true).fadeOut();
+        jQuery('#top-hider').stop(true,true).fadeOut();
     });
     jQuery('#change-country-popup .close-btn').on('click', function(){
         jQuery('#change-country-popup').fadeOut('fast');
         jQuery('#site-hidder').stop(true,true).fadeOut();
+        jQuery('#top-hider').stop(true,true).fadeOut();
     });
 
 });

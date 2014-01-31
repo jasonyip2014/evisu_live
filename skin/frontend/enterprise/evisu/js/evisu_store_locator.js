@@ -112,7 +112,6 @@ var StoreLocator = {
             navigator.geolocation.getCurrentPosition(function(position) {
                 self.displayClosestStore(position.coords.latitude, position.coords.longitude);
             }, function() {
-                console.log('error');
                 self.html5GeolocationError(true);
             });
         } else {

@@ -111,7 +111,6 @@ var LookBook = {
         var self = this;
 
         self.choiceGalleryItem(id);
-        //console.log(self.config[self.positions[id]]);
         var mainSectionContainer = jQuery('#main-section');
         var mainImage = new Image();
         mainSectionContainer.find('.image-holder').addClass('loading');
@@ -251,15 +250,10 @@ var LookBook = {
         var self = this;
         var nextId = self.getNextGalleryId();
         var container = jQuery('#thumbnail-section');
-        console.log(self.positions[nextId]);
         if(self.positions[nextId] != self.gallery.visibleCount - 1)
         {
             var element = container.find('#gall-trumb-' +  nextId);
-            //console.log(self.config[self.positions[nextId]].galleryItemWidth);
-            //console.log(element.width());//self.config[self.positions[nextId]].galleryItemWidth
             var marginLeft = element.offset().left + element.width() + parseFloat(element.css('marginLeft')) - container.find('ul').width() - container.find('ul').offset().left;
-            //console.log(element);
-            //console.log(marginLeft);
             container.find('ul>li:first').stop(true,true).animate({marginLeft : '-=' + marginLeft},'slow');
         }
         else
@@ -273,13 +267,10 @@ var LookBook = {
         var self = this;
         var prevId = self.getPrevGalleryId();
         var container = jQuery('#thumbnail-section');
-        console.log(self.positions[prevId]);
         if(self.positions[prevId] != self.positions['length'] - 1)
         {
             var element = container.find('#gall-trumb-' +  prevId);
-            //console.log(element);
             var marginLeft = jQuery('#thumbnail-section').find('ul').offset().left - element.offset().left; //- (self.gallery.visibleWidth - self.gallery.visibleItemWidth);
-            //console.log(marginLeft);
             container.find('ul>li:first').stop(true,true).animate({marginLeft : '+=' + marginLeft},'slow');
         }
         else
@@ -317,16 +308,12 @@ var LookBook = {
         }
         self.gallery.width = width;
 
-        //console.log(self.gallery.visibleCount);
-
-
     },
 
     choiceGalleryItem : function(itemId)
     {
 
         var self = this;
-        console.log(self.positions[itemId]);
 
         var container = jQuery('#thumbnail-section');
         container.find('.active').stop(true,false).animate({opacity: 0.4}, 'fast', function(){jQuery(this).removeClass('active')});
@@ -377,7 +364,6 @@ var LookBook = {
         var self = this;
         var prevId;
         var currentPosition = self.positions[self.currentId];
-        //console.log(currentPosition);
         if(currentPosition == 0)
         {
             prevId = self.positions.length - 1;
@@ -396,17 +382,14 @@ var LookBook = {
 
         if(currentPosition >= self.positions.length - 1)
         {
-            console.log('=1');
             nextPosition = self.gallery.visibleCount - 1;
         }
         else if(currentPosition < self.gallery.visibleCount - 1)
         {
-            console.log('=2');
             nextPosition = self.gallery.visibleCount;
         }
         else
         {
-            console.log('=3');
             nextPosition = currentPosition + 1;
         }
         return self.config[nextPosition]['id'];
@@ -415,12 +398,10 @@ var LookBook = {
     getPrevGalleryId : function() {
         var self = this;
         var prevPosition;
-        //console.log(self.positions[self.galleryId]);
         var currentPosition = self.positions[self.galleryId];
 
         if(currentPosition <= 0)
         {
-            console.log('=1');
             prevPosition = self.positions['length'] - 1;
         }
         //else if(currentPosition == self.gallery.visibleCount)
@@ -429,15 +410,12 @@ var LookBook = {
         //}
         else if(currentPosition >  self.positions['length'] - self.gallery.visibleCount)
         {
-            console.log('=2');
             prevPosition = currentPosition - self.gallery.visibleCount + 1;
         }
         else
         {
-            console.log('=3');
             prevPosition = currentPosition - 1;
         }
-        //console.log(nextId);
         return self.config[prevPosition]['id'];
     },
 
@@ -521,10 +499,8 @@ var ProductCarousel = {
         this.buttonBehavior();
     },
     init : function(itemsCount){
-        console.log('itemsCount = ' + itemsCount);
         this.itemsCount = itemsCount;
         this.nextButton = jQuery('#product-section').find('.next-btn');
-        console.log(this.nextButton);
         this.prevButton = jQuery('#product-section').find('.prev-btn');
         var self = this;
         if(this.itemsCount > this.itemsVisible)
@@ -543,7 +519,6 @@ var ProductCarousel = {
         //this.buttonBehavior();
     },
     resize : function(){
-        console.log('resize');
         var self = this;
         if(self.itemsCount > 0)
         {

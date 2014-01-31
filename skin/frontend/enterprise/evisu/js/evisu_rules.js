@@ -3,18 +3,15 @@ var RulesScrollr = {
     scale : 1,
     defWindowWidth : 1920,
     defWindowHeight : 1080,
-    isMac : false,
 
     init : function(){
         var self = this;
         self.timeLineHtml = jQuery('#time-line').html();
-        self.getUserAgent();
         self.windowResize();
         self.sectionsResize();
 
         // init scrollr
-        console.log(this.scale);
-        if(!self.isMac) {
+        if(!Mobile.isIPad && !Mobile.yes) {
             self.scrollr = skrollr.init({
                 edgeStrategy : 'set',
                 scale : self.scale,
@@ -31,11 +28,9 @@ var RulesScrollr = {
         //block Items behavior
         var $document = jQuery(document);
         $document.on('mouseenter', '.item', function(){
-            console.log('enter');
             jQuery(this).css('z-index', 10);
         });
         $document.on('mouseleave', '.item', function(){
-            console.log('leave');
             jQuery(this).css('z-index', 1);
         });
 
@@ -71,20 +66,12 @@ var RulesScrollr = {
         });
     },
 
-    getUserAgent : function(){
-        var userAgent = navigator.userAgent.toLowerCase();
-        if(!(userAgent.indexOf('ipod') == -1 && userAgent.indexOf('ipad') == -1 && userAgent.indexOf('iphone') == -1))
-        {
-            this.isMac = true;
-        }
-    },
-
     refresh : function(){
         var self = this;
         self.windowResize();
         self.sectionsResize();
         self.imagesAspectRatio();
-        if(!self.isMac) {
+        if(!Mobile.isIPad && !Mobile.yes){
             self.scrollr.refresh(undefined, self.scale);
         }
         //jQuery('body,html').height('auto');
@@ -99,9 +86,6 @@ var RulesScrollr = {
         {
             //horizontaly centering
             images.css({width:'auto', height:'100%'});
-                console.log(images.width());
-                console.log(windowWidth);
-                console.log(images.width() - windowWidth);
                 images.css({marginLeft:-((images.width() - windowWidth) / 2), marginTop:0});
         }
         else
@@ -116,7 +100,6 @@ var RulesScrollr = {
 
         var self = this;
         jQuery('#time-line').html(self.timeLineHtml);
-        console.log(jQuery('#time-line'));
         $windowHeight = jQuery(window).height();
 
         jQuery.each(jQuery('.section'), function(index, section)
@@ -130,7 +113,6 @@ var RulesScrollr = {
         var endText = jQuery('.end-text');
         var sectionCount = jQuery('.section').length - 1;
         var animationStart = jQuery('.begin-img-holder').offset().top+jQuery('.begin-img-holder').height();
-        console.log(animationStart);
         var animationEnd = (sectionCount) * self.defWindowHeight + 65 + 180 - animationStart;
 
         //clear time-line

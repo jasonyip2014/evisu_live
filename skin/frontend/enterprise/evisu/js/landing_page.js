@@ -3,15 +3,13 @@ var LPScrollr = {
     scale : 1,
     defWindowWidth : 1920,
     sectionsHeight : {},
-    isMac : false,
     sectionCounts : 0,
 
     init : function(){
         var self = this;
-        self.getUserAgent();
         self.windowResize();
         // init scrollr
-        if(!self.isMac)
+        if(!Mobile.isIPad && !Mobile.yes)
         {
             self.scrollr = skrollr.init({
                 edgeStrategy : 'set',
@@ -39,25 +37,16 @@ var LPScrollr = {
         self.sectionsResize();
     },
 
-    getUserAgent : function(){
-        var userAgent = navigator.userAgent.toLowerCase();
-        if(!(userAgent.indexOf('ipod') == -1 && userAgent.indexOf('ipad') == -1 && userAgent.indexOf('iphone') == -1))
-        {
-            this.isMac = true;
-        }
-    },
-
     refresh : function(){
         var self = this;
         self.windowResize();
         self.sectionsResize();
         self.videoPanelsResize();
-        if(!self.isMac)
+        if(!Mobile.isIPad && !Mobile.yes)
         {
             self.scrollr.refresh(undefined, self.scale);
             jQuery('body,html').height('auto');
         }
-
     },
 
     sectionsResize : function(){

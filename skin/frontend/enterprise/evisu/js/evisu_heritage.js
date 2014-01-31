@@ -3,16 +3,13 @@ var HeritageScrollr = {
     scale : 1,
     defWindowWidth : 1920,
     defWindowHeight : 1080,
-    isMac : false,
 
     init : function(){
         var self = this;
-        self.getUserAgent();
         self.windowResize();
         self.sectionsResize();
         // init scrollr
-        console.log(this.scale);
-        if(!self.isMac)
+        if(!Mobile.isIPad && !Mobile.yes)
         {
             self.scrollr = skrollr.init({
                 edgeStrategy : 'set',
@@ -30,11 +27,9 @@ var HeritageScrollr = {
         //block Items behavior
         var $document = jQuery(document);
         $document.on('mouseenter', '.item', function(){
-            console.log('enter');
             jQuery(this).css('z-index', 10);
         });
         $document.on('mouseleave', '.item', function(){
-            console.log('leave');
             jQuery(this).css('z-index', 1);
         });
     },
@@ -43,7 +38,7 @@ var HeritageScrollr = {
         var self = this;
         self.windowResize();
         self.sectionsResize();
-        if(!self.isMac){
+        if(!Mobile.isIPad && !Mobile.yes){
             self.scrollr.refresh(undefined, self.scale);
         }
         //jQuery('body,html').height('auto');
@@ -67,14 +62,6 @@ var HeritageScrollr = {
         endImgHolder.attr('data-' + (parseInt(index)-1), 'opacity:0');
         endText.attr('data-' + (parseInt(index)), 'opacity:1');
         endText.attr('data-' + (parseInt(index)-1), 'opacity:0');
-    },
-
-    getUserAgent : function(){
-        var userAgent = navigator.userAgent.toLowerCase();
-        if(!(userAgent.indexOf('ipod') == -1 && userAgent.indexOf('ipad') == -1 && userAgent.indexOf('iphone') == -1))
-        {
-            this.isMac = true;
-        }
     },
 
     windowResize : function(){

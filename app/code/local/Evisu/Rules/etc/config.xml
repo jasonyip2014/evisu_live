@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_Rules>
-            <version>0.1.8</version>
+            <version>0.2.1</version>
         </Evisu_Rules>
     </modules>
     <global>
@@ -107,15 +107,35 @@
                                 <template>text</template>
                                 <required>1</required>
                             </r_text_block_header>
-                            <r_text_block_sub-header>
-                                <label>Sub Header</label>
-                                <template>text</template>
-                            </r_text_block_sub-header>
                             <r_text_block_text>
                                 <label>Text</label>
                                 <template>textarea</template>
                                 <required>1</required>
                             </r_text_block_text>
+                            <r_text_block_link_text1>
+                                <label>First Link Text</label>
+                                <template>text</template>
+                            </r_text_block_link_text1>
+                            <r_text_block_link_target1>
+                                <label>Firtst Link Target Url</label>
+                                <template>text</template>
+                            </r_text_block_link_target1>
+                            <r_text_block_link_text2>
+                                <label>Second Link Text</label>
+                                <template>text</template>
+                            </r_text_block_link_text2>
+                            <r_text_block_link_target2>
+                                <label>Second Link Target Url</label>
+                                <template>text</template>
+                            </r_text_block_link_target2>
+                            <r_text_block_link_text3>
+                                <label>Third Link Text</label>
+                                <template>text</template>
+                            </r_text_block_link_text3>
+                            <r_text_block_link_target3>
+                                <label>Third Link Target Url</label>
+                                <template>text</template>
+                            </r_text_block_link_target3>
                         </attributes>
                     </r_data_text_block>
                     <r_text_panel_animation>

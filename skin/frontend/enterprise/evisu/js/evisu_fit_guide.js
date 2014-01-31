@@ -184,7 +184,6 @@ var FitGuide = {
         self.areaHeight = jQuery('.fit-guide-container .left-image').height();
         jQuery('.fit-guide-container').height(self.areaHeight);
         jQuery.each(jQuery('.item'), function(index, item){
-            console.log(item);
             var jItem = jQuery(item);
             if(jItem.attr('id') != 'item-' + self.currentId)
             {

@@ -1,5 +1,4 @@
 function SimulateChange(id){
-//    console.log(id);
 	$(id).simulate('change');
 }
 (function($){

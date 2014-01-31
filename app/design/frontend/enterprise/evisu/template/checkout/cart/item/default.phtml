@@ -84,7 +84,9 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         <?php endforeach; ?>
     <?php else: ?>
         <td><?php echo $_item->getProduct()->getAttributeText('size') ?></td>
-        <td><?php echo $_item->getProduct()->getAttributeText('colour') ?></td>
+        <?php /*
+            <td><?php echo $_item->getProduct()->getAttributeText('colour') ?></td>
+        */ ?>
     <?php endif;?>
 
     <?php /*

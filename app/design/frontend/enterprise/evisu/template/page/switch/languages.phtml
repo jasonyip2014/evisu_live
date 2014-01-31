@@ -33,6 +33,7 @@ if (count($countries) > 0): ?>
         <?php /* Display mode: Names */ ?>
 
         <div class="form-language">
+            <div id="top-hider" class="no-display"></div>
             <?php /* Delete comment tag to see current store code  ?>
         <div style="color: #fff"><?php echo Mage::app()->getStore()->getCode() ?></div>
         <?php  */ ?>
@@ -48,7 +49,6 @@ if (count($countries) > 0): ?>
                         else
                         {
                             $countryCode = $defCountryCode;
-
                         }
                     ?>
                     <?php $countryName = Mage::getModel('directory/country')->loadByCode($countryCode)->getName();?>
