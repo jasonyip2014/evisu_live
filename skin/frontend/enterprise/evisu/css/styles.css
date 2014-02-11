@@ -1000,7 +1000,8 @@ li label{
 .products-list li .product-shop .product-description ul li{padding: 0 !important;}
 
 .product-name .second-name{
-    text-transform: lowercase;
+    text-transform: none;
+    font-size: 14px;
     font-family: courier, serif;
 }
 
@@ -1170,6 +1171,7 @@ li label{
 .products-grid li .product-name{
     font: 600 18px/20px 'Open Sans', sans-serif;
     text-transform: uppercase;
+    margin: 0 0 15px;
 }
 
 .products-grid li .product-name a{
@@ -1991,6 +1993,7 @@ position: absolute;
     position: absolute;
     bottom: -15px;
     color: red;
+    white-space: nowrap;
 }
 
 .product-main-info .category-name{
@@ -2209,7 +2212,8 @@ position: absolute;
 .top-cart-holder .block-content .inner-wrapper .mini-products-list li .product-details a{
     display: block;
     width: 100%;
-    font: 600 14px 'Open Sans', Arial, sans-serif;
+    font: 700 14px 'Open Sans', Arial, sans-serif;
+    woed-wrap: break-word;
 }
 
 .top-cart-holder .block-content .inner-wrapper .mini-products-list .name{
@@ -2221,16 +2225,22 @@ position: absolute;
 
 .top-cart-holder .block-content .inner-wrapper .summary-info{
     font: 600 30px 'Open Sans', Arial, sans-serif;
-    padding: 0 80px 0 0;
+    padding: 0 40px 0 0;
     text-transform: lowercase;
-    float: right;
+/*    float: right;*/
 }
 
 .top-cart-holder .block-content .inner-wrapper .mini-products-list .second-name{
     font-family: Courier, georgia, sans-serif;
 }
 
-.top-cart-holder .block-content .inner-wrapper .summary-info div{text-align: left;}
+.top-cart-holder .block-content .inner-wrapper .summary-info div{text-align: right;}
+
+.top-cart-holder .block-content .inner-wrapper .summary-info .items-count{
+    padding: 0 121px 0 0px;
+    margin: 0 0 0 40px;
+    border-bottom: 2px solid #333; 
+}
 
 .ajax-basket-loader{
     width: 60px;
@@ -2344,7 +2354,7 @@ position: absolute;
 }
 
 #shopping-cart-table tbody .last{
-    text-align: left;
+    text-align: center;
 }
 
 #shopping-cart-table .product-name a{
@@ -4260,16 +4270,30 @@ position: absolute;
 
 @media screen and (max-width:1500px){.cms-no-route .std{padding: 0 0 0 55px;}}
 
+.product-main-info{
+    margin: 0 0 70px;
+}
+
+.product-grouped-product #size-chart{
+    top: -96px;
+}
+
+.size-chart-holder{
+/*     width: 70px;
+     position: relative;   */
+     margin: 0 0 10px 330px;
+}
+
 #size-chart{
     font: 700 14px/38px 'Open Sans', Arial, sans-serif;
     color: #333;
     background: url(../images/size-chart.png) no-repeat 0 100%;
     display: inline-block;
     cursor: pointer;
-    margin: 0 0 10px 330px;
-    position: relative;
     z-index: 123;
-    width: 70px;    
+/*    position: absolute;
+    top: -128px;
+    right: -33px; */
 }
 
 /*================= product detail popups ==========================================================================*/
@@ -5797,7 +5821,7 @@ position: absolute;
 }
 
 .look-book-container .description-holder .title{
-    font: 700 48pt Courier, georgia, serif;
+    font: 700 48pt 'Open Sans', arial, sans-serif;
     text-transform: uppercase;
 }
 
