@@ -914,6 +914,8 @@ class Mage_Usa_Model_Shipping_Carrier_Dhl_International
                                     array('info' => $xml, 'request' => $this->_request)
                                 );
                                 $result->setShippingLabelContent($pdf->render());
+                                $labelContent = (string)$xml->LabelImage->OutputImage;
+                                $result->setShippingLabelContent(base64_decode($labelContent));
                             } catch (Exception $e) {
                                 Mage::throwException(Mage::helper('usa')->__($e->getMessage()));
                             }
@@ -1352,6 +1354,8 @@ class Mage_Usa_Model_Shipping_Carrier_Dhl_International
         $nodeContact = $nodeShipper->addChild('Contact', '', '');
         $nodeContact->addChild('PersonName', substr($rawRequest->getShipperContactPersonName(), 0, 34));
         $nodeContact->addChild('PhoneNumber', substr($rawRequest->getShipperContactPhoneNumber(), 0, 24));
+
+        $xml->addChild('LabelImageFormat', 'PDF', '');
 
         $request = $xml->asXML();
         $request = utf8_encode($request);
