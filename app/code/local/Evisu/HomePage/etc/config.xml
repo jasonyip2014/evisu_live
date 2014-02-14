@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_HomePage>
-            <version>0.2.7</version>
+            <version>0.3.3</version>
         </Evisu_HomePage>
     </modules>
     <global>
@@ -50,6 +50,13 @@
                                 <required>1</required>
                                 <template>textarea</template>
                             </main_text>
+                            <hp_main_color_scheme>
+                                <label>Color Scheme</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hp_main_color_scheme>
                         </attributes>
                     </main>
                 </groups>
@@ -198,6 +205,13 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hp_ip_target_url>
+                            <hp_ip_color_scheme>
+                                <label>Color Scheme</label>
+                                <type>varchar</type>>
+                                <template>dropdown</template>
+                                <source>evisu_homepage/config_source_bgcolor</source>
+                                <required>1</required>
+                            </hp_ip_color_scheme>
                         </attributes>
                     </hp_image_panel_data_tab>
                     <hp_image_panel_animation_tab>

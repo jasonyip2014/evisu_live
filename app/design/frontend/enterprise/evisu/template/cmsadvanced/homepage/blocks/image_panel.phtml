@@ -19,14 +19,20 @@
         </div>
     <?php endIf; ?>
     <?php $linkText = $this->getHpIpLinkText(); if($linkText && $this->getHpIpTargetUrl()): ?>
-        <a href="<?php echo $this->escapeHtml($this->getHpIpTargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHpIpLinkText()) ?>">
-            <span class="text-link-holder">
-                <span class="text-link-wrapper">
-                    <?php echo $this->escapeHtml($this->getHps1Ip1LinkText()) ?>
-                </span>
-            </span>
-        </a>
+        <div class="a-holder">
+            <div class="a-wrapper">
+                <div class="a-container">
+                    <a href="<?php echo $this->escapeHtml($this->getHpIpTargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHpIpLinkText()) ?>">
+                        <span class="text-link-holder <?php echo $this->getHpIpColorScheme() ?>">
+                            <span class="text-link-wrapper">
+                                <?php echo $this->escapeHtml($this->getHpIpLinkText()) ?>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
     <?php elseif(!$linkText && $this->getHpIpTargetUrl()): ?>
-        <a href="<?php echo $this->escapeHtml($this->getHpIpTargetUrl()) ?>"></a>
+        <a class="overlay-link" href="<?php echo $this->escapeHtml($this->getHpIpTargetUrl()) ?>"></a>
     <?php endIf; ?>
 </div>
