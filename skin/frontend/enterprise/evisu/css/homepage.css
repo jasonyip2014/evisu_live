@@ -13,6 +13,7 @@ body{
     top: 200px;
     text-align: center;
     z-index: 1000;
+    display: none;
 }
 .page {padding: 0 0 230px;}
 .main-section p{
@@ -386,12 +387,19 @@ body{
 .section-holder-2 .block-holder-6 p{
     color: #ccc;
 }
+.section-holder-2 .block-holder-5{
+    left: 0;
+}
 .section-holder-2 .bottom-link{
     margin: 116px 0 40px;
 }
 .section-holder-2 .bottom-link a{
     padding: 0 0 40px;
     background: url(../images/sun-bg.png) no-repeat 50% 49px;
+}
+.section-holder-2 .block-holder-11{
+    width: 100%;
+    text-align: center;
 }
 .black{
     background: #333;

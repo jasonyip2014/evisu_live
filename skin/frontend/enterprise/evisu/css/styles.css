@@ -524,6 +524,8 @@ button:focus {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 3px 3px 3px 10px;
+    text-align: left;
 }
 
 @media screen and (min-width:1600px) and (max-width:1720px){.level0 .category-image-holder{margin-left: -31px;}}

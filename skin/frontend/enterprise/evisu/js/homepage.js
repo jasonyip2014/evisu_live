@@ -61,20 +61,21 @@ jQuery(function($){
     VideoPanel.init('.video-panel');
     if(!Mobile.yes && !Mobile.isIPad){
         HomePage.init();
-        $(window).resize(function(){
-            $('html').scrollTop(0);
+        jQuery(window).resize(function(){
+            jQuery('html').scrollTop(0);
             HomePage.refresh();
         });
-        $(window).resize();
+        jQuery(window).resize();
     }
+    jQuery('.main-section p').hide();
     jQuery(window).on('load', function(){
         //animate main section here
-        $('.main-section .image-holder').delay(1000).fadeIn(1000);
-        $('.main-section p').delay(2000).fadeIn(1000);  
+        jQuery('.main-section .image-holder').delay(1000).fadeIn(1000);
+        jQuery('.main-section p').delay(2000).fadeIn(1000);
     });
 
-    $(window).scroll(function(){
+    jQuery(window).scroll(function(){
         var $topPosition = $(window).scrollTop();
-        $('.yoffset').html($topPosition);
+        jQuery('.yoffset').html($topPosition);
     });
 });
