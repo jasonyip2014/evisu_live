@@ -1,4 +1,8 @@
-.evisu-rules{background: #fff;color: #333;}
+.evisu-rules{ overflow: hidden; background: #fff;color: #333; }
+
+html{ overflow: hidden; overflow-y: scroll; }
+
+@media screen and (max-width: 1024px){ html{ overflow-x: scroll; overflow-y: scroll; } }
 
 .rules-page-holder{position: relative;}
 
