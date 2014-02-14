@@ -9,7 +9,7 @@
 <div <?php if($videoCode): ?>class="video-panel"<?php endIf; ?>>
     <?php if($videoCode): ?>
         <div class="video-wrapper">
-            <iframe class="fvideo" src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            <iframe width="<?php echo $this->stripTags($this->getHpIpWidth()) ?>px" height="<?php echo $this->stripTags($this->getHpIpHeight()) ?>px" class="fvideo" src="" data-src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
         </div>
         <a href="#" class="video-overlay-holder"></a>
     <?php endIf; ?>

@@ -35,7 +35,7 @@ var EvisuNavigation =
         var self = this;
         if(!self.over)
         {
-            navLiChild = element.find(' > ul');
+            navLiChild = element.find(' > .shop-menu-container');
             if (!navLiChild){
                 return;
             }
@@ -53,7 +53,7 @@ var EvisuNavigation =
 
     shopMouseLeave : function(element){
         var self = this;
-        navLiChild = element.parent().find(' ul');
+        navLiChild = element.parent().find(' .shop-menu-container');
         if (!navLiChild){
             return;
         }

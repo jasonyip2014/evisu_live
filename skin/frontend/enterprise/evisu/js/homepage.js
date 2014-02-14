@@ -64,11 +64,15 @@ jQuery(function($){
         jQuery(window).resize(function(){
             jQuery('html').scrollTop(0);
             HomePage.refresh();
+            jQuery.each(jQuery('.video-panel'), function(){
+                jQuery(this).height(jQuery(this).find('>.image-holder').height());
+            });
         });
-        jQuery(window).resize();
+
     }
     jQuery('.main-section p').hide();
     jQuery(window).on('load', function(){
+        jQuery(window).resize();
         //animate main section here
         jQuery('.main-section .image-holder').delay(1000).fadeIn(1000);
         jQuery('.main-section p').delay(2000).fadeIn(1000);

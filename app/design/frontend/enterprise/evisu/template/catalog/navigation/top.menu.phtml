@@ -10,19 +10,22 @@
                 <?php echo $this->__('Shop'); ?>
             </a>
             <?php if ($_menu): ?>
-                <ul class="level0 no-display">
-                    <li class="category-image-holder">
-                        <div class="image-holder">
-                            <?php $defaultMenuImage = $_afHelper->init('catalog/category', Mage::helper('topmenu')->getDefaultCategoryImage(), '')->resize(487, 443); ?>
-                            <img width="487" height="443" id="menu-category-image" src="<?php echo $defaultMenuImage ?>" rel="<?php echo $defaultMenuImage ?>" alt="menu-category-image" />
-                        </div>
-                    </li>
-                    <?php foreach ($_menu as $_item): ?>
-                        <?php $menuThumbnailImage = $_item->getCategory()->getMenuThumbnailImage() ?>
-                        <?php $customTitle = ($menuThumbnailImage) ? '<img width="67", height="29" src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(67, 29) . '" alt="" />' : false ; ?>
-                        <?php echo $this->drawItem($_item, 1, false)//, $customTitle) ?>
-                    <?php endforeach ?>
-                </ul>
+                <div class="shop-menu-container no-display">
+                    <ul class="level0">
+                        <?php /*
+                        <li class="category-image-holder">
+                            <div class="image-holder">
+                                <?php $defaultMenuImage = $_afHelper->init('catalog/category', Mage::helper('topmenu')->getDefaultCategoryImage(), '')->resize(487, 443); ?>
+                                <img width="487" height="443" id="menu-category-image" src="<?php echo $defaultMenuImage ?>" rel="<?php echo $defaultMenuImage ?>" alt="menu-category-image" />
+                            </div>
+                        </li> */ ?>
+                        <?php foreach ($_menu as $_item): ?>
+                            <?php $menuThumbnailImage = ''; //$_item->getCategory()->getMenuThumbnailImage() ?>
+                            <?php $customTitle = ($menuThumbnailImage) ? '<img width="67", height="29" src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(67, 29) . '" alt="" />' : false ; ?>
+                            <?php echo $this->drawItem($_item, 1, false)//, $customTitle) ?>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
             <?php endif; ?>
         </li>
         <?php /*
