@@ -310,6 +310,7 @@ var Mobile = {
                 return false;
             }
         });
+        self.yes = false;
         if(navigator.userAgent.toLowerCase().indexOf('ipad') != -1)
         {
             self.isIPad = true;

@@ -1,0 +1,16 @@
+.svn
+/.htaccess
+*~
+._*
+*__2*
+.DS_Store
+/downloader
+/pkginfo
+/media
+/var
+/wordpress/wp-content/uploads
+/wordpress/wp-config.php
+/app/etc/local.xml
+\!*
+/data/*
+/_scripts/*

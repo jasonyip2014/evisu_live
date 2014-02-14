@@ -52,9 +52,6 @@ $_page = $this->getPage();
 
     <div id="main-section">
         <div class="prev-btn"><?php echo $this->__('Prev') ?></div>
-        <div class="image-holder">
-            <img width="<?php echo $mainImageWidth ?>px" height="<?php echo $mainImageHeight ?>px" src="<?php echo $_afHelper->init($_page->getBlockModel(), $currentItem->getLbiMainImage() , '')->resize($mainImageWidth, $mainImageHeight); ?>" alt="<?php echo $currentItem->getLbiTitle() ?>" />
-        </div>
         <div class="description-holder">
             <div class="title"><h1><?php echo $this->getLbTitle() ?></h1></div>
             <div class="cmsadvanced-breadcrumbs-container">
@@ -62,6 +59,9 @@ $_page = $this->getPage();
             </div>
             <div class="description"><?php echo $this->getLbDescription() ?></div>
             <div id="archive-btn"><?php echo $this->__('Archive') ?></div>
+        </div>
+        <div class="image-holder">
+            <img width="<?php echo $mainImageWidth ?>px" height="<?php echo $mainImageHeight ?>px" src="<?php echo $_afHelper->init($_page->getBlockModel(), $currentItem->getLbiMainImage() , '')->resize($mainImageWidth, $mainImageHeight); ?>" alt="<?php echo $currentItem->getLbiTitle() ?>" />
         </div>
         <div class="next-btn"><?php echo $this->__('Next') ?></div>
     </div>

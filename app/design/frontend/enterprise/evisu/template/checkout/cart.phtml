@@ -43,97 +43,73 @@
         <?php endif; ?>
         <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
             <fieldset>
-                <table id="shopping-cart-table" class="data-table cart-table" border='1'>
-                    <col width="1" />
-                    <col />
-                    <col width="1" />
-                    <col width="1" />
-                <?php /*
-                    <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
-                        <col width="1" />
-                    <?php endif ?>
-                */ ?>
-                <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-                    <col width="1" />
-                <?php endif; ?>
-                <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-                    <col width="1" />
-                <?php endif; ?>
-                    <col width="1" />
-                <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-                    <col width="1" />
-                <?php endif; ?>
-                <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
-                    <col width="1" />
-                <?php endif; ?>
-                    <col width="1" />
-
-                <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
-                    <thead>
-                        <tr>
-                            <th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Product') ?></th>
-                            <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Description') ?></span></th>
-                            <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Size') ?></span></th>
+                <div id="shopping-cart-table" class="data-table cart-table">
+                    <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                    <div class="thead">
+                        <div class="tr">
+                            <div class="th"><?php echo $this->__('Product') ?></div>
+                            <div class="th"><span class="nobr"><?php echo $this->__('Description') ?></span></div>
+                            <div class="th"><span class="nobr"><?php echo $this->__('Size') ?></span></div>
                             <?php /*
                                 <th rowspan="<?php echo $mergedCells; ?>"></th>
                                 <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
                                 <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span></th>
                                 <?php endif ?>
                             */ ?>
-                            <th class="a-center" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Price') ?></span></th>
-                            <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Quantity') ?></th>
-                            <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Remove') ?></th>
-                            <th class="a-center" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Subtotal') ?></th>
-                        </tr>
+                            <div class="th"><span class="nobr"><?php echo $this->__('Price') ?></span></div>
+                            <div class="th a-center"><?php echo $this->__('Quantity') ?></div>
+                            <div class="th a-center"><?php echo $this->__('Remove') ?></div>
+                            <div class="th"><?php echo $this->__('Subtotal') ?></div>
+                        </div>
                         <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
-                        <tr>
-                            <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-                            <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
-                            <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
-                            <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
-                        </tr>
+                            <div class="tr">
+                                <div class="th a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></div>
+                                <div class="th"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></div>
+                                <div class="th a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></div>
+                                <div class="th"><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></div>
+                            </div>
                         <?php endif; ?>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <td colspan="50" class="a-right">
-                                <? /*
-                                <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
+                    </div>
 
-                                <button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="button btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>
-                                */ ?>
+                    <div class="tbody">
+                        <?php foreach($this->getItems() as $_item): ?>
+                            <?php echo $this->getItemHtml($_item); ?>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="tfoot">
+                        <div class="tr">
+                            <div class="td">
+                                <? /*
+                        <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
+
+                        <button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="button btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>
+                        */ ?>
                                 <!--[if lt IE 8]>
                                 <input type="hidden" id="update_cart_action_container" />
                                 <script type="text/javascript">
-                                //<![CDATA[
-                                    Event.observe(window, 'load', function()
+                                    //<![CDATA[
+                            Event.observe(window, 'load', function()
+                            {
+                                // Internet Explorer (lt 8) does not support value attribute in button elements
+                                $emptyCartButton = $('empty_cart_button');
+                                $cartActionContainer = $('update_cart_action_container');
+                                if ($emptyCartButton && $cartActionContainer) {
+                                    Event.observe($emptyCartButton, 'click', function()
                                     {
-                                        // Internet Explorer (lt 8) does not support value attribute in button elements
-                                        $emptyCartButton = $('empty_cart_button');
-                                        $cartActionContainer = $('update_cart_action_container');
-                                        if ($emptyCartButton && $cartActionContainer) {
-                                            Event.observe($emptyCartButton, 'click', function()
-                                            {
-                                                $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
-                                                $cartActionContainer.setAttribute('name', 'update_cart_action');
-                                                $cartActionContainer.setValue('empty_cart');
-                                            });
-                                        }
-
+                                        $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                                        $cartActionContainer.setAttribute('name', 'update_cart_action');
+                                        $cartActionContainer.setValue('empty_cart');
                                     });
-                                //]]>
-                                </script>
-                                <![endif]-->
-                            </td>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                    <?php foreach($this->getItems() as $_item): ?>
-                        <?php echo $this->getItemHtml($_item); ?>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-                <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+                                }
+
+                            });
+                        //]]>
+                        </script>
+                        <![endif]-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
         </form>
         <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>

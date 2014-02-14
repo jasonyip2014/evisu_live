@@ -4,5 +4,7 @@ class Evisu_HomePage_Model_Config_Source_Bgcolor extends RonisBT_Cms_Model_Entit
     protected $_optionList = array(
         'light-grey' => 'Light Grey',
         'dark-grey' => 'Dark Grey',
+        'white' => 'White',
+        'black' => 'Black',
     );
 }

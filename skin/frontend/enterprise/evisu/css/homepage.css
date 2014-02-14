@@ -18,11 +18,12 @@ body{
 .main-section p{
     font: 700 48px 'Open Sans', arial, sans-serif;
     text-transform: uppercase;
-    width: 570px;
+    width: 728px;
     position: absolute;
     top: 345px;
+    line-height: 50px;
+    letter-spacing: 7.4px;
     left: 172px;
-    display: none;
 }
 .section-holder-2 .block-holder-10 {
     position: absolute;

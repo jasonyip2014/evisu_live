@@ -10,7 +10,7 @@
     <div class="top-cart">
         <?php $_cartQty = $this->getSummaryCount() ?>
         <?php if (!($_cartQty > 0)) $_cartQty = 0; ?>
-        <?php $_myCart = '<span class="link-title">' . $this->__('My Basket') . '(</span>' . '<span class="link-qty">' . $_cartQty . '</span><span class="link-title">)</span>' ?>
+        <?php $_myCart = '<span title="'. $this->__('My Basket') .'" class="link-title">' . $this->__('My Basket') . '</span>' . '<span class="link-qty">' . $_cartQty . '</span>' ?>
         <?php if ($this->getIsLinkMode() || !$this->getIsNeedToDisplaySideBar()):?>
             <div class="block-title no-items">
                 <ul class="links cart-link">
