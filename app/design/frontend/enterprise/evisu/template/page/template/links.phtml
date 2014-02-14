@@ -29,15 +29,40 @@
  * @see Mage_Page_Block_Template_Links
  */
 ?>
-<?php $_links = $this->getLinks(); ?>
-<?php if(count($_links)>0): ?>
-<ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
-    <?php foreach($_links as $_link): ?>
-        <?php if ($_link instanceof Mage_Core_Block_Abstract):?>
-            <?php echo $_link->toHtml() ?>
+<ul class="links">
+    <li class="search"><span title="<?php echo $this->__('Search') ?>" class="search-btn"></span></li>
+    <?php /*
+        <?php if(Mage::helper('customer')->isLoggedIn()): ?>
+            <li><a class="item" href="<?php echo $this->getUrl('customer/account/logout/') ?>"><?php echo $this->__('Log Out') ?></a></li>
         <?php else: ?>
-            <li<?php if($_link->getIsFirst()||$_link->getIsLast()): ?> class="<?php if($_link->getIsFirst()): ?>first<?php endif; ?><?php if($_link->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $_link->getLiParams() ?>><?php echo $_link->getBeforeText() ?><a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?></a><?php echo $_link->getAfterText() ?></li>
-        <?php endif;?>
-    <?php endforeach; ?>
+            <li><a class="item" href="<?php echo $this->getUrl('customer/account/create/') ?>"><?php echo $this->__('Register') ?></a></li>
+        <?php endIf; ?>
+    */ ?>
+    <li class="my-account"><a title="<?php echo $this->__('My Account') ?>" class="item" href="<?php echo $this->getUrl('customer/account/') ?>"><?php echo $this->__('My Account') ?></a></li>
+    <?php /*
+        <li>
+            <div class="ajax-shopping-bag">
+                <span class="title">
+                    <a class="item" id="btn_shopping_bag" href="<?php echo Mage::getUrl('checkout/cart', array('_secure'=>true)); ?>">
+                        <span class="caption"><?php echo $this->__('My Bag');?></span>
+                        <span class="number" id="shopping_bag_count"><?php echo (int) Mage::helper('checkout/cart')->getItemsQty(); ?></span>
+                    </a>
+                </span>
+            </div>
+        </li>
+    */ ?>
 </ul>
-<?php endif; ?>
+<?php /*
+    <?php $_links = $this->getLinks(); ?>
+    <?php if(count($_links)>0): ?>
+    <ul class="links"<?php if($this->getName()): ?> id="<?php echo $this->getName() ?>"<?php endif;?>>
+        <?php foreach($_links as $_link): ?>
+            <?php if ($_link instanceof Mage_Core_Block_Abstract):?>
+                <?php echo $_link->toHtml() ?>
+            <?php else: ?>
+                <li<?php if($_link->getIsFirst()||$_link->getIsLast()): ?> class="<?php if($_link->getIsFirst()): ?>first<?php endif; ?><?php if($_link->getIsLast()): ?> last<?php endif; ?>"<?php endif; ?> <?php echo $_link->getLiParams() ?>><?php echo $_link->getBeforeText() ?><a href="<?php echo $_link->getUrl() ?>" title="<?php echo $_link->getTitle() ?>" <?php echo $_link->getAParams() ?>><?php echo $_link->getLabel() ?></a><?php echo $_link->getAfterText() ?></li>
+            <?php endif;?>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+*/ ?>

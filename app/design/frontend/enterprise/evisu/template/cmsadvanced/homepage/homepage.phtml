@@ -1,26 +1,32 @@
 <?php
     /* @var $this RonisBT_Cms_Block_Page */
+
 ?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
 <div class="homepage-holder">
+    <div class="yoffset"></div>
     <div class="main-section-holder section-holder">
         <div class="main-section">
-            <div class="image-holder">
-                <img src="<?php echo $this->getImage('main_image') ?>" />
+            <div class="image-holder" data-0="top:125px;" data-1800="top:-2000px;">
+                <img src="<?php echo $_afHelper->init($afModel, $this->getMainImage() , '')->resize(1920, 1214); ?>" alt="" />
             </div>
-            <p><?php echo $this->getMainText() ?></p>
+            <p><?php echo nl2br($this->getMainText()) ?></p>
         </div>
-        <div class="quick-navigation">
-            <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
-            <a href="javascript:void(null)" class="back-btn"><?php echo $this->__('Back') ?></a>
-        </div>
+        <?php /*
+            <div class="quick-navigation">
+                <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
+                <a href="javascript:void(null)" class="back-btn"><?php echo $this->__('Back') ?></a>
+            </div>
+        */ ?>
     </div>
     <div class="sections">
         <?php $i = 1; ?>
         <?php $sections = $this->getSections() ?>
         <?php if(count($sections) > 0): ?>
             <?php foreach ($sections as $_section): ?>
-                <div class="section-holder section-holder-<?php echo $i ?>">
-                        <?php echo $_section->toHtml(); ?>
+                <div class="section-holder section-holder-<?php echo $i ?>" style="<?php echo $_section->getCss() ?>" <?php echo Mage::helper('evisu_homepage')->getScrollrData($_section->getLpSectionAnimation(), 0) ?>>
+                    <?php echo $_section->toHtml(); ?>
                 </div>
                 <?php $i++; ?>
             <?php endforeach ?>

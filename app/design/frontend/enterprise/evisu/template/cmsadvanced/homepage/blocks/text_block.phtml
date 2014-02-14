@@ -1,0 +1,21 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<div class="container-block-text <?php echo $this->getColorSCheme() ?>">
+    <div class="text-block-wrapper ">
+        <h2 class="block-header">
+            <span class="row-1"><?php echo $this->escapeHtml($this->getHpTbHeaderRow1()) ?></span>
+            <span class="row-2"><?php echo $this->escapeHtml($this->getHpTbHeaderRow2()) ?></span>
+        </h2>
+        <div class="section-description"><p><?php echo nl2br($this->escapeHtml($this->getHpTbText())) ?></p>
+            <?php if($this->getHpTbLinkText() && $this->getHpTbTargetUrl()): ?>
+                <div class="section-main-link">
+                    <a href="<?php echo $this->escapeHtml($this->getHpTbTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHpTbLinkText()) ?>">
+                        <?php echo $this->escapeHtml($this->getHpTbLinkText()) ?>
+                    </a>
+                </div>
+            <?php endIf; ?>
+        </div>
+    </div>
+</div>
