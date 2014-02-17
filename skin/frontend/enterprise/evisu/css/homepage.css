@@ -35,6 +35,14 @@ body{
     width: 100%;
     height: 100%;
 }
+.main-text.black{
+    background: transparent;
+    color: #333;
+}
+.main-text.white{
+    background: transparent;
+    color: #fff;
+}
 .a-container{
     display: table-cell;
     vertical-align: middle;
