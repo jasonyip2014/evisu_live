@@ -4,7 +4,82 @@
 
 <?php if (!empty($_menu)): ?>
 <div class="nav-container">
-    <ul id="nav">
+    <div class="burger-menu-btn mobile mobile-only" title="<?php echo $this->__('Show Menu') ?>"></div>
+    <div class="burger-menu mobile mobile-only no-display">
+        <div class="mobile-navigation mobile-only">
+            <ul>
+                <li class="level0">
+                    <?php echo $this->__('Shop By Brand') ?>
+                    <?php foreach ($_menu as $_item): ?>
+                        <?php echo $this->drawItem($_item, 1, false)//, $customTitle) ?>
+                    <?php endforeach ?>
+                    <ul>
+
+                        <li class="level1"><a href="<?php echo Mage::getUrl('evisu') ?>"><?php echo $this->__('Evisu') ?></a></li>
+                        <li class="level1"><a href="<?php echo Mage::getUrl('evisu-genes') ?>"><?php echo $this->__('Evisu Genes') ?></a></li>
+                        <li class="level1"><a href="<?php echo Mage::getUrl('evergreen') ?>"><?php echo $this->__('Evergreen') ?></a></li>
+                        <li class="level1"><a href="<?php echo Mage::getUrl('private-stock') ?>"><?php echo $this->__('Private Stock') ?></a></li>
+                    </ul>
+                </li>
+                <li class="level0">
+                    <?php echo $this->__('Shop By Product') ?>
+                    <ul>
+                        <li class="level1"><a href="/private-collection/category-1/masami-vintage-zip-hoody-indigo.html"><?php echo $this->__('Tops') ?></a></li>
+                        <li class="level1"><a href="<?php echo Mage::getUrl('bottoms') ?>"><?php echo $this->__('Bottoms') ?></a></li>
+                        <li class="level1"><a href="<?php echo Mage::getUrl('accessories') ?>"><?php echo $this->__('Accessories') ?></a></li>
+                        <li class="level1"><a href="<?php echo Mage::getUrl('women') ?>"><?php echo $this->__('Women') ?></a></li>
+                    </ul>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('lookbook') ?>"><?php echo $this->__('Lookbook') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('blog') ?>"><?php echo $this->__('Blog') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('evisu-rules') ?>"><?php echo $this->__('Evisu Rules') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('contacts') ?>"><?php echo $this->__('Contact Us') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('customer/account') ?>"><?php echo $this->__('My Account') ?></a>
+                </li>
+            </ul>
+            <div class="additional-menu">
+                <ul>
+                    <li class="about-us">
+                        <a href="<?php echo Mage::getUrl('about-us') ?>"><?php echo $this->__('About Us') ?></a>
+                    </li><li class="store-locator">
+                        <a href="<?php echo Mage::getUrl('store-locator') ?>"><?php echo $this->__('Store Locator') ?></a>
+                    </li><li class="fit-guide">
+                        <a href="<?php echo Mage::getUrl('fit-guide') ?>"><?php echo $this->__('Fit Guide') ?></a>
+                    </li>
+                </ul>
+            </div>
+            <?php echo $this->getChildHtml('currency_mobile') ?>
+            <div class="mobile-store-switcher">
+                <div class="caption"><?php echo $this->__('Store') ?></div>
+                <?php $countries = array('1' => array('value' => 'GB', 'label' => 'UK'), '2' => array('value' => 'US', 'label' => 'US'), '3' => array('value' => 'HK', 'label' => 'AP')); ?>
+                <ul>
+                    <?php foreach ($countries as $store => $country): ?>
+                        <li class="store-switch-item<?php if(Mage::app()->getStore()->getWebsiteId() == $store): ?> active<?php endIf; ?>" data-value="<?php echo $country['value'] ?>">
+                            <span><?php echo $country['label'] ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <script type="text/javascript">
+                    jQuery('.store-switch-item').on('click', function(){
+                        countryCode = jQuery(this).data('value');
+                        onChangeUrl = '<?php echo Mage::helper('storeswitcher')->getCountryUrl(); ?>';
+                        url = onChangeUrl.replace('%geoip_code%', countryCode);
+                        setLocation(url);
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <ul id="nav" class="no-mobile">
         <li class="level0 nav-1 nav-shop top-level">
             <a class="main-menu-item" href="javascript:void(0)" title="<?php echo $this->__('Shop'); ?>">
                 <?php echo $this->__('Shop'); ?>
@@ -25,27 +100,6 @@
                 </ul>
             <?php endif; ?>
         </li>
-        <?php /*
-        <li class="level0 top-level">
-            <a href="<?php echo Mage::getUrl('lookbook'); ?>">
-                <span><?php echo $this->__('Lookbook'); ?></span>
-            </a>
-        </li>
-
-        <li class="level0 top-level">
-            <a href="<?php echo Mage::getUrl('heritage'); ?>">
-                <span><?php echo $this->__('Heritage'); ?></span>
-            </a>
-        </li>
-
-        <li class="level0 top-level">
-            <a href="<?php echo Mage::getUrl('press'); ?>">
-                <span><?php echo $this->__('Press'); ?></span>
-            </a>
-        </li>
-        */ ?>
-
-
         <?php if($cmsMenuItems = Mage::helper('topmenu')->getCmsMenuItems()): ?>
             <?php foreach ($cmsMenuItems as $cmsMenuItem): ?>
                 <li class="level0 top-level">

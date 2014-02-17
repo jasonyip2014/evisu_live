@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_AboutUs>
-            <version>0.1.4</version>
+            <version>0.1.6</version>
         </Evisu_AboutUs>
     </modules>
     <global>
@@ -129,6 +129,101 @@
                             </block4_image>
                         </attributes>
                     </blocks_data>
+                    <mobile_blocks_data>
+                        <label>Mobile Blocks Data</label>
+                        <attributes>
+                            <mobile_block1_link>
+                                <label>1st Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block1_link>
+                            <mobile_block1_target_url>
+                                <label>1st Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block1_target_url>
+                            <mobile_block1_image>
+                                <label>1st Block Image</label>
+                                <template>image</template>
+                                <note>resolution 120x120</note>
+                            </mobile_block1_image>
+                            <mobile_block2_link>
+                                <label>2st Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block2_link>
+                            <mobile_block2_target_url>
+                                <label>2st Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block2_target_url>
+                            <mobile_block2_image>
+                                <label>2nd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 120x120</note>
+                            </mobile_block2_image>
+                            <mobile_block3_link>
+                                <label>3rd Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block3_link>
+                            <mobile_block3_target_url>
+                                <label>3rd Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block3_target_url>
+                            <mobile_block3_image>
+                                <label>3rd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 120x120</note>
+                            </mobile_block3_image>
+                            <mobile_block4_link>
+                                <label>4th Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block4_link>
+                            <mobile_block4_target_url>
+                                <label>4rd Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block4_target_url>
+                            <mobile_block4_image>
+                                <label>4rd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 120x120</note>
+                            </mobile_block4_image>
+                            <mobile_block5_link>
+                                <label>5th Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block5_link>
+                            <mobile_block5_target_url>
+                                <label>5rd Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block5_target_url>
+                            <mobile_block5_image>
+                                <label>5rd Block Image</label>
+                                <template>image</template>
+                                <note>resolution 120x120</note>
+                            </mobile_block5_image>
+                            <mobile_block6_link>
+                                <label>6th Block Link</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block6_link>
+                            <mobile_block6_target_url>
+                                <label>6rd Block Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </mobile_block6_target_url>
+                            <mobile_block6_image>
+                                <label>6th Block Image</label>
+                                <template>image</template>
+                                <note>resolution 120x120</note>
+                            </mobile_block6_image>
+                        </attributes>
+                    </mobile_blocks_data>
                 </groups>
             </about_us>
         </pagetypes>

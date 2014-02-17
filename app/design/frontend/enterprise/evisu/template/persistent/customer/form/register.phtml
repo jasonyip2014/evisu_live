@@ -69,7 +69,7 @@
                     <li>
                         <label for="email_address" class="required"><?php echo $this->__('Email Address') ?><em>*</em></label>
                         <div class="input-box">
-                            <input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
+                            <input  placeholder="<?php echo $this->__('Email Address') ?>" type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                         </div>
                     </li>
                     <?php /*
@@ -196,13 +196,13 @@
                     <div class="field">
                         <label for="password" class="required"><?php echo $this->__('Password') ?><em>*</em></label>
                         <div class="input-box">
-                            <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
+                            <input placeholder="<?php echo $this->__('Password') ?>" type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
                         </div>
                     </div>
                     <div class="field">
                         <label for="confirmation" class="required"><?php echo $this->__('Confirm Password') ?><em>*</em></label>
                         <div class="input-box">
-                            <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
+                            <input placeholder="<?php echo $this->__('Confirm Password') ?>" type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
                         </div>
                     </div>
                 </li>

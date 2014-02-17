@@ -64,10 +64,9 @@
 
         <!--Experiment-->
         <!--<remove name="header" />-->
-       <!-- <reference name="left">
+        <!-- <reference name="left">
             <remove name="currency" />
         </reference>-->
-
 
         <reference name="top.links">
             <action method="addLink" translate="label title" module="customer"><label>Sign Up</label><url helper="customer/getRegisterUrl" /><title>Sign Up</title><prepare/><urlParams/><position>1</position></action>

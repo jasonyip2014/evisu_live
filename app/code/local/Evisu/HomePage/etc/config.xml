@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_HomePage>
-            <version>0.2.1</version>
+            <version>0.2.2</version>
         </Evisu_HomePage>
     </modules>
     <global>
@@ -88,6 +88,11 @@
                                 <template>text</template>
                                 <required>1</required>
                             </hps1_text_block_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_text_block>
                 </groups>
@@ -115,6 +120,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip1_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel1>
                 </groups>
@@ -142,6 +152,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip2_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel2>
                 </groups>
@@ -169,6 +184,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip3_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel3>
                 </groups>
@@ -196,6 +216,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip4_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel4>
                 </groups>
@@ -223,6 +248,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip5_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel5>
                 </groups>
@@ -250,6 +280,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip6_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel6>
                 </groups>
@@ -277,6 +312,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip7_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel7>
                 </groups>
@@ -304,6 +344,11 @@
                                 <label>Target Url</label>
                                 <template>text</template>
                             </hps1_ip8_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps1_data_image_panel8>
                 </groups>
@@ -377,6 +422,11 @@
                                 <label>Additional Text</label>
                                 <template>text</template>
                             </hps2_pp_x2_add_text>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps2_data_product_promo_x2>
                 </groups>
@@ -448,6 +498,11 @@
                                 <label>Additional Text</label>
                                 <template>text</template>
                             </hps2_pp_x2s_add_text>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps2_data_product_promo_x2s>
                 </groups>
@@ -537,6 +592,11 @@
                                 <label>Additional Text</label>
                                 <template>text</template>
                             </hps2_pp_x2w_add_text>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps2_data_product_promo_x2w>
                 </groups>
@@ -624,6 +684,11 @@
                                 <label>Additional Text</label>
                                 <template>text</template>
                             </hps2_pp_x3_add_text>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps2_data_product_promo_x3>
                 </groups>
@@ -727,6 +792,11 @@
                                 <label>Additional Text</label>
                                 <template>text</template>
                             </hps2_pp_x4_add_text>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps2_data_product_promo_x4>
                 </groups>
@@ -773,6 +843,11 @@
                                 <template>text</template>
                                 <required>1</required>
                             </hps3_ipl_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps3_data_image_panel_left>
                 </groups>
@@ -817,6 +892,11 @@
                                 <template>text</template>
                                 <required>1</required>
                             </hps3_ipr_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps3_data_image_panel_right>
                 </groups>
@@ -858,6 +938,11 @@
                                 <template>text</template>
                                 <required>1</required>
                             </hps3_pp_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps3_data_press_panel>
                 </groups>
@@ -909,6 +994,11 @@
                                 <template>text</template>
                                 <required>1</required>
                             </hps3_bp_target_url>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps3_data_blog_panel>
                 </groups>
@@ -935,6 +1025,11 @@
                                 <template>textarea</template>
                                 <required>1</required>
                             </hps3_tb_text>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps3_data_text_block>
                 </groups>
@@ -963,6 +1058,11 @@
                                 <source>evisu_homepage/config_source_bgcolor</source>
                                 <required>1</required>
                             </hps3_sb_bg_color>
+                            <mobile>
+                                <label>Mobile</label>
+                                <template>yesno</template>
+                                <default>0</default>
+                            </mobile>
                         </attributes>
                     </hps3_data_small_box>
                 </groups>

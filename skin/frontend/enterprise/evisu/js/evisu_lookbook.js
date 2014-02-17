@@ -33,17 +33,18 @@ var LookBook = {
         jQuery('#main-section').find('.next-btn').on('click', function(){self.next()});
         jQuery('#main-section').find('.prev-btn').on('click', function(){self.prev()});
 
-
-        //gallegy
-        jQuery('#gallery-btn').on('click', function(){self.toggleGallery(jQuery(this))});
-        jQuery('#thumbnail-section').find('.next-btn').on('click', function(){self.nextGallery()});
-        jQuery('#thumbnail-section').find('.prev-btn').on('click', function(){self.prevGallery()});
-        jQuery('#thumbnail-section').find('li').on('mouseenter',function(){
-            jQuery(this).stop(true,false).animate({opacity: 1}, 'fast');
-        });
-        jQuery('#thumbnail-section').find('li').on('mouseleave',function(){
-            jQuery(this).stop(true,false).animate({opacity: 0.4}, 'fast');
-        });
+        if(!Mobile.yes){
+            //gallegy
+            jQuery('#gallery-btn').on('click', function(){self.toggleGallery(jQuery(this))});
+            jQuery('#thumbnail-section').find('.next-btn').on('click', function(){self.nextGallery()});
+            jQuery('#thumbnail-section').find('.prev-btn').on('click', function(){self.prevGallery()});
+            jQuery('#thumbnail-section').find('li').on('mouseenter',function(){
+                jQuery(this).stop(true,false).animate({opacity: 1}, 'fast');
+            });
+            jQuery('#thumbnail-section').find('li').on('mouseleave',function(){
+                jQuery(this).stop(true,false).animate({opacity: 0.4}, 'fast');
+            });
+        }
         jQuery('#thumbnail-section').find('li').on('click', function(){self.showLook(jQuery(this).data('id'),false)});
 
 
@@ -56,11 +57,21 @@ var LookBook = {
 
     initOnLoad : function(){
         this.showGalleryNavigation();
-
         this.getGalleryProp();
 
-        //init prop
-
+        if(Mobile.yes){
+            var $bigImages =  jQuery('#thumbnail-section').find('img');
+            jQuery.each($bigImages, function(index, img){
+                $img = jQuery(img);
+                if($img.hasClass('ladscape')){
+                    var left_range = ($img.width() - 212) / 2;
+                    $img.css({marginLeft: '-' + left_range + 'px'});
+                } else {
+                    var top_range = ($img.height() - 318) / 2;
+                    $img.css({marginTop: '-' + top_range + 'px'});
+                }
+            });
+        }
     },
 
     resize : function()
@@ -110,6 +121,7 @@ var LookBook = {
 
         var self = this;
 
+
         self.choiceGalleryItem(id);
         var mainSectionContainer = jQuery('#main-section');
         var mainImage = new Image();
@@ -126,76 +138,78 @@ var LookBook = {
         });
 
         self.currentId = id;
-        var productSectionContainer = jQuery('#product-section');
-        productSectionContainer.stop(true,false).slideUp('fast', function(){
-            var assocProduct = self.config[self.positions[id]].assoc_product;
-            if(assocProduct)
-            {
-                var content = '' +
-                '<div class="product">' +
-                    '<div class= name>' +self.config[self.positions[id]].title + '</div>' +
-                    '<div class="assoc-products">';
-                        for(var ass_prod in assocProduct.associated_products)
-                        {
-                            if(assocProduct.associated_products.hasOwnProperty(ass_prod))
+        if(!Mobile.yes){
+            var productSectionContainer = jQuery('#product-section');
+            productSectionContainer.stop(true,false).slideUp('fast', function(){
+                var assocProduct = self.config[self.positions[id]].assoc_product;
+                if(assocProduct)
+                {
+                    var content = '' +
+                    '<div class="product">' +
+                        '<div class= name>' +self.config[self.positions[id]].title + '</div>' +
+                        '<div class="assoc-products">';
+                            for(var ass_prod in assocProduct.associated_products)
                             {
-                                content += '' +
-                                '<div class="assoc-product">' +
-                                    '<div class="name">' + assocProduct.associated_products[ass_prod].name + '</div>'+
-                                    '<div class="second-name">' + assocProduct.associated_products[ass_prod].second_name + '</div>';
-                                    if(assocProduct.associated_products[ass_prod].price_old != assocProduct.associated_products[ass_prod].price)
-                                    {
-                                        content += '' +
-                                        '<div class="old-price">' + assocProduct.associated_products[ass_prod].price_old + '</div>';
-                                    }
-                                    content +=''+
-                                    '<div class="price">' + assocProduct.associated_products[ass_prod].price + '</div>' +
-                                '</div>';
+                                if(assocProduct.associated_products.hasOwnProperty(ass_prod))
+                                {
+                                    content += '' +
+                                    '<div class="assoc-product">' +
+                                        '<div class="name">' + assocProduct.associated_products[ass_prod].name + '</div>'+
+                                        '<div class="second-name">' + assocProduct.associated_products[ass_prod].second_name + '</div>';
+                                        if(assocProduct.associated_products[ass_prod].price_old != assocProduct.associated_products[ass_prod].price)
+                                        {
+                                            content += '' +
+                                            '<div class="old-price">' + assocProduct.associated_products[ass_prod].price_old + '</div>';
+                                        }
+                                        content +=''+
+                                        '<div class="price">' + assocProduct.associated_products[ass_prod].price + '</div>' +
+                                    '</div>';
+                                }
                             }
-                        }
-                        content += '' +
-                        '<div class="buttons">' +
-                            '<a href="' + assocProduct.url + '" >Shop The Look</a>' +
-                            '<a href="' + assocProduct.wishlistUrl + '" >Add To Wishlist</a>' +
+                            content += '' +
+                            '<div class="buttons">' +
+                                '<a href="' + assocProduct.url + '" >Shop The Look</a>' +
+                                '<a href="' + assocProduct.wishlistUrl + '" >Add To Wishlist</a>' +
+                            '</div>' +
+                            '<div class="social-share">Share</div>' +
+                            '<ul class="social-media">' +
+                                '<li><a href="javascript: void(0);" title="Mail" class="mail" onclick="LookBook.mailToFriend()">Mail</a></li>' +
+                                '<li><a onclick="LookBook.shareTwitter();" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>' +
+                                '<li><a onclick="LookBook.shareFacebook()" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>' +
+                                '<li><a onclick="LookBook.shareWeibo()" href="javascript: void(0)"class="weibo" title="Weibo" >Weibo</a></li>' +
+                                '<li><a onclick="LookBook.sharePinterest()" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>' +
+                                '<li><a onclick="LookBook.shareGooglePlus()" href="javascript: void(0)"title="Google+" class="gplus" >G+</a></li>' +
+                            '</ul>' +
                         '</div>' +
-                        '<div class="social-share">Share</div>' +
-                        '<ul class="social-media">' +
-                            '<li><a href="javascript: void(0);" title="Mail" class="mail" onclick="LookBook.mailToFriend()">Mail</a></li>' +
-                            '<li><a onclick="LookBook.shareTwitter();" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>' +
-                            '<li><a onclick="LookBook.shareFacebook()" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>' +
-                            '<li><a onclick="LookBook.shareWeibo()" href="javascript: void(0)"class="weibo" title="Weibo" >Weibo</a></li>' +
-                            '<li><a onclick="LookBook.sharePinterest()" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>' +
-                            '<li><a onclick="LookBook.shareGooglePlus()" href="javascript: void(0)"title="Google+" class="gplus" >G+</a></li>' +
-                        '</ul>' +
                     '</div>' +
-                '</div>' +
-                '<div class="media">' +
-                    '<div class="prev-btn no-display">Prev</div>' +
-                    '<ul>';
-                        var itemsCount = 0;
-                        for(var ass_prod in assocProduct.associated_products)
-                        {
-                            if(assocProduct.associated_products.hasOwnProperty(ass_prod))
+                    '<div class="media">' +
+                        '<div class="prev-btn no-display">Prev</div>' +
+                        '<ul>';
+                            var itemsCount = 0;
+                            for(var ass_prod in assocProduct.associated_products)
                             {
-                                content += '' +
-                                '<li>' +
-                                    '<div class="image-holder">' +
-                                    '<img width="250px" height="520px" src="' + assocProduct.associated_products[ass_prod].image + '" alt="" />' +
-                                    '</div>' +
-                                '</li>';
+                                if(assocProduct.associated_products.hasOwnProperty(ass_prod))
+                                {
+                                    content += '' +
+                                    '<li>' +
+                                        '<div class="image-holder">' +
+                                        '<img width="250px" height="520px" src="' + assocProduct.associated_products[ass_prod].image + '" alt="" />' +
+                                        '</div>' +
+                                    '</li>';
+                                }
+                                itemsCount++;
                             }
-                            itemsCount++;
-                        }
-                    content += '' +
-                    '</ul>' +
-                    '<div class="next-btn no-display">Next</div>' +
-                '</div>';
-                self.setShareData(id);
-                jQuery("#product-section").html(content);
+                        content += '' +
+                        '</ul>' +
+                        '<div class="next-btn no-display">Next</div>' +
+                    '</div>';
+                    self.setShareData(id);
+                    jQuery("#product-section").html(content);
 
-                productSectionContainer.delay('1000').stop(true,false).slideDown('slow', function(){ProductCarousel.init(itemsCount)});
-            }
-        });
+                    productSectionContainer.delay('1000').stop(true,false).slideDown('slow', function(){ProductCarousel.init(itemsCount)});
+                }
+            });
+        }
     },
 
     showGalleryNavigation : function()
@@ -317,31 +331,34 @@ var LookBook = {
 
         var container = jQuery('#thumbnail-section');
         container.find('.active').stop(true,false).animate({opacity: 0.4}, 'fast', function(){jQuery(this).removeClass('active')});
-        element = container.find('#gall-trumb-' + itemId).stop(true,false).animate({opacity: 1}, 'fast', function(){jQuery(this).addClass('active')});;
-        //if(self.galleryId != itemId)
-        //{
-            var element;
-            self.galleryId = itemId;
-            var marginMax = self.gallery.width - container.find('ul').width();
-            var marginLeft = 0;
-            for(var i = 0; i < self.positions[itemId]; i++)
-            {
-                element = container.find('#gall-trumb-' + self.config[i].id);
-                marginLeft += element.width() + parseFloat(element.css('marginRight'));
-            }
-            if(marginLeft <= 0)
-            {
-                marginLeft = 0;
-                self.galleryId = self.config[0].id;
-            }
-            else if(marginLeft > marginMax)
-            {
-                marginLeft = marginMax;
+        element = container.find('#gall-trumb-' + itemId).stop(true,false).animate({opacity: 1}, 'fast', function(){jQuery(this).addClass('active')});
+        jQuery('html,body').animate({scrollTop:0}, 'slow');
+        if(!Mobile.yes){
+            //if(self.galleryId != itemId)
+            //{
+                var element;
+                self.galleryId = itemId;
+                var marginMax = self.gallery.width - container.find('ul').width();
+                var marginLeft = 0;
+                for(var i = 0; i < self.positions[itemId]; i++)
+                {
+                    element = container.find('#gall-trumb-' + self.config[i].id);
+                    marginLeft += element.width() + parseFloat(element.css('marginRight'));
+                }
+                if(marginLeft <= 0)
+                {
+                    marginLeft = 0;
+                    self.galleryId = self.config[0].id;
+                }
+                else if(marginLeft > marginMax)
+                {
+                    marginLeft = marginMax;
 
-                self.galleryId = self.config[self.positions['length'] - 1].id;
-            }
-            container.find('ul>li:first').animate({marginLeft : -marginLeft},'slow');
-        //}
+                    self.galleryId = self.config[self.positions['length'] - 1].id;
+                }
+                container.find('ul>li:first').animate({marginLeft : -marginLeft},'slow');
+            //}
+        }
     },
 
     getNextId : function() {
@@ -545,8 +562,10 @@ jQuery(window).load(function(){
 
 
 jQuery(window).resize(function(){
-    LookBook.resize();
-    ProductCarousel.resize();
+    if(!Mobile.yes){
+        LookBook.resize();
+        ProductCarousel.resize();
+    }
 });
 
 

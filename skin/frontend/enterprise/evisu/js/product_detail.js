@@ -185,6 +185,11 @@ var FullSizeImage =
 
 
 jQuery(function($){
+
+    if(!Mobile.yes){
+        jQuery('#main-image .product-img-zoom').CloudZoom();
+    }
+
     //disable grouped error message when qty is changed
     if(AlertOOS.productType == 'grouped')
     {
@@ -243,4 +248,17 @@ jQuery(window).resize(function(){
 
 jQuery(window).load(function(){
     jQuery('.product-collateral').height(jQuery('.tab-container').height() + 60);
+});
+
+// Mobile
+
+jQuery(window).load(function(){
+    jQuery('.info-btn').on('click', function(){
+        if(!jQuery('.info-holder').hasClass('active')){
+            jQuery('.info-holder').addClass('active');
+        }   
+        else{
+            jQuery('.info-holder').removeClass('active');
+        }
+    });
 });

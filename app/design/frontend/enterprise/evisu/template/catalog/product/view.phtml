@@ -61,18 +61,32 @@
         </div>
     <?php endIf; */?>
     <div class="product-container">
+        <h1 class="mobile-only">
+            <div class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
+            <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?></span>
+        </h1>
         <div class="main-image">
+            <div class="mobile-only info-btn"><?php echo $this->__('Info') ?></div>
+            <div class="info-holder mobile-only">
+                <div class="info-wrapper">
+                    <div class="info-container">
+                        <div class="info">
+                            <?php echo $_helper->productAttribute($_product, $_product->getDescription(), 'description'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="full-size-hider"></div>
             <?php $bigImage = (string) Mage::helper('catalog/image')->init($_product, 'image') ?>
             <?php $smallImage = (string) Mage::helper('catalog/image')->init($_product, 'image')->resize(692, 889) ?>
             <?php $imageLabel = $this->stripTags($_product->getImageLabel()) ?>
             <div id='main-image' class="image-holder">
-                <a class="product-img-zoom cloud-zoom" href="<?php echo $bigImage ?>" onclick="return false;" rel="position: 'inside' , showTitle: false, adjustX:0, adjustY:0">
+                <a class="product-img-zoom" href="<?php echo $bigImage ?>" onclick="return false;" rel="position: 'inside' , showTitle: false, adjustX:0, adjustY:0">
                     <img width="692" height="889" src="<?php echo $smallImage ?>" data-image="<?php echo $bigImage ?>" alt="<?php echo $imageLabel ?>" title="<?php echo $imageLabel?>" rel="<?php echo $smallImage ?>" />
                 </a>
                 <a href="javascript:void(0);" id="full_img_close" title="<?php echo $this->__('Close') ?>" class="btn-close"><?php echo $this->__('Close') ?></a>
             </div>
-            <div class="btn-holder">
+            <div class="btn-holder no-mobile">
                 <a href="javascript:void(0);" title="<?php echo $this->__('Full Size') ?>" class="btn-fullsize"><?php echo $this->__('Full Size') ?></a>
                 <a href="javascript:void(0);" title="<?php echo $this->__('Zoom') ?>" class="btn-zoom"><?php echo $this->__('Zoom') ?></a>
             </div>
@@ -91,18 +105,18 @@
                 <div class="product-shop">
                     <div class="product-main-info">
                         <?php if($_parentCategory): ?>
-                            <div class="category-name"><?php echo $_parentCategory->getName() ?></div>
+                            <div class="category-name no-mobile"><?php echo $_parentCategory->getName() ?></div>
                             <?php /*
                                 <div class="image-holder category-image">
                                     <img width="95" height="24" src="<?php echo $_afHelper->init('catalog/category', $_category->getParentCategory()->getMenuThumbnailImage(), '')->resize(95, 24) ?>" alt="<?php echo $_parentCategory->getName() ?>"/>
                                 </div>
                             */ ?>
                         <?php endIf; ?>
-                        <h1>
+                        <h1 class="no-mobile">
                             <div class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
                             <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?></span>
                         </h1>
-                        <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
+                        <p class="product-sku no-mobile"><?php echo $this->stripTags($_product->getSku()) ?></p>
                         <?php //echo ($_product->getCanShowPrice() === false) ? '' : $this->getChildHtml('tierprices'); ?>
                         <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
                         <?php echo $this->getChildHtml('product_type_data') //important for GROUPED products ?>

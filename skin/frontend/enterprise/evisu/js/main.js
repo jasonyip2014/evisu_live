@@ -302,12 +302,17 @@ var Mobile = {
     init: function(cssFile){
         var self = this;
         self.cssFile = cssFile;
-        jQuery.each(self.mobileUserAgents, function(index, userAgent){
+        /*jQuery.each(self.mobileUserAgents, function(index, userAgent){
             if(navigator.userAgent.toLowerCase().indexOf(userAgent) != -1){
                 self.yes = true;
                 return false;
             }
-        });
+        });*/
+        if(screen.width <= 1023)
+        {
+            self.yes = true;
+        }
+        self.yes = true;// enable mobile version
         if(navigator.userAgent.toLowerCase().indexOf('ipad') != -1)
         {
             self.isIPad = true;
@@ -316,6 +321,14 @@ var Mobile = {
         {
             //add mobile css
             jQuery('head').append('<link rel="stylesheet" href="' + Mobile.cssFile + '" type="text/css" />');
+        }
+    },
+    remove: function(){
+        var self = this;
+        if(self.yes){
+            jQuery('.no-mobile').remove();
+        } else {
+            jQuery('.mobile-only').remove();
         }
     }
 };
@@ -335,8 +348,7 @@ jQuery(function($)
 
     //$('img').css('opacity', 0); //hide img while loading move to begin of onready
 
-    // === Navigation Animation
-    EvisuNavigation.init('#nav');
+
 
     $('img:not(.loaded)').on('load', function() {
         $(this).stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded
@@ -347,45 +359,69 @@ jQuery(function($)
 
         AjaxBasket.resize();
         $('.img:not(.loaded)').stop(true, true).animate({opacity: 1}, 'fast'); // show img when loaded fiximgloadevent!!!
-
-        //$('body').fadeIn();
-    });
-    $(document).ready(function(){
-        //$('body').fadeIn();
-       
     });
 
-    // change country behavior
-    jQuery('#change-country-btn').on('click', function(){
-        jQuery('#change-country-popup').fadeIn('slow');
-        jQuery('#site-hidder').stop(true,true).fadeIn();
-        jQuery('#top-hider').stop(true,true).fadeIn();
-    });
-    jQuery('#site-hidder').on('click', function(){
-        jQuery('#change-country-popup').fadeOut('fast');
-        jQuery('#site-hidder').stop(true,true).fadeOut();
-        jQuery('#top-hider').stop(true,true).fadeOut();
-    });
-    jQuery(document).on('keydown', function(e){
-        if (e.keyCode == 27) { //escape
+    if(Mobile.yes){
+        jQuery('.burger-menu-btn').on('click', function(){
+            jQuery('.burger-menu').stop(true, true).slideToggle('normal');
+        });
+
+    } else {
+
+        // === Navigation Animation
+        EvisuNavigation.init('#nav');
+        // change country behavior
+        jQuery('#change-country-btn').on('click', function(){
+            jQuery('#change-country-popup').fadeIn('slow');
+            jQuery('#site-hidder').stop(true,true).fadeIn();
+            jQuery('#top-hider').stop(true,true).fadeIn();
+        });
+        jQuery('#site-hidder').on('click', function(){
             jQuery('#change-country-popup').fadeOut('fast');
             jQuery('#site-hidder').stop(true,true).fadeOut();
             jQuery('#top-hider').stop(true,true).fadeOut();
-        }
-    });
-    jQuery('#top-hider').on('click', function(){
-        jQuery('#change-country-popup').fadeOut('fast');
-        jQuery('#site-hidder').stop(true,true).fadeOut();
-        jQuery('#top-hider').stop(true,true).fadeOut();
-    });
-    jQuery('#change-country-popup .close-btn').on('click', function(){
-        jQuery('#change-country-popup').fadeOut('fast');
-        jQuery('#site-hidder').stop(true,true).fadeOut();
-        jQuery('#top-hider').stop(true,true).fadeOut();
-    });
+        });
+        jQuery(document).on('keydown', function(e){
+            if (e.keyCode == 27) { //escape
+                jQuery('#change-country-popup').fadeOut('fast');
+                jQuery('#site-hidder').stop(true,true).fadeOut();
+                jQuery('#top-hider').stop(true,true).fadeOut();
+            }
+        });
+        jQuery('#top-hider').on('click', function(){
+            jQuery('#change-country-popup').fadeOut('fast');
+            jQuery('#site-hidder').stop(true,true).fadeOut();
+            jQuery('#top-hider').stop(true,true).fadeOut();
+        });
+        jQuery('#change-country-popup .close-btn').on('click', function(){
+            jQuery('#change-country-popup').fadeOut('fast');
+            jQuery('#site-hidder').stop(true,true).fadeOut();
+            jQuery('#top-hider').stop(true,true).fadeOut();
+        });
+    }
 
 });
 
 jQuery(window).resize(function(){
     AjaxBasket.resize();
+});
+
+// My Account Mobile
+
+jQuery(window).load(function(){
+
+    jQuery('.dashboard .block-title').on('click', function(){
+        var self = jQuery(this);
+        if(!self.hasClass('active')){
+            jQuery('.dashboard .block-title').removeClass('active');
+            jQuery('.dashboard .block-wrapper').slideUp('normal');
+            self.next().stop(true, true).slideDown('normal');
+            self.addClass('active');
+        }
+        else{
+            self.next().stop(true, true).slideUp('normal');
+            self.removeClass('active');
+        }
+    });
+
 });

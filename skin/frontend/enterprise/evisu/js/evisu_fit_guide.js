@@ -32,7 +32,9 @@ var FitGuide = {
         jQuery('.left-image').css({'visibility': 'hidden'});
         jQuery('.right-image').css({'visibility': 'hidden'});
 
-        jQuery('.slide-navigation').css({position : 'relative', overflow:'hidden', height:0});
+        if(!Mobile.yes){
+            jQuery('.slide-navigation').css({position : 'relative', overflow:'hidden', height:0});
+        }
         jQuery('.item-text-container').hide();
 
         jQuery('.fit-guide-container').css({opacity:0});
@@ -52,29 +54,35 @@ var FitGuide = {
 
     menuBehavior: function(){
         self = this;
-        self.textNavigationItem.on('mouseenter',function(){
-            jQuery('#thumbnail-' + jQuery(this).data('id')).addClass('hover');
-            if(jQuery(window).width() >= 1024)
-            {
-               self.thumbnailMenuShow();
-            }
-        });
+        if(!Mobile.yes){
+            self.textNavigationItem.on('mouseenter',function(){
+                jQuery('#thumbnail-' + jQuery(this).data('id')).addClass('hover');
+                if(jQuery(window).width() >= 1024)
+                {
+                   self.thumbnailMenuShow();
+                }
+            });
 
-        self.textNavigationItem.on('click',function(){
-            jQuery('#thumbnail-' + jQuery(this).data('id')).addClass('hover');
-            if(jQuery(window).width() <= 1024)
-            {
-                self.thumbnailMenuShow();
-            }
-        });
+            self.textNavigationItem.on('click',function(){
+                jQuery('#thumbnail-' + jQuery(this).data('id')).addClass('hover');
+                if(jQuery(window).width() <= 1024)
+                {
+                    self.thumbnailMenuShow();
+                }
+            });
 
-        self.textNavigationItem.on('mouseleave',function(){
-            jQuery('#thumbnail-' + jQuery(this).data('id')).removeClass('hover');
-           self.thumbnailMenuHide();
-        });
+            self.textNavigationItem.on('mouseleave',function(){
+                jQuery('#thumbnail-' + jQuery(this).data('id')).removeClass('hover');
+               self.thumbnailMenuHide();
+            });
 
-        self.slideNavigation.on('mouseenter',function(){self.thumbnailMenuShow()});
-        self.slideNavigation.on('mouseleave',function(){self.thumbnailMenuHide()});
+            self.slideNavigation.on('mouseenter',function(){self.thumbnailMenuShow()});
+            self.slideNavigation.on('mouseleave',function(){self.thumbnailMenuHide()});
+        } else {
+            self.textNavigationItem.on('click',function(){
+                self.thumbnailClick(jQuery(this));
+            });
+        }
     },
 
     thumbnailMenuShow : function(){
@@ -98,6 +106,7 @@ var FitGuide = {
         if(this.currentId != id)
         {
             jQuery('.thumbnail.active').removeClass('active');
+            jQuery('.text.active').removeClass('active');
             element.addClass('active');
             this.animateOut();
             this.choiseItem(id);
