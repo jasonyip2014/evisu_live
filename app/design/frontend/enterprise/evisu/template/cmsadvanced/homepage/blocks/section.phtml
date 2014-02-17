@@ -5,9 +5,9 @@
 <?php $i = 1; ?>
 <?php $sections = $this->getSections() ?>
 <?php if(count($sections) > 0): ?>
-    <?php foreach ($this->getSections() as $_section): ?>
-        <div class="block-<?php echo $i ?> <?php echo $_section->getPageType() ?>">
-            <?php echo $_section->toHtml(); ?>
+    <?php foreach ($this->getSections() as $_block): ?>
+        <div class="block-holder-<?php echo $i ?> <?php echo $_block->getPageType() ?>" style="<?php echo $_block->getCss() ?>" <?php echo Mage::helper('evisu_homepage')->getScrollrData($_block->getAnimation(), 0) ?>>
+            <?php echo $_block->toHtml(); ?>
         </div>
         <?php $i++; ?>
     <?php endforeach ?>

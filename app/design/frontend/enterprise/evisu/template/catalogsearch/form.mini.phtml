@@ -4,7 +4,7 @@
 $catalogSearchHelper =  $this->helper('catalogsearch');
 ?>
 <div class="quick-search no-display">
-    <div class="block-title"><?php echo $this->__('Search') ?></div>
+    <?php /* <div class="block-title"><?php echo $this->__('Search') ?></div> */ ?>
     <div class="form-search">
         <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
             <input autocomplete="off" id="main-search-input" placeholder="Search" type="text" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" />

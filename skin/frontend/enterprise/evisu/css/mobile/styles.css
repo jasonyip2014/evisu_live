@@ -69,14 +69,15 @@ a:hover{text-decoration:underline;}
     position: relative;
 }
 
+
 .yoffset{
     display: none;
 }
-
 ::-webkit-input-placeholder {color: #fff;}
 :-moz-placeholder { color: #fff;}
 ::-moz-placeholder {color: #fff;}
 :-ms-input-placeholder {  color: #fff;}
+
 
 button:focus {
     outline: none;
@@ -264,6 +265,7 @@ li.fit-guide a{background-position: -346px 0 !important;}
 
 .quick-access #cartHeader{
     position: absolute;
+
     background: url(../../images/mobile/mobile-cart-icon.png) no-repeat 0 0;
     top: 32px;
     right: 115px;
@@ -300,14 +302,17 @@ li.fit-guide a{background-position: -346px 0 !important;}
     height: auto;
 }
 
+
 .nav-container .search-btn{
     position: absolute;
     width: 40px;
     height: 39px;
+
     background: url(../../images/mobile/search-mobile.png) no-repeat 0 0;
     top: 36px;
     right: 42px;
 }
+
 
 /* Section 1*/
 

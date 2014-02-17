@@ -52,7 +52,13 @@ if (count($countries) > 0): ?>
                         }
                     ?>
                     <?php $countryName = Mage::getModel('directory/country')->loadByCode($countryCode)->getName();?>
-                    <?php echo $this->__('You are currently shipping to the:') . ' <span id="change-country-btn">' . $countryName . '</span>' ?>
+                    <div class="shipping-switch">
+                        <div class="caption"><?php echo $this->__('Shipping to:') ?></div>
+                        <div id="change-country-btn" class="current-shipping">
+                            <span><?php echo $countryName ?></span>
+                            <img src="<?php echo Mage::helper('mwgeoip')->getFlagPath($countryCode); ?>" alt="<?php echo $countryCode ?>"/>
+                        </div>
+                    </div>
                 </div>
                 <div id="change-country-popup" class="no-display">
 

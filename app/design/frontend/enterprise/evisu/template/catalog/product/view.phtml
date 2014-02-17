@@ -165,7 +165,9 @@
                         <?php endIf; ?>
                     */ ?>
                     <?php echo $this->getChildHtml('alertoos') ?>
-                    <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
+                    <div class="size-chart-holder">
+                        <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
+                    </div>
                     <script>
                         jQuery('#size-chart').on('click', function(){
                             var c = '<div class="box-modal">' +

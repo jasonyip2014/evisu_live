@@ -19,6 +19,7 @@ var EvisuNavigation =
         navLi.on('mouseleave', function() {self.shopMouseLeave(jQuery(this))});
 
         //Category thumbnail change
+        /*
         jQuery(document).on('mouseenter', container + ' .level-2 a', function() {
             menuCategoryImage.stop(true, true).animate({opacity:0}, 'fast');
             menuCategoryImage.attr('src', jQuery(this).attr('rel'));
@@ -27,13 +28,14 @@ var EvisuNavigation =
             menuCategoryImage.stop(true, true).animate({opacity:0}, 'fast');
             menuCategoryImage.attr('src', menuCategoryImage.attr('rel'));
         });
+        */
     },
 
     shopMouseEnter : function(element){
         var self = this;
         if(!self.over)
         {
-            navLiChild = element.find(' > ul');
+            navLiChild = element.find(' > .shop-menu-container');
             if (!navLiChild){
                 return;
             }
@@ -51,7 +53,7 @@ var EvisuNavigation =
 
     shopMouseLeave : function(element){
         var self = this;
-        navLiChild = element.parent().find(' ul');
+        navLiChild = element.parent().find(' .shop-menu-container');
         if (!navLiChild){
             return;
         }
@@ -71,9 +73,9 @@ var EvisuNavigation =
 
 var AjaxBasket = {
     currentItem : 0,
-    itemWidth : '33.3333%',
+    itemWidth : '16.2%',
     itemsCount : 0,
-    itemsVisible : 3,
+    itemsVisible : 6,
     nextButton : null,
     prevButton : null,
 
@@ -138,17 +140,17 @@ var AjaxBasket = {
         var self = this;
         if(self.itemsCount > 0)
         {
-            if(jQuery(window).width() > 1024)
+            if(jQuery(window).width() > 1500)
             {
-                this.itemWidth = '33.3333%';
+                this.itemWidth = '16.2%';
                 jQuery('#mini-cart li').css({width:this.itemWidth});
-                self.itemsVisible = 3;
+                self.itemsVisible = 6;
             }
             else
             {
-                this.itemWidth = '50%';
+                this.itemWidth = '33%';
                 jQuery('#mini-cart li').css({width:this.itemWidth});
-                self.itemsVisible = 2;
+                self.itemsVisible = 3;
             }
             self.buttonBehavior();
         }
@@ -406,6 +408,7 @@ jQuery(window).resize(function(){
     AjaxBasket.resize();
 });
 
+
 // My Account Mobile
 
 jQuery(window).load(function(){
@@ -423,5 +426,26 @@ jQuery(window).load(function(){
             self.removeClass('active');
         }
     });
+});
 
+// Fixed header
+
+jQuery(function($){
+
+    $(window).scroll(function(){
+        var $topPosition = $(window).scrollTop();
+        if ($topPosition > 24){
+            $('.homepage-holder').addClass('fixed');
+            $('.branding-holder').addClass('fixed');
+            $('.branding-container').addClass('fixed');
+            $('.top-bar').addClass('fixed');
+        }
+        else{
+            $('.homepage-holder').removeClass('fixed');
+            $('.branding-holder').removeClass('fixed');
+            $('.branding-container').removeClass('fixed');
+            $('.top-bar').removeClass('fixed');
+        }
+
+    });
 });
