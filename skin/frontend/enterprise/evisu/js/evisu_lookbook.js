@@ -38,9 +38,9 @@ var LookBook = {
         var firstChild = self.mainSection.find('.main-carousel > li:first-child').clone().removeProp('id');
         var lastChild = self.mainSection.find('.main-carousel > li:last-child').clone().removeProp('id');
         self.mainSection.find('.main-carousel').append(firstChild);
-        self.mainSection.find('.main-carousel').append(firstChild);
+        self.mainSection.find('.main-carousel').append(firstChild.clone());
         self.mainSection.find('.main-carousel').prepend(lastChild);
-        self.mainSection.find('.main-carousel').prepend(lastChild);
+        self.mainSection.find('.main-carousel').prepend(lastChild.clone());
 
         //gallegy
         jQuery('#gallery-btn').on('click', function(){self.toggleGallery(jQuery(this))});
