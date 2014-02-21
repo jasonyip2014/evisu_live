@@ -29,7 +29,7 @@ $product = $item->getProduct();
         <div class="select-box">
             <?php $qty = (int) Mage::getStoreConfig('catalog/product_detail/qty') ?>
             <?php if ($qty): ?>
-                <select name="qty[<?php echo $item->getId() ?>]" id="qty<?php echo $item->getId() ?>" class="required-entry input-text qty">
+                <select name="qty[<?php echo $item->getId() ?>]" id="qty<?php echo $item->getId() ?>" class="required-entry input-text qty no-display">
                     <?php for($i = 1; $i <= $qty; $i++): ?>
                         <option <?php if($this->getAddToCartQty($item) * 1 == $i): ?>selected="selected"<?php endIf; ?> value="<?php echo $i ?>"><?php echo $i ?></option>
                     <?php endFor; ?>
