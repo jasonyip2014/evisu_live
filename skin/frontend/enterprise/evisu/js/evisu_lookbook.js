@@ -30,27 +30,38 @@ var LookBook = {
         jQuery('#archive').find('.archive-close-btn').on('click', function(){self.hideArchive()});
 
         //looks change
-        jQuery('#main-section').find('.next-btn').on('click', function(){self.next()});
-        jQuery('#main-section').find('.prev-btn').on('click', function(){self.prev()});
-
+        self.mainSection = jQuery('#main-section');
+        self.mainSection.find('.next-btn').on('click', function(){self.next()});
+        self.mainSection.find('.prev-btn').on('click', function(){self.prev()});
+        self.mainSection.find('.right-hider').on('click', function(){self.next()});
+        self.mainSection.find('.left-hider').on('click', function(){self.prev()});
+        var firstChild = self.mainSection.find('.main-carousel > li:first-child').clone().removeProp('id');
+        var lastChild = self.mainSection.find('.main-carousel > li:last-child').clone().removeProp('id');
+        self.mainSection.find('.main-carousel').append(firstChild);
+        self.mainSection.find('.main-carousel').append(firstChild);
+        self.mainSection.find('.main-carousel').prepend(lastChild);
+        self.mainSection.find('.main-carousel').prepend(lastChild);
 
         //gallegy
         jQuery('#gallery-btn').on('click', function(){self.toggleGallery(jQuery(this))});
-        jQuery('#thumbnail-section').find('.next-btn').on('click', function(){self.nextGallery()});
-        jQuery('#thumbnail-section').find('.prev-btn').on('click', function(){self.prevGallery()});
-        jQuery('#thumbnail-section').find('li').on('mouseenter',function(){
+        self.thumbnaiSection = jQuery('#thumbnail-section');
+        self.thumbnaiSection.find('.next-btn').on('click', function(){self.nextGallery()});
+        self.thumbnaiSection.find('.prev-btn').on('click', function(){self.prevGallery()});
+        self.thumbnaiSection.find('li').on('mouseenter',function(){
             jQuery(this).stop(true,false).animate({opacity: 1}, 'fast');
         });
-        jQuery('#thumbnail-section').find('li').on('mouseleave',function(){
+        self.thumbnaiSection.find('li').on('mouseleave',function(){
             jQuery(this).stop(true,false).animate({opacity: 0.4}, 'fast');
         });
-        jQuery('#thumbnail-section').find('li').on('click', function(){self.showLook(jQuery(this).data('id'),false)});
+        self.thumbnaiSection.find('li').on('click', function(){self.showLook(jQuery(this).data('id'),false)});
+
 
 
         //esc
         jQuery(document).keydown(function(e){if(e.keyCode == 27){self.hideAll()}});
 
-        this.origGalleryHeight = jQuery('#thumbnail-section').find('ul').height();
+        this.origGalleryHeight = self.thumbnaiSection.find('ul').height();
+        //this.origCarouselHeight = self.mainSection.find('ul').height();
 
     },
 
@@ -59,15 +70,16 @@ var LookBook = {
 
         this.getGalleryProp();
 
+        this.resize();
         //init prop
-
+        jQuery('#gallery-btn').trigger('click');
     },
 
     resize : function()
     {
         var self = this;
         this.getGalleryProp();
-
+        self.choiceMainCarouselItem(self.currentId);
         //resize gallery toDo Optimization (from choice.)
         var element;
         var container = jQuery('#thumbnail-section');
@@ -111,20 +123,7 @@ var LookBook = {
         var self = this;
 
         self.choiceGalleryItem(id);
-        var mainSectionContainer = jQuery('#main-section');
-        var mainImage = new Image();
-        mainSectionContainer.find('.image-holder').addClass('loading');
-        mainImage.onload = function()
-        {
-            mainSectionContainer.find('img').attr({src:self.config[self.positions[id]].main_image});
-            mainSectionContainer.find('img').delay(500).animate({opacity:1} ,'slow');
-            mainSectionContainer.find('.image-holder').removeClass('loading');
-
-        };
-        mainSectionContainer.find('img').stop(true,true).animate({opacity:0}, 'slow', function(){
-            mainImage.src = self.config[self.positions[id]].main_image;
-        });
-
+        self.choiceMainCarouselItem(id);
         self.currentId = id;
         var productSectionContainer = jQuery('#product-section');
         productSectionContainer.stop(true,false).slideUp('fast', function(){
@@ -342,6 +341,28 @@ var LookBook = {
             }
             container.find('ul>li:first').animate({marginLeft : -marginLeft},'slow');
         //}
+    },
+
+    choiceMainCarouselItem : function(itemId)
+    {
+        var self = this;
+        var windowWidth;
+        if(Mobile.isIPad){
+            windowWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        } else {
+            windowWidth = jQuery(window).width();
+        }
+        var $leftHider = self.mainSection.find('.left-hider');
+        var $rightHider = self.mainSection.find('.right-hider');
+        var $currentElement = self.mainSection.find('#main-carousel-' + itemId);
+        self.mainSection.find('.active').removeClass('active');
+        $currentElement.addClass('active');
+
+        var elementFullWidth = $currentElement.width() + parseInt($currentElement.css('margin-left')) + parseInt($currentElement.css('margin-right'));
+        var neededOffset = (windowWidth - elementFullWidth) / 2;
+        self.mainSection.find('.main-carousel').stop(true, true).animate({left:'-=' + ($currentElement.offset().left - parseInt($currentElement.css('margin-left')) - neededOffset)});
+        $leftHider.animate({width:neededOffset},'slow');
+        $rightHider.animate({width:neededOffset},'slow');
     },
 
     getNextId : function() {

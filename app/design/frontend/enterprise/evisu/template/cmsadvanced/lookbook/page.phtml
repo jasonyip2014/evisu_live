@@ -9,8 +9,8 @@
     $archiveThumbnailWidth = 200;
     $archiveThumbnailHeight = 100;
     $thumbnailImageHeight = 336;
-    $mainImageWidth = 1199;
-    $mainImageHeight = 900;
+    //$mainImageWidth = 1199;
+    $mainImageHeight = 728;
     $archiveImageWidth = 266;
     $archiveImageHeight = 166;
 ?>
@@ -49,29 +49,41 @@ $_page = $this->getPage();
             <?php endForeach; ?>
         </ul>
     </div>
-
-    <div id="main-section">
-        <div class="prev-btn"><?php echo $this->__('Prev') ?></div>
-        <div class="description-holder">
-            <div class="title"><h1><?php echo $this->getLbTitle() ?></h1></div>
-            <div class="cmsadvanced-breadcrumbs-container">
-                <?php echo $this->getChildHtml('breadcrumbs') ?>
-            </div>
-            <div class="description"><?php echo $this->getLbDescription() ?></div>
-            <div id="archive-btn"><?php echo $this->__('Archive') ?></div>
+    <div class="description-holder">
+        <div class="title"><h1><?php echo $this->getLbTitle() ?></h1></div>
+        <div class="cmsadvanced-breadcrumbs-container">
+            <?php echo $this->getChildHtml('breadcrumbs') ?>
         </div>
-        <div class="image-holder">
-            <img width="<?php echo $mainImageWidth ?>px" height="<?php echo $mainImageHeight ?>px" src="<?php echo $_afHelper->init($_page->getBlockModel(), $currentItem->getLbiMainImage() , '')->resize($mainImageWidth, $mainImageHeight); ?>" alt="<?php echo $currentItem->getLbiTitle() ?>" />
-        </div>
-        <div class="next-btn"><?php echo $this->__('Next') ?></div>
+        <div class="description"><?php echo $this->getLbDescription() ?></div>
+        <div id="archive-btn"><?php echo $this->__('Archive') ?></div>
     </div>
-    <div class="gallery-btn-holder">
-        <div id="gallery-btn" class="opened" data-openedtext="<?php echo $this->__('Hide Gallery') ?>" data-closedtext="<?php echo $this->__('Show Gallery') ?>"><?php echo $this->__('Hide Gallery') ?></div>
-    </div>    
-    <div id="thumbnail-section">
-        <div class="prev-btn no-display"><?php echo $this->__('Prev') ?></div>
-        <?php $looks = $this->getChildren() ?>
-        <?php if($looks && $looks->getSize() > 0): ?>
+    <?php $looks = $this->getChildren() ?>
+    <?php if($looks && $looks->getSize() > 0): ?>
+        <div id="main-section">
+            <div class="main-carousel-holder">
+                <div class="prev-btn"><?php echo $this->__('Prev') ?></div>
+                <div class="left-hider"></div>
+                <ul class="main-carousel">
+                    <?php $i = 0; foreach($looks as $look): ?>
+                        <?php if($look->getLbiMainImage()): ?>
+                            <?php $imageSize = getimagesize($look->getImage('lbi_main_image')); $ratio = (float) $imageSize[0] / (float)$imageSize[1] ?>
+                            <li<?php if($currentItem->getEntityId() == $look->getEntityId()): ?> class="active"<?php endIf; ?> data-id="<?php echo $look->getEntityId() ?>" id="main-carousel-<?php echo $look->getEntityId() ?>">
+                                <div class="image-holder">
+                                    <img src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getLbiMainImage() , '')->adaptiveResize(($mainImageHeight * $ratio), $mainImageHeight); ?>" alt="<?php echo $look->getLbiTitle() ?>" />
+                                </div>
+                            </li>
+                        <?endIf; ?>
+                    <?php endForeach; ?>
+                </ul>
+                <div class="right-hider"></div>
+                <div class="next-btn"><?php echo $this->__('Next') ?></div>
+            </div>
+        </div>
+        <div class="gallery-btn-holder">
+            <div id="gallery-btn" class="opened" data-openedtext="<?php echo $this->__('Hide Gallery') ?>" data-closedtext="<?php echo $this->__('Show Gallery') ?>"><?php echo $this->__('Hide Gallery') ?></div>
+        </div>
+        <div id="thumbnail-section">
+            <div class="prev-btn no-display"><?php echo $this->__('Prev') ?></div>
             <ul>
                 <?php $products = null; $ids = array(); ?>
                 <?php $i = 0; foreach($looks as $look): ?>
@@ -79,7 +91,7 @@ $_page = $this->getPage();
                         <?php $imageSize = getimagesize($look->getImage('lbi_thumbnail_image')); $ratio = (float) $imageSize[0] / (float)$imageSize[1] ?>
                         <li<?php if($currentItem->getEntityId() == $look->getEntityId()): ?> class="active"<?php endIf; ?> data-id="<?php echo $look->getEntityId() ?>" id="gall-trumb-<?php echo $look->getEntityId() ?>">
                             <div class="image-holder">
-                                <img src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getLbiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio),$thumbnailImageHeight); ?>" alt="<?php echo $look->getLbiTitle() ?>" />
+                                <img src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getLbiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio), $thumbnailImageHeight); ?>" alt="<?php echo $look->getLbiTitle() ?>" />
                             </div>
                         </li>
                     <?endIf; ?>
@@ -95,13 +107,11 @@ $_page = $this->getPage();
                 {
                     $thumbnailImageSize = getimagesize($look->getImage('lbi_thumbnail_image'));
                     $ratio = (float) $thumbnailImageSize[0] / (float)$thumbnailImageSize[1];
-
-
-
-                $config[$i] = array(
+                    $config[$i] = array(
                         'id' => $look->getEntityId(),
                         'title' => $look->getLbiTitle(),
-                        'main_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiMainImage() , '')->resize($mainImageWidth, $mainImageHeight),
+                        //toDo remove
+                        //'main_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiMainImage() , '')->resize($mainImageHeight, $mainImageHeight),
                         'thumbnail_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio),$thumbnailImageHeight),
                         'assoc_product' => $_productsModel->getProductBySKU($look->getLbiProductSku()),
                         'shareData' => array(
@@ -116,10 +126,8 @@ $_page = $this->getPage();
                 }
                 $positions['length'] = $i;
             ?>
-        <?php endIf; ?>
-
-        <div class="next-btn no-display"><?php echo $this->__('Next') ?></div>
-    </div>
+            <div class="next-btn no-display"><?php echo $this->__('Next') ?></div>
+        </div>
         <div id="product-section">
             <div class="product">
                 <?php if($product = $_productsModel->getProductBySKU($currentItem->getLbiProductSku())): ?>
@@ -178,6 +186,7 @@ $_page = $this->getPage();
             </div>
             <script>ProductCarousel.init(<?php echo count($product['associated_products']) ?>);</script>
         </div>
+    <?php endIf; ?>
 </div>
 
 <script>
