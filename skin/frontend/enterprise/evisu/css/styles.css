@@ -6149,7 +6149,7 @@ position: absolute;
     position: absolute;
     top: 0%;
     cursor: pointer;
-    background: url(../images/new-basket-btns.png) no-repeat 50px 50%;
+    background: url(../images/new-basket-btns.png) no-repeat 50px 65%;
     width: 23px;
     height: 100%;
     text-indent: -9999px;
@@ -6161,7 +6161,7 @@ position: absolute;
 
 .look-book-container #main-section .next-btn{
     right: 40px;
-    background-position: -27px 50%;
+    background-position: -27px 65%;
 }
 
 .look-book-container #main-section .description-holder{

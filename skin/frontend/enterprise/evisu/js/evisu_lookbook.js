@@ -78,6 +78,9 @@ var LookBook = {
     resize : function()
     {
         var self = this;
+        if(jQuery('#gallery-btn').hasClass('closed')){
+            self.thumbnaiSection.show();
+        }
         this.getGalleryProp();
         self.choiceMainCarouselItem(self.currentId);
         //resize gallery toDo Optimization (from choice.)
@@ -103,6 +106,10 @@ var LookBook = {
             self.galleryId = self.config[self.positions['length'] - 1].id;
         }
         container.find('ul>li:first').css({marginLeft : -marginLeft});
+
+        if(jQuery('#gallery-btn').hasClass('closed')){
+            self.thumbnaiSection.hide();
+        }
     },
 
     prev : function()
@@ -361,8 +368,8 @@ var LookBook = {
         var elementFullWidth = $currentElement.width() + parseInt($currentElement.css('margin-left')) + parseInt($currentElement.css('margin-right'));
         var neededOffset = (windowWidth - elementFullWidth) / 2;
         self.mainSection.find('.main-carousel').stop(true, true).animate({left:'-=' + ($currentElement.offset().left - parseInt($currentElement.css('margin-left')) - neededOffset)});
-        $leftHider.animate({width:neededOffset},'slow');
-        $rightHider.animate({width:neededOffset},'slow');
+        $leftHider.stop(true, false).animate({width:neededOffset},'slow');
+        $rightHider.stop(true, false).animate({width:neededOffset},'slow');
     },
 
     getNextId : function() {
