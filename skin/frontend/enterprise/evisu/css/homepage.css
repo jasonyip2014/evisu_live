@@ -180,16 +180,18 @@ body{
     vertical-align: top;
 }
 .section-holder-1 .block-holder-2{    
-    margin: 0 0 36px 6.25%;
+    margin: 0 0 36px 5.25%;
     width: 56.041666667%;
 }
 .section-holder-1 .block-holder-3{    
-    margin: 0 0 0 7.44%;
-    width: 15.885416667%;
+    margin: 0 0 0 1.2%;
+    width: 38.28125%;
+    z-index: 2;
 }
 .section-holder-1 .block-holder-4{
     margin: 0 0 0 1.5%;
-    width: 27.395833333%;
+    width: 33.072916667%;
+    z-index: 7;
 }
 .video-panel{
     position: relative;
@@ -217,7 +219,7 @@ body{
 }
 .section-holder-1 .block-holder-5{
     margin: 96px 0 44px 0%;
-    width: 37.5%;
+    width: 35.15625%;
 }
 .section-holder-1 .block-holder-6{
     width: 29.114583333%;
@@ -230,6 +232,9 @@ body{
 .section-holder-1 .block-holder-8{
     width: 38.958333333%;
     margin: 0 0 0 3.385416667%;
+}
+.section-holder-1 .block-holder-11{
+    width: 22.395833333%;
 }
 .section-holder-1 .block-holder-10,
 .section-holder-2 .block-holder-10{

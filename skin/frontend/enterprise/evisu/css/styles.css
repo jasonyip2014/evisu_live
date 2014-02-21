@@ -1123,6 +1123,7 @@ li label{
     text-transform: none;
     font-size: 14px;
     font-family: courier, serif;
+    color: #999;
 }
 
 
@@ -1766,7 +1767,27 @@ position: absolute;
     float: left;
     margin: 0 10px 0 0;
 }
-
+.look-book-container .description-holder{
+    padding: 0 0 0 185px;
+    position: absolute;
+    z-index: 12;
+    top: 30px;
+}
+.look-book-container .main-carousel{
+    white-space: nowrap;
+    position:relative;
+}
+/*.look-book-container .main-carousel li.active{
+    outline: 15px solid red;
+}*/
+.look-book-container .main-carousel li{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 6px;
+}
+.look-book-container .description-holder .description{
+    width: 304px;
+}
 .social-share{
     font: 700 14px 'Open Sans', Arial, sans-serif;
     color: #333;
@@ -3351,6 +3372,55 @@ position: absolute;
     border: 3px solid #333;
     background: #fff;
     width: 978px;
+}
+
+#wishlist-view-form .custom-select-btn{
+    width: 83px;
+    height: 28px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: url(../images/bg-custom-select.png) no-repeat 90% 50%;
+    display: inline-block;
+    font: 14px courier, arial, sans-serif;
+    line-height: 28px;
+    color: #ccc;
+    text-align: left;
+}
+#wishlist-view-form .custom-select{
+    position: relative;
+    width: 103px;
+    margin: 0 auto;
+}
+#wishlist-view-form .custom-select-drop{
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 100%;
+    z-index: 10;
+    top: 29px;
+    left: 0;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
+#wishlist-view-form .custom-select-drop li a{
+    display: inline-block;
+    width: 83px;
+    height: 28px;
+    padding: 0 10px;
+    color: #999;
+    font-size: 14px;
+    text-align: left;
+}
+#wishlist-view-form .custom-select-drop li a:hover{
+    background: #ccc;
+    text-decoration: none;
+}
+
+#wishlist-view-form img{
+    width: 112px;
+    height: 112px;
 }
 
 #my-orders-table,
@@ -6022,9 +6092,35 @@ position: absolute;
     margin: 0 auto;
     min-width: 845px;
 }
-
+.look-book-container #main-section .main-carousel img{
+    margin: 0;
+    height: 100% !important;
+    width: auto !important;
+}
+.look-book-container #main-section .main-carousel-holder{
+    position: relative;
+}
+.look-book-container #main-section .main-carousel-holder .left-hider,
+.look-book-container #main-section .main-carousel-holder .right-hider{
+    position: absolute;
+    height: 100%;
+    width: 400px;
+    top: 0;
+    background: #fff;
+    opacity: .7;
+    left: 0;
+    z-index:1;
+}
+.look-book-container #main-section .main-carousel-holder .right-hider{
+    right: 0;
+    left: auto;
+}
+.look-book-container #main-section .main-carousel .image-holder{
+    width: auto;
+    display: inline;
+}
 .look-book-container #main-section .image-holder img{
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 
@@ -6043,24 +6139,29 @@ position: absolute;
     display: inline;
     background: url(../images/show-hide-gallery.png) no-repeat 100% -15px;
 }
-
+@media screen and (max-width: 1500px){
+    .look-book-container .description-holder{
+        padding: 0 0 0 50px;
+    }
+}
 .look-book-container #main-section .prev-btn,
 .look-book-container #main-section .next-btn{
     position: absolute;
-    top: 51%;
+    top: 0%;
     cursor: pointer;
-    background: url(../images/lookbook-prev-next.gif) no-repeat 0 50%;
+    background: url(../images/new-basket-btns.png) no-repeat 50px 50%;
     width: 23px;
-    height: 56px;
+    height: 100%;
     text-indent: -9999px;
-    z-index: 1;
+    z-index: 2;
+    padding: 0 0 0 49px;
 }
 
 .look-book-container #main-section .prev-btn{left: 40px;}
 
 .look-book-container #main-section .next-btn{
     right: 40px;
-    background-position: 100% 50%;
+    background-position: -27px 50%;
 }
 
 .look-book-container #main-section .description-holder{
@@ -6643,4 +6744,12 @@ position: absolute;
 .cart .error-msg li{
     display: block;
     font: 600 18px 'Open Sans', arial, sans-serif;
+}
+
+#checkoutSteps li{
+    display: none;
+}
+
+#checkoutSteps li.active{
+    display: block;
 }
