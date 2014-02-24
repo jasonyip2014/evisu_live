@@ -48,7 +48,7 @@ class Evisu_Catalog_Block_Search_Autocomplete extends Mage_Core_Block_Abstract
             $counter = 0;
             $data = array();
             foreach ($collection as $item) {
-                var_dump($item->getData());
+                //var_dump($item->getData());
                 $_data = array(
                     'title' => $item->getQueryText(),
                     'row_class' => (++$counter)%2?'odd':'even',

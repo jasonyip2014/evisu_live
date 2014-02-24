@@ -60,7 +60,12 @@
                         </div>
                         <div class="actions">
                             <?php echo $this->getChildHtml('extra_actions') ?>
-                            <button class="button" type="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>');"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+                            <button class="button no-mobile" type="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>');">
+                                <span><span><?php echo $this->__('Checkout') ?></span></span>
+                            </button>
+                            <button class="button mobile-only" type="button" onclick="setLocation('<?php echo Mage::getUrl('checkout/onepage') ?>');">
+                                <span><span><?php echo $this->__('Checkout') ?></span></span>
+                            </button>
                             <a href="<?php echo $this->getUrl('checkout/cart'); ?>"><span><?php echo $this->__('View Basket') ?></span></a>
                         </div>
                     <?php else: ?>

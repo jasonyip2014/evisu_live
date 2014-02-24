@@ -87,5 +87,8 @@
             <?php echo $this->getChildHtml('newsletter') ?>
         </div>
     </div>
+    <div class="link-logout mobile-only">
+        <a href="<?php echo Mage::getUrl('customer/account/logout')?>"><?php echo $this->__('Log Out') ?></a>
+    </div>
 </div>
 <div class="customer-dashboard-promo-static-block"><?php echo $this->getChildHtml('customer-dashboard-promo'); ?></div>

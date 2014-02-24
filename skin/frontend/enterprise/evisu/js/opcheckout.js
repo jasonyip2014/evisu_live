@@ -249,6 +249,7 @@ Checkout.prototype = {
             sectionElement = $('opc-' + section);
         }
         this.changeSection('opc-' + section);
+        jQuery('body').animate({scrolTop:0});
     },
 
     setStepResponse: function(response){

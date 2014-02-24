@@ -27,8 +27,15 @@
 <div class="footer-container">
     <div class="footer">
         <?php echo $this->getChildHtml() ?>
-        <address class="copyright">
+        <address class="copyright no-mobile">
             Magento Ecommerce by <a target="_blank" href="//http://www.diligentcommerce.com/">Diligent</a>&nbsp;&nbsp;<?php echo $this->getCopyright() ?>
+        </address>
+        <address class="copyright">
+            &copy <?php echo date('Y') ?> EVISU.
         </address>
     </div>
 </div>
+<script>
+    //remove no-mobile blocks mobile
+    Mobile.remove();
+</script>

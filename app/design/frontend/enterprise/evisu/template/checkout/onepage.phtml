@@ -1,3 +1,4 @@
+<?php /* @var $this Mage_Checkout_Block_Onepage */ ?>
 <?php
 /**
  * Magento Enterprise Edition
@@ -32,14 +33,14 @@
     <script type="text/javascript" src="<?php echo $this->getJsUrl('varien/accordion.js') ?>"></script>
     <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/opcheckout.js') ?>"></script>
     <div class="opc-progress-container" id="col-right-opcheckout">
-        <?php echo $this->getChildHtml('checkoutProgress') ?>
+        <?php // echo $this->getChildHtml('checkoutProgress') ?>
     </div>
     <ol class="opc" id="checkoutSteps">
     <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo): ?>
     <?php if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif; $i++ ?>
         <li id="opc-<?php echo $_stepId ?>" class="section<?php echo !empty($_stepInfo['allow'])?' allow':'' ?><?php echo !empty($_stepInfo['complete'])?' saved':'' ?>">
             <div class="step-title">
-                <span class="number"><?php echo $i ?></span>
+                <span class="number"><?php echo $i ?>.</span>
                 <h2><?php echo $_stepInfo['label'] ?></h2>
                 <!--<a href="#"><?php echo $this->__('Edit') ?></a>-->
             </div>

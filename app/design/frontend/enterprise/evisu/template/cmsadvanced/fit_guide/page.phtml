@@ -57,7 +57,7 @@
                 <?php endForeach; ?>
             <?php endIf; ?>
         </div>
-        <div class="thumbnail-navigation">
+        <div class="thumbnail-navigation no-mobile">
             <?php if(count($items) > 0): ?>
                 <?php $i = 0; foreach ($items as $_item): ?>
                     <div  class="thumbnail" id="thumbnail-<?php echo $_item->getEntityId() ?>" data-id="<?php echo $_item->getEntityId() ?>" title="<?php echo $_item->getTitle() ?>">
@@ -73,13 +73,16 @@
     <div class="text-navigation">
         <?php if(count($items) > 0): ?>
             <?php $i = 0; foreach ($items as $_item): ?>
-                <div class="text" id="text-<?php echo $_item->getEntityId() ?>" data-id="<?php echo $_item->getEntityId() ?>" title="<?php echo $_item->getTitle() ?>">
+                <div class="text<?php if($i == 0):?> active<?php endIf; ?>" id="text-<?php echo $_item->getEntityId() ?>" data-id="<?php echo $_item->getEntityId() ?>" title="<?php echo $_item->getTitle() ?>">
                     <?php echo $_item->getMenuTitle() ?>
                 </div>
                 <?php $i++; ?>
             <?php endforeach ?>
         <?php endIf; ?>
     </div>
+</div>
+<div class="additional-block mobile-only">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mobile_fit_guide_additional_block')->toHtml(); ?>
 </div>
 <script>
     FitGuide.init(<?php echo json_encode($jsonConfig) ?>,<?php echo json_encode($jsonPositions) ?>, <?php echo $currentItemId ?>);

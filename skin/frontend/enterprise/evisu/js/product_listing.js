@@ -163,22 +163,24 @@ jQuery(function($){
     });
 
     // ================= product grid image ========================
-    $('.products-grid .images-holder').on('mouseenter', function(){
-        var container = $(this);
-        container.find('.img-2').css('opacity', 0);
-        container.find('.img-1').stop(true,false);
-        container.find('.img-1').animate({opacity: 0},'fast');
-        container.find('.img-2').animate({opacity: 0.4},'fast');
-        container.parent().next().css('zIndex', 4);
-    });
+    if(!Mobie.yes){
+        $('.products-grid .images-holder').on('mouseenter', function(){
+            var container = $(this);
+            container.find('.img-2').css('opacity', 0);
+            container.find('.img-1').stop(true,false);
+            container.find('.img-1').animate({opacity: 0},'fast');
+            container.find('.img-2').animate({opacity: 0.4},'fast');
+            container.parent().next().css('zIndex', 4);
+        });
 
-    $('.products-grid .hover-container').on('mouseleave', function(){
-        var container = $(this).parent().parent();
-        container.prev().find('.img-2').stop(true,false);
-        container.prev().find('.img-2').animate({opacity: 0},'fast');
-        container.prev().find('.img-1').animate({opacity: 1},'fast');
-        container.css('zIndex', 2);
-    });
+        $('.products-grid .hover-container').on('mouseleave', function(){
+            var container = $(this).parent().parent();
+            container.prev().find('.img-2').stop(true,false);
+            container.prev().find('.img-2').animate({opacity: 0},'fast');
+            container.prev().find('.img-1').animate({opacity: 1},'fast');
+            container.css('zIndex', 2);
+        });
+    }
     // =================================================================
 
     $(window).scroll(function(){

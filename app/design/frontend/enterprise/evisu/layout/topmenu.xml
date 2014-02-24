@@ -11,6 +11,7 @@
                 <action method="addMenuRenderer"><type>dropdown</type><template>catalog/navigation/top.dropdown.phtml</template></action>
                 <action method="addMenuRenderer"><type>block</type><template>catalog/navigation/top.block.phtml</template></action>
                 <action method="addMenuRenderer"><type>shop-dropdown</type><template>catalog/navigation/top.shop.dropdown.phtml</template></action>
+                <block type="directory/currency" name="currency_mobile" template="directory/currency_mobile.phtml"/>
             </block>
         </reference>
     </default>

@@ -16,9 +16,15 @@ var StoreLocator = {
 
         this.mapOptions = {
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            //disableDefaultUI: false,
-            scrollwheel: false
+            mapTypeControl: false,
+            disableDefaultUI: false,
+            scrollwheel: false,
+            scaleControl: false,
+            streetViewControl: false
         };
+        if(Mobile.yes){
+            this.mapOptions.draggable = false;
+        }
         this.geocoder = new google.maps.Geocoder();
 
         this.map = new google.maps.Map(document.getElementById("map-canvas"), this.mapOptions);
@@ -221,7 +227,6 @@ var StoreLocator = {
         self.map.setCenter(new google.maps.LatLng(stores[closest].coordinates.lat, stores[closest].coordinates.long));
         self.map.setZoom(parseInt(stores[closest].zoom));
         self.sortStoreList();
-        //jQuery('#' + closest_type + closest).addClass('active');
     },
 
     getStoreByAddress: function()

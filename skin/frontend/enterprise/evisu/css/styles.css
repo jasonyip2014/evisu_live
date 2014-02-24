@@ -67,6 +67,10 @@ a:hover{text-decoration:underline;}
     position: relative;
 }
 
+.mobile-only{
+    display: none;
+}
+
 ::-webkit-input-placeholder {color: #666;}
 :-moz-placeholder { color: #666;}
 ::-moz-placeholder {color: #666;}
@@ -1454,7 +1458,7 @@ li label{
 
 @media screen and (max-width: 1500px){
     .catalogsearch-result-index .products-grid > li{
-        width: 33%;
+        width: 32.9%;
     }
     .catalogsearch-result-index .products-grid{
         text-align: left;
@@ -6746,10 +6750,381 @@ position: absolute;
     font: 600 18px 'Open Sans', arial, sans-serif;
 }
 
-#checkoutSteps li{
+/* Mobile One Page Checkout */
+
+.opc-wrapper .page-title{
+    font: 700 48px 'Open Sans', arial, sans-serif;
+    padding: 0 0 0 85px;
+    margin: 0 0 3px;
+}
+#checkoutSteps{
+    width: 540px;
+    margin: 0 auto;
+    border: 3px solid #333;
+}
+#checkoutSteps .step-title{
+    background: #ccc;
+    color: #fff;
+    font: 700 30px/71px 'Open Sans', arial, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    height: 71px;
+    line-height: 71px;
+}
+#checkoutSteps .step-title h2{
+    display: inline-block;
+    vertical-align: top;
+}
+#checkout-step-billing form,
+#checkout-step-shipping form{
+    width: 470px;
+    display: block;
+    margin: 0 auto;
+    padding: 35px 0;
+}
+#checkout-step-billing form label,
+#checkout-step-shipping form label{
+    color: #333;
+    font-size: 20px;
+}
+#co-billing-form .form-alt label,
+#co-shipping-form .form-alt label{
+    margin: 0 0 25px;
+    display: block;
+}
+#co-billing-form .form-alt select,
+#co-shipping-form .form-alt select{
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    font-size: 20px;
+}
+#co-billing-form .form-alt,
+#co-billing-form .control,
+#co-shipping-form .form-alt,
+#co-shipping-form .control{
+    margin: 0 0 25px;
+}
+#co-billing-form .control .input-box,
+#co-shipping-form .control .input-box{
+    display: inline-block;
+}
+#checkoutSteps .buttons-set{
+    text-align: center;
+    position: relative;
+}
+#checkoutSteps .buttons-set button{
+    width: 314px;
+    height: 73px;
+    background: #333;
+    border: none;
+    font: 700 30px 'Open Sans', arial, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+}
+#checkoutSteps .buttons-set button:hover{
+    background: #ccc;
+}
+p.required{
     display: none;
 }
-
-#checkoutSteps li.active{
+#checkoutSteps .section{
+    display: none;
+}
+#checkoutSteps .section.active{
     display: block;
+}
+#review-please-wait,
+#payment-please-wait,
+#billing-please-wait,
+#shipping-please-wait,
+#shipping-method-please-wait{
+    text-indent: -9999px;
+    background: url(../images/ajax-loader01.gif) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
+#review-please-wait,
+#payment-please-wait,
+#shipping-method-please-wait{
+    right: 50px;
+}
+#co-shipping-method-form{
+    padding: 35px 0;
+}
+#billing-new-address-form ul li,
+#shipping-new-address-form ul li,
+#billing-new-address-form ul li .field,
+#shipping-new-address-form ul li .field{
+    margin: 0 0 25px;
+}
+#billing-new-address-form ul li:after,
+#shipping-new-address-form ul li:after,
+#billing-new-address-form ul li .field:after,
+#shipping-new-address-form ul li .field:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#billing-new-address-form ul li label,
+#shipping-new-address-form ul li label{
+    float: left;
+    text-transform: uppercase;
+    line-height: 45px;
+}
+#billing-new-address-form ul li .input-box,
+#shipping-new-address-form ul li .input-box{
+    float: right;
+}
+#billing-new-address-form ul li .input-box input[type="text"],
+#shipping-new-address-form ul li .input-box input[type="text"],
+#billing-new-address-form ul li .input-box input[type="password"],
+#shipping-new-address-form ul li .input-box input[type="password"]{
+    width: 247px;
+    padding: 0 10px;
+    font: 20px/45px courier, georgia, serif;
+    height: 45px;
+    border: 1px solid #ccc;
+    color: #999;
+}
+.country-field select{
+    width: 268px;
+    height: 47px;
+    font-size: 20px;
+    line-height: 47px;
+}
+.name-prefix select{
+    height: 45px;
+    width: 136px;
+    font-size: 20px;
+}
+.back-link a{
+    width: 314px;
+    height: 73px;
+    background: #ccc;
+    border: none;
+    font: 700 30px 'Open Sans', arial, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 73px;
+    margin: 0 0 25px;
+}
+.back-link a:hover{
+    text-decoration: none;
+    background: #333;
+}
+#checkout-shipping-method-load{
+    width: 470px;
+    margin: 0 auto;
+}
+#billing-new-address-form input[type="checkbox"],
+#shipping-new-address-form input[type="checkbox"]{
+    margin: 14px;
+}
+.sp-methods dt{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+.sp-methods dd label{
+    font: 20px courier, georgia, serif;
+}
+.sp-methods dd{
+    margin: 0 0 25px;
+}
+#allow-gift-options-container,
+#onepage-checkout-shipping-method-additional-load .add-gift-message{
+    width: 470px;
+    margin: 0 auto 25px;
+}
+#allow-gift-options-container h4,
+#onepage-checkout-shipping-method-additional-load .add-gift-message h3{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+#onepage-checkout-shipping-method-additional-load .add-gift-message p{
+    font: 20px courier, georgia, serif;
+}
+#checkout-step-payment button{
+    margin: 0 auto;
+}
+#checkout-step-login{
+    width: 470px;
+    margin: 0 auto;
+    font: 20px courier, georgia, serif;
+    padding: 0 0 35px;
+}
+#checkoutSteps .buttons-set button{
+    margin: 0 0 25px;
+}
+#checkout-step-login h4{
+    font: 700 28px 'Open Sans', arial, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px 0;
+}
+#checkout-step-login fieldset > p{
+    margin: 0 0 25px;
+    text-align: center;
+}
+#checkout-step-login .form-list li{
+    text-align: center;
+    margin: 0 0 25px;
+}
+#checkout-step-login .form-list li label{
+    font: 700 30px 'Open Sans', arial, sans-serif;
+    color: #333;
+}
+#checkout-step-login .form-list li input[type="text"],
+#checkout-step-login .form-list li input[type="password"]{
+    width: 450px;
+    padding: 0 10px;
+    font: 20px/45px courier, georgia, serif;
+    height: 45px;
+    border: 1px solid #ccc;
+    color: #999;
+}
+#checkout-step-login .form-alt li{
+    text-align: left;
+}
+#checkout-step-login .form-alt label{
+    font: 20px courier, georgia, serif !important;
+}
+#checkout-step-login .col-2 > p{
+    margin: 0 0 25px;
+}
+#checkout-step-payment button{
+    margin: 0 auto 25px !important;
+}
+#checkout-step-payment{
+    padding: 35px 0;
+}
+#checkout-payment-method-load{
+    width: 470px;
+    margin: 0 auto
+}
+#checkout-review-table{
+    width: 100%;
+}
+#checkout-review-table th{
+    font: 700 20px 'Open Sans', arial, sans-serif;
+    text-transform: uppercase;
+    width: 22%;
+    text-align: center;
+}
+#checkout-review-table tbody td{
+    text-align: center;
+    height: 80px;
+    vertical-align: middle;
+    font: 14px courier, georgia, serif;
+}
+#checkout-review-table tbody td.a-right{
+    text-align: right;
+    padding: 0 20px 0 0; 
+}
+#checkout-review-table tfoot td.a-right{
+    text-align: right;
+    padding: 0 20px 0 0;
+    height: 30px; 
+}
+#checkout-review-table tbody td:first-child{
+    text-align: left;
+    padding: 0 0 0 20px;
+}
+#checkout-review-table tfoot td{
+    text-align: center;
+    font: 14px courier, georgia, serif;
+}
+#checkout-step-review{
+    padding: 35px 0;
+}
+.agreement-content{
+    font: 700 30px 'Open Sans', arial, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 15px;
+    color: #333;
+}
+.agree{
+    width: 470px;
+    margin: 0 auto 20px;
+}
+.agree label{
+    font-size: 20px;
+    padding: 0 0 0 15px;
+}
+.checkout-onepage-success .col-main .page-title{
+    letter-spacing: 4px;
+}
+.checkout-onepage-success .col-main {
+    width: 540px;
+    margin: 80px auto 0;
+}
+#allow-gift-options-for-order-container a{
+    font: 20px courier, georgia, serif;
+    margin: 11px 0 0;
+    display: inline-block;
+}
+.checkout-onepage-success .col-main .page-title {
+    top: -80px;
+}
+.checkout-onepage-success .col-main p{
+    font: 20px Courier, georgia, serif;
+}
+.checkout-onepage-success .col-main h2 {
+    font: 700 28px 'Open Sans', Arial, sans-serif;
+}
+.checkout-onepage-success .col-main .buttons-set button{
+    width: 314px;
+    height: 73px;
+    font-size: 20px;
+}
+.checkout-onepage-success .col-main .buttons-set {
+    position: absolute;
+    right: 20px;
+    bottom: -90px;
+}
+#allow-gift-messages-for-order-container p{
+    font: 20px Courier, georgia, serif;
+    margin: 10px 0;
+}
+#allow-gift-messages-for-order-container label{
+    float: left;
+    font: 20px Courier, georgia, serif;
+    text-transform: uppercase;
+    line-height: 49px;
+}
+#allow-gift-messages-for-order-container .input-box input{
+    float: right;
+    width: 350px;
+    height: 49px;
+    padding: 0 10px;
+    line-height: 49px;
+    border: 1px solid #ccc;
+    font: 20px Courier, georgia, serif;
+}
+#allow-gift-messages-for-order-container .input-box textarea{
+    border: 1px solid #ccc;
+    width: 350px;
+    padding: 10px 10px;
+    height: 100px;
+    float: right;
+    font: 20px Courier, georgia, serif;
+    resize: none;
+}
+#allow-gift-messages-for-order-container li:after,
+#allow-gift-messages-for-order-container li .field:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#allow-gift-messages-for-order-container li .field{
+    margin: 0 0 25px;
 }

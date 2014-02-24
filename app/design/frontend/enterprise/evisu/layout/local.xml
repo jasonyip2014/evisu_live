@@ -64,10 +64,9 @@
 
         <!--Experiment-->
         <!--<remove name="header" />-->
-       <!-- <reference name="left">
+        <!-- <reference name="left">
             <remove name="currency" />
         </reference>-->
-
 
         <reference name="top.links">
             <action method="addLink" translate="label title" module="customer"><label>Sign Up</label><url helper="customer/getRegisterUrl" /><title>Sign Up</title><prepare/><urlParams/><position>1</position></action>
@@ -218,4 +217,10 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
     </catalogsearch_result_index>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/onepage_checkout.js</name><params/></action>
+        </reference>
+    </checkout_onepage_index>
 </layout>

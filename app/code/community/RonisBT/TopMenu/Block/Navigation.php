@@ -20,6 +20,11 @@ class RonisBT_TopMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
             'cache_tags'        => array(Mage_Catalog_Model_Category::CACHE_TAG, Mage_Core_Model_Store_Group::CACHE_TAG),
         ));
     }
+
+    /* mobile menu parent categories */
+    protected $brandParentCategory = null;
+    protected $productParentCategory = null;
+
     /**
      * Get Key for caching block content
      *
@@ -441,5 +446,58 @@ class RonisBT_TopMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
         }
         Mage::app()->saveCache($data, $cacheKey, $this->getCacheTags(), $this->getCacheLifetime());
         return $this;
+    }
+
+    public function getBrandMenuHtml()
+    {
+        $html = '';
+        $brandParentCategory = $this->getBrandParentCategory();
+        $childrenIds = str_replace($this->getProductParentCategory()->getId(), '', $brandParentCategory->getChildren());
+        $subCategories = $brandParentCategory->getCollection()
+            ->addAttributeToSelect(array('name'))
+            ->addIdFilter($childrenIds)
+            ->setOrder('position', 'asc');
+        foreach ($subCategories as $child)
+        {
+            $html .= '<li>';
+            $html .= '<a href="' . $child->getUrl() . '" class="level1">' . $this->escapeHtml($child->getName()) . '</a>';
+            $html .= '</li>';
+        }
+        return $html;
+    }
+
+    public function getProductMenuHtml()
+    {
+        $html = '';
+        $productParentCategory = $this->getProductParentCategory();
+        $subCategories = $productParentCategory->getCollection()
+            ->addAttributeToSelect(array('name'))
+            ->addIdFilter($productParentCategory->getChildren())
+            ->setOrder('position', 'asc');
+        foreach ($subCategories as $child)
+        {
+            $html .= '<li>';
+            $html .= '<a href="' . $child->getUrl() . '" class="level1">' . $this->escapeHtml($child->getName()) . '</a>';
+            $html .= '</li>';
+        }
+        return $html;
+    }
+
+    private function getBrandParentCategory()
+    {
+        if(is_null($this->brandParentCategory))
+        {
+            $this->brandParentCategory = Mage::getModel('catalog/category')->load(Mage::getStoreConfig('catalog/product_detail/brand_parent_category_id'));
+        }
+        return $this->brandParentCategory;
+    }
+
+    private function getProductParentCategory()
+    {
+        if(is_null($this->productParentCategory))
+        {
+            $this->productParentCategory = Mage::getModel('catalog/category')->load(Mage::getStoreConfig('catalog/product_detail/product_parent_category_id'));
+        }
+        return $this->productParentCategory;
     }
 }

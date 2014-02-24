@@ -55,5 +55,7 @@ jQuery(function($)
 });
 
 jQuery(window).on('load', function(){
-    ContactUs.animate();
+    if(!Mobile.yes){
+        ContactUs.animate();
+    }
 });
