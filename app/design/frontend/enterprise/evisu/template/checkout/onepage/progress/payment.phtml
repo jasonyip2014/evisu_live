@@ -24,11 +24,18 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<?php if ($this->isPossibleOnepageCheckout()):?>
-    <button type="button" class="button no-mobile btn-proceed-checkout btn-checkout<?php if ($this->isDisabled()):?> no-checkout<?php endif; ?>"<?php if ($this->isDisabled()):?> disabled="disabled"<?php endif; ?> onclick="window.location='<?php echo $this->getCheckoutUrl() ?>';">
-        <span><span><?php echo $this->__('Checkout Securely') ?></span></span>
-    </button>
-    <button type="button" class="button mobile-only btn-proceed-checkout btn-checkout<?php if ($this->isDisabled()):?> no-checkout<?php endif; ?>"<?php if ($this->isDisabled()):?> disabled="disabled"<?php endif; ?> onclick="window.location='<?php echo Mage::getUrl('checkout/onepage') ?>';">
-        <span><span><?php echo $this->__('Checkout Securely') ?></span></span>
-    </button>
-<?php endif?>
+<?php if ($this->getCheckout()->getStepData('payment', 'complete')): ?>
+<dt class="complete">
+    <?php echo $this->__('Payment Method') ?><span class="changelink"> <span class="separator">|</span> <a
+        href="#payment"
+        onclick="checkout.changeSection('opc-payment'); return false;"><?php echo $this->__('Change') ?></a></span>
+</dt>
+<dd class="complete">
+    <?php echo $this->getPaymentHtml() ?>
+</dd>
+<?php else: ?>
+<dt>
+    <?php echo $this->__('Payment Method') ?>
+</dt>
+<?php endif; ?>
+

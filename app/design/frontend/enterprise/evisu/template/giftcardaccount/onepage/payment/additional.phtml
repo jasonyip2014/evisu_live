@@ -19,16 +19,19 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    design
- * @package     base_default
+ * @package     enterprise_default
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<?php if ($this->isPossibleOnepageCheckout()):?>
-    <button type="button" class="button no-mobile btn-proceed-checkout btn-checkout<?php if ($this->isDisabled()):?> no-checkout<?php endif; ?>"<?php if ($this->isDisabled()):?> disabled="disabled"<?php endif; ?> onclick="window.location='<?php echo $this->getCheckoutUrl() ?>';">
-        <span><span><?php echo $this->__('Checkout Securely') ?></span></span>
-    </button>
-    <button type="button" class="button mobile-only btn-proceed-checkout btn-checkout<?php if ($this->isDisabled()):?> no-checkout<?php endif; ?>"<?php if ($this->isDisabled()):?> disabled="disabled"<?php endif; ?> onclick="window.location='<?php echo Mage::getUrl('checkout/onepage') ?>';">
-        <span><span><?php echo $this->__('Checkout Securely') ?></span></span>
-    </button>
-<?php endif?>
+<div class="checkout-onepage-payment-additional-giftcardaccount">
+<p class="note">
+    <?php $_url = Mage::getUrl('checkout/cart'); ?>
+    <?php echo Mage::helper('enterprise_giftcardaccount')->__('To add or remove gift cards, <a href="%s">click here</a>.', $_url); ?><br />
+
+    <?php if ((float)$this->getAppliedGiftCardAmount()): ?>
+        <?php $amount = Mage::helper('core')->currency($this->getAppliedGiftCardAmount(), true); ?>
+        <?php echo Mage::helper('enterprise_giftcardaccount')->__('Gift Card amount applied to order: %s', $amount); ?>
+    <?php endif; ?>
+</p>
+</div>

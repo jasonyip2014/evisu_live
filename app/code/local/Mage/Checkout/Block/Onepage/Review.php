@@ -18,17 +18,30 @@
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magentocommerce.com for more information.
  *
- * @category    design
- * @package     base_default
+ * @category    Mage
+ * @package     Mage_Checkout
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
-?>
-<?php if ($this->isPossibleOnepageCheckout()):?>
-    <button type="button" class="button no-mobile btn-proceed-checkout btn-checkout<?php if ($this->isDisabled()):?> no-checkout<?php endif; ?>"<?php if ($this->isDisabled()):?> disabled="disabled"<?php endif; ?> onclick="window.location='<?php echo $this->getCheckoutUrl() ?>';">
-        <span><span><?php echo $this->__('Checkout Securely') ?></span></span>
-    </button>
-    <button type="button" class="button mobile-only btn-proceed-checkout btn-checkout<?php if ($this->isDisabled()):?> no-checkout<?php endif; ?>"<?php if ($this->isDisabled()):?> disabled="disabled"<?php endif; ?> onclick="window.location='<?php echo Mage::getUrl('checkout/onepage') ?>';">
-        <span><span><?php echo $this->__('Checkout Securely') ?></span></span>
-    </button>
-<?php endif?>
+
+/**
+ * One page checkout status
+ *
+ * @category   Mage
+ * @category   Mage
+ * @package    Mage_Checkout
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
+class Mage_Checkout_Block_Onepage_Review extends Mage_Checkout_Block_Onepage_Abstract
+{
+    protected function _construct()
+    {
+        $this->getCheckout()->setStepData('review', array(
+            'label'     => Mage::helper('checkout')->__('Order Summary'),
+            'is_show'   => $this->isShow()
+        ));
+        parent::_construct();
+
+        $this->getQuote()->collectTotals()->save();
+    }
+}

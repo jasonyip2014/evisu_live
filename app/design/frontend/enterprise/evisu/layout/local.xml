@@ -217,4 +217,10 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
     </catalogsearch_result_index>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/onepage_checkout.js</name><params/></action>
+        </reference>
+    </checkout_onepage_index>
 </layout>
