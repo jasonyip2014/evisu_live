@@ -10,24 +10,14 @@
             <ul>
                 <li class="level0">
                     <?php echo $this->__('Shop By Brand') ?>
-                    <?php foreach ($_menu as $_item): ?>
-                        <?php echo $this->drawItem($_item, 1, false)//, $customTitle) ?>
-                    <?php endforeach ?>
                     <ul>
-
-                        <li class="level1"><a href="<?php echo Mage::getUrl('evisu') ?>"><?php echo $this->__('Evisu') ?></a></li>
-                        <li class="level1"><a href="<?php echo Mage::getUrl('evisu-genes') ?>"><?php echo $this->__('Evisu Genes') ?></a></li>
-                        <li class="level1"><a href="<?php echo Mage::getUrl('evergreen') ?>"><?php echo $this->__('Evergreen') ?></a></li>
-                        <li class="level1"><a href="<?php echo Mage::getUrl('private-stock') ?>"><?php echo $this->__('Private Stock') ?></a></li>
+                        <?php echo $this->getBrandMenuHtml() ?>
                     </ul>
                 </li>
                 <li class="level0">
                     <?php echo $this->__('Shop By Product') ?>
                     <ul>
-                        <li class="level1"><a href="/private-collection/category-1/masami-vintage-zip-hoody-indigo.html"><?php echo $this->__('Tops') ?></a></li>
-                        <li class="level1"><a href="<?php echo Mage::getUrl('bottoms') ?>"><?php echo $this->__('Bottoms') ?></a></li>
-                        <li class="level1"><a href="<?php echo Mage::getUrl('accessories') ?>"><?php echo $this->__('Accessories') ?></a></li>
-                        <li class="level1"><a href="<?php echo Mage::getUrl('women') ?>"><?php echo $this->__('Women') ?></a></li>
+                        <?php echo $this->getProductMenuHtml() ?>
                     </ul>
                 </li>
                 <li class="level0">
