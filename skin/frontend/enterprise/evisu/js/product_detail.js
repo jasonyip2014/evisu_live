@@ -186,6 +186,10 @@ var FullSizeImage =
 
 jQuery(function($){
 
+    // Init enrerprise Tabs
+    var collateralTabs = new Enterprise.Tabs('collateral-tabs');
+    collateralTabs.select();
+
     if(!Mobile.yes){
         jQuery('#main-image .product-img-zoom').CloudZoom();
     }
@@ -256,9 +260,11 @@ jQuery(window).load(function(){
     jQuery('.info-btn').on('click', function(){
         if(!jQuery('.info-holder').hasClass('active')){
             jQuery('.info-holder').addClass('active');
+            jQuery('.info-btn').addClass('active');
         }   
         else{
             jQuery('.info-holder').removeClass('active');
+            jQuery('.info-btn').removeClass('active');
         }
     });
 });

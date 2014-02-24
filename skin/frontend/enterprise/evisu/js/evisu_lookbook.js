@@ -52,6 +52,7 @@ var LookBook = {
         jQuery(document).keydown(function(e){if(e.keyCode == 27){self.hideAll()}});
 
         this.origGalleryHeight = jQuery('#thumbnail-section').find('ul').height();
+        self.showLook(this.currentId);
 
     },
 
@@ -138,10 +139,20 @@ var LookBook = {
         });
 
         self.currentId = id;
+        var assocProduct = self.config[self.positions[id]].assoc_product;
+        if(Mobile.yes){
+            var mobileProductBtn = jQuery('.product-button');
+            mobileProductBtn.fadeOut('500');
+            if(assocProduct)
+            {
+                mobileProductBtn.find('a').attr({href:assocProduct.url});
+                mobileProductBtn.fadeIn('500');
+            }
+        }
+
         if(!Mobile.yes){
             var productSectionContainer = jQuery('#product-section');
             productSectionContainer.stop(true,false).slideUp('fast', function(){
-                var assocProduct = self.config[self.positions[id]].assoc_product;
                 if(assocProduct)
                 {
                     var content = '' +
