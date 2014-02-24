@@ -66,6 +66,9 @@ $qty = (int) Mage::getStoreConfig('catalog/product_detail/qty');
             <?php endif; ?>
         </div>
     <?php endIf; ?>
+    <div class="size-chart-holder mobile-only">
+        <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
+    </div>
     <div class="add-to-cart">
         <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
         <?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>

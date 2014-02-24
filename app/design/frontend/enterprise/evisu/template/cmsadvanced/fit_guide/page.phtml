@@ -81,6 +81,9 @@
         <?php endIf; ?>
     </div>
 </div>
+<div class="additional-block mobile-only">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mobile_fit_guide_additional_block')->toHtml(); ?>
+</div>
 <script>
     FitGuide.init(<?php echo json_encode($jsonConfig) ?>,<?php echo json_encode($jsonPositions) ?>, <?php echo $currentItemId ?>);
 </script>

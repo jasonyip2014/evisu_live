@@ -113,7 +113,7 @@
                             */ ?>
                         <?php endIf; ?>
                         <h1 class="no-mobile">
-                            <div class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
+                            <span class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
                             <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?></span>
                         </h1>
                         <p class="product-sku no-mobile"><?php echo $this->stripTags($_product->getSku()) ?></p>
@@ -165,7 +165,7 @@
                         <?php endIf; ?>
                     */ ?>
                     <?php echo $this->getChildHtml('alertoos') ?>
-                    <div class="size-chart-holder">
+                    <div class="size-chart-holder no-mobile">
                         <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
                     </div>
                     <script>
@@ -197,24 +197,15 @@
                     ?>
                     <div class="product-collateral">
                         <dl id="collateral-tabs" class="collateral-tabs">
-                            <?php foreach ($tabs as $title => $html):?>
-                                <dt class="tab"><span><?php echo $title ?></span></dt>
-                                <dd class="tab-container">
-                                    <div class="tab-content"><?php echo $html ?></div>
+                            <?php $i = 0; foreach ($tabs as $title => $html):?>
+                                <dt class="tab<?php if($i == 0): ?> no-mobile<?php endIf; ?>"><span><?php echo $title ?></span></dt>
+                                <dd class="tab-container <?php if($i == 0): ?> no-mobile<?php endIf; ?>">
+                                    <div class="tab-content "><?php echo $html ?></div>
                                 </dd>
-                            <?php endforeach;?>
+                            <?php $i++; endforeach;?>
                         </dl>
                     </div>
                     <div class="clearer"></div>
-                    <script>
-                    //<![CDATA[
-                        // Init enrerprise Tabs
-                        var collateralTabs = new Enterprise.Tabs('collateral-tabs');
-                        Event.observe(window, 'load', function() {
-                            collateralTabs.select();
-                        });
-                    //]]>
-                    </script>
                     <?php //echo $this->getChildHtml('other');?>
                 </div>
             </form>
@@ -242,6 +233,9 @@
                 <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($shareData['url']) ?>&media=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>&description=<?php echo urlencode($shareData['title']) ?> - <?php echo urlencode($shareData['summary']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
                 <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
             </ul>
+            <div class="additional-block mobile-only">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mobile_product_detail_additional_block')->toHtml(); ?>
+            </div>
         </div>
     </div>
     <div class="product-img-box">
