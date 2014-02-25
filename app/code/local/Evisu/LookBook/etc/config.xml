@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_LookBook>
-            <version>0.2.2</version>
+            <version>0.2.3</version>
         </Evisu_LookBook>
     </modules>
     <global>
@@ -75,7 +75,7 @@
                                 <label>Main Image</label>
                                 <required>1</required>
                                 <template>image</template>
-                                <note>multiply resolution 1199x900</note>
+                                <note>multiply resolution 1199x924</note>
                             </lbi_main_image>
                             <lbi_thumbnail_image>
                                 <label>Thumbnail Image</label>

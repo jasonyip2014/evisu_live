@@ -22,7 +22,7 @@ var LookBook = {
         this.positions = positions;
         this.currentId = currentId;
         this.galleryId = currentId;
-
+        this.origGalleryHeight = 317;
 
         //==========================behavior===========================
         //archive
@@ -35,12 +35,16 @@ var LookBook = {
         self.mainSection.find('.prev-btn').on('click', function(){self.prev()});
         self.mainSection.find('.right-hider').on('click', function(){self.next()});
         self.mainSection.find('.left-hider').on('click', function(){self.prev()});
-        var firstChild = self.mainSection.find('.main-carousel > li:first-child').clone().removeProp('id');
-        var lastChild = self.mainSection.find('.main-carousel > li:last-child').clone().removeProp('id');
-        self.mainSection.find('.main-carousel').append(firstChild);
-        self.mainSection.find('.main-carousel').append(firstChild.clone());
-        self.mainSection.find('.main-carousel').prepend(lastChild);
-        self.mainSection.find('.main-carousel').prepend(lastChild.clone());
+
+        //add fake images
+        if(!Mobile.yes){
+            var firstChild = self.mainSection.find('.main-carousel > li:first-child').clone().removeProp('id');
+            var lastChild = self.mainSection.find('.main-carousel > li:last-child').clone().removeProp('id');
+            self.mainSection.find('.main-carousel').append(firstChild);
+            self.mainSection.find('.main-carousel').append(firstChild.clone());
+            self.mainSection.find('.main-carousel').prepend(lastChild);
+            self.mainSection.find('.main-carousel').prepend(lastChild.clone());
+        }
 
         //gallegy
         jQuery('#gallery-btn').on('click', function(){self.toggleGallery(jQuery(this))});
@@ -60,16 +64,16 @@ var LookBook = {
         //esc
         jQuery(document).keydown(function(e){if(e.keyCode == 27){self.hideAll()}});
 
-        this.origGalleryHeight = self.thumbnaiSection.find('ul').height();
+        //this.origGalleryHeight = self.thumbnaiSection.find('ul').height();
         //this.origCarouselHeight = self.mainSection.find('ul').height();
 
     },
 
-    initOnLoad : function(){
-        this.showGalleryNavigation();
-        this.getGalleryProp();
+    initOnLoad: function () {
+        //this.origGalleryHeight = self.thumbnaiSection.find('img').height();
 
         if(Mobile.yes){
+            console.log('mobile resize');
             var $bigImages =  jQuery('#thumbnail-section').find('img');
             jQuery.each($bigImages, function(index, img){
                 $img = jQuery(img);
@@ -83,7 +87,8 @@ var LookBook = {
             });
         }
 
-		this.resize();
+        this.resize();
+        this.showGalleryNavigation();
         //init prop
         jQuery('#gallery-btn').trigger('click');
     },
@@ -94,8 +99,8 @@ var LookBook = {
         if(jQuery('#gallery-btn').hasClass('closed')){
             self.thumbnaiSection.show();
         }
-        this.getGalleryProp();
-        self.choiceMainCarouselItem(self.currentId);
+        self.getGalleryProp();
+        self.showLook(self.currentId);
         //resize gallery toDo Optimization (from choice.)
         var element;
         var container = jQuery('#thumbnail-section');
@@ -318,10 +323,12 @@ var LookBook = {
         var self = this;
         var width = 0;
         var container = jQuery('#thumbnail-section');
-        container.find('ul').height(self.origGalleryHeight * (jQuery(window).width() / self.orgWindowWidth));
-        jQuery.each(container.find('.image-holder'),function(index,element){
-            jQuery(element).width(jQuery(element).find('img').width());
-        });
+        if(!Mobile.yes){
+            container.find('img').height(self.origGalleryHeight * (jQuery(window).width() / self.orgWindowWidth));
+        }
+        //jQuery.each(container.find('.image-holder'),function(index,element){
+        //    jQuery(element).width(jQuery(element).find('img').width());
+        //});
         self.gallery.visibleWidth = container.find('ul').width();
         self.gallery.visibleCount = 0;
         self.gallery.visibleItemWidth = 0;
@@ -352,13 +359,23 @@ var LookBook = {
         var container = jQuery('#thumbnail-section');
         container.find('.active').stop(true,false).animate({opacity: 0.4}, 'fast', function(){jQuery(this).removeClass('active')});
         element = container.find('#gall-trumb-' + itemId).stop(true,false).animate({opacity: 1}, 'fast', function(){jQuery(this).addClass('active')});
-        jQuery('html,body').animate({scrollTop:0}, 'slow');
-        if(!Mobile.yes){
-            //if(self.galleryId != itemId)
-            //{
-                var element;
-                self.galleryId = itemId;
-                var marginMax = self.gallery.width - container.find('ul').width();
+        if(Mobile.yes){
+            jQuery('html,body').animate({scrollTop: jQuery('.main-carousel-holder').offset().top}, 'slow');
+        } else {
+            jQuery('html,body').animate({scrollTop: 0}, 'slow');
+        }
+
+        if (!Mobile.yes) {
+            var element;
+            self.galleryId = itemId;
+            console.log(self.gallery.width);
+            var marginMax = self.gallery.width - container.find('ul').width();
+            console.log(marginMax);
+            if(marginMax < 0){
+                container.find('ul').addClass('middle');
+                container.find('ul>li:first').animate({marginLeft: 0}, 'slow');
+            } else {
+                container.find('ul').removeClass('middle');
                 var marginLeft = 0;
                 for(var i = 0; i < self.positions[itemId]; i++)
                 {
@@ -376,8 +393,8 @@ var LookBook = {
 
                     self.galleryId = self.config[self.positions['length'] - 1].id;
                 }
-                container.find('ul>li:first').animate({marginLeft : -marginLeft},'slow');
-            //}
+                container.find('ul>li:first').animate({marginLeft: -marginLeft}, 'slow');
+            }
         }
     },
 
@@ -385,13 +402,12 @@ var LookBook = {
     {
         var self = this;
         var windowWidth;
-        if(Mobile.isIPad){
+        if(Mobile.isIPad || Mobile.yes){
             windowWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
         } else {
             windowWidth = jQuery(window).width();
         }
-        var $leftHider = self.mainSection.find('.left-hider');
-        var $rightHider = self.mainSection.find('.right-hider');
+
         var $currentElement = self.mainSection.find('#main-carousel-' + itemId);
         self.mainSection.find('.active').removeClass('active');
         $currentElement.addClass('active');
@@ -399,8 +415,12 @@ var LookBook = {
         var elementFullWidth = $currentElement.width() + parseInt($currentElement.css('margin-left')) + parseInt($currentElement.css('margin-right'));
         var neededOffset = (windowWidth - elementFullWidth) / 2;
         self.mainSection.find('.main-carousel').stop(true, true).animate({left:'-=' + ($currentElement.offset().left - parseInt($currentElement.css('margin-left')) - neededOffset)});
-        $leftHider.stop(true, false).animate({width:neededOffset},'slow');
-        $rightHider.stop(true, false).animate({width:neededOffset},'slow');
+        if(!Mobile.yes){
+            var $leftHider = self.mainSection.find('.left-hider');
+            var $rightHider = self.mainSection.find('.right-hider');
+            $leftHider.stop(true, false).animate({width:neededOffset},'slow');
+            $rightHider.stop(true, false).animate({width:neededOffset},'slow');
+        }
     },
 
     getNextId : function() {
@@ -600,6 +620,7 @@ var ProductCarousel = {
 
 jQuery(window).load(function(){
     LookBook.initOnLoad();
+	jQuery(window).resize();
 });
 
 
