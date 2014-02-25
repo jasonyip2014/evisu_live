@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<config>
+    <sections>
+        <evisu_lookbook translate="label" module="evisu_collection">
+            <label>Collection</label>
+            <tab>evisu_config</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>300</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <collection_config translate="label">
+                    <label>Collection Config</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <main_page_id translate="label">
+                            <label>Main Page ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </main_page_id>
+                     <!--   <root_category_id translate="label">
+                            <label>Root Category Id</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </root_category_id>-->
+                    </fields>
+                </collection_config>
+            </groups>
+        </evisu_lookbook>
+    </sections>
+</config>

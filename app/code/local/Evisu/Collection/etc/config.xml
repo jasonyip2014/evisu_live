@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Collection>
+            <version>0.2.5</version>
+        </Evisu_Collection>
+    </modules>
+    <global>
+        <models>
+            <evisu_collection>
+                <class>Evisu_Collection_Model</class>
+            </evisu_collection>
+        </models>
+        <blocks>
+            <evisu_collection>
+                <class>Evisu_Collection_Block</class>
+            </evisu_collection>
+        </blocks>
+        <helpers>
+            <evisu_collection>
+                <class>Evisu_Collection_Helper</class>
+            </evisu_collection>
+        </helpers>
+        <resources>
+            <evisu_collection_setup>
+                <setup>
+                    <module>Evisu_Collection</module>
+                    <class>RonisBT_Cms_Model_Entity_Setup</class>
+                </setup>
+            </evisu_collection_setup>
+        </resources>
+    </global>
+    <cmsadvanced>
+        <pagetypes>
+            <collection>
+                <name>Collection Page</name>
+                <template>cmsadvanced/collection/page.phtml</template>
+                <groups>
+                    <collection_data>
+                        <name>Collection Data</name>
+                        <attributes>
+                            <c_link_text>
+                                <label>Link Text</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </c_link_text>
+                        </attributes>
+                    </collection_data>
+                 </groups>
+            </collection>
+            <collection_item1>
+                <name>Collection Item</name>
+                <groups>
+                    <collection_item_tab>
+                        <name>Collection Item Data</name>
+                        <attributes>
+                            <coli_title>
+                                <label>Title</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </coli_title>
+                            <coli_description>
+                                <label>Description</label>
+                                <required>1</required>
+                                <template>textarea</template>
+                            </coli_description>
+                            <coli_main_image>
+                                <label>Main Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>multiply resolution XXXXx924</note>
+                            </coli_main_image>
+                            <coli_thumbnail_image>
+                                <label>Thumbnail Image</label>
+                                <required>1</required>
+                                <template>image</template>
+                                <note>multiply resolution XXXx336</note>
+                            </coli_thumbnail_image>
+                            <coli_target_url>
+                                <label>Target Url</label>
+                                <required>1</required>
+                                <template>text</template>
+                            </coli_target_url>
+                        </attributes>
+                    </collection_item_tab>
+                </groups>
+            </collection_item1>
+        </pagetypes>
+    </cmsadvanced>
+</config>
