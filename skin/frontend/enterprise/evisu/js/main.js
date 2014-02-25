@@ -313,14 +313,16 @@ var Mobile = {
                 return false;
             }
         });*/
-        if(screen.width <= 1023)
-        {
-            self.yes = true;
-        }
-        self.yes = true;// enable mobile version
+
+        //self.yes = true;// enable mobile version
         if(navigator.userAgent.toLowerCase().indexOf('ipad') != -1)
         {
             self.isIPad = true;
+            jQuery('body').addClass('ipad');
+        }
+        if(screen.width <= 1023 && !self.isIPad)
+        {
+            self.yes = true;
         }
         if(self.yes)
         {
@@ -434,7 +436,7 @@ jQuery(window).load(function(){
 // Fixed header
 
 jQuery(function($){
-    if(!Mobile.yes){
+    if(!Mobile.yes && !Mobile.isIPad){
         $(window).scroll(function(){
             var $topPosition = $(window).scrollTop();
             if ($topPosition > 24){
