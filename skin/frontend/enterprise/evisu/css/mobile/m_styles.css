@@ -462,6 +462,10 @@ li.fit-guide a{background-position: -346px 0 !important;}
     padding: 0;
     height: 105px;
 }
+.footer-container .footer > ul,
+.footer-container .footer .social-header{
+    display: none;
+}
 .footer-container .footer .social-links {
     float: right;
     width: 341px;
@@ -777,7 +781,26 @@ li.fit-guide a{background-position: -346px 0 !important;}
     }
 }
 
+/* Collections */
+
+.collection-container #thumbnail-section .prev-btn, 
+.collection-container #thumbnail-section .next-btn {
+    display: none !important;
+}
+.collection-container .description-holder{
+    position: relative;
+    padding: 0 0 0 50px;
+    margin: 0 0 -80px;   
+}
+.collection-container #thumbnail-section ul li{
+    width: 232px !important;
+}
+.collection-container #thumbnail-section ul li.odd{
+    margin: 0 0 14px 14px;
+}
+
 /* Lookbook */
+
 .lookbook {
     min-width: 640px;
 }
@@ -789,21 +812,26 @@ li.fit-guide a{background-position: -346px 0 !important;}
 }    
 
 .look-book-container .description-holder .title{
-    font: 700 30px 'Open Sans', arial, sans-serif;
+    font: 700 36px 'Open Sans', arial, sans-serif;
 }
-
 .look-book-container #main-section .prev-btn, 
 .look-book-container #main-section .next-btn{
-    background: url(../../images/mobile/lookbook-controls.png) no-repeat 0 0;
+    background: url(../../images/mobile/lookbook-controls.png) no-repeat 47px 50%;
     width: 42px;
-    height: 104px;
+    left: 0;
 }
 .look-book-container #main-section .next-btn{
-    background-position: -45px 0;
+    background-position: -45px 50%;
+    left: auto;
+    right: 0;
 }
-.look-book-container #main-section .description-holder{
-    position: static;
+.look-book-container .description-holder{
+    position: relative;
     margin: 0 0 0 40px;
+    padding: 0;
+}
+.look-book-container .main-carousel{
+    height: 924px;
 }
 .look-book-container #main-section .image-holder {
     width: 100%;
@@ -812,6 +840,10 @@ li.fit-guide a{background-position: -346px 0 !important;}
 }
 .look-book-container #main-section img.landscape{
     margin: 0;
+}
+.look-book-container #main-section .main-carousel-holder {
+    position: relative;
+    top: 29px;
 }
 .look-book-container #thumbnail-section img.landscape{
     height: 100%;
@@ -847,7 +879,7 @@ li.fit-guide a{background-position: -346px 0 !important;}
 .product-button{
     text-align: center;
     position: absolute;
-    top: 719px;
+    top: 1191px;
     width: 100%;
 }
 .product-button a{
@@ -878,12 +910,14 @@ li.fit-guide a{background-position: -346px 0 !important;}
 }
 .look-book-container #thumbnail-section{
     margin: 0;
+    display: block !important;
 }
 .look-book-container .description-holder .description{
     margin: 0 0 -66px;
     position: relative;
     height: 125px;
     overflow: hidden;
+    font: 16px courier, georgia, serif;
 }
 .lookbook .page {
     padding: 0 0 0;

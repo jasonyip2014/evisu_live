@@ -483,3 +483,73 @@ body{
         margin: 0 35px 0 0;
     }
 }
+
+/* Ipad Styles */
+
+.ipad .main-section{
+    min-height: 0;
+    height: auto;
+}
+.ipad .main-section .image-holder{display: block !important;}
+.ipad .hp_text_block{position: relative;}
+.ipad .section-holder-1 .block-holder-3{
+    margin: 192px 3.2% 0 0px;
+    width: 34.28125%;
+    z-index: 2;
+    float: right;
+}
+.ipad .section-holder-1 .block-holder-4 {
+    margin: 0 0 -66px 21.5%;
+    width: 33.072916667%;
+    z-index: 7;
+}
+.ipad .section-holder-1 .block-holder-5 {
+    margin: -72px 13% 44px 0%;
+    width: 35.15625%;
+    float: right;
+}
+.section-holder-1 .block-holder-6 {
+    width: 29.114583333%;
+    margin: 0 0 -85px 1%;
+    float: left;
+}
+.ipad .section-holder-1 .block-holder-7 {
+    margin: 0 0 -312px 10.59375%;
+    width: 50.989583333%;
+} 
+.ipad .section-holder-1 .block-holder-8 {
+    width: 24.958333%;
+    margin: 0 0 0 3.385416667%;
+}
+.ipad .section-holder-1 .block-holder-11 {
+    width: 22.395833333%;
+    position: absolute;
+    bottom: 219px;
+    left: 36%;
+}
+.ipad .section-holder-2 .block-holder-2 {
+    margin: 0 0 0 3.25%;
+}
+.ipad .section-holder-2 .block-holder-3 {
+    position: relative;
+    width: 29.53125%;
+    margin: 0 0 0 1.84375%;
+}
+.section-holder-2 .block-holder-4 {
+    position: relative;
+    margin: -38px 0 0 14.5%;
+    width: 17.916666667%;
+}
+.ipad .section-holder-2 .hp_text_block{
+    margin: 0 0 46px;
+}
+.ipad .section-holder-2 .news-block{
+    display: none;
+}
+.ipad .section-holder-2 .block-holder-7 {
+    width: 34.84375%;
+    margin: 93px 0 0 17.46875%;
+}
+.ipad .fixed .nav-container {
+    padding: 15px 0 0 18px;
+}
