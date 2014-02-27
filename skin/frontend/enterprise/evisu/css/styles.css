@@ -364,7 +364,7 @@ button:focus {
 }
 .nav-container #nav{
     float: left;
-    margin: 0 43px 0 0;
+    margin: 0 38px 0 0;
 }
 .nav-container #nav:after{
     content:'';
@@ -734,7 +734,7 @@ button:focus {
     .fixed .nav-container {padding: 16px 0 0 18px !important;}
     .fixed .nav-container #nav {
         float: left;
-        margin: 0 24px 0 0;
+        margin: 0 22px 0 0;
     }
 }
 .section-holder-1 .block-5 .image-holder{
