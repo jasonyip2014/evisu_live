@@ -223,4 +223,9 @@
             <action method="addItem"><type>skin_js</type><name>js/onepage_checkout.js</name><params/></action>
         </reference>
     </checkout_onepage_index>
+    <checkout_onepage_success>
+        <reference name="after_body_start">
+            <block type="core/template" name="ga_traking_coge" template="checkout/ga_traking_coge.phtml" />
+        </reference>
+    </checkout_onepage_success>
 </layout>
