@@ -191,7 +191,6 @@ body{
 .section-holder-1 .block-holder-4{
     margin: 0 0 0 1.5%;
     width: 33.072916667%;
-    z-index: 7;
 }
 .video-panel{
     position: relative;
@@ -219,7 +218,7 @@ body{
 }
 .section-holder-1 .block-holder-5{
     margin: 96px 0 44px 0%;
-    width: 35.15625%;
+    width: 38.95%;
 }
 .section-holder-1 .block-holder-6{
     width: 29.114583333%;
@@ -230,7 +229,7 @@ body{
     width: 50.989583333%;  
 }
 .section-holder-1 .block-holder-8{
-    width: 38.958333333%;
+    width: 21.92%;
     margin: 0 0 0 3.385416667%;
 }
 .section-holder-1 .block-holder-11{
@@ -259,6 +258,7 @@ body{
 .social-links-wrapper .social-header{
     color: #333;
     font: 700 28px 'Open Sans', arial, sans-serif;
+    margin: 0 0 8px;
 }
 .social-links-wrapper .social-links-block{
     background: #333;
@@ -276,15 +276,15 @@ body{
     overflow: hidden;
     white-space: nowrap;
     text-indent: -9999px;
-    background: url(../images/bg-social-media07.png) no-repeat 0px 0px;
+    background: url(../images/bg-social-media09.png) no-repeat 0px 7px;
     cursor: pointer;
 }
 
-.social-links-wrapper .social-links-block li .facebook{background-position: -84px 0px;}
-.social-links-wrapper .social-links-block li .pinterest{background-position: 0 -69px;}
-.social-links-wrapper .social-links-block li .instagram{background-position: -164px -69px;}
-.social-links-wrapper .social-links-block li .weibo{background-position: -164px 0px;}
-.social-links-wrapper .social-links-block li .google-plus{background-position: -83px -69px;}
+.social-links-wrapper .social-links-block li .facebook{background-position: -70px 7px;}
+.social-links-wrapper .social-links-block li .pinterest{background-position: 12px -56px;}
+.social-links-wrapper .social-links-block li .instagram{background-position: -152px -58px;}
+.social-links-wrapper .social-links-block li .weibo{background-position: -148px 4px;}
+.social-links-wrapper .social-links-block li .google-plus{background-position: -68px -61px;}
 
 .section-holder-2 .block-holder-2{
     margin: 0 0 0 6.25%;
@@ -308,6 +308,7 @@ body{
     position: absolute;
     top: 20%;
     right: -40%;
+    text-align: right;
 }
 .section-holder-2 .block-holder-3 .text-holder h2{
     font: 700 28px 'Open Sans', arial, sans-serif; 
@@ -390,10 +391,10 @@ body{
     width: 12.291666667%;
 }
 .section-holder-2 .block-holder-5{
-    margin: 80px 0 0 12.5%;
+    margin: 80px 0 0 9%;
 }
 .section-holder-2 .block-holder-6{
-    margin: 80px 0 0 6.458333333%;
+    margin: 80px 0 0 0%;
 }
 .section-holder-2 .block-holder-7{
     width: 34.84375%;
@@ -403,7 +404,7 @@ body{
     width: 304px;
     position: absolute;
     top: 20%;
-    left: -27%;
+    left: -35%;
 }
 .section-holder-2 .block-holder-7 .text-holder h2{
     font: 700 28px 'Open Sans', arial, sans-serif; 
@@ -455,7 +456,6 @@ body{
 }
 .section-holder-2 .bottom-link a{
     padding: 0 0 40px;
-    background: url(../images/sun-bg.png) no-repeat 50% 49px;
 }
 .section-holder-2 .block-holder-11{
     width: 100%;
@@ -483,7 +483,38 @@ body{
         margin: 0 35px 0 0;
     }
 }
-
+@media screen and (max-width: 1280px){
+    .main-section p {
+        font-size: 38px;
+        line-height: 40px;
+        width: 608px;
+    }
+    .social-links-wrapper .social-header,
+    .section-holder-2 .block-holder-3 .text-holder h3,
+    .section-holder-2 .block-holder-3 .text-holder h2,
+    .section-holder-2 .block-holder-4 h2, 
+    .section-holder-2 .block-holder-5 h2, 
+    .section-holder-2 .block-holder-6 h2{
+        font-size: 18px;
+    }
+    .section-holder-2 .block-holder-4 p, 
+    .section-holder-2 .block-holder-5 p, 
+    .section-holder-2 .block-holder-6 p,
+    .hp_text_block .section-description p,
+    .section-holder-2 .block-holder-3 .text-holder p{
+        font-size: 12px;
+    }
+    .hp_text_block .block-header{
+        font-size: 38px;
+    }
+    .hp_text_block .section-description {
+        margin: 0;
+        width: 500px;
+    }
+    .bottom-link a{
+        font-size: 28px;
+    }
+}
 /* Ipad Styles */
 
 .ipad .main-section{
@@ -509,7 +540,7 @@ body{
     float: right;
 }
 .section-holder-1 .block-holder-6 {
-    width: 29.114583333%;
+    width: 35.15%;
     margin: 0 0 -85px 1%;
     float: left;
 }

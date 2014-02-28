@@ -358,7 +358,7 @@ button:focus {
     letter-spacing: 7px;
 }
 .nav-container{
-    padding: 31px 0 0 93px;
+    padding: 36px 0 0 83px;
     float:left;
     letter-spacing: 0.5px;
 }
@@ -373,8 +373,8 @@ button:focus {
 }
 .nav-container #nav > li{
     float:left;
-    margin:0 0 0 43px;
-    padding:0 0 40px;
+    margin: 0 0 0 86px;
+    padding: 0 0 31px;
 }
 .nav-container #nav > li:first-child{margin-left:0;}
 .nav-container #nav > li > a{
@@ -389,6 +389,7 @@ button:focus {
     width: 100%;
     position:absolute;
     top:122px;
+    border-top: 1px solid #333;
     background:rgba(255, 255, 255, .85);
     z-index: 1100;
     left: 0;
@@ -652,7 +653,7 @@ button:focus {
 }
 
 .footer-container .footer > ul > li a:hover{
-    color: #333;
+    text-decoration: underline;
 }
 
 .footer-container .footer form{
@@ -688,31 +689,32 @@ button:focus {
 }
 .footer-container .footer .social-links{
     float:left;
-    width:195px;
+    width:197px;
 }
 .footer-container .footer .social-links-block{
     overflow:hidden;
 }
 .footer-container .footer .social-links-block li{
     float:left;
-    margin:0 0 0 7px;
 }
 .footer-container .footer .social-links-block a{
     display:block;
-    width:33px;
+    width:27px;
     height:33px;
     overflow:hidden;
     white-space:nowrap;
     text-indent:100%;
-    background:url(../images/bg-social-media06.png) no-repeat -9999px -9999px;
+    background:url(../images/bg-social-media08.png) no-repeat -9999px -9999px;
     cursor:pointer;
+    margin:0 0 0 7px;
 }
-.footer-container .footer .social-links-block a.twitter{background-position:0 0;}
-.footer-container .footer .social-links-block a.facebook{background-position:-41px 0;}
-.footer-container .footer .social-links-block a.weibo{background-position:-81px 0;}
-.footer-container .footer .social-links-block a.pinterest{background-position:-122px 0;}
-.footer-container .footer .social-links-block a.google-plus{background-position:-162px 0;}
-.footer-container .footer .social-links-block li:first-child{margin-left:0;}
+.footer-container .footer .social-links-block a.twitter{background-position:4px 0;}
+.footer-container .footer .social-links-block a.facebook{background-position:-28px 0;}
+.footer-container .footer .social-links-block a.weibo{background-position:-61px 0;}
+.footer-container .footer .social-links-block a.pinterest{background-position:-94px 0;}
+.footer-container .footer .social-links-block a.google-plus{background-position:-125px 0;}
+.footer-container .footer .social-links-block a.instagram{background-position:-154px 0;}
+.footer-container .footer .social-links-block li:first-child a{margin-left:0;}
 .footer-container .footer .copyright{
     text-align:right;
     color:#666;
@@ -724,19 +726,43 @@ button:focus {
     margin: 0 auto;
 }
 .footer-container .footer .copyright a{color:#666;}
+.footer-container{position: relative;}
+.footer-container:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: -30px;
+    height: 30px;
+    background: url(../images/sun-bg.png) no-repeat 50% 0;
+}
 
 /* Media Queries */
 @media screen and (max-width:1500px){
-    .logo{margin: 11px 0 0 -18px;}
+    .logo{margin: 26px 0 0 2px;}
     .quick-access{width: 900px;}
-    .branding{width: 900px !important;}
-    .nav-container {padding: 31px 0 0 18px !important;}
+    .branding{width: 982px !important;}
+    .nav-container {padding: 39px 0 0 48px !important;}
     .fixed .nav-container {padding: 16px 0 0 18px !important;}
     .fixed .nav-container #nav {
         float: left;
         margin: 0 22px 0 0;
     }
+    .right-side-nav .links .search {margin: 0 34px 0 0;}
+    .right-side-nav {padding: 41px 0 0 0;}
+    .right-side-nav .links .my-account{margin: 0 22px 0 0;}
+    .nav-container #nav > li{
+        margin: 0 0 0 55px;
+    }
 }
+@media screen and (max-width:1024px){
+    .footer-container .footer {
+        width: 960px;
+        padding: 20px 23px 0;
+    }
+    .footer-container .footer .social-links{width: 115px;}
+    .footer-container .footer .social-links-block a.pinterest{margin: 0 0 0 0px;}
+}
+
 .section-holder-1 .block-5 .image-holder{
     position: absolute;
     top: 0px;
