@@ -323,6 +323,7 @@ var Mobile = {
         if(screen.width <= 1023 && !self.isIPad)
         {
             self.yes = true;
+            jQuery('body').addClass('mobile');
         }
         if(self.yes)
         {

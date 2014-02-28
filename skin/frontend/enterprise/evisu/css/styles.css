@@ -801,6 +801,7 @@ button:focus {
     background: #fff;
     z-index: 101;
     top: -10px;
+    left: 0;
     width: 100%;
     height: auto;
     display: none;
@@ -837,7 +838,19 @@ button:focus {
     margin: 0 0 0 33px;
 }
 
-.catalog-category-view .top-bar{position: relative;}
+.block-layered-nav #narrow-by-list ul{
+    height: 200px;
+    overflow: auto;
+    margin: 0 90px 0 0;
+}
+
+.catalog-category-view .top-bar{
+    position: relative;
+    padding: 13px 80px;
+    width: auto;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
 
 .top-bar .sort-by{
     width: 97%;
@@ -854,12 +867,13 @@ button:focus {
     z-index: 1000;
     background: #fff;
     height: 300px;
+    left: 0;
     top: -10px;
     width: 100%;
 }
 
 .sort-by ul{
-    float: right;
+    padding: 0 188px;
     text-align: left;
 }
 
@@ -887,8 +901,8 @@ li label{
 .top-bar .block-subtitle{
     font:700 14px/14px 'Open Sans', sans-serif;
     text-transform: uppercase;
-    color: #ccc;
-    float: right;
+    color: #333;
+    float: left;
     margin: 0 45px 0 0;
     cursor: pointer;
     position: relative;
@@ -903,7 +917,8 @@ li label{
 
 .category-title{
     color: #333;
-    font:700 60px/72px 'Open Sans', sans-serif;
+    font:700 28px/28px 'Open Sans', sans-serif;
+    text-transform: uppercase;
     margin: 0 0 15px 0;
 }
 
@@ -912,6 +927,7 @@ li label{
     color: #333;
     text-transform: lowercase;
     text-align: center;
+    padding: 0 0 25px;
 }
 
 .success-msg{
@@ -938,11 +954,11 @@ li label{
 }
 
 .category-description{
-    font: 12px Courier, arial, Helvetica, sans-serif;
-    color: #fff;
-    background: #333;
-    padding: 39px 7px 39px 22px;
-    margin: 0 0 20px 0;
+    font: 14px Courier, arial, Helvetica, sans-serif;
+    width: 956px;
+    color: #333;
+    padding: 0;
+    margin: 0 auto 20px;
 }
 
 .list-view-mode label{
@@ -952,7 +968,7 @@ li label{
     line-height: 14px;
     padding: 0 0 6px 0;
     margin: 0 19px 0 0;
-    color: #ccc;
+    color: #333;
 }
 
 .list-view-mode{
@@ -1032,9 +1048,18 @@ li label{
 .catalog-category-view .main{padding: 60px 0 0 0;}
 
 .catalog-category-view .breadcrumbs-container{
-    float: left;
-    padding: 60px 0 0 8.54%;
-    width: 304px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    background: url(../images/sun-bg01.png) no-repeat 50% 100%;
+}
+
+.catalog-category-view .breadcrumbs-container .breadcrumbs ul li{
+    display: inline-block;
+    float: none;
+}
+
+.catalog-category-view .breadcrumbs-container .breadcrumbs{
+    margin: 15px 0 15px 0;
 }
 
 .products-list li .product-shop .product-name a{
@@ -4646,6 +4671,7 @@ position: absolute;
     color: #333;
     background: url(../images/size-chart.png) no-repeat 0 100%;
     display: inline-block;
+    position: relative;
     cursor: pointer;
     z-index: 123;
 /*    position: absolute;

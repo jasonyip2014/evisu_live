@@ -2002,7 +2002,13 @@ li.fit-guide a{background-position: -346px 0 !important;}
 .top-bar .block-subtitle{
     width: 92px;
     font-size: 18px;
-    margin: 0 0 25px 30px;
+    display: inline-block;
+}
+.catalog-category-view  .site-loader{
+    top: 32px;
+    left: 39%;
+    z-index: 10000;
+    display: none !important;
 }
 .block-layered-nav #narrow-by-list:after{
     content: '';
@@ -2031,19 +2037,29 @@ li.fit-guide a{background-position: -346px 0 !important;}
 }
 .block-layered-nav .block-content {
     z-index: 1010;
-    top: 15px;
+    top: 10px;
     padding: 25px 0 0 0;
 }
-.catalog-category-view .breadcrumbs-container .breadcrumbs,
-.catalog-category-view .breadcrumbs-container .category-promo,
 .catalog-category-view .breadcrumbs-container .category-description{
+    width: 540px;
+    padding: 50px 0;
+    font-size: 20px;
+}
+.catalog-category-view .breadcrumbs-container .breadcrumbs,
+.catalog-category-view .breadcrumbs-container .category-promo{
     display: none;
 }
 .catalog-category-view .breadcrumbs-container{
     float: none;
+    background: none;
+    position: relative;
 }
 .category-title{
     font-size: 48px;
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    color: #fff;
 }
 .products-grid > li{
     width: 49%;
@@ -2073,8 +2089,11 @@ li.fit-guide a{background-position: -346px 0 !important;}
 .list-view-mode .active.list{
     background: url(../../images/mobile/view-btns.png) no-repeat -48px -50px;
 }
-.catalog-category-view .breadcrumbs-container{
+/*.catalog-category-view .breadcrumbs-container{
     display: none;
+}*/
+.catalog-category-view .top-bar{
+    border: none;
 }
 .category-view .products-list{
     float: none;
@@ -2111,7 +2130,6 @@ li.fit-guide a{background-position: -346px 0 !important;}
 .products-list li .product-shop .price-box .special-price {
     font: 700 16px 'Open Sans', sans-serif;
 }
-.list-view-mode,
 .sort-by-title,
 .list-view-mode a,
 .list-view-mode label,
@@ -2124,7 +2142,20 @@ li.fit-guide a{background-position: -346px 0 !important;}
 }
 .list-view-mode label{
     display: block;
+    width: 100%;
     margin: 0;
+}
+.block-layered-nav #narrow-by-list{
+    position: relative;
+}
+.filter-close-btn{
+    position: absolute;
+    top: 40px;
+    text-indent: -9999px;
+    right: 30px;
+    width: 57px;
+    height: 57px;
+    background: url(../../images/btn-close-big.png) no-repeat 0 0;
 }
 .products-grid li .image-holder{
     max-width: 100%;
