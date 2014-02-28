@@ -741,7 +741,7 @@ button:focus {
     .logo{margin: 26px 0 0 2px;}
     .quick-access{width: 900px;}
     .branding{width: 982px !important;}
-    .nav-container {padding: 39px 0 0 48px !important;}
+    .nav-container {padding: 39px 0 0 45px !important;}
     .fixed .nav-container {padding: 16px 0 0 18px !important;}
     .fixed .nav-container #nav {
         float: left;

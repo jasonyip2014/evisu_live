@@ -96,6 +96,7 @@ body{
 .main-section .image-holder.skrollable{
     position: fixed;
     top: 125px;
+    width: 100%;
 }
 .main-section img{
     max-width: 100%;
