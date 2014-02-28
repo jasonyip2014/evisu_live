@@ -163,7 +163,7 @@ jQuery(function($){
     });
 
     // ================= product grid image ========================
-    if(!Mobie.yes){
+    if(!Mobile.yes){
         $('.products-grid .images-holder').on('mouseenter', function(){
             var container = $(this);
             container.find('.img-2').css('opacity', 0);
