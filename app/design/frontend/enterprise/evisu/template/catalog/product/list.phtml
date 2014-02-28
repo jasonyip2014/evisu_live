@@ -117,9 +117,9 @@
                 <?php $i = 0; foreach ($_productCollection as $_product): ?>
 
                     <?php //Promo Panels ?>
-                    <?php if($i == 5): ?>
+                    <?php if($i == 6): ?>
                         <?php if($_category->getFirstPromoPanelEnabled()): ?>
-                            <li class="first-promo">
+                            <li class="first-promo no-mobile">
                                 <div class="promo-text-holder">
                                     <span class="promo-title"><?php echo $this->stripTags($_category->getFirstPromoPanelTitle()) ?></span>
                                     <span class="promo-description"><?php echo nl2br($this->stripTags($_category->getFirstPromoPanelDescription())) ?></span>
@@ -132,10 +132,10 @@
                             </li>
                         <?php endIf; ?>
                     <?php endif ?>
-                    <?php if($i == 9): ?>
+                    <?php if($i == 10): ?>
                         <?php if($_category->getSecondPromoPanelEnabled()): ?>
                             <?php $promoImage2 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getSecondPromoPanelImage() , '')->resize(442, 682); ?>
-                            <li class="second-promo">
+                            <li class="second-promo no-mobile">
                                 <span class="image-holder">
                                     <img width="442px" height="682px" src="<?php echo $promoImage2 ?>" alt="<?php echo $this->stripTags($_category->getSecondPromoPanelTitle()) ?>" />
                                 </span>
@@ -212,14 +212,6 @@
                     <?php $i++; ?>
                 <?php endforeach ?>
             </ul>
-            <?php /*
-                <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
-            */ ?>
         <?php endif; ?>
     </div>
-    <?php /*
-        <div class="toolbar-bottom">
-            <?php echo $this->getToolbarHtml() ?>
-        </div>
-    */ ?>
 <?php endif; ?>

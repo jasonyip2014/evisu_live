@@ -106,7 +106,7 @@
         </reference>
         <reference name="breadcrumbs.container">
             <remove name="category.title" />
-            <block type="catalog/category_view" name="category.main_title" before="-" template="catalog/category/title.phtml"/>
+            <!--<block type="catalog/category_view" name="category.main_title" before="-" template="catalog/category/title.phtml"/>-->
             <block type="core/template" name="product_list_navigation" as="product_list_navigation" after="-" template="catalog/product/list/category_and_navigation.phtml" />
             <!--<block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />-->
         </reference>
@@ -228,4 +228,8 @@
             <block type="core/template" name="ga_traking_coge" template="checkout/ga_traking_coge.phtml" />
         </reference>
     </checkout_onepage_success>
+
+
 </layout>
+
+

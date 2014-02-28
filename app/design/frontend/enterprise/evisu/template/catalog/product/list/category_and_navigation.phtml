@@ -1,16 +1,27 @@
 <?php /* @var $this Mage_Catalog_Block_Product_List_Toolbar */ ?>
 
-<div class="">
-    <div class="category-description">
-        <?php $_category = Mage::getSingleton('catalog/layer')->getCurrentCategory(); ?>
-        <?php echo Mage::helper('catalog/output')->categoryAttribute($_category, $_category->getDescription(), 'description') ?>
+<?php $_category = Mage::getSingleton('catalog/layer')->getCurrentCategory(); ?>
+<?php if($_category): ?>
+    <?php $_afHelper = Mage::helper('adminforms/image') ?>
+    <?php $hlOutput = Mage::helper('catalog/output') ?>
+    <div class="image-holder mobile mobile-only">
+        <img src="<?php echo $_afHelper->init('catalog/category', $_category->getImage() , 'category-banner-image')->resize(640, 536); ?>" alt="<?php echo $hlOutput->categoryAttribute($_category, $_category->getName(), 'name') ?>" />
     </div>
-    <div class="category-promo">
-        <?php if($_category->getAdditionalPromoCopy()): ?>
-            <?php echo $_category->getAdditionalPromoCopy() ?>
-        <?php endIf; ?>
+    <div class="page-title category-title">
+        <h1><?php echo $hlOutput->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
     </div>
-</div>
+    <div class="category-description-holder">
+        <div class="category-description">
+
+            <?php echo $hlOutput->categoryAttribute($_category, $_category->getDescription(), 'description') ?>
+        </div>
+        <div class="category-promo no-mobile">
+            <?php if($_category->getAdditionalPromoCopy()): ?>
+                <?php echo $_category->getAdditionalPromoCopy() ?>
+            <?php endIf; ?>
+        </div>
+    </div>
+<?php endIf; ?>
 <div class="quick-navigation">
     <div class="back-btn"><?php echo $this->__('Back') ?></div>
     <div class="explore-more-btn"><span><?php echo $this->__('Explore') ?></span><span><?php echo $this->__('More') ?></span></div>
