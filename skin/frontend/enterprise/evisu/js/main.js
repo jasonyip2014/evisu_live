@@ -250,24 +250,27 @@ var VideoPanel = {
     },
 
     linkClick : function(element){
-        var link = jQuery(element);
-        var coverImage = link.next();
-        var frame = link.prev().children(':first');
+        var self = this;
+        var $link = jQuery(element);
+        $link.closest(self.block).css({zIndex:7});
+        var coverImage = $link.next();
+        var frame = $link.prev().children(':first');
 
         frame.attr('src', frame.data('src'));
-        link.addClass('loading');
+        $link.addClass('loading');
 
         frame.load(function() {
             var player = $f(this);
 
             player.addEvent('ready', function() {
-                link.removeClass('loading');
+                $link.removeClass('loading');
                 coverImage.fadeOut('fast');
-                link.hide();
+                $link.hide();
 
                 player.addEvent('finish', function() {
-                    link.show();
+                    $link.show();
                     coverImage.fadeIn('fast');
+                    $link.closest(self.block).css({zIndex:0});
                 });
             });
         });

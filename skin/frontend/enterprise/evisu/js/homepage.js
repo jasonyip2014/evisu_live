@@ -16,7 +16,6 @@ var HomePage = {
             self.sections = jQuery('.section-holder');
             jQuery.each(self.sections, function(index, section){
                 self.sectionsHeight[index] = jQuery(section).height();
-                console.log(self.sectionsHeight[index]);
             });
 
             self.sectionsResize();
@@ -46,10 +45,8 @@ var HomePage = {
     sectionsResize: function(){
         var self = this;
         self.scale = jQuery(window).width() / self.defWindowWidth;
-        console.log(self.scale);
         jQuery.each(jQuery('.section-holder'), function(index, section){
             jQuery(section).height(self.sectionsHeight[index] * self.scale);
-            console.log(jQuery(section).height());
         });
     }
 };

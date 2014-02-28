@@ -73,7 +73,6 @@ var LookBook = {
         //this.origGalleryHeight = self.thumbnaiSection.find('img').height();
 
         if(Mobile.yes){
-            console.log('mobile resize');
             var $bigImages =  jQuery('#thumbnail-section').find('img');
             jQuery.each($bigImages, function(index, img){
                 $img = jQuery(img);
@@ -368,9 +367,7 @@ var LookBook = {
         if (!Mobile.yes) {
             var element;
             self.galleryId = itemId;
-            console.log(self.gallery.width);
             var marginMax = self.gallery.width - container.find('ul').width();
-            console.log(marginMax);
             if(marginMax < 0){
                 container.find('ul').addClass('middle');
                 container.find('ul>li:first').animate({marginLeft: 0}, 'slow');
