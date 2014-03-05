@@ -309,7 +309,7 @@ body{
     width: 304px;
     position: absolute;
     top: 35%;
-    right: -40%;
+    right: -42%;
     text-align: right;
 }
 .section-holder-2 .block-holder-3 .text-holder h2{
@@ -407,7 +407,7 @@ body{
     width: 304px;
     position: absolute;
     top: 20%;
-    left: -35%;
+    left: -37%;
 }
 .section-holder-2 .block-holder-7 .text-holder h2{
     font: 700 28px 'Open Sans', arial, sans-serif; 
@@ -500,7 +500,7 @@ body{
         padding: 30px 0 20px 18px;
     }
     .section-holder-2 .block-holder-3 .text-holder a{
-        margin: 0 15% 0 0;
+        margin: 0 5% 0 0;
     }
     .bottom-link a,
     .social-links-wrapper .social-header,
@@ -531,6 +531,12 @@ body{
         width: 500px;
     }
 }
+@media screen and (max-width: 1100px){
+    .section-holder-2 .block-holder-2 { 
+        margin: 0 0 0 2.25%;
+    }
+}
+
 /* Ipad Styles */
 
 .ipad .main-section{
