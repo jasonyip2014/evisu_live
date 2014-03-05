@@ -2935,8 +2935,13 @@ position: absolute;
     width: 12%;
 }
 
-#shopping-cart-table .tbody .tr .td:first-child{
+#shopping-cart-table .tbody .tr .td.product-image{
     width: 24%;
+}
+
+#shopping-cart-table .tbody .tr .td.product-image img{
+    max-width: 100%;
+    height: auto; 
 }
 
 /*=============== MY ACCOUNT =================================================================*/

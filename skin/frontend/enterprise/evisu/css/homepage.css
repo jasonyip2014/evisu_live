@@ -85,13 +85,14 @@ body{
     position: absolute;
     bottom: 0;
 }
+.main-section-holder{
+    height: 1051px;
+}
 .main-section{
-    min-height: 1000px;
-    height: 1214px;
     position: relative;
 }
 .main-section .image-holder{
-    display: none;
+    opacity: 0;
 }
 .main-section .image-holder.skrollable{
     position: fixed;

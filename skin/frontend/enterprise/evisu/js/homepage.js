@@ -7,6 +7,7 @@ var HomePage = {
     sectionsHeight: [],
 
     init : function(){
+        //Mobile.yes = true;
         var self = this;
         // init scrollr
 
@@ -71,7 +72,7 @@ jQuery(function($){
     jQuery(window).on('load', function(){
         jQuery(window).resize();
         //animate main section here
-        jQuery('.main-section .image-holder').delay(1000).fadeIn(1000);
+        jQuery('.main-section .image-holder').delay(1000).animate({opacity:1},1000);
         jQuery('.main-section p').delay(2000).fadeIn(1000);
     });
 
