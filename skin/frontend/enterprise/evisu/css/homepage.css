@@ -492,19 +492,33 @@ body{
         line-height: 40px;
         width: 608px;
     }
+    .social-links-wrapper {
+        display: inline-block;
+        width: 222px;
+        padding: 30px 0 20px 18px;
+    }
+    .section-holder-2 .block-holder-3 .text-holder a{
+        margin: 0 15% 0 0;
+    }
+    .bottom-link a,
     .social-links-wrapper .social-header,
     .section-holder-2 .block-holder-3 .text-holder h3,
     .section-holder-2 .block-holder-3 .text-holder h2,
+    .section-holder-2 .block-holder-7 .text-holder h2,
     .section-holder-2 .block-holder-4 h2, 
     .section-holder-2 .block-holder-5 h2, 
-    .section-holder-2 .block-holder-6 h2{
+    .section-holder-2 .block-holder-6 h2,
+    .section-holder-2 .block-holder-4 h3, 
+    .section-holder-2 .block-holder-5 h3, 
+    .section-holder-2 .block-holder-6 h3{
         font-size: 18px;
     }
     .section-holder-2 .block-holder-4 p, 
     .section-holder-2 .block-holder-5 p, 
     .section-holder-2 .block-holder-6 p,
     .hp_text_block .section-description p,
-    .section-holder-2 .block-holder-3 .text-holder p{
+    .section-holder-2 .block-holder-3 .text-holder p,
+    .section-holder-2 .block-holder-7 .text-holder p{
         font-size: 12px;
     }
     .hp_text_block .block-header{
