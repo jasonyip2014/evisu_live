@@ -265,7 +265,7 @@ body{
 .social-links-wrapper .social-links-block{
     background: #333;
     text-align: center;
-    padding: 30px 0 20px;
+    padding: 30px 0 20px 18px;
 }
 .social-links-wrapper .social-links-block li{
     display: inline-block;
@@ -486,7 +486,7 @@ body{
         margin: 0 35px 0 0;
     }
 }
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1285px){
     .main-section p {
         font-size: 38px;
         line-height: 40px;
@@ -495,6 +495,8 @@ body{
     .social-links-wrapper {
         display: inline-block;
         width: 222px;
+    }
+    .social-links-wrapper .social-links-block{
         padding: 30px 0 20px 18px;
     }
     .section-holder-2 .block-holder-3 .text-holder a{
@@ -527,9 +529,6 @@ body{
     .hp_text_block .section-description {
         margin: 0;
         width: 500px;
-    }
-    .bottom-link a{
-        font-size: 28px;
     }
 }
 /* Ipad Styles */
