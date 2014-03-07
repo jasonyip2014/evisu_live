@@ -11,6 +11,15 @@
 <?php $post = $this->getPost() ?>
 <?php if ($post): ?>
 	<?php $helper = $this->helper('wordpress') ?>
+    <div class="gallery-full-view no-display">
+        <div class="loader"><?php echo $this->__('loading...') ?></div>
+        <div class="content">
+            <div class="content-wrapper">
+                <div class="close-btn"><?php echo $this->__('Close') ?></div>
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
 	<div class="post-view">
         <?php echo $this->getBeforePostContentHtml() ?>
         <div class="blog-title"><?php echo $this->escapeHtml($post->getPostTitle()) ?></div>

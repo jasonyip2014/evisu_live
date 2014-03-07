@@ -32,7 +32,7 @@ class Fishpig_Wordpress_Helper_Shortcode_Gallery extends Fishpig_Wordpress_Helpe
 				$args = $shortcode->getParams();
 				
 				if (!$args->getColumns()) {
-					$args->setColumns(3);
+					$args->setColumns(4);
 				}
 
 				if (!$args->getSize()) {

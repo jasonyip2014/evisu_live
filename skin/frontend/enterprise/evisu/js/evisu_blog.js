@@ -67,6 +67,37 @@ var EvisuBlog = {
         jQuery('.calendar .week a').on('mouseleave', function(){
             jQuery(this).find('.tooltip').stop(true, false).fadeOut('fast');
         });
+
+        self.initGallery();
+    },
+
+    initGallery: function(){
+        var fullGallery = jQuery('.gallery-full-view');
+        jQuery('.post-view a').on('click', function(){
+            var $this = jQuery(this);
+            if($this.find('img').length){
+                fullGallery.find('.content').hide();
+                fullGallery.find('.loader').show();
+                fullGallery.fadeIn('slow');
+                var image = new Image();
+                image.onload = function(){
+                    jQuery('.gallery-full-view').find('img').attr({src: $this.attr('href')});
+                    fullGallery.find('.loader').hide();
+                    fullGallery.find('.content').fadeIn('fast');
+
+                };
+                image.src = $this.attr('href');
+                return false;
+            }
+        });
+        fullGallery.find('.close-btn').on('click', function(){
+            fullGallery.fadeOut('fast');
+        });
+        jQuery(document).on('keydown', function(e){
+            if (e.keyCode == 27) { //escape
+                fullGallery.fadeOut('fast');
+            }
+        });
     },
 
     filterOpen : function(){
