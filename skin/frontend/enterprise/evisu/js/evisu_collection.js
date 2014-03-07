@@ -105,7 +105,7 @@ Collection = {
         this.resize();
         this.showGalleryNavigation();
         //init prop
-        //jQuery('#gallery-btn').trigger('click');
+        jQuery('#gallery-btn').trigger('click');
     },
 
     resize: function () {
