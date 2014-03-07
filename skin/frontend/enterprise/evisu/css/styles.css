@@ -7210,6 +7210,7 @@ p.required{
     padding: 40px 21px;
     margin: 0 0 25px;
     width: 304px;
+    font: 12px Courier, georgia, serif;
 }
 .collection-container .collection-link {
     margin: 0 0 0 21px;
