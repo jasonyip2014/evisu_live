@@ -181,6 +181,7 @@ html{ overflow: hidden; overflow-y: scroll; }
 	text-transform: uppercase;
 	margin: 0 0 11px;
 	letter-spacing: 4px;
+	background: none;
 }
 
 .section-description .text{
