@@ -1021,6 +1021,7 @@ li label{
     left: 8px;
     bottom: 85px;
     z-index: 99;
+    display: none !important;
 }
 
 .quick-navigation .explore-more-btn{
@@ -1035,6 +1036,7 @@ li label{
     display: none;
     bottom: 65px;
     z-index: 99;
+    display: none !important;
 }
 
 .quick-navigation .explore-more-btn:hover{background-position: -62px -80px;}
