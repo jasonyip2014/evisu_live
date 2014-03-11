@@ -7,24 +7,26 @@
  * @author      Ben Tideswell <help@fishpig.co.uk>
  */
 ?>
-<?php $tweets = Mage::getSingleton('latesttweet/tweets') ?>
+<?php //$tweets = Mage::getSingleton('latesttweet/tweets') ?>
 <?php $helper = Mage::helper('evisu_blog')?>
 <?php $posts = $this->getPosts() ?>
 <?php if (count($posts) > 0): ?>
 	<div class="post-list">
 		<ul id="post-list">
 			<?php $i = 0; foreach($posts as $post): ?>
-                <?php if($helper->showTwitter($i)): ?>
-                    <?php if($tweet = $tweets->getTweet()): ?>
-                        <li class="item tweet-<?php echo $tweets->getCurrentTweetNumber() ?>">
-                            <div class="twit">
-                                <div class="twitter-logo"></div>
-                                <div class="twit-date"><?php echo $tweet['date'] ?></div>
-                                <div class="twit-text"><?php echo $tweet['text'] ?></div>
-                            </div>
-                        </li>
+                <?php /*
+                    <?php if($helper->showTwitter($i)): ?>
+                        <?php if($tweet = $tweets->getTweet()): ?>
+                            <li class="item tweet-<?php echo $tweets->getCurrentTweetNumber() ?>">
+                                <div class="twit">
+                                    <div class="twitter-logo"></div>
+                                    <div class="twit-date"><?php echo $tweet['date'] ?></div>
+                                    <div class="twit-text"><?php echo $tweet['text'] ?></div>
+                                </div>
+                            </li>
+                        <?php endIf; ?>
                     <?php endIf; ?>
-                <?php endIf; ?>
+                */ ?>
 				<li class="item<?php if ($post->isSticky()): ?> featured<?php endif; ?>">
                     <?php $post->setPosition($i) ?>
 					<?php echo $this->getPostRenderer($post)->toHtml() ?>
