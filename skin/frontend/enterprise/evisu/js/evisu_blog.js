@@ -93,6 +93,12 @@ var EvisuBlog = {
         fullGallery.find('.close-btn').on('click', function(){
             fullGallery.fadeOut('fast');
         });
+        fullGallery.on('click', function(){
+            fullGallery.fadeOut('fast');
+        });
+        fullGallery.find('img').on('click', function(e){
+            e.stopPropagation();
+        });
         jQuery(document).on('keydown', function(e){
             if (e.keyCode == 27) { //escape
                 fullGallery.fadeOut('fast');

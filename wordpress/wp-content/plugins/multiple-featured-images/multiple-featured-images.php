@@ -379,10 +379,10 @@ if( class_exists( 'kdMultipleFeaturedImages' ) )
             'id' => 'top_banner_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Post Top Banner Image',
-                'set'       => 'Set Top Banner Image',
+                'name'      => 'Post Top Banner Image (864×496)',
+                'set'       => 'Set Top Banner Image (864×496)',
                 'remove'    => 'Remove Top Banner Image',
-                'use'       => 'Use as Post Top Banner Image',
+                'use'       => 'Use as Post Top Banner Image (864×496)',
             )
         ),
 
@@ -391,40 +391,40 @@ if( class_exists( 'kdMultipleFeaturedImages' ) )
             'id' => 'list_small_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Post List Small Image',
-                'set'       => 'Set List Small Image',
+                'name'      => 'Post List Small Image (236p×177)',
+                'set'       => 'Set List Small  (236p×177)',
                 'remove'    => 'Remove List Small Image',
-                'use'       => 'Use as List Small Image',
+                'use'       => 'Use as List Small Image (236p×177)',
             )
         ),
         array(
             'id' => 'list_portrait_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Post List Portrait Image',
-                'set'       => 'Set List Portrait Image',
+                'name'      => 'Post List Portrait Image (237×380)',
+                'set'       => 'Set List Portrait Image (237×380)',
                 'remove'    => 'Remove List Portrait Image',
-                'use'       => 'Use as List Portrait Image',
+                'use'       => 'Use as List Portrait Image (237×380)',
             )
         ),
         array(
             'id' => 'list_small_landscape_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Post List Small Landscape Image',
-                'set'       => 'Set List Small Landscape Image',
+                'name'      => 'Post List Small Landscape Image (356×177)',
+                'set'       => 'Set List Small Landscape Image (356×177)',
                 'remove'    => 'Remove List Small Landscape Image',
-                'use'       => 'Use as List Small Landscape Image',
+                'use'       => 'Use as List Small Landscape Image (356×177)',
             )
         ),
         array(
             'id' => 'list_big_landscape_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Post List Big Landscape Image',
-                'set'       => 'Set List Big Landscape Image',
+                'name'      => 'Post List Big Landscape Image (356×256)',
+                'set'       => 'Set List Big Landscape Image (356×256)',
                 'remove'    => 'Remove List Big Landscape Image',
-                'use'       => 'Use as List Big Landscape Image',
+                'use'       => 'Use as List Big Landscape Image (356×256)',
             )
         ),
 
@@ -433,20 +433,20 @@ if( class_exists( 'kdMultipleFeaturedImages' ) )
             'id' => 'first_post_banner_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'First Post Banner Image',
-                'set'       => 'Set First Post Banner Image',
+                'name'      => 'First Post Banner Image (772×496)',
+                'set'       => 'Set First Post Banner Image (772×496)',
                 'remove'    => 'Remove First Post Banner Image',
-                'use'       => 'Use as First Post Banner Image',
+                'use'       => 'Use as First Post Banner Image (772×496)',
             )
         ),
         array(
             'id' => 'second_post_banner_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Second Post Banner Image',
+                'name'      => 'Second Post Banner Image (495×495)',
                 'set'       => 'Set Second Post Banner Image',
-                'remove'    => 'Remove Second Post Banner Image',
-                'use'       => 'Use as Second Post Banner Image',
+                'remove'    => 'Remove Second Post Banner Image (495×495)',
+                'use'       => 'Use as Second Post Banner Image (495×495)',
             )
         ),
     );
