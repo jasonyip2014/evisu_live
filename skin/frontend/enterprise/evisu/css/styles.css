@@ -1384,6 +1384,11 @@ li label{
     height: 100%;
     width: 100%;
 }
+.products-grid li .hover-holder .product-short-description,
+.products-grid li .btn-cart,
+.hover-container > ul{
+    display: none;
+}
 
 .images-holder{
     display: inline-block;
