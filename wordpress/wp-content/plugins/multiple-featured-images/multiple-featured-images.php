@@ -391,12 +391,13 @@ if( class_exists( 'kdMultipleFeaturedImages' ) )
             'id' => 'list_small_image',
             'post_type' => 'post',      // Set this to post or page
             'labels' => array(
-                'name'      => 'Post List Small Image (236p×177)',
-                'set'       => 'Set List Small  (236p×177)',
-                'remove'    => 'Remove List Small Image',
-                'use'       => 'Use as List Small Image (236p×177)',
+                'name'      => 'Post List Image',
+                'set'       => 'Set List Image',
+                'remove'    => 'Remove List Image',
+                'use'       => 'Use as List Image',
             )
         ),
+        /*
         array(
             'id' => 'list_portrait_image',
             'post_type' => 'post',      // Set this to post or page
@@ -427,6 +428,7 @@ if( class_exists( 'kdMultipleFeaturedImages' ) )
                 'use'       => 'Use as List Big Landscape Image (356×256)',
             )
         ),
+        */
 
         // Post Banner Images
         array(

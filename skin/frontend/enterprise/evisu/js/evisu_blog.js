@@ -167,7 +167,7 @@ jQuery(window).load(function(){
 var $container = jQuery('#post-list');
 // initialize
 $container.masonry({
-  columnWidth: 4,
+  gutter: 50,
   itemSelector: '.item'
 });
 

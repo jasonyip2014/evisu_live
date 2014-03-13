@@ -10,8 +10,8 @@
 <?php $helper = Mage::helper('evisu_blog')?>
 <?php $post = $this->getPost() ?>
 <?php if($helper->getViewType() == 'grid'): ?>
-    <?php $imageType = $helper->getListImageType($post->getPosition())?>
-    <div class="post-list-item <?php echo $imageType . ' post-' . ($post->getPosition() + 1) ?>">
+    <?php $imageType = 'list_small_image' //$helper->getListImageType($post->getPosition())?>
+    <div class="post-list-item <?php echo (($post->getMetaValue('Text Position'))? strtolower($post->getMetaValue('Text Position')) : 'bottom') . ' post-' . ($post->getPosition() + 1) ?>">
         <div class="post-entry">
             <?php if ($postImage = $helper->getImageUrl($post, $imageType)): ?>
                 <div class="featured-image">

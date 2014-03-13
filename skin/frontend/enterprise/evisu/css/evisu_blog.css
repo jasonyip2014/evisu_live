@@ -1041,141 +1041,21 @@
 	background: url(../images/black-prev-next-arrows.png) no-repeat 0 3px;
 }
 
-/*==== post 1 =======*/
-
-.wordpress-search-index #post-list .post-1 .featured-image,
-.is-blog .blog-landing.grid #post-list .post-1 .featured-image{
-	margin: 0 0 15px; 
+.is-blog .post-list-item.bottom .featured-image {
+	margin-bottom: 20px;
 }
-
-.wordpress-search-index #post-list .post-1,
-.is-blog .blog-landing.grid #post-list .post-1{
-	margin: 0 34px 10px 0;
-	width: 356px;
+.is-blog .post-list-item.bottom .post-essential {
+    max-width: 240px;
 }
-
-/*==== post 2 =======*/ /*==== post 5 =======*/
-
-.wordpress-search-index #post-list .post-5 .featured-image,
-.wordpress-search-index #post-list .post-2 .featured-image,
-.is-blog .blog-landing.grid #post-list .post-5 .featured-image,
-.is-blog .blog-landing.grid #post-list .post-2 .featured-image{
-	margin: 0 12px 0px 0; 
-	float: left;
+.is-blog .post-list-item.right .featured-image {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
 }
-
-.wordpress-search-index #post-list .post-5,
-.wordpress-search-index #post-list .post-2,
-.is-blog .blog-landing.grid #post-list .post-5,
-.is-blog .blog-landing.grid #post-list .post-2{
-	width: 400px;
-	padding: 0 35px 20px 0;
-}
-
-.wordpress-search-index #post-list .post-5 h2,
-.wordpress-search-index #post-list .post-2 h2,
-.is-blog .blog-landing.grid #post-list .post-5 h2,
-.is-blog .blog-landing.grid #post-list .post-2 h2{
-	padding: 35px 0 0;
-}
-
-/*==== post 3 =======*/
-
-.wordpress-search-index #post-list .post-3 .twit,
-.is-blog .blog-landing.grid #post-list .post-3 .twit{
-	margin: 0 0 43px; 
-}
-
-.wordpress-search-index #post-list .post-3 .featured-image,
-.is-blog .blog-landing.grid #post-list .post-3 .featured-image{
-	margin: 0 0 13px;
-}
-
-.wordpress-search-index #post-list .post-3,
-.is-blog .blog-landing.grid #post-list .post-3{
-	margin: 0 30px 20px 0;
-	width: 429px;
-}
-
-/*==== post 4 =======*/
-
-.wordpress-search-index #post-list .post-4,
-.is-blog .blog-landing.grid #post-list .post-4{
-	margin: 0 30px 20px 0;
-	width: 236px;
-}
-
-/*==== post 6 =======*/
-
-.wordpress-search-index #post-list .post-6 .featured-image,
-.is-blog .blog-landing.grid #post-list .post-6 .featured-image{
-	display: inline-block;
-	float: right;
-}
-
-.wordpress-search-index #post-list .post-6,
-.is-blog .blog-landing.grid #post-list .post-6{
-	margin: 0 20px 20px 0;
-	width: 429px;
-}
-
-.wordpress-search-index #post-list .post-6 .post-essential,
-.is-blog .blog-landing.grid #post-list .post-6 .post-essential{
-	width: 356px;
-	float: right;
-}
-
-/*==== post 7 =======*/
-
-.wordpress-search-index #post-list .post-7 .featured-image,
-.is-blog .blog-landing.grid #post-list .post-7 .featured-image{
-	display: inline-block;
-}
-
-.wordpress-search-index #post-list .post-7,
-.is-blog .blog-landing.grid #post-list .post-7{
-	margin: 0 30px 20px 0;
-}
-
-/*==== post 8 =======*/
-
-.wordpress-search-index #post-list .post-8,
-.is-blog .blog-landing.grid #post-list .post-8{
-	margin: 0 0px 20px 0;
-	width: 429px;
-}
-
-/*==== post 9 =======*/
-
-.wordpress-search-index #post-list .post-9:after,
-.is-blog .blog-landing.grid #post-list .post-9:after{
-	content: '';
-	display: block;
-	clear: both;
-}
-
-.wordpress-search-index #post-list .post-9,
-.is-blog .blog-landing.grid #post-list .post-9{
-	width: 800px;
-}
-.wordpress-search-index #post-list .post-9 .post-entry > *,
-.is-blog .blog-landing.grid #post-list .post-9 .post-entry > *{
-	float: right;
-}
-.wordpress-search-index #post-list .post-9 .post-entry .post-essential,
-.is-blog .blog-landing.grid #post-list .post-9 .post-entry .post-essential{
-	width: 356px;
-}
-.wordpress-search-index #post-list .post-9 .post-entry .twit,
-.is-blog .blog-landing.grid #post-list .post-9 .post-entry .twit{
-	float: left;
-	margin: 0 0 61px;
-}
-
-.is-blog #post-list,
-.wordpress-search-index #post-list{
-	width: 90%;
-	margin: 0 auto;
+.is-blog .post-list-item.right .post-essential {
+    display: inline-block;
+    float: left;
+    max-width: 240px;
 }
 
 /*===== search =======*/
@@ -1238,27 +1118,22 @@
 
 	.wordpress-search-index #post-list .twit,
 	.is-blog .blog-landing.grid #post-list .twit{
-		width: 283px;
 	}
 	.wordpress-search-index #post-list .post-8,
 	.is-blog .blog-landing.grid #post-list .post-8{
 		margin: 0 0px 20px 0;
-		width: 313px;
 	}
 	.wordpress-search-index #post-list .post-6,
 	.is-blog .blog-landing.grid #post-list .post-6{
 		margin: 0 20px 20px 0;
-		width: 313px;
 	}	
 	.wordpress-search-index #post-list .post-3,
 	.is-blog .blog-landing.grid #post-list .post-3{
 		margin: 0 30px 20px 0;
-		width: 356px;
 	}
 
 	.wordpress-search-index #post-list .post-9,
 	.is-blog .blog-landing.grid #post-list .post-9{
-		width: 680px;
 	}
 	.wordpress-search-index #post-list .post-4,
 	.is-blog .blog-landing.grid #post-list .post-4{
@@ -1288,11 +1163,9 @@
 	.wordpress-search-index #post-list .post-1, 
 	.is-blog .blog-landing.grid #post-list .post-1 {
 		margin: 0 20px 10px 0;
-		width: 356px;
 	}
 	.wordpress-search-index #post-list .post-5, 
 	.is-blog .blog-landing.grid #post-list .post-5{
-		width: 237px;
 	}
 	.post-4, .is-blog .blog-landing.grid #post-list .post-4 {
 		margin: 0 60px 20px 0;
@@ -1300,7 +1173,6 @@
 	.wordpress-search-index #post-list .post-6, 
 	.is-blog .blog-landing.grid #post-list .post-6 {
 		margin: 0 20px 20px 0;
-		width: 357px;
 	}
 	.wordpress-search-index #post-list .post-6 .featured-image, 
 	.is-blog .blog-landing.grid #post-list .post-6 .featured-image {
@@ -1308,12 +1180,10 @@
 		float: none;
 	}
 	.wordpress-search-index #post-list .post-6 .post-essential, .is-blog .blog-landing.grid #post-list .post-6 .post-essential {
-		width: 356px;
 		float: none;
 	}
 	.wordpress-search-index #post-list .post-9,
 	.is-blog .blog-landing.grid #post-list .post-9 {
-		width: 357px;
 	}
 	.wordpress-search-index #post-list .tweet-2, 
 	.is-blog .blog-landing.grid #post-list .tweet-2{
@@ -1321,14 +1191,12 @@
 	}
 	.wordpress-search-index #post-list .tweet-1 .twit, 
 	.is-blog .blog-landing.grid #post-list .tweet-1 .twit{
-		width: 206px;
 		margin: 0 0 0 -10px;
 	}
 	.wordpress-search-index #post-list .post-5,
 	.wordpress-search-index #post-list .post-2,
 	.is-blog .blog-landing.grid #post-list .post-5,
 	.is-blog .blog-landing.grid #post-list .post-2{
-		width: 357px;
 		padding: 0 35px 20px 0;
 	}
 	.is-blog .page .top-bar, .is-blog .page .breadcrumbs-container {
