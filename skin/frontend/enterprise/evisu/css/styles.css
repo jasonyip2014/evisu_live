@@ -4726,6 +4726,7 @@ position: absolute;
     position: relative;
     cursor: pointer;
     z-index: 123;
+    min-width: 70px;
 /*    position: absolute;
     top: -128px;
     right: -33px; */
