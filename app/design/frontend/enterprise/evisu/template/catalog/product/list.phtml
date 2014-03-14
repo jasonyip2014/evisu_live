@@ -63,7 +63,6 @@
                                 <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
                                 <?php $_productSecondNameStripped = $this->stripTags($_product->getSecondName(), null, true); ?>
                                 <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped . " " . $_productNameStripped ?>"><span><?php echo $_productNameStripped ?></span><span><?php echo $_productSecondNameStripped ?></span></a></h2>
-                                <p class="product-sku"><?php echo $this->stripTags($_product->getSku()) ?></p>
                                 <?php if($_product->getTypeId() == 'grouped'): ?>
                                     <div class="grouped-price">
                                         <span><?php echo $this->__('started at') ?></span>

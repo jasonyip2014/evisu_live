@@ -24,7 +24,7 @@
  * @license     http://www.magentocommerce.com/license/enterprise-edition
  */
 ?>
-<form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail" class="no-mobile">
+<form action="<?php echo $this->getUrl('newsletter/subscriber/new', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())) ?>" method="post" id="newsletter-validate-detail" class="no-mobile">
     <div class="form-subscribe">
     <div class="form-subscribe-header">
         <label for="newsletter"><?php echo $this->__('Newsletter') ?></label>
