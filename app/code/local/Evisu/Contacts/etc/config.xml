@@ -103,7 +103,7 @@
                                 <template>image</template>
                                 <note>resolution 900x600</note>
                             </contact_us_image>
-                            <block1_link>
+                            <!--<block1_link>
                                 <label>1st Block Link</label>
                                 <required>1</required>
                                 <template>text</template>
@@ -122,7 +122,7 @@
                                 <label>2st Block Target Url</label>
                                 <required>1</required>
                                 <template>text</template>
-                            </block2_target_url>
+                            </block2_target_url>-->
                         </attributes>
                     </content_data>
                     <contacts>

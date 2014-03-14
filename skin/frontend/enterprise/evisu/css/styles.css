@@ -5103,7 +5103,7 @@ position: absolute;
     background-position:-78px 0;
 }
 
-.contacts-index-index .contacts-page-blocks .social-links .vimeo{
+.contacts-index-index .contacts-page-blocks .social-links .weibo{
     width:39px;
     background-position:-108px 0;
 }
@@ -7135,7 +7135,6 @@ p.required{
     color: #333;
 }
 .agree{
-    width: 470px;
     margin: 0 auto 20px;
 }
 .agree label{

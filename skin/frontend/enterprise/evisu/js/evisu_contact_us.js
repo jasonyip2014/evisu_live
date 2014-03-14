@@ -35,8 +35,8 @@ var ContactUs = {
     animate : function(){
         jQuery('#contactForm').delay(500).fadeIn('slow');
         var bloks = jQuery('.contacts-page-blocks');
-        bloks.find('.block2').delay(1000).animate({opacity:1},'slow');
-        bloks.find('.block1').delay(1500).animate({opacity:1},'slow');
+        //bloks.find('.block2').delay(1000).animate({opacity:1},'slow');
+        //bloks.find('.block1').delay(1500).animate({opacity:1},'slow');
         bloks.find('.social-links-holder').delay(2000).animate({opacity:1},'slow');
     }
 };

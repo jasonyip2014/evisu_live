@@ -23,19 +23,23 @@
     </div>
     <?php echo $this->getChildHtml('contacts') ?>
     <?php echo $this->getChildHtml('form') ?>
-    <div class="contacts-page-blocks no-mobile">
-        <div class="social-links-holder no-display">
-            <div class="social-links-wrapper">
-                <?php echo $this->getChildHtml('social_block') ?>
+
+        <div class="contacts-page-blocks no-mobile">
+            <div class="social-links-holder no-display">
+                <div class="social-links-wrapper">
+                    <?php echo $this->getChildHtml('social_block') ?>
+                </div>
             </div>
+            <?php /*
+                <div class="block1">
+                    <a href="<?php echo $this->stripTags($page->getBlock1TargetUrl()) ?>" title="<?php echo $this->stripTags($page->getBlock1Link()) ?>"><?php echo $this->stripTags($page->getBlock1Link()) ?></a>
+                </div>
+                <div class="block2">
+                    <a href="<?php echo $this->stripTags($page->getBlock2TargetUrl()) ?>" title="<?php echo $this->stripTags($page->getBlock2Link()) ?>"><?php echo $this->stripTags($page->getBlock2Link()) ?></a>
+                </div>
+            */ ?>
         </div>
-        <div class="block1">
-            <a href="<?php echo $this->stripTags($page->getBlock1TargetUrl()) ?>" title="<?php echo $this->stripTags($page->getBlock1Link()) ?>"><?php echo $this->stripTags($page->getBlock1Link()) ?></a>
-        </div>
-        <div class="block2">
-            <a href="<?php echo $this->stripTags($page->getBlock2TargetUrl()) ?>" title="<?php echo $this->stripTags($page->getBlock2Link()) ?>"><?php echo $this->stripTags($page->getBlock2Link()) ?></a>
-        </div>
-    </div>
+
     <div class="additional-block mobile-only">
         <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mobile_contacts_additional_block')->toHtml(); ?>
     </div>
