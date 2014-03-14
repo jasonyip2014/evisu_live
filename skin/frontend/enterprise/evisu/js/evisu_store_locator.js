@@ -55,7 +55,7 @@ var StoreLocator = {
     },
 
     showMarkers : function(){
-        self = this;
+        var self = this;
         var stores = self.config.stores;
         for(var storeId in stores)
         {
@@ -67,7 +67,7 @@ var StoreLocator = {
     },
 
     createMarkers : function() {
-        self = this;
+        var self = this;
         var stores = self.config.stores;
         for(var storeId in stores)
         {
@@ -99,11 +99,12 @@ var StoreLocator = {
                     icon: self.config.skin_base_url + 'images/map-' + stores[storeId].type + '-pin-icon.png',
                     title : stores[storeId].popup.name
                 });
+                stores[storeId].marker.storeId = storeId
 
-                var infoWindow = stores[storeId].infoWindow;
+                //var infoWindow = stores[storeId].infoWindow;
                 google.maps.event.addListener(stores[storeId].marker, 'click', function() {
                     self.closeAllInfoWindows();
-                    infoWindow.open(self.map, this);
+                    self.config.stores[this.storeId].infoWindow.open(self.map, this);
                     self.styleInfoWindow();
                 });
             }
@@ -128,6 +129,7 @@ var StoreLocator = {
 
     html5GeolocationError : function(errorFlag)
     {
+        var self = this;
         var content;
         if (errorFlag) {
             content = 'Error: The Geolocation service failed.';
@@ -139,13 +141,13 @@ var StoreLocator = {
 
     mapManualInicialize : function(content)
     {
-        self = this;
+        var self = this;
         self.map.setCenter(new google.maps.LatLng(self.config['default_coordinates'].lat, self.config['default_coordinates'].long));
     },
 
     closeAllInfoWindows : function()
     {
-        self = this;
+        var self = this;
         var stores = self.config.stores;
         for(var storeId in stores)
         {
@@ -158,6 +160,7 @@ var StoreLocator = {
 
     styleInfoWindow : function()
     {
+        var self = this;
         var infoWindow = jQuery('.gm-style-iw');
         infoWindow.css({left:'135', top:'200'});
         infoWindow.next().remove();
@@ -176,7 +179,7 @@ var StoreLocator = {
 
     displayOnMap : function(link)
     {
-        self = this;
+        var self = this;
 
         var storeId = link.data('id');
 
@@ -201,11 +204,11 @@ var StoreLocator = {
 
     displayClosestStore : function (lat, lng)
     {
-        self = this;
+        var self = this;
         var var_R = 6371; // radius of earth in km
         var closest = null;
         var stores = self.config.stores;
-        var_closest_distance = -1;
+        var closest_distance = -1;
         for(var storeId in stores)
         {
             if(stores.hasOwnProperty(storeId))
@@ -231,7 +234,7 @@ var StoreLocator = {
 
     getStoreByAddress: function()
     {
-        self = this;
+        var self = this;
         var address = jQuery("#search-input").val();
         if (address != '')
         {
@@ -286,6 +289,7 @@ var StoreLocator = {
     },
     sortStoreList : function()
     {
+        var self = this;
         var groupedStores = self.getGroupedStores();
         var content = '';
         for(var group in groupedStores)
