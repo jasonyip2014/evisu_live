@@ -126,9 +126,7 @@ ul.onestepcheckout-custom-options {
     color: #2a2c39;
 }
 
-.onestepcheckout-summary th {
-    width: 17%;
-}
+.onestepcheckout-summary th {}
 
 .onestepcheckout-numbers-5{
     margin: 0 0 31px;
@@ -246,15 +244,26 @@ table.onestepcheckout-summary {
     margin: 0 auto;
 }
 
-table.onestepcheckout-summary td.name {
-    width: 43%;
+table.onestepcheckout-summary td {
+    padding: 10px 0;
 }
 
-table.onestepcheckout-summary td.qty,table.onestepcheckout-summary th.qty
+table.onestepcheckout-summary th.size,
+table.onestepcheckout-summary th.qty,
+table.onestepcheckout-summary td.size,
+table.onestepcheckout-summary td.qty
     {
-    width: 10%;
     text-align: center;
     vertical-align: top;
+}
+table.onestepcheckout-summary th.qty,
+table.onestepcheckout-summary td.qty {
+    padding-left: 15px;
+    padding-right: 5px;
+}
+table.onestepcheckout-summary th.name,
+table.onestepcheckout-summary td.name {
+    width: 40%;
 }
  
 .onestepcheckout-totals td{
@@ -283,18 +292,17 @@ table.onestepcheckout-summary td.qty,table.onestepcheckout-summary th.qty
 
 table.onestepcheckout-summary td.total,table.onestepcheckout-summary th.total
     {
-    width: 35%;
     text-align: right;
     vertical-align: top;
 }
 
 table.onestepcheckout-totals {
     width: 280px;
-    margin: 0 auto;
+    margin: 20px auto 0;
 }
 
 table.onestepcheckout-totals tr.grand-total td {
-    font-weight: bold;font-weight: bold;
+    font-weight: bold;
     font-family: Courier, georgia, serif;
     font-size: 16px;
 }
