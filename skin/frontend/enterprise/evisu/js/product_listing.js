@@ -169,7 +169,7 @@ jQuery(function($){
             container.find('.img-2').css('opacity', 0);
             container.find('.img-1').stop(true,false);
             container.find('.img-1').animate({opacity: 0},'fast');
-            container.find('.img-2').animate({opacity: 0.4},'fast');
+            container.find('.img-2').animate({opacity: 1},'fast');
             container.parent().next().css('zIndex', 4);
         });
 
