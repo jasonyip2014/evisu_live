@@ -179,11 +179,9 @@
                                     '<div class="size-chart-title"><?php echo $this->__('Size Chart') ?></div>' +
                                     '<div class="size-chart-product-name"><span class="size-chart-name">' + <?php echo json_encode($_product->getName()) ?> + '</span><?php if($_product->getSecondName()): ?> - <span class="seze-chart-second-name">' + <?php echo json_encode($_product->getSecondName()) ?> + '</span><?php endIf; ?></div>' +
                                     '<div class="size-chart-description"><?php echo $this->__('All items are individually measured by EVISU in centimetres') ?></div>' +
-                                    <?php if($_product->getSizeChart()): ?>
                                         '</div>' +
-                                            <?php echo json_encode($_product->getSizeChart()) ?> +
+                                            <?php echo (($_product->getSizeChart())? json_encode($_product->getSizeChart()) :  json_encode($this->getLayout()->createBlock('cms/block')->setBlockId('size_chart')->toHtml())) ?> +
                                         '</div>' +
-                                    <?php endIf; ?>
                                     '</div>'
                                 jQuery.arcticmodal({
                                     content: c
