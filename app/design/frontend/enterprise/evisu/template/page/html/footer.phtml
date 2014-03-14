@@ -28,9 +28,9 @@
     <div class="footer">
         <?php echo $this->getChildHtml() ?>
         <address class="copyright no-mobile">
-            Magento Ecommerce by <a target="_blank" href="//http://www.diligentcommerce.com/">Diligent</a>&nbsp;&nbsp;<?php echo $this->getCopyright() ?>
+            Magento Ecommerce by <a target="_blank" href="//http://www.diligentcommerce.com/">Diligent</a> &copy <?php echo date('Y') ?> <?php echo $this->getCopyright() ?>
         </address>
-        <address class="copyright">
+        <address class="copyright mobile-only mobile">
             &copy <?php echo date('Y') ?> EVISU.
         </address>
     </div>
