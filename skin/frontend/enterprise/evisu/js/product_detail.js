@@ -189,10 +189,19 @@ jQuery(function($){
     // Init enrerprise Tabs
     var collateralTabs = new Enterprise.Tabs('collateral-tabs');
     collateralTabs.select();
+    var cloudZoomImage;
+    jQuery('.btn-zoom').on('click', function(){
+        var $this = jQuery(this);
+        if(!Mobile.yes){
+            if($this.hasClass('active')){
+                jQuery('#main-image .product-img-zoom').data('zoom').destroy();
+            } else {
+                cloudZoomImage = jQuery('#main-image .product-img-zoom').CloudZoom();
+            }
+            $this.toggleClass('active');
+        }
+    });
 
-    if(!Mobile.yes){
-        jQuery('#main-image .product-img-zoom').CloudZoom();
-    }
 
     //disable grouped error message when qty is changed
     if(AlertOOS.productType == 'grouped')
