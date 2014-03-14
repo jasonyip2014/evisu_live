@@ -344,6 +344,41 @@ var Mobile = {
     }
 };
 
+var NewsletterSubscribe = {
+
+    onReady: function(){
+        var self = this;
+        self.varienForm = new VarienForm('newsletter-validate-detail');
+        self.form = jQuery('#newsletter-validate-detail');
+        self.form.on('submit', function(){
+            self.sendData();
+            return false;
+        });
+    },
+    sendData : function()
+    {
+        var self = this;
+        var resultDiv = self.form.find('.result');
+
+        if(self.varienForm.validator.validate())
+        {
+            resultDiv.hide();
+            self.form.find('.loader').show();
+            jQuery.post(self.form.attr('action'), self.form.serialize()).done(function(data){
+                self.form.find('.loader').hide();
+                //console.log(jQuery(data).find('.messages'));
+                resultDiv.html(data);
+                resultDiv.fadeIn('slow',function(){
+                    resultDiv.delay(5000).fadeOut('slow');
+                });
+                //resultDiv.html('<ul><li class="success-msg"><ul><li><span>Thank you for your subscription.</span></li></ul></li></ul>');
+            }).error(function(){
+                resultDiv.html('request error');
+            });
+        }
+    }
+};
+
 //============onDocumentReady==============
 jQuery(function($)
 {
@@ -440,6 +475,9 @@ jQuery(window).load(function(){
 // Fixed header
 
 jQuery(function($){
+    if(!Mobile.yes){
+        NewsletterSubscribe.onReady();
+    }
     if(!Mobile.yes && !Mobile.isIPad){
         $(window).scroll(function(){
             var $topPosition = $(window).scrollTop();

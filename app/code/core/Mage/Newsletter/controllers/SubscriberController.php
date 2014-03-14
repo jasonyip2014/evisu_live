@@ -65,19 +65,24 @@ class Mage_Newsletter_SubscriberController extends Mage_Core_Controller_Front_Ac
                 $status = Mage::getModel('newsletter/subscriber')->subscribe($email);
                 if ($status == Mage_Newsletter_Model_Subscriber::STATUS_NOT_ACTIVE) {
                     $session->addSuccess($this->__('Confirmation request has been sent.'));
+                    echo '<div class="success">' . $this->__('Confirmation request has been sent.') . '</div>';
                 }
                 else {
                     $session->addSuccess($this->__('Thank you for your subscription.'));
+                    echo '<div class="success">' . $this->__('Thank you for your subscription.') . '</div>';
                 }
             }
             catch (Mage_Core_Exception $e) {
                 $session->addException($e, $this->__('There was a problem with the subscription: %s', $e->getMessage()));
+                echo '<div class="error">' . $this->__('There was a problem with the subscription: %s', $e->getMessage()) . '</div>';
             }
             catch (Exception $e) {
                 $session->addException($e, $this->__('There was a problem with the subscription.'));
+                echo '<div class="error">' . $this->__('There was a problem with the subscription.') . '</div>';
             }
         }
-        $this->_redirectReferer();
+        exit(0);
+        //$this->_redirectReferer();
     }
 
     /**

@@ -30,13 +30,19 @@
         <label for="newsletter"><?php echo $this->__('Newsletter') ?></label>
     </div>
         <div class="v-fix"><input name="email" type="text" id="newsletter" placeholder="<?php echo $this->__('Email address') ?>" onclick="this.value=='<?php echo $this->__('Enter your email address') ?>'?this.value='':''" onblur="this.value==''?this.value='<?php echo $this->__('Enter your email address') ?>':''" class="input-text required-entry validate-email" /></div>
-        <?php if($message = $this->getSuccessMessage()): ?>
-            <div class="success-message"><?php echo $message ?></div>
-        <?php endIf; ?>
-        <?php if($message = $this->getErrorMessage()): ?>
-            <div class="error-message"><?php echo $message ?></div>
-        <?php endIf; ?>
-        <button type="submit" class="button" title="<?php echo $this->__('Submit') ?>"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+        <?php /*
+            <?php if($message = $this->getSuccessMessage()): ?>
+                <div class="success-message"><?php echo $message ?></div>
+            <?php endIf; ?>
+            <?php if($message = $this->getErrorMessage()): ?>
+                <div class="error-message"><?php echo $message ?></div>
+            <?php endIf; ?>
+        */ ?>
+        <button type="submit" class="button" title="<?php echo $this->__('Submit') ?>">
+            <span><span><?php echo $this->__('Submit') ?></span></span>
+        </button>
+        <div class="loader no-display"><?php echo $this->__('Loading...') ?></div>
+        <div class="result no-display"></div>
     </div>
 </form>
 <script type="text/javascript">
