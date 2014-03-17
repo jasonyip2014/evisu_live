@@ -11,7 +11,12 @@
             <div class="image-holder" data-0="top:14.3%;" data-1200="top:-200%;">
                 <img src="<?php echo $_afHelper->init($afModel, $this->getMainImage() , '')->resize(1920, 1214); ?>" alt="" />
             </div>
-            <p class="main-text <?php echo $this->getHpMainColorScheme() ?>"><?php echo nl2br($this->getMainText()) ?></p>
+            <div class="main-text <?php echo $this->getHpMainColorScheme() ?>">
+                <p class="row1"><?php echo nl2br($this->getMainText()) ?></p>
+                <?php if($this->getMainTextRow2()): ?>
+                    <p class="row2"><?php echo nl2br($this->getMainTextRow2()) ?></p>
+                <?php endIf; ?>
+            </div>
         </div>
         <?php /*
             <div class="quick-navigation">

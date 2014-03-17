@@ -70,7 +70,7 @@ body{
     display: none;
 }
 .page {padding: 0 0 230px;}
-.main-section p{
+.main-section .main-text{
     font: 700 48px 'Open Sans', arial, sans-serif;
     text-transform: uppercase;
     width: 728px;
@@ -79,6 +79,12 @@ body{
     line-height: 50px;
     letter-spacing: 7.4px;
     right: 50px;
+    color: #fff;
+}
+.main-section .main-text.black{
+    color: #333;
+}
+.main-section .main-text.white{
     color: #fff;
 }
 .section-holder-2 .block-holder-10 {

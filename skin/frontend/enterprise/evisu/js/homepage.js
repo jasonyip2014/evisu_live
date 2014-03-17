@@ -73,7 +73,8 @@ jQuery(function($){
         jQuery(window).resize();
         //animate main section here
         jQuery('.main-section .image-holder').delay(1000).animate({opacity:1},1000);
-        jQuery('.main-section p').delay(2000).fadeIn(1000);
+        jQuery('.main-section .main-text>.row1').delay(2000).fadeIn(1000);
+        jQuery('.main-section .main-text>.row2').delay(3000).fadeIn(1000);
     });
 
     jQuery(window).scroll(function(){

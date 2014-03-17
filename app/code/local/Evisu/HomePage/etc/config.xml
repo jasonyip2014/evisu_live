@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Evisu_HomePage>
-            <version>0.3.3</version>
+            <version>0.3.4</version>
         </Evisu_HomePage>
     </modules>
     <global>
@@ -50,6 +50,12 @@
                                 <required>1</required>
                                 <template>textarea</template>
                             </main_text>
+                            <main_text_row2>
+                                <name>Main Text</name>
+                                <required>0</required>
+                                <template>textarea</template>
+                                <note>Displayed with delay</note>
+                            </main_text_row2>
                             <hp_main_color_scheme>
                                 <label>Color Scheme</label>
                                 <type>varchar</type>>
