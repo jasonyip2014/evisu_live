@@ -525,7 +525,7 @@ var SwitchStore = {
         //add behaviour
         if(!self.countryCookie){
             self.location = $selectedItem.data('url');
-            jQuery('#change-country-popup-update-btn').html('Switch Country');
+            jQuery('#change-country-popup-update-btn').html('Confirm');
             jQuery('#change-country-popup .close-btn').hide();
         } else {
             jQuery('#change-country-btn').on('click', function(){
