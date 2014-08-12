@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Evisu_Catalog>
+            <version>0.1.8</version>
+        </Evisu_Catalog>
+    </modules>
+    <global>
+        <models>
+            <evisu_catalog>
+                <class>Evisu_Catalog_Model</class>
+            </evisu_catalog>
+        </models>
+        <blocks>
+            <evisu_catalog>
+                <class>Evisu_Catalog_Block</class>
+            </evisu_catalog>
+            <catalogsearch>
+                <rewrite>
+                    <autocomplete>Evisu_Catalog_Block_Search_Autocomplete</autocomplete>
+                </rewrite>
+            </catalogsearch>
+        </blocks>
+        <helpers>
+            <evisu_catalog>
+                <class>Evisu_Catalog_Helper</class>
+            </evisu_catalog>
+        </helpers>
+        <resources>
+            <evisu_catalog_setup>
+                <setup>
+                    <module>Evisu_Catalog</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+            </evisu_catalog_setup>
+        </resources>
+        <events>
+            <catalog_category_flat_loadnodes_before>
+                <observers>
+                    <evisu_catalog_observer>
+                        <class>evisu_catalog/observer</class>
+                        <method>addAttributesToCategoryCollection</method>
+                    </evisu_catalog_observer>
+                </observers>
+            </catalog_category_flat_loadnodes_before>
+            <sales_quote_save_before>
+                <observers>
+                    <crombie_catalog_data_to_quote>
+                        <class>evisu_catalog/observer</class>
+                        <method>addCustomAttributesToQuote</method>
+                    </crombie_catalog_data_to_quote>
+                </observers>
+            </sales_quote_save_before>
+        </events>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <second_name />
+                        <size />
+                        <colour />
+                        <evisu_sku />
+                    </product_attributes>
+                </item>
+            </quote>
+        </sales>
+        <fieldsets>
+            <sales_convert_quote_item>
+                <evisu_sku>
+                    <to_order_item>*</to_order_item>
+                </evisu_sku>
+            </sales_convert_quote_item>
+            <sales_convert_order_item>
+                <evisu_sku>
+                    <to_quote_item>*</to_quote_item>
+                   <!-- <to_invoice_item>*</to_invoice_item>
+                    <to_shipment_item>*</to_shipment_item>
+                    <to_cm_item>*</to_cm_item>-->
+                </evisu_sku>
+            </sales_convert_order_item>
+        </fieldsets>
+    </global>
+    <frontend>
+        <product>
+            <collection>
+                <attributes>
+                    <!--General Tab in Category-->
+                    <additional_promo_copy/>
+
+                    <!--Firts Promo Panel in Category-->
+                    <first_promo_panel_title/>,
+                    <first_promo_panel_enabled/>,
+                    <first_promo_panel_image/>,
+                    <first_promo_panel_description/>,
+                    <first_promo_panel_link_text/>,
+                    <first_promo_panel_target_url/>
+
+                    <!--Second Promo Panel in Category-->
+                    <second_promo_panel_title/>,
+                    <second_promo_panel_enabled/>,
+                    <second_promo_panel_image/>,
+                    <second_promo_panel_description/>,
+                    <second_promo_panel_link_text/>,
+                    <second_promo_panel_target_url/>
+                </attributes>
+            </collection>
+        </product>
+    </frontend>
+    <default>
+        <catalog>
+            <product_detail>
+                <qty>10</qty>
+            </product_detail>
+        </catalog>
+    </default>
+</config>
