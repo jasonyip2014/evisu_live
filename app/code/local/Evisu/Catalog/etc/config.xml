@@ -51,6 +51,16 @@
                     </crombie_catalog_data_to_quote>
                 </observers>
             </sales_quote_save_before>
+            <!-- by cleargo , redirect shop-all category-->
+            <catalog_controller_category_init_after>
+                <observers>
+                    <redirect_shop_all>
+                        <class>evisu_catalog/category_observer</class>
+                        <method>redirectAlias</method>
+                    </redirect_shop_all>
+                </observers>
+            </catalog_controller_category_init_after>
+
         </events>
         <sales>
             <quote>
