@@ -54,9 +54,10 @@ class RonisBT_TopMenu_Helper_Data extends Mage_Core_Helper_Abstract
         }
         foreach ($children as $child){
             if ($child->getIsActive()){
-
+                //by cleargo, skip evisu/shop-all, womens/shop-all
+                if (!preg_match("@(evisu/shop-all|womens/shop-all)@i",$child['request_path'])){
                     $categories[$child->getName()] = $child;
-
+                }
             }
         }
         if ($additional && is_array($additional)){

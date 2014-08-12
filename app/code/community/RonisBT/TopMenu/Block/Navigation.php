@@ -215,7 +215,10 @@ class RonisBT_TopMenu_Block_Navigation extends Mage_Catalog_Block_Navigation
 
     public function drawItem($item, $level=0, $last=false, $thumbnail = false)
     {
-
+        //by cleargo, remove men/women cate link url
+        if (preg_match("/shop-all/i",$item['url'])){
+            $item['url'] = "javascript:void(0)\" style=\"text-decoration:none;cursor:default\"";
+        }
         $category = $item->getCategory();
         //Zend_debug::dump($item['id']);
         if (preg_match("|evisu/shop-all|i",$category['request_path'])){
