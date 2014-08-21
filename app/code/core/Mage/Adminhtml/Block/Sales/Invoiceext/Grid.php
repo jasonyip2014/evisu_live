@@ -81,13 +81,22 @@ class Mage_Adminhtml_Block_Sales_Invoiceext_Grid extends Mage_Adminhtml_Block_Wi
             array('base_currency_code', 'increment_id', 'created_at', 'base_shipping_incl_tax', 'base_shipping_amount', 'status')
         );
 
+        //shipment item by cleargo 20140821
+        $collection->joinLeft(array('ssi' => 'sales/shipment_item'),
+            'soi.item_id = ssi.order_item_id',
+            array('shipment_item_parent_id' => 'parent_id')
+        );
+        $collection->joinLeft(array('ss' => 'sales/shipment'),
+            'ss.entity_id = ssi.parent_id',
+            array('shipment_created_at' => 'created_at')
+        );
 
-        
+        /*
                 $collection->joinLeft(array('ss' => 'sales/shipment'),
                     'ss.order_id = main_table.order_id',
                     array('shipment_created_at' => 'created_at')
                 );
-/*
+
                 //var_dump((string)$collection->getSelect());die;
 */
                 // add tax
