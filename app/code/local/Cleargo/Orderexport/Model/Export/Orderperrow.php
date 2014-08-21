@@ -126,6 +126,8 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'cc_type' => 'Credit Card Type',
 
 
+            "order_currency_code"=>"Order Currency Code",
+
             'customer_name' => 'Customer Name',
             'item_name'=>'Item Name',
             'item_status'=>'Item Status',
@@ -172,6 +174,7 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'subtotal' => 'Order Subtotal',
             'tax' => 'Order Tax',
             'shipping_cost' => 'Order Shipping',
+            'shipping_cost_per_line' => 'Order Shipping fee (Per Line Item)',
             'discount_amount' => 'Order Discount',
             'grand_total' => 'Order Grand Total',
             'base_grand_total' => 'Order Base Grand Total',
@@ -219,6 +222,9 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             ->setOrder('created_at', 'desc')
         ;
         $status_last_updated = $history->getFirstItem()->getCreatedAt();
+
+
+
         return array(
             'increment_id'=>$order->getRealOrderId(),
             'created_at' => date('Y-m-d H:i:s',Mage::getModel('core/date')->timestamp(strtotime($order->getCreatedAt()))),
@@ -231,6 +237,7 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'shipping_method' =>$order->getShippingMethod(),
             'subtotal' =>  $this->formatPrice($order->getData('subtotal'), $order),
             'tax' =>$this->formatPrice($order->getData('tax_amount'), $order),
+            'order_currency_code' =>$order->getOrderCurrencyCode(),
             'shipping_cost' =>$this->formatPrice($order->getData('shipping_amount'), $order),
             'discount_amount' =>$this->formatPrice($order->getData('discount_amount'), $order),
             'grand_total' => $this->formatPrice($order->getData('grand_total'), $order),
@@ -277,6 +284,9 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
     protected function getOrderItemValues($item, $order, $itemInc=1)
     {
 
+        //get shipping cost 20140813, by line item
+        $shipping_cost_per_line = $order->getData('shipping_amount');
+
         return array(
             'item_count'=>$itemInc,
             'item_name'=>$item->getName(),
@@ -292,7 +302,10 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'item_qty_refunded'=>(int)$item->getQtyRefunded(),
             'item_tax'=>$this->formatPrice($item->getTaxAmount(), $order),
             'item_discount'=>$this->formatPrice($item->getDiscountAmount(), $order),
-            'item_total'=>$this->formatPrice($this->getItemTotal($item), $order)
+            'item_total'=>$this->formatPrice($this->getItemTotal($item), $order),
+
+            'shipping_cost_per_line' =>$this->formatPrice($shipping_cost_per_line, $order),
+
         );
     }
 
