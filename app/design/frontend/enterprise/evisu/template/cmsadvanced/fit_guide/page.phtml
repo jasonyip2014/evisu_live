@@ -1,0 +1,89 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+
+<?php
+    $thumbnailWidth = 145;
+    $thumbnailHeight = 274;
+?>
+<?php
+    $currentItemId = null;
+    if($getParam = Mage::app()->getRequest()->getParam('fit_guide'))
+    {
+        $currentItemId = $this->getChildren()->addAttributeToFilter('fit_attribute', $getParam)->getFirstItem()->getId();
+    }
+?>
+
+
+<?php $_page = $this->getPage(); ?>
+<div class="fit-guide-container">
+    <div id="next-btn">
+        <div class="link"><?php echo $this->__('Next') ?></div>
+        <div class="img image-holder"><img alt="next"/></div>
+    </div>
+    <div id="prev-btn">
+        <div class="link"><?php echo $this->__('Prev') ?></div>
+        <div class="img image-holder"><img alt="prev"/></div>
+    </div>
+    <div id="greyed-all"></div>
+    <div class="center-container">
+        <div class="page-sub-title"><?php echo $this->escapeHtml($this->getSubTitle()) ?></div>
+        <div class="page-title"><?php echo $this->escapeHtml($this->getTitle()) ?></div>
+    </div>
+    <?php $items = $this->getItems() ?>
+    <?php $jsonConfig = array()  ?>
+    <?php if(count($items) > 0): ?>
+        <?php $i = 0; foreach ($items as $_item): ?>
+            <?php if(!$currentItemId) $currentItemId = $_item->getEntityId() ?>
+            <div id="item-<?php echo $_item->getEntityId() ?>" class="item">
+                <?php $jsonConfig[$i] = $_item->getData() ?>
+                <?php $jsonPositions[$_item->getEntityId()] = $i ?>
+                <?php echo $_item->toHtml(); ?>
+            </div>
+            <?php $i++; ?>
+        <?php endforeach ?>
+        <?php $jsonPositions['length'] = $i ?>
+    <?php endIf; ?>
+</div>
+
+<div class="fit-guide-navigation">
+    <div class="slide-navigation">
+        <div class="main-navigation">
+            <?php if($navItems = Mage::helper('evisu_fitguide')->getMainNavigationItems()): ?>
+                <?php foreach($navItems as $navItem): ?>
+                    <a href="<?php echo $this->escapeHtml($navItem->getUrl()) ?>" class="item<?php echo ($_page->getId() == $navItem->getId()) ? ' active' : '' ?>"><?php echo $this->escapeHtml($navItem->getMenuTitle()) ?> </a>
+                <?php endForeach; ?>
+            <?php endIf; ?>
+        </div>
+        <div class="thumbnail-navigation no-mobile">
+            <?php if(count($items) > 0): ?>
+                <?php $i = 0; foreach ($items as $_item): ?>
+                    <div  class="thumbnail" id="thumbnail-<?php echo $_item->getEntityId() ?>" data-id="<?php echo $_item->getEntityId() ?>" title="<?php echo $_item->getTitle() ?>">
+                        <div class="image-holder">
+                            <img width="<?php echo $thumbnailWidth ?>px" height="<?php echo $thumbnailHeight ?>px" src="<?php echo $_afHelper->init($_item->getPage()->getBlockModel(), $_item->getThumbnail() , '')->resize($thumbnailWidth, $thumbnailHeight); ?>" alt="" />
+                        </div>
+                    </div>
+                    <?php $i++; ?>
+                <?php endforeach ?>
+            <?php endIf; ?>
+        </div>
+    </div>
+    <div class="text-navigation">
+        <?php if(count($items) > 0): ?>
+            <?php $i = 0; foreach ($items as $_item): ?>
+                <div class="text<?php if($i == 0):?> active<?php endIf; ?>" id="text-<?php echo $_item->getEntityId() ?>" data-id="<?php echo $_item->getEntityId() ?>" title="<?php echo $_item->getTitle() ?>">
+                    <?php echo $_item->getMenuTitle() ?>
+                </div>
+                <?php $i++; ?>
+            <?php endforeach ?>
+        <?php endIf; ?>
+    </div>
+</div>
+<div class="additional-block mobile-only">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mobile_fit_guide_additional_block')->toHtml(); ?>
+</div>
+<script>
+    FitGuide.init(<?php echo json_encode($jsonConfig) ?>,<?php echo json_encode($jsonPositions) ?>, <?php echo $currentItemId ?>);
+</script>

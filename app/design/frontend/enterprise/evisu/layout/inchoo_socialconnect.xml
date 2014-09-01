@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <customer_account_login>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/social_login.js</name>
+            </action>
+        </reference>
+        <reference name="customer_form_login">
+            <block type="inchoo_socialconnect/facebook_button" name="inchoo_socialconnect_facebook_login_button" as="sign_in_facebook_button" template="persistent/customer/facebook/button.phtml">
+                <action method="setTitle" translate="title">
+                    <title>SIGN IN WITH FACEBOOK</title>
+                </action>
+            </block>
+            <block type="inchoo_socialconnect/facebook_button" name="inchoo_socialconnect_facebook_login_button" as="sign_up_facebook_button" template="persistent/customer/facebook/button.phtml">
+                <action method="setTitle" translate="title">
+                    <title>SIGN UP WITH FACEBOOK</title>
+                </action>
+            </block>
+        </reference>
+    </customer_account_login>
+
+<!--
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>inchoo_socialconnect/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.login">
+            <action method="setTemplate" >
+                <template>inchoo/socialconnect/checkout/onepage/login.phtml</template>
+            </action>
+            <block type="inchoo_socialconnect/checkout" name="inchoo_socialconnect_checkout">
+                <block type="inchoo_socialconnect/google_button" name="inchoo_socialconnect_checkout_google_button" />
+                <block type="inchoo_socialconnect/facebook_button" name="inchoo_socialconnect_checkout_facebook_button" />
+            </block>
+        </reference>
+    </checkout_onepage_index>
+-->
+</layout>

@@ -1,0 +1,38 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+
+<?php $videoCode = $this->getHpIpVideo() ?>
+<div <?php if($videoCode): ?>class="video-panel"<?php endIf; ?>>
+    <?php if($videoCode): ?>
+        <div class="video-wrapper">
+            <iframe width="<?php echo $this->stripTags($this->getHpIpWidth()) ?>px" height="<?php echo $this->stripTags($this->getHpIpHeight()) ?>px" class="fvideo" src="" data-src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        </div>
+        <a href="#" class="video-overlay-holder"></a>
+    <?php endIf; ?>
+    <?php if($this->getHpIpImage()): ?>
+        <div class="image-holder">
+            <img src="<?php echo $_afHelper->init($afModel, $this->getHpIpImage() , '')->resize($this->getWidth(), $this->getHeight()); ?>" alt="" />
+        </div>
+    <?php endIf; ?>
+    <?php $linkText = $this->getHpIpLinkText(); if($linkText && $this->getHpIpTargetUrl()): ?>
+        <div class="a-holder">
+            <div class="a-wrapper">
+                <div class="a-container">
+                    <a href="<?php echo $this->escapeHtml($this->getHpIpTargetUrl()) ?>" class="text-link" title="<?php echo $this->escapeHtml($this->getHpIpLinkText()) ?>">
+                        <span class="text-link-holder <?php echo $this->getHpIpColorScheme() ?>">
+                            <span class="text-link-wrapper">
+                                <?php echo $this->escapeHtml($this->getHpIpLinkText()) ?>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <?php elseif(!$linkText && $this->getHpIpTargetUrl()): ?>
+        <a class="overlay-link" href="<?php echo $this->escapeHtml($this->getHpIpTargetUrl()) ?>"></a>
+    <?php endIf; ?>
+</div>

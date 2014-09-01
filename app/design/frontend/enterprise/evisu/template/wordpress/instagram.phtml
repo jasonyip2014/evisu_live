@@ -1,0 +1,16 @@
+<?php /* @var $this Ikantam_InstagramConnect_Block_Blog */ ?>
+<?php if($this->showImages()): ?>
+    <div class="instagram-block">
+        <div class="block-title"><?php echo $this->__('Instagram') ?></div>
+        <a href="<?php echo $this->getFollowUrl() ?>"><?php echo $this->__('Follow Us') ?></a>
+        <?php if($images = $this->getImages()): ?>
+            <div class="instagram-view">
+                <?php foreach($images as $_image): ?>
+                    <div class="image-holder">
+                        <img src="<?php echo $_image->getStandardResolutionUrl(); ?>" alt="<?php echo $this->stripTags($_image->getCaptionText()) ?>" />
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endIf; ?>
+    </div>
+<?php endIf; ?>

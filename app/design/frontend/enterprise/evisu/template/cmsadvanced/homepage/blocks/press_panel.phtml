@@ -1,0 +1,15 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<a href="<?php echo $this->escapeHtml($this->getHps3PpTargetUrl()) ?>">
+    <span class="image-holder">
+        <img src="<?php echo $this->getImage('hps3_pp_image') ?>" alt="" />
+    </span>
+</a>
+<a class="header-holder" href="<?php echo $this->escapeHtml($this->getHps3PpTargetUrl()) ?>">
+    <h2><?php echo $this->escapeHtml($this->getHps3PpHeader()) ?></h2>
+    <h3><?php echo $this->escapeHtml($this->getHps3PpTitle()) ?></h3>
+</a>
+<p><?php echo nl2br($this->escapeHtml($this->getHps3PpText())) ?></p>
+<a href="<?php echo $this->escapeHtml($this->getHps3PpTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3PpLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3PpLinkText()) ?></a>

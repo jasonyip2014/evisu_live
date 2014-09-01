@@ -1,0 +1,53 @@
+<?php
+    $modelSwitcher = Mage::getModel('page/geocountries');
+    $locale = Mage::app()->getLocale();
+?>
+<div class="form-language">
+    <div id="top-hider" class="no-display"></div>
+    <div class="country-select-label">
+        <?php  $defCountryCode = Mage::getStoreConfig('general/country/default'); ?>
+        <?php $defCountry = Mage::getModel('directory/country')->loadByCode($defCountryCode);?>
+        <?php $countryCode = $defCountryCode; ?>
+        <?php $countryName = Mage::getModel('directory/country')->loadByCode($countryCode)->getName();?>
+        <div class="shipping-switch">
+            <div class="caption"><?php echo $this->__('Shipping to:') ?></div>
+            <div id="change-country-btn" class="current-shipping">
+                <span></span>
+                <img src="" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div id="change-country-popup" class="no-display">
+        <div class="close-btn">X</div>
+        <div class="header"><?php echo $this->__('Change Country') ?></div>
+        <div class="description"><?php echo $this->__('Please select the country where your order will be shipped to. This will give you the correct pricing, delivery times and shipping costs for your destination.<br/><br/> Note that by changing country your current shopping basket will be lost') ?></div>
+        <div class="field-row select-country">
+            <label for="select-country"><?php echo $this->__('Delivery Country: ') ?></label>
+            <select id="select-country" class="replacemeselect">
+                <?php foreach ($modelSwitcher->getSwichableCountries() as $country): ?>
+                    <option data-store="<?php echo $country->getStore() ?>" data-url="<?php echo $this->getSwitchUrl($country) ?>" data-currency="<?php echo $locale->currency($country->getCurrency())->getName() ?>" data-origin="<?php echo $country->getOrigin() ?>" value="<?php echo $country->getCode() ?>"><?php echo $country->getName() ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <?php //var_dump($location->getData()) ?>
+        <div class="field-row">
+            <span class="label"><?php echo $this->__('Order Billed In: ') ?></span>
+            <span class="switch-currency"></span>
+        </div>
+        <div class="field-row hidden">
+            <span class="label"><?php echo $this->__('Order Dispatched From: ') ?></span>
+            <span class="switch-origin"></span>
+        </div>
+        <div class="field-row-btn">
+            <button id="change-country-popup-update-btn"><?php echo $this->__('Close') ?></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    SwitchStore.skinUrl = '<?php echo $this->getSkinUrl() ?>';
+    SwitchStore.currentStore = '<?php echo Mage::app()->getStore()->getCode() ?>';
+    <?php if($geoIpCountyCode = $this->getGeoIpCountryCode()): ?>
+        SwitchStore.ipCountryCode = '<?php echo $geoIpCountyCode ?>';
+    <?php endIf; ?>
+</script>

@@ -1,0 +1,133 @@
+<?php /* @var $this Mage_Catalog_Block_Product_View_Media */ ?>
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+
+
+
+<?php $imagesCount = count($this->getGalleryImages()) ?>
+<?php $images = array() ?>
+<?php if ($imagesCount > 0): ?>
+    <?php $i = 1;foreach ($this->getGalleryImages() as $_image): ?>
+        <?php $images[$i] = $_image; ?>
+    <?php $i++; endforeach; ?>
+<?php endif; ?>
+<div class="more-views no-mobile">
+    <?php if(!empty($images['2'])): ?>
+        <div class="alt-images-type-1">
+            <div class="image-holder">
+                <img width="400" height="600" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['2']->getFile())->resize(400, 600) ?>"  alt="<?php echo $this->escapeHtml($images['2']->getLabel()) ?>" />
+            </div>
+        </div>
+    <?php endIf; ?>
+    <?php if(!empty($images['3'])): ?>
+        <div class="alt-images-type-1">
+            <div class="image-holder">
+                <img width="400" height="600" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['3']->getFile())->resize(400, 600) ?>"  alt="<?php echo $this->escapeHtml($images['3']->getLabel()) ?>" />
+            </div>
+        </div>
+    <?php endIf; ?>
+    <?php if($_product->getPecStatus()): ?>
+        <?php //EditorialContent ?>
+        <?php if($pec_items = Mage::helper('ronisbt_editorialcontent')->getProductEditorialContent($_product)): ?>
+            <?php $i = 0; foreach($pec_items as $pec_item): ?>
+                <?php if($i == 2): ?>
+                    <?php if(!empty($images[2 + $i])): ?>
+                        <div class="alt-images-type-2">
+                            <div class="image-holder">
+                                <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['4']->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images['4']->getLabel()) ?>" />
+                            </div>
+                        </div>
+                    <?php endIf; ?>
+                    <?php if(!empty($images[3 + $i])): ?>
+                        <div class="alt-images-type-2">
+                            <div class="image-holder">
+                                <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images['5']->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images['5']->getLabel()) ?>" />
+                            </div>
+                        </div>
+                    <?php endIf; ?>
+                <?php endIf; ?>
+                <?php if($pec_item['block']):?>
+                    <?php switch($pec_item['block']->getPageType()->getCode()):
+                        case 'pec_text_box_panel': ?>
+                            <div class="text-box-panel <?php echo $pec_item['block']->getPecTbpSize() ?>">
+                                <span class="title"><?php echo nl2br($this->stripTags($pec_item['block']->getPecTbpTitle())) ?></span>
+                                <span class="description"><?php echo nl2br($this->stripTags($pec_item['block']->getPecTbpDescription())) ?></span>
+                                <a href="<?php echo $this->stripTags($pec_item['block']->getPecTbpTargetUrl()) ?>" title="<?php echo $this->stripTags($pec_item['block']->getPecTbpLinkText()) ?>">
+                                    <?php echo $this->stripTags($pec_item['block']->getPecTbpLinkText()) ?>
+                                </a>
+                            </div>
+                        <?php break; ?>
+                        <?php case 'pec_text_promo_panel': ?>
+                            <div class="text-promo-panel">
+                                <a href="<?php echo $this->stripTags($pec_item['block']->getPecTppTargetUrl()) ?>" title="<?php echo $this->stripTags($pec_item['block']->getPecTppLinkText()) ?>">
+                                    <?php echo nl2br($this->stripTags($pec_item['block']->getPecTppLinkText())) ?>
+                                </a>
+                            </div>
+                        <?php break; ?>
+                        <?php case 'pec_video_panel': ?>
+                            <div class="video_panel">
+                                <?php if($videoCode = $pec_item['block']->getPecTvpVideoCode()): ?>
+                                    <div class="video-wrapper">
+                                        <iframe width="500" height="281" class="fvideo" src="" data-src="<?php echo Mage::helper('evisu_homepage')->getVideoUrlByCode($videoCode) ?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                                    </div>
+                                    <a href="#" class="video-overlay-holder"></a>
+                                <?php endIf; ?>
+                                <?php if($pec_item['block']->getPecTvpCoverImage()): ?>
+                                    <div class="image-holder">
+                                        <img width="500" height="281" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $pec_item['block']->getPecTvpCoverImage() , '')->resize(500, 281) ?>" alt="" />
+                                    </div>
+                                <?php endIf; ?>
+                            </div>
+                        <?php break; ?>
+                    <?php endSwitch; ?>
+                <?php endIf; ?>
+            <?php $i++; endForeach; ?>
+        <?php endIf; ?>
+    <?php else: ?>
+        <?php if(count($images) > 0): ?>
+            <?php for($i = 4; $i <= count($images); $i++): ?>
+                <?php if(!empty($images[$i])): ?>
+                    <div class="alt-images-type-2">
+                        <div class="image-holder">
+                            <img width="200" height="300" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $images[$i]->getFile())->resize(200, 300) ?>"  alt="<?php echo $this->escapeHtml($images[$i]->getLabel()) ?>" />
+                        </div>
+                    </div>
+                <?php endIf; ?>
+            <?php endFor; ?>
+        <?php endIf; ?>
+    <?php endIf; ?>
+
+    <?php echo $this->getChildHtml('recently_viewed') ?>
+    <?php echo $this->getChildHtml('relatedProducts') ?>
+</div>

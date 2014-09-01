@@ -1,0 +1,9 @@
+<div class="filter-view">
+    <?php echo $this->__('View') ?>
+    <?php $helper = Mage::helper('evisu_blog') ?>
+    <?php $viewType = $helper->getViewType() ?>
+    <a class="grid <?php if($viewType == 'grid') echo 'active' ?>" href="<?php echo $helper->getGridViewUrl() ?>" title="<?php echo $this->__('Grid') ?>">
+        <?php echo $this->__('Grid') ?>
+    </a>
+    <a class="list <?php if($viewType == 'list') echo 'active' ?>" href="<?php echo $helper->getListViewUrl() ?>" title="<?php echo $this->__('List') ?>"><?php echo $this->__('List') ?></a>
+</div>

@@ -1,0 +1,17 @@
+<?php /* @var $this Mage_Core_Block_Template */ ?>
+
+<p>
+    <?php $wishlistItemsCount = $this->helper('enterprise_wishlist')->getWishlistItemCount($this->helper('enterprise_wishlist')->getDefaultWishlist()) ?>
+    <?php if ($wishlistItemsCount > 0) :?>
+        <?php echo $this->__('You have %s item(s) in your wishlist', $wishlistItemsCount) ?>
+    <?php else: ?>
+        <?php echo $this->__('You have not yet created a wishlist') ?>
+    <?php endIf; ?>
+</p>
+<div class="links">
+    <a href="<?php echo $this->getUrl('wishlist') ?>"><?php echo $this->__('See All') ?></a>
+    <a href="<?php echo $this->getBaseUrl('') ?>"><?php echo $this->__('Continue Shopping') ?></a>
+</div>
+
+
+

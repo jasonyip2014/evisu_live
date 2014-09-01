@@ -1,0 +1,49 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+<?php $categoryUrl = Mage::getModel("catalog/category")->load($this->getCategory())->getUrl(); ?>
+<?php
+    $imagesWidth = 478;
+    $imagesHeight = 986;
+?>
+<div class="item-text-container">
+    <div class="title"><?php echo $this->getTitle() ?></div>
+    <div class="sub-title"><?php echo $this->getSubTitle() ?></div>
+    <div class="description"><?php echo nl2br($this->getDescription()) ?></div>
+    <div class="buttons">
+        <a href="<?php echo $categoryUrl . '?fit_guide=' . $this->getFitAttribute() ?>">
+            <?php echo $this->__('View All')?> <?php echo $this->getMenuTitle() ?>
+        </a>
+        <a class="size-chart-btn" id="size-chart-btn-<?php echo $this->getEntityId() ?>" href="" title="<?php echo $this->__('Size Chart') ?>"><?php echo $this->__('Size Chart') ?></a>
+        <script>
+            jQuery('#size-chart-btn-<?php echo $this->getEntityId() ?>').on('click', function(){
+                var c = '<div class="box-modal">' +
+                    '<div class="box-modal_close arcticmodal-close">X</div>' +
+                        '<div class="size-chart">' +
+                            '<div class="size-chart-head">' +
+                                '<img src="<?php echo $this->getSkinUrl('images/logo-size-chart.png') ?>" />' +
+                                '<div class="size-chart-title"><?php echo $this->__('Size Chart') ?></div>' +
+                                '<div class="size-chart-description"><?php echo $this->__('All items are individually measured by EVISU in inches') ?></div>' +
+                            '</div>' +
+                            '<div class="size-chart-img image-holder"><img src="<?php echo $this->getImage('size_chart') ?>" atl="size-shart" /></div>' +
+                        '</div>' +
+                    '</div>'
+                jQuery.arcticmodal({
+                    content: c
+                });
+                return false;
+            });
+        </script>
+    </div>
+</div>
+<div class="image-holder left-image">
+    <img width="<?php echo $imagesWidth ?>px" height="<?php echo $imagesHeight ?>px" src="<?php echo $_afHelper->init($afModel, $this->getLeftImage() , '')->resize($imagesWidth, $imagesHeight); ?>" alt="" />
+</div>
+<div class="image-holder right-image">
+    <img width="<?php echo $imagesWidth ?>px" height="<?php echo $imagesHeight ?>px" src="<?php echo $_afHelper->init($afModel, $this->getRightImage() , '')->resize($imagesWidth, $imagesHeight); ?>" alt="" />
+</div>
+
+

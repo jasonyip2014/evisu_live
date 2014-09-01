@@ -1,0 +1,58 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php
+    $backgroundImageWidth = 1250;
+    $backgroundImageHeight = 1315;
+
+    $blockImageWidth = 230;
+    $blockImageHeight = 170;
+
+    $blockMobileImageWidth = 120;
+    $blockMobileImageHeight = 120;
+?>
+
+<div class="page-title no-mobile">
+    <h1><?php echo $this->stripTags($this->getName()) ?></h1>
+</div>
+<div class="cmsadvanced-breadcrumbs-container no-mobile">
+    <?php echo $this->getChildHtml('breadcrumbs') ?>
+</div>
+<div class="about-us-page-wrapper">
+    <div class="about-us-background-image">
+        <div class="image-holder">
+            <img width="<?php echo $backgroundImageWidth ?>" height="<?php echo $backgroundImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getAboutUsImage()), 'cms_page')->resize($backgroundImageWidth, $backgroundImageHeight) ?>" alt="Evisu. About Us" />
+        </div>
+    </div>
+    <div class="page-title mobile-only">
+        <h1><?php echo $this->stripTags($this->getName()) ?></h1>
+    </div>
+    <h1><?php echo $this->stripTags($this->getAboutUsTitle()) ?></h1>
+    <div class="about-us-page-content">
+        <div class="column-1"><?php echo $this->getAboutUsColumn1Text() ?></div>
+        <div class="column-2"><?php echo $this->getAboutUsColumn2Text() ?></div>
+    </div>
+    <div class="contacts-page-blocks no-mobile">
+        <?php for($i = 1; $i < 5; $i++): ?>
+            <div class="block<?php echo $i ?> cu-block">
+                <a href="<?php echo $this->stripTags($this->getData('block' . $i . '_target_url')) ?>" title="<?php echo $this->stripTags($this->getData('block' . $i . '_link')) ?>">
+                    <img width="<?php echo $blockImageWidth ?>" height="<?php echo $blockImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getData('block' . $i . '_image')), 'cms_page')->resize($blockImageWidth, $blockImageHeight) ?>" alt="<?php echo $this->stripTags($this->getData('block' . $i . '_link')) ?>" />
+                    <?php echo $this->stripTags($this->getData('block' . $i . '_link')) ?>
+                </a>
+            </div>
+        <?php endFor; ?>
+    </div>
+    <div class="contacts-page-blocks mobile mobile-only">
+        <?php for($j = 1, $i = 1; $i < 7; $i++): ?>
+            <?php if($this->getData('mobile_block' . $i . '_enabled')): ?>
+                <div class="block<?php echo $j ?> cu-block">
+                    <a href="<?php echo $this->stripTags($this->getData('mobile_block' . $i . '_target_url')) ?>" title="<?php echo $this->stripTags($this->getData('mobile_block' . $i . '_link')) ?>">
+                        <img width="<?php echo $blockMobileImageWidth ?>" height="<?php echo $blockMobileImageHeight ?>" src="<?php echo Mage::helper('adminforms/image')->init('adminforms/cms_page', $this->stripTags($this->getData('mobile_block' . $i . '_image')), 'cms_page')->resize($blockMobileImageWidth, $blockMobileImageHeight) ?>" alt="<?php echo $this->stripTags($this->getData('mobile_block' . $i . '_link')) ?>" />
+                        <?php echo $this->stripTags($this->getData('mobile_block' . $i . '_link')) ?>
+                    </a>
+                </div>
+                <?php $j++; ?>
+            <?php endIf; ?>
+        <?php endFor; ?>
+    </div>
+</div>

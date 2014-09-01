@@ -1,0 +1,12 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+
+<?php if($this->getHIpImage()): ?>
+    <div class="image-holder">
+        <img width="<?php echo $this->stripTags($this->getHIpWidth()) ?>px" height="<?php echo $this->stripTags($this->getHIpHeight()) ?>px" src="<?php echo $_afHelper->init($afModel, $this->getHIpImage() , '')->resize($this->getHIpWidth(), $this->getHIpHeight()); ?>" alt="" />
+    </div>
+<?php endIf; ?>

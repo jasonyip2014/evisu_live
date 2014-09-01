@@ -1,0 +1,52 @@
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<form action="<?php echo $this->getUrl('newsletter/subscriber/new', array('_secure' => Mage::app()->getStore()->isCurrentlySecure())) ?>" method="post" id="newsletter-validate-detail" class="no-mobile">
+    <div class="form-subscribe">
+    <div class="form-subscribe-header">
+        <label for="newsletter"><?php echo $this->__('Newsletter') ?></label>
+    </div>
+        <div class="v-fix"><input name="email" type="text" id="newsletter" placeholder="<?php echo $this->__('Email address') ?>" onclick="this.value=='<?php echo $this->__('Enter your email address') ?>'?this.value='':''" onblur="this.value==''?this.value='<?php echo $this->__('Enter your email address') ?>':''" class="input-text required-entry validate-email" /></div>
+        <?php /*
+            <?php if($message = $this->getSuccessMessage()): ?>
+                <div class="success-message"><?php echo $message ?></div>
+            <?php endIf; ?>
+            <?php if($message = $this->getErrorMessage()): ?>
+                <div class="error-message"><?php echo $message ?></div>
+            <?php endIf; ?>
+        */ ?>
+        <button type="submit" class="button" title="<?php echo $this->__('Submit') ?>">
+            <span><span><?php echo $this->__('Submit') ?></span></span>
+        </button>
+        <div class="loader no-display"><?php echo $this->__('Loading...') ?></div>
+        <div class="result no-display"></div>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+//]]>
+</script>

@@ -1,0 +1,46 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+<div class="homepage-holder">
+    <div class="yoffset"></div>
+    <div class="main-section-holder section-holder">
+        <div class="main-section">
+            <?php if($this->getMainTargetUrl()): ?>
+                <a href="<?php echo $this->escapeHtml($this->getMainTargetUrl()) ?>">
+            <?php endIf; ?>
+                <span class="image-holder" data-0="top:14.3%" data-1200="top:-200%;">
+                    <img src="<?php echo $_afHelper->init($afModel, $this->getMainImage() , '')->resize(1920, 1214); ?>" alt="" />
+                </span>
+            <?php if($this->getMainTargetUrl()): ?>
+                </a>
+            <?php endIf; ?>
+            <div class="main-text <?php echo $this->getHpMainColorScheme() ?>">
+                <p class="row1"><?php echo nl2br($this->getMainText()) ?></p>
+                <?php if($this->getMainTextRow2()): ?>
+                    <p class="row2"><?php echo nl2br($this->getMainTextRow2()) ?></p>
+                <?php endIf; ?>
+            </div>
+        </div>
+        <?php /*
+            <div class="quick-navigation">
+                <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
+                <a href="javascript:void(null)" class="back-btn"><?php echo $this->__('Back') ?></a>
+            </div>
+        */ ?>
+    </div>
+    <div class="sections">
+        <?php $i = 1; ?>
+        <?php $sections = $this->getSections() ?>
+        <?php if(count($sections) > 0): ?>
+            <?php foreach ($sections as $_section): ?>
+                <div class="section-holder section-holder-<?php echo $i ?>" style="<?php echo $_section->getCss() ?>" <?php echo Mage::helper('evisu_homepage')->getScrollrData($_section->getLpSectionAnimation(), 0) ?>>
+                    <?php echo $_section->toHtml(); ?>
+                </div>
+                <?php $i++; ?>
+            <?php endforeach ?>
+        <?php endIf; ?>
+    </div>
+</div>

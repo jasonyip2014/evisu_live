@@ -1,0 +1,27 @@
+<?php /* @var $this Mage_Sales_Block_Order_History */ ?>
+
+<?php
+    $orders = $this->getOrders();
+    $ordersCount = $orders->getSize();
+
+    $_activeOrderStatus = array('pending','pending ogone','pending payment','pending paypall','processing', 'processing pgone payment');
+    $activeOrdersCount = 0;
+    foreach($orders as $order)
+    {
+        if (in_array($order->getStatus(),  $_activeOrderStatus))
+        {
+            $activeOrdersCount++;
+        }
+    }
+?>
+
+<p>
+    <h3><?php echo $this->__('Active') ?></h3>
+    <span><?php echo $this->__('You have %s order(s)', $activeOrdersCount) ?></span>
+    <h3><?php echo $this->__('History') ?></h3>
+    <span><?php echo $this->__('You have %s order(s)', $ordersCount - $activeOrdersCount) ?></span>
+</p>
+<div class="links">
+    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('SEE ALL ORDERS') ?></a>
+</div>
+

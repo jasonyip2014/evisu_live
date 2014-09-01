@@ -1,0 +1,21 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+
+<a href="<?php echo $this->escapeHtml($this->getHps3BpTargetUrl()) ?>">
+    <span class="image-holder">
+        <img src="<?php echo $this->getImage('hps3_bp_image') ?>" alt="" />
+    </span>
+</a>
+<a class="header-holder" href="<?php echo $this->escapeHtml($this->getHps3BpTargetUrl()) ?>">
+    <h2><?php echo $this->escapeHtml($this->getHps3BpHeader()) ?></h2>
+    <h3><?php echo $this->escapeHtml($this->getHps3BpTitle()) ?></h3>
+</a>
+<p>
+    <span class="date"><?php echo $this->escapeHtml($this->getHps3BpDate()) ?></span>
+    <span class="separator"></span>
+    <span class="category"><?php echo $this->escapeHtml($this->getHps3BpCategory()) ?></span>
+</p>
+<p><?php echo nl2br($this->escapeHtml($this->getHps3BpText())) ?></p>
+<a href="<?php echo $this->escapeHtml($this->getHps3BpTargetUrl()) ?>" title="<?php echo $this->escapeHtml($this->getHps3BpLinkText()) ?>"><?php echo $this->escapeHtml($this->getHps3BpLinkText()) ?></a>

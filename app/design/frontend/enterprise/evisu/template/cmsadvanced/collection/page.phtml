@@ -1,0 +1,117 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php
+    //images properties (px)
+    $archiveThumbnailWidth = 200;
+    $archiveThumbnailHeight = 100;
+    $thumbnailImageHeight = 336;
+    //$mainImageWidth = 1199;
+    $mainImageHeight = 924;
+?>
+
+<?php
+$_page = $this->getPage();
+
+    $currentItem = null;
+    if($getParam = Mage::app()->getRequest()->getParam('item'))
+    {
+        $currentItem = $this->getChildren()->addAttributeToFilter('entity_id', $getParam)->getFirstItem();
+    }
+    else
+    {
+        $currentItem = $this->getChildren()->getFirstItem();
+    }
+?>
+
+
+<div class="collection-container">
+    <div class="description-holder">
+        <div class="title"></div>
+        <div class="cmsadvanced-breadcrumbs-container">
+            <?php echo $this->getChildHtml('breadcrumbs') ?>
+        </div>
+        <div class="description"></div>
+        <?php
+        $link = $this->getCLinkText();
+        if (!preg_match("/collection/i",$link)){ ?>
+        <a class="collection-link" href=""><?php echo $this->escapeHtml($this->getCLinkText()) ?></a>
+        <?php } ?>
+
+    </div>
+    <?php $looks = $this->getChildren() ?>
+    <?php if($looks && $looks->getSize() > 0): ?>
+        <div id="main-section">
+            <div class="main-carousel-holder">
+                <div class="prev-btn"><?php echo $this->__('Prev') ?></div>
+                <div class="left-hider no-mobile"></div>
+                <ul class="main-carousel">
+                    <?php $i = 0; foreach($looks as $look): ?>
+                        <?php if($look->getColiMainImage()): ?>
+                            <?php $imageSize = getimagesize($look->getImage('coli_main_image')); $ratio = (float) $imageSize[0] / (float)$imageSize[1] ?>
+                            <li<?php if($currentItem->getEntityId() == $look->getEntityId()): ?> class="active"<?php endIf; ?> data-id="<?php echo $look->getEntityId() ?>" id="main-carousel-<?php echo $look->getEntityId() ?>">
+                                <div class="image-holder">
+                                    <img src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getColiMainImage() , '')->adaptiveResize(($mainImageHeight * $ratio), $mainImageHeight); ?>" alt="<?php echo $look->getColiTitle() ?>" />
+                                </div>
+                            </li>
+                        <?endIf; ?>
+                    <?php endForeach; ?>
+                </ul>
+                <div class="right-hider no-mobile"></div>
+                <div class="next-btn"><?php echo $this->__('Next') ?></div>
+            </div>
+        </div>
+        <div class="gallery-btn-holder">
+            <div id="gallery-btn" class="opened" data-openedtext="<?php echo $this->__('Hide Gallery') ?>" data-closedtext="<?php echo $this->__('Show Gallery') ?>"><?php echo $this->__('Hide Gallery') ?></div>
+        </div>
+        <div id="thumbnail-section">
+            <div class="prev-btn no-display"><?php echo $this->__('Prev') ?></div>
+            <ul>
+                <?php $products = null; $ids = array(); ?>
+                <?php $i = 0; foreach($looks as $look): ?>
+                    <?php if($look->getColiThumbnailImage()): ?>
+                        <?php $imageSize = getimagesize($look->getImage('coli_thumbnail_image')); $ratio = (float) $imageSize[0] / (float)$imageSize[1] ?>
+                        <li class="<?php if(($i + 1) % 2 == 0): ?> odd<?php endIf; ?><?php if($currentItem->getEntityId() == $look->getEntityId()): ?> active<?php endIf; ?>" data-id="<?php echo $look->getEntityId() ?>" id="gall-trumb-<?php echo $look->getEntityId() ?>">
+                            <div class="image-holder">
+                                <img class="<?php if($ratio > 1): ?>ladscape<?php else: ?>portrait<?php endIf; ?>" src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getColiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio), $thumbnailImageHeight); ?>" alt="<?php echo $look->getColiTitle() ?>" />
+                            </div>
+                        </li>
+                    <?endIf; ?>
+                <?php $i++; endForeach; ?>
+            </ul>
+            <?php
+                $i = 0;
+                $config = array();
+                $positions = array();
+                foreach($looks as $look)
+                {
+                    $thumbnailImageSize = getimagesize($look->getImage('coli_thumbnail_image'));
+                    $ratio = (float) $thumbnailImageSize[0] / (float)$thumbnailImageSize[1];
+                    $config[$i] = array(
+                        'id' => $look->getEntityId(),
+                        'title' => $look->getLbiTitle(),
+                        //toDo remove
+                        //'main_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiMainImage() , '')->resize($mainImageHeight, $mainImageHeight),
+                        'thumbnail_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getColiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio),$thumbnailImageHeight),
+                        'target_url' => $look->getColiTargetUrl(),
+                        'shareData' => array(
+                            'title' => $look->getColiTitle(),
+                            'url' => $look->getParent()->getUrl() . '?item=' . $look->getEntityId(),
+                            'summary' => $look->getColiDescription(),
+                            'image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getColiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio),$thumbnailImageHeight),
+                        ),
+                    );
+                    $positions[$look->getEntityId()] = $i;
+                    $i++;
+                }
+                $positions['length'] = $i;
+            ?>
+            <div class="next-btn no-display"><?php echo $this->__('Next') ?></div>
+        </div>
+        <script>
+            Collection.init(<?php echo json_encode($config) ?>,<?php echo json_encode($positions) ?>, <?php echo $currentItem->getEntityId() ?>);
+        </script>
+    <?php endIf; ?>
+</div>
+

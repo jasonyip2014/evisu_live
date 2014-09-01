@@ -1,0 +1,25 @@
+<?php /* @var $this RonisBT_CatalogNavigation_Block_Layer_Filter_Attribute */ ?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @see Mage_Catalog_Block_Layer_Filter
+ */
+?>
+
+<ul>
+    <?php foreach ($this->getItems() as $_item): ?>
+        <?php /* @var $_item RonisBT_CatalogNavigation_Model_Layer_Filter_Item */ ?>
+        <li>
+            <?php if ($_item->getCount() > 0): ?>
+                <span class="custom-checkbox<?php if($_item->getIsActive()): echo ' checked'; endIf; ?>" onClick="DropDown.changeFilter('<?php echo $this->escapeUrl($_item->getUrl()) ?>')">
+                    <?php echo $_item->getLabel() ?>
+                </span>
+            <?php //else: echo $_item->getLabel() ?>
+            <?php endif; ?>
+            <?php if ($this->shouldDisplayProductCount()): ?>
+                (<?php echo $_item->getCount() ?>)
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ul>

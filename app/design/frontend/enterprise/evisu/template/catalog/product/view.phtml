@@ -1,0 +1,340 @@
+<?php /* @var $this Mage_Catalog_Block_Product_View */ ?>
+
+
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_afHelper = Mage::helper('adminforms/image');
+    /* @var $_catalogHelper Evisu_Catalog_Helper_Data */
+    $_catalogHelper = Mage::helper('evisu_catalog');
+    $_product = $this->getProduct();
+    $_category = $_product->getCategory();
+    $_parentCategory = null;
+    if($_category)
+    {
+        $_parentCategory = $_category->getParentCategory();
+    }
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+//]]>
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->setEscapeMessageFlag(true)->toHtml() ?></div>
+<div class="product-view">
+    <?php /* // Previous Product ?>
+    <?php if($previousProduct = $_catalogHelper->getPreviousProduct($_product)): ?>
+        <div class="previous-product-holder">
+            <a class="previous-product-btn" href="<?php echo $previousProduct->getProductUrl() ?>"><?php echo $this->__('Prev') ?></a>
+            <div class="previous-product">
+                <div class="image-holder">
+                    <img width="268" height="307" src="<?php echo Mage::helper('catalog/image')->init($previousProduct, 'image')->resize(268, 307) ?>" alt="<?php echo $previousProduct->getImageLabel() ?>" title="<?php echo $_helper->productAttribute($previousProduct, $previousProduct->getName(), 'name') ?>" />
+                </div>
+                <div class="description-holder">
+                    <div class="description">
+                        <div class="description-wrapper">
+                            <div class="product-name"><?php echo $_helper->productAttribute($previousProduct, $previousProduct->getName(), 'name') ?></div>
+                            <div class="product-second-name"><?php echo $_helper->productAttribute($previousProduct, $previousProduct->getSecondName(), 'second_name') ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endIf; */?>
+    <?php /* // Next Product ?>
+    <?php if($nextProduct = $_catalogHelper->getNextProduct($_product)): ?>
+        <div class="next-product-holder">
+            <a class="next-product-btn" href="<?php echo $nextProduct->getProductUrl() ?>"><?php echo $this->__('Next') ?></a>
+            <div class="next-product">
+                <div class="image-holder">
+                    <img width="268" height="307" src="<?php echo Mage::helper('catalog/image')->init($nextProduct, 'image')->resize(268, 307) ?>" alt="<?php echo $nextProduct->getImageLabel() ?>" title="<?php echo $_helper->productAttribute($nextProduct, $nextProduct->getName(), 'name') ?>" />
+                </div>
+                <div class="description-holder">
+                    <div class="description">
+                        <div class="description-wrapper">
+                            <div class="product-name"><?php echo $_helper->productAttribute($nextProduct, $nextProduct->getName(), 'name') ?></div>
+                            <div class="product-second-name"><?php echo $_helper->productAttribute($nextProduct, $nextProduct->getSecondName(), 'second_name') ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endIf; */?>
+    <div class="product-container">
+        <h1 class="mobile-only">
+            <div class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div>
+            <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?></span>
+        </h1>
+        <div class="main-image">
+            <div class="mobile-only info-btn"><?php echo $this->__('Info') ?></div>
+            <div class="info-holder mobile-only">
+                <div class="info-wrapper">
+                    <div class="info-container">
+                        <div class="info">
+                            <?php echo nl2br($this->escapeHtml($_product->getDescription())); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="full-size-hider"></div>
+            <?php $bigImage = (string) Mage::helper('catalog/image')->init($_product, 'image') ?>
+            <?php $smallImage = (string) Mage::helper('catalog/image')->init($_product, 'image')->resize(692, 889) ?>
+            <?php $imageLabel = $this->stripTags($_product->getImageLabel()) ?>
+            <div id='main-image' class="image-holder">
+                <a class="product-img-zoom" href="<?php echo $bigImage ?>" onclick="return false;" rel="position: 'inside' , showTitle: false, adjustX:0, adjustY:0">
+                    <img width="692" height="889" src="<?php echo $smallImage ?>" data-image="<?php echo $bigImage ?>" alt="<?php echo $imageLabel ?>" title="<?php echo $imageLabel?>" rel="<?php echo $smallImage ?>" />
+                </a>
+                <a href="javascript:void(0);" id="full_img_close" title="<?php echo $this->__('Close') ?>" class="btn-close no-display"><?php echo $this->__('Close') ?></a>
+            </div>
+            <div class="btn-holder no-mobile">
+                <a href="javascript:void(0);" title="<?php echo $this->__('Full Size') ?>" class="btn-fullsize"><?php echo $this->__('Full Size') ?></a>
+                <a href="javascript:void(0);" title="<?php echo $this->__('Zoom') ?>" class="btn-zoom"><?php echo $this->__('Zoom') ?></a>
+            </div>
+        </div>
+        <div class="product-essential">
+            <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+                <?php echo $this->getBlockHtml('formkey') ?>
+                <div class="no-display">
+                    <?php if($_product->getTypeId() == 'grouped'): ?>
+                        <input type="hidden" name="grouped" value="<?php echo $_product->getId() ?>" />
+                    <?php else: ?>
+                        <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                        <input type="hidden" name="related_product" id="related-products-field" value="" />
+                    <?php endIf; ?>
+                </div>
+                <div class="product-shop">
+                    <div class="product-main-info">
+                        <?php /*if($_parentCategory): ?>
+                            <div class="category-name no-mobile"><?php echo $_parentCategory->getName() ?></div>
+                            <?php
+                                <div class="image-holder category-image">
+                                    <img width="95" height="24" src="<?php echo $_afHelper->init('catalog/category', $_category->getParentCategory()->getMenuThumbnailImage(), '')->resize(95, 24) ?>" alt="<?php echo $_parentCategory->getName() ?>"/>
+                                </div>
+                            ?>
+                        <?php endIf; */?>
+                        <h1 class="no-mobile">
+                            <span class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
+                            <span class="product-second-name"><?php echo $_helper->productAttribute($_product, $_product->getSecondName(), 'second_name') ?></span>
+                        </h1>
+                        <p class="product-sku no-mobile"><?php echo $this->stripTags($_product->getSku()) ?></p>
+                        <?php //echo ($_product->getCanShowPrice() === false) ? '' : $this->getChildHtml('tierprices'); ?>
+                        <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                        <?php echo $this->getChildHtml('product_type_data') //important for GROUPED products ?>
+                        <?php //echo preg_replace("/(\.)(\d{1,2})/", ".<sup>\${2}</sup>", $this->getPriceHtml($_product)) ?>
+                        <?php if ($_product->isSaleable() && $this->hasOptions() && $this->getChildChildHtml('container2') ):?>
+                            <div class="options-container-big">
+                                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                            </div>
+                        <?php endif;?>
+                    </div>
+                    <?php //echo $this->getChildHtml('alert_urls') ?>
+                    <div id="oos-block" class="no-display">
+                        <div class="out-of-stock"><span><?php echo $this->__('Out of Stock' )?></span></div>
+                        <div class="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
+                    </div>
+                    <?php //echo $this->getChildHtml('extrahint') ?>
+                    <?php if (!$this->hasOptions()):?>
+                        <div class="add-to-box">
+                            <?php if($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php else: ?>
+                                <div class="out-of-stock"><span><?php echo $this->__('Out of Stock' )?></span></div>
+                                <div class="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
+                            <?php endif; ?>
+                            <?php //echo $this->getChildHtml('addto') ?>
+                        </div>
+                    <?php else:?>
+                        <?php if ($_product->isSaleable() && $this->hasOptions()): //&& $this->getChildChildHtml('container1')?>
+                            <div class="options-container-small">
+                                <?php //echo $this->getChildChildHtml('container1', '', true, true) ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="add-to-box">
+                                <div class="out-of-stock"><span><?php echo $this->__('Out of Stock') ?></span></div>
+                                <div class="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
+                                <?php //echo $this->getChildHtml('alert_urls') ?>
+                                <?php //echo $this->getChildHtml('addto') ?>
+                            </div>
+                        <?php endif;?>
+                    <?php endif; ?>
+                    <?php /*
+                        <?php if($fitAttributeId = $_product->getFitGuide()): ?>
+                            <?php if($fitGuideUrl = Mage::helper('evisu_fitguide')->getProductUrl($fitAttributeId)): ?>
+                                <a class="fit-guide-btn" href="<?php echo $fitGuideUrl ?>"><?php echo $this->__('Fit Guide') ?></a>
+                            <?php endIf; ?>
+                        <?php endIf; ?>
+                    */ ?>
+                    <?php echo $this->getChildHtml('alertoos') ?>
+                    <div class="size-chart-holder no-mobile">
+                        <div id="size-chart"><?php echo $this->__('Size Chart') ?></div>
+                    </div>
+                    <script>
+                        jQuery(function(){
+                            jQuery('#size-chart').on('click', function(){
+                                var c = '<div class="box-modal">' +
+                                    '<div class="box-modal_close arcticmodal-close">X</div>' +
+                                    '<div class="size-chart">' +
+                                    '<div class="size-chart-head">' +
+                                    '<img src="<?php echo $this->getSkinUrl('images/logo-size-chart.png') ?>" />' +
+                                    '<div class="size-chart-title"><?php echo $this->__('Size Chart') ?></div>' +
+                                    '<div class="size-chart-product-name"><span class="size-chart-name">' + <?php echo json_encode($_product->getName()) ?> + '</span><?php if($_product->getSecondName()): ?> - <span class="seze-chart-second-name">' + <?php echo json_encode($_product->getSecondName()) ?> + '</span><?php endIf; ?></div>' +
+                                    '<div class="size-chart-description"><?php echo $this->__('All items are individually measured by EVISU in inches') ?></div>' +
+                                        '</div>' +
+                                            <?php echo (($_product->getSizeChart())? json_encode($_helper->productAttribute($_product, $_product->getSizeChart(), 'size_chart')) :  json_encode($this->getLayout()->createBlock('cms/block')->setBlockId('size_chart')->toHtml())) ?> +
+                                        '</div>' +
+                                    '</div>'
+                                jQuery.arcticmodal({
+                                    content: c
+                                });
+                            });
+                        })
+                    </script>
+                    <?php
+                        $tabs = array(
+                            $this->__('Product Info') => nl2br($this->escapeHtml($_product->getDescription())),
+                            $this->__('Delivery') => $_product->getDelivery(),
+                            //$this->__('Size Chart') => $_product->getSizeChart(),
+                            $this->__('Care') => $_product->getCare()
+                        );
+                    ?>
+                    <div class="product-collateral">
+                        <dl id="collateral-tabs" class="collateral-tabs">
+                            <?php $i = 0; foreach ($tabs as $title => $html):?>
+                                <dt class="tab<?php if($i == 0): ?> no-mobile<?php endIf; ?>"><span><?php echo $title ?></span></dt>
+                                <dd class="tab-container <?php if($i == 0): ?> no-mobile<?php endIf; ?>">
+                                    <div class="tab-content "><?php echo $html ?></div>
+                                </dd>
+                            <?php $i++; endforeach;?>
+                        </dl>
+                    </div>
+                    <div class="clearer"></div>
+                    <?php //echo $this->getChildHtml('other');?>
+                </div>
+            </form>
+
+
+            <div class="social-share"><?php echo $this->__('Share'); ?></div>
+            <ul class="social-media">
+                <?php
+                    $shareData = array(
+                        'title' => $_helper->productAttribute($_product, $_product->getName(), 'name'),
+                        'url' => $_product->getProductUrl(),
+                        'image' => $smallImage,
+                        'summary' => $_helper->productAttribute($_product, $_product->getShortDescription(), 'shortdescription')
+                    );
+                ?>
+                <?php /*
+                <li><a href="http://www.smartaddon.com/?share" title="Mail" class="mail" onclick="return sa_tellafriend(<?php echo $shareData['url'] ?>,'email');">Mail</a></li>
+                */ ?>
+                <?php if ($this->canEmailToFriend()): ?>
+                    <li><a onclick="return false;" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" id="send-to-friend-btn" title="Mail To Friend" class="mail">Mail</a>
+                <?php endIf; ?>
+                <li><a onclick="window.open('https://twitter.com/intent/tweet?text=<?php echo urlencode($shareData['title']) ?>: &url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>
+                <li><a onclick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo urlencode($shareData['title']) ?>&amp;p[summary]=<?php echo urlencode(str_replace("'","&prime;",$shareData['summary'])) ?>&amp;p[url]=<?php echo urlencode($shareData['url']) ?>&amp;&amp;p[images][0]=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>
+                <li><a onclick="window.open('http://service.weibo.com/share/share.php?url=<?php echo urlencode($shareData['url']) ?>&title=<?php echo urlencode($shareData['title'])?>&pic=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" class="weibo" title="Weibo" href="javascript: void(0)">Weibo</a></li>
+                <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($shareData['url']) ?>&media=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>&description=<?php echo urlencode($shareData['title']) ?> - <?php echo urlencode($shareData['summary']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
+                <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
+            </ul>
+            <div class="additional-block mobile-only">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('mobile_product_detail_additional_block')->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="product-img-box">
+        <?php echo $this->getChildHtml('media') ?>
+    </div>
+
+    <?php //echo $this->getChildHtml('upsell_products') ?>
+    <?php //echo $this->getChildHtml('productTagList') ?>
+    <?php //echo $this->getChildHtml('product_additional_data') ?>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    //ToDo Move to .js
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function(button) {
+        if(AlertOOS.productType == 'grouped')
+        {
+            var error = true;
+            jQuery.each(jQuery('.super-attribute-select'), function(index, select){
+                var productId = jQuery(select).data('productid');
+                if(select.value != '' && jQuery('#qty-' + productId).val() > 0)
+                {
+                    var optionId = select.value;
+                    var options = select.config.options;
+                    for(var option in options)
+                    {
+                        if(options.hasOwnProperty(option))
+                        {
+                            if(options[option].id == optionId)
+                            {
+                                if(!options[option].outOfStock)
+                                {
+                                    error = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            if(error)
+            {
+                jQuery('#grouped-error-msg').fadeIn('fast');
+                return false;
+            }
+        }
+        if (this.validator.validate()) {
+            jQuery('html,body').animate({scrollTop:0},300);
+            var form = this.form;
+            var url = form.action;
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+            jQuery('.ajax-basket-loader').fadeIn();
+
+            var disabled = jQuery(form).find('select:disabled').attr('disabled', false); // temporarily enable disabled selects to allow serialization
+            disabled.attr('disabled', true);
+            if (document.location.protocol == 'https:'){
+                url = url.replace(/^http:/,'https:');
+            }
+            jQuery.post(url, form.serialize(), function(data){
+                jQuery('.top-cart-holder').html(jQuery(data).find('.top-cart-holder').html());
+                jQuery('#top-cart-messages').html(jQuery(data).find('.messages').html());
+                jQuery('#top-cart-messages').fadeIn('fast').delay(5000).fadeOut();
+                AjaxBasket.resize();
+                Enterprise.TopCart.showCart(7);
+                jQuery('.ajax-basket-loader').fadeOut();
+                disabled.attr('disabled', false);
+                if (button && button != 'undefined') {
+                    button.disabled = false;
+                }
+            });
+        }
+        //return false;
+    }.bind(productAddToCartForm);
+
+    productAddToCartForm.submitLight = function(button, url){
+        if(this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods) {
+                if (methodName.match(/^validate-datetime-.*/i)) {
+                    delete Validation.methods[methodName];
+                }
+            }
+
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+//]]>
+</script>

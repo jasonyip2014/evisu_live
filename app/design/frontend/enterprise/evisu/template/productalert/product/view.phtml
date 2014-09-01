@@ -1,0 +1,35 @@
+<?php /* @var $this Mage_ProductAlert_Block_Product_View */ ?>
+
+<?php $_product = Mage::registry('current_product') ?>
+<p class="alert-stock link-stock-alert">
+    <div class="alertoos-btn"><?php echo $this->__('Email Me When Back In Stock') ?></div>
+    <script>
+        jQuery('.alertoos-btn').on('click', function(){
+            var c = '<div class="box-modal">' +
+                '<div class="box-modal_close arcticmodal-close">X</div>' +
+                    '<div id="alertoos-result">' +
+                        '<form id="alertoos-form" action="<?php echo Mage::getUrl('alertoos/alert/post') ?>" method="post">' +
+                            '<input type="hidden" name="product_id" value="<?php echo $_product->getId() ?>" />' +
+                            '<input type="hidden" name="sku" value="<?php echo $_product->getSku() ?>" />' +
+                            '<div class="header-first"><?php echo $this->__('Email Me') ?></div>' +
+                            '<div><?php echo $this->__('When back in stock') ?></div>' +
+                            '<div><span class="name"><?php echo $_product->getName() ?></span><?php if($_product->getSecondName()): ?> - <span class="second-name"><?php echo $_product->getSecondName() ?></span><?php endIf; ?></div>' +
+                            '<div class="form-fields">' +
+                                '<div class="form-field"><input value="first name" class="input-text required-entry" name="first_name" type="text" placeholder="<?php echo $this->__('First Name') ?>"/></div>' +
+                                '<div class="form-field"><input value="last name" class="input-text required-entry" name="last_name" type="text" placeholder="<?php echo $this->__('Last Name') ?>"/></div>' +
+                                '<div class="form-field"><input value="tester@example.com" class="input-text required-entry validate-email" name="email_address" type="text" placeholder="<?php echo $this->__('Email Address') ?>"/></div>' +
+                                '<div class="form-field"><input value="123234324" class="input-text" name="telephone" type="text" placeholder="<?php echo $this->__('Telephone') ?>"/></div>' +
+                            '</div>' +
+                            '<div class="form-btn"><input type="submit" value="<?php echo $this->__('Submit') ?>"/></div>' +
+                        '</form>' +
+                    '</div>' +
+                '</div>';
+            jQuery.arcticmodal({
+                content: c,
+                afterOpen: function(data, el) {
+                    AlertOOS.init();
+                }
+            });
+        });
+    </script>
+</p>

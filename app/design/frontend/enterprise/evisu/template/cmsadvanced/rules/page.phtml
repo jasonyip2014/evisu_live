@@ -1,0 +1,65 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+    $defWindowHeight = 1080;
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $afModel = $this->getPage()->getBlockModel() ?>
+<?php $sections = $this->getSections() ?>
+
+<div class="rules-page-holder">
+    <div class="quick-navigation">
+        <span class="explore-more-btn"><?php echo $this->__('Explore More') ?></span>
+        <span class="back-btn"><?php echo $this->__('Back') ?></span>
+    </div>
+    <div class="yoffset" style="position:fixed; z-index:10000; font-size: 35px;background: yellow;"></div>
+    <div class="sections">
+        <div class="main-section section section-0">
+            <div class="main-text-container">
+                <div class="main-text-holder"> 
+                    <div class="text-wrapper">
+                        <div class="title"><?php echo $this->StripTags($this->getRMainTitle()) ?></div>
+                        <div class="sub-title"><?php echo $this->StripTags($this->getRMainSubTitle()) ?></div>
+                        <div class="text"><?php echo nl2br($this->StripTags($this->getRMainText())) ?></div>
+                        <div class="navigation">
+                            <?php if(count($sections) > 0): ?>
+                                <?php $i = 1; foreach ($sections as $_section): ?>
+                                    <a href="#" class="navigation-item" data-section="<?php echo $i ?>"><?php echo $_section->getRMenuTitle() ?></a>
+                                <?php $i++; endForeach; ?>
+                            <?php endIf; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="r_image_panel small">
+                <div class="image-holder">
+                    <img src="<?php echo $this->getSkinUrl('images/rules/sign.png') ?>" />
+                </div>    
+            </div>    
+        </div>
+        <?php if(count($sections) > 0): ?>
+            <?php $i = 1; foreach ($sections as $_section): ?>
+                <?php Mage::register('rules_current_section', $i); ?>
+                <div class="<?php echo $_section->getRSectionBgcolor() ?> section section-<?php echo $i ?>" <?php echo Mage::helper('evisu_rules')->getScrollrData($_section->getRSectionAnimation(), $defWindowHeight * $i - 1) ?> data-section-id="<?php echo $i -1 ?>">
+                    <?php echo $_section->toHtml(); ?>
+                </div>
+                <?php Mage::unregister('rules_current_section'); ?>
+            <?php $i++; endforeach ?>
+        <?php endIf; ?>
+    </div>
+    <div id="time-line">
+        <div class="begin-img-holder">
+            <img class="begin-img loaded" src="<?php echo $this->getSkinUrl('images/rules/time-line.png') ?>" />
+        </div>
+        <div class="line" data-0="height:0px" ></div> <?php //echo (($defWindowHeight * ($i-1)) - 65) ?>
+        <div class="end-img-holder" data-0="opacity:0">
+            <img class="end-img loaded" src="<?php echo $this->getSkinUrl('images/rules/time-line.png') ?>" />
+        </div>
+        <div class="end-text" data-0="opacity:0">
+            <?php if($this->getRMainEndTextUrl()): ?>
+                <a href="<?php echo $this->escapeHtml($this->getRMainEndTextUrl()) ?>"><?php echo $this->StripTags($this->getRMainEndText()) ?></a>
+            <?php else: ?>
+                <?php echo $this->StripTags($this->getRMainEndText()) ?>
+            <?php endIf; ?>
+        </div>
+    </div>
+</div>

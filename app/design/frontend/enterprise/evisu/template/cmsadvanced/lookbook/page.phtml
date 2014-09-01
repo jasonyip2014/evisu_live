@@ -1,0 +1,201 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<?php $_afHelper = Mage::helper('adminforms/image') ?>
+<?php $_productsModel = Mage::getModel('evisu_lookbook/product') ?>
+<?php $product = null; ?>
+<?php
+    //images properties (px)
+    $archiveThumbnailWidth = 200;
+    $archiveThumbnailHeight = 100;
+    $thumbnailImageHeight = 336;
+    //$mainImageWidth = 1199;
+    $mainImageHeight = 924;
+    $archiveImageWidth = 266;
+    $archiveImageHeight = 166;
+?>
+
+<?php
+$_page = $this->getPage();
+
+    $currentItem = null;
+    if($getParam = Mage::app()->getRequest()->getParam('item'))
+    {
+        $currentItem = $this->getChildren()->addAttributeToFilter('entity_id', $getParam)->getFirstItem();
+    }
+    else
+    {
+        $currentItem = $this->getChildren()->getFirstItem();
+    }
+?>
+
+
+<div class="look-book-container">
+    <div id="archive" class="no-display no-mobile">
+        <div class="title"><?php echo $this->__('Lookbook') ?></div>
+        <div class="archive-close-btn">X</div>
+        <?php $archiveItems = $this->getParent()->getChildren()?>
+        <ul>
+            <?php foreach($archiveItems as $item): ?>
+                <li class="item">
+                    <a href="<?php echo $item->getUrl() ?>">
+                        <span class="image-holder">
+                            <img width="<?php echo $archiveImageWidth ?>px" height="<?php echo $archiveImageHeight ?>px" src="<?php echo $_afHelper->init($_page->getBlockModel(), $item->getLbThumbnailImage() , '')->resize($archiveImageWidth, $archiveImageHeight); ?>" alt="<?php echo $item->getLbTitle() ?>" />
+                        </span>
+                        <span class="item-title">
+                            <?php echo $item->getLbTitle() ?>
+                        </span>
+                    </a>
+                </li>
+            <?php endForeach; ?>
+        </ul>
+    </div>
+    <div class="description-holder">
+        <div class="title"><h1><?php echo $this->getLbTitle() ?></h1></div>
+        <div class="cmsadvanced-breadcrumbs-container">
+            <?php echo $this->getChildHtml('breadcrumbs') ?>
+        </div>
+        <div class="description"><?php echo $this->getLbDescription() ?></div>
+        <div id="archive-btn"><?php echo $this->__('View All Lookbooks') ?></div>
+    </div>
+    <?php $looks = $this->getChildren() ?>
+    <?php if($looks && $looks->getSize() > 0): ?>
+        <div id="main-section">
+            <div class="main-carousel-holder">
+                <div class="prev-btn"><?php echo $this->__('Prev') ?></div>
+                <div class="left-hider no-mobile"></div>
+                <ul class="main-carousel">
+                    <?php $i = 0; foreach($looks as $look): ?>
+                        <?php if($look->getLbiMainImage()): ?>
+                            <?php $imageSize = getimagesize($look->getImage('lbi_main_image')); $ratio = (float) $imageSize[0] / (float)$imageSize[1] ?>
+                            <li<?php if($currentItem->getEntityId() == $look->getEntityId()): ?> class="active"<?php endIf; ?> data-id="<?php echo $look->getEntityId() ?>" id="main-carousel-<?php echo $look->getEntityId() ?>">
+                                <div class="image-holder">
+                                    <img src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getLbiMainImage() , '')->adaptiveResize(($mainImageHeight * $ratio), $mainImageHeight); ?>" alt="<?php echo $look->getLbiTitle() ?>" />
+                                </div>
+                            </li>
+                        <?endIf; ?>
+                    <?php endForeach; ?>
+                </ul>
+                <div class="right-hider no-mobile"></div>
+                <div class="next-btn"><?php echo $this->__('Next') ?></div>
+            </div>
+        </div>
+        <div class="gallery-btn-holder">
+            <div id="gallery-btn" class="opened" data-openedtext="<?php echo $this->__('Hide Gallery') ?>" data-closedtext="<?php echo $this->__('Show Gallery') ?>"><?php echo $this->__('Hide Gallery') ?></div>
+        </div>
+        <div id="thumbnail-section">
+            <div class="prev-btn no-display"><?php echo $this->__('Prev') ?></div>
+            <ul>
+                <?php $products = null; $ids = array(); ?>
+                <?php $i = 0; foreach($looks as $look): ?>
+                    <?php if($look->getLbiThumbnailImage()): ?>
+                        <?php $imageSize = getimagesize($look->getImage('lbi_thumbnail_image')); $ratio = (float) $imageSize[0] / (float)$imageSize[1] ?>
+                        <li class="<?php if(($i + 1) % 2 == 0): ?> odd<?php endIf; ?><?php if($currentItem->getEntityId() == $look->getEntityId()): ?> active<?php endIf; ?>" data-id="<?php echo $look->getEntityId() ?>" id="gall-trumb-<?php echo $look->getEntityId() ?>">
+                            <div class="image-holder">
+                                <img class="<?php if($ratio > 1): ?>ladscape<?php else: ?>portrait<?php endIf; ?>" src="<?php echo $_afHelper->init($_page->getBlockModel(), $look->getLbiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio), $thumbnailImageHeight); ?>" alt="<?php echo $look->getLbiTitle() ?>" />
+                            </div>
+                        </li>
+                    <?endIf; ?>
+                    <?php $ids[] = $look->getLbiProductSku(); ?>
+                <?php $i++; endForeach; ?>
+                <?php if(count($ids) > 0) $products = $_productsModel->setProducts($ids)?>
+            </ul>
+            <?php
+                $i = 0;
+
+                $positions = array();
+                foreach($looks as $look)
+                {
+                    $thumbnailImageSize = getimagesize($look->getImage('lbi_thumbnail_image'));
+                    $ratio = (float) $thumbnailImageSize[0] / (float)$thumbnailImageSize[1];
+                    $config[$i] = array(
+                        'id' => $look->getEntityId(),
+                        'title' => $look->getLbiTitle(),
+                        //toDo remove
+                        //'main_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiMainImage() , '')->resize($mainImageHeight, $mainImageHeight),
+                        'thumbnail_image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio),$thumbnailImageHeight),
+                        'assoc_product' => $_productsModel->getProductBySKU($look->getLbiProductSku()),
+                        'shareData' => array(
+                            'title' => $look->getLbiTitle(),
+                            'url' => $look->getParent()->getUrl() . '?item=' . $look->getEntityId(),
+                            'summary' => $this->getLbDescription(),
+                            'image' => (string) $_afHelper->init($_page->getBlockModel(), $look->getLbiThumbnailImage() , '')->adaptiveResize(($thumbnailImageHeight * $ratio),$thumbnailImageHeight),
+                        ),
+                    );
+                    $positions[$look->getEntityId()] = $i;
+                    $i++;
+                }
+                $positions['length'] = $i;
+            ?>
+            <div class="next-btn no-display"><?php echo $this->__('Next') ?></div>
+        </div>
+        <?php $product = $_productsModel->getProductBySKU($currentItem->getLbiProductSku()) ?>
+        <?php if($product): ?>
+            <div class="product-button mobile mobile-only">
+                <a href="<?php echo $product['url'] ?>" ><?php echo $this->__('Shop The Look') ?></a>
+            </div>
+        <?php endIf; ?>
+        <?php if($product): ?>
+            <div id="product-section" class="no-mobile">
+                <div class="product">
+                    <div class= name><?php echo $currentItem->getLbiTitle() ?></div>
+                    <div class="assoc-products">
+                        <?php if(isset($product['associated_products']) && count($product['associated_products'])): ?>
+                            <?php foreach($product['associated_products'] as $assProduct): ?>
+                                <div class="assoc-product">
+                                    <div class="name"><?php echo $assProduct['name'] ?></div>
+                                    <div class="second-name"><?php echo $assProduct['second_name'] ?></div>
+                                        <?php if($assProduct['price_old'] != $assProduct['price']): ?>
+                                            <div class="old-price"><?php echo $assProduct['price_old'] ?></div>
+                                        <?php endIf; ?>
+                                    <div class="price"><?php echo $assProduct['price'] ?></div>
+                                </div>
+                            <?php endForeach; ?>
+                        <?php endIf; ?>
+                    </div>
+                    <div class="buttons">
+                        <a href="<?php echo $product['url'] ?>" ><?php echo $this->__('Shop The Look') ?></a>
+                        <a href="<?php echo $product['wishlistUrl'] ?>" ><?php echo $this->__('Add To Wishlist') ?></a>
+                    </div>
+                    <div class="social-share"><?php echo $this->__('Share'); ?></div>
+                    <ul class="social-media">
+                        <?php
+                            $shareData = array(
+                                'title' => $config[$positions[$currentItem->getEntityId()]]['shareData']['title'],
+                                'url' => $config[$positions[$currentItem->getEntityId()]]['shareData']['url'],
+                                'image' => $config[$positions[$currentItem->getEntityId()]]['shareData']['image'],
+                                'summary' => $config[$positions[$currentItem->getEntityId()]]['shareData']['summary'],
+                            );
+                        ?>
+                        <li><a href="http://www.smartaddon.com/?share" title="Mail" class="mail" onclick="return sa_tellafriend('<?php echo $shareData['url'] ?>','email');">Mail</a></li>
+                        <li><a onclick="window.open('https://twitter.com/intent/tweet?text=<?php echo urlencode($shareData['title']) ?>: &url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>
+                        <li><a onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=<?php echo urlencode($shareData['title']) ?>&p[summary]=<?php echo urlencode($shareData['summary']) ?>&p[url]=<?php echo urlencode($shareData['url']) ?>&p[images][0]=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>
+                        <li><a onclick="window.open('http://service.weibo.com/share/share.php?url=<?php echo urlencode($shareData['url']) ?>&title=<?php echo urlencode($shareData['title'])?>&pic=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" class="weibo" title="Weibo" href="javascript: void(0)">Weibo</a></li>
+                        <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($shareData['url']) ?>&media=<?php if(!empty($shareData['image'])) echo urlencode($shareData['image']) ?>&description=<?php echo urlencode($shareData['title']) ?> - <?php echo urlencode($shareData['summary']) ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
+                        <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo urlencode($shareData['url']) ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
+                    </ul>
+                </div>
+                <div class="media">
+                    <div class="prev-btn no-display"><?php echo $this->__('Prev') ?></div>
+                    <?php if(isset($product['associated_products']) && count($product['associated_products'])): ?>
+                        <ul>
+                            <?php foreach($product['associated_products'] as $assProduct): ?>
+                                <li>
+                                    <div class="image-holder">
+                                        <img width="250px" height="520px" src="<?php echo $assProduct['image'] ?>" alt="<?php echo $assProduct['name'] ?>" />
+                                    </div>
+                                </li>
+                            <?php endForeach; ?>
+                        </ul>
+                    <?php endIf; ?>
+                    <div class="next-btn no-display"><?php echo $this->__('Next') ?></div>
+                </div>
+                <script>ProductCarousel.init(<?php echo count($product['associated_products']) ?>);</script>
+            </div>
+        <?php endIf; ?>
+    <?php endIf; ?>
+</div>
+
+<script>
+    LookBook.init(<?php echo json_encode($config) ?>,<?php echo json_encode($positions) ?>, <?php echo $currentItem->getEntityId() ?>);
+</script>

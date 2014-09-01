@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <!-- reference name="head">
+            <action method="addItem"><type>skin_css</type><name>css/topmenu.css</name></action>
+        </reference -->
+        <remove name="catalog.topnav" />
+        <reference name="top.menu">
+            <block type="topmenu/navigation" name="catalog.topmenu" template="catalog/navigation/top.menu.phtml">
+                <action method="setTemplate" ifconfig="design/topmenu/enabled"><template>catalog/navigation/top.menu.phtml</template></action>
+                <action method="addMenuRenderer"><type>dropdown</type><template>catalog/navigation/top.dropdown.phtml</template></action>
+                <action method="addMenuRenderer"><type>block</type><template>catalog/navigation/top.block.phtml</template></action>
+                <action method="addMenuRenderer"><type>shop-dropdown</type><template>catalog/navigation/top.shop.dropdown.phtml</template></action>
+                <block type="directory/currency" name="currency_mobile" template="directory/currency_mobile.phtml"/>
+            </block>
+        </reference>
+    </default>
+</layout>

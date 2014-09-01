@@ -1,0 +1,22 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+    $defWindowHeight = 1080;
+?>
+
+<?php $i = 1; ?>
+<?php $sections = $this->getSections() ?>
+<?php if(count($sections) > 0): ?>
+    <?php foreach ($this->getSections() as $_block): ?>
+        <div style="<?php if($_block->getHLeft()): ?>left:<?php echo $_block->getHLeft() ?>;<?php endIf; ?>
+                    <?php if($_block->getHRight()): ?>right:<?php echo $_block->getHRight() ?>;<?php endIf; ?>
+                    <?php if($_block->getHTop()): ?>top:<?php echo $_block->getHTop() ?>;<?php endIf; ?>
+                    <?php if($_block->getHWidthCss()): ?>width:<?php echo $_block->getHWidthCss() ?>;<?php endIf; ?>
+                    <?php if($_block->getHHeightCss()): ?>height:<?php echo $_block->getHHeightCss() ?>;<?php endIf; ?>
+            "
+            class="block block-<?php echo $i ?> <?php echo $_block->getPageType() ?> <?php echo $_block->getHBlockType() ?>" <?php echo Mage::helper('evisu_heritage')->getScrollrData($_block->getHBlockAnimation(), $defWindowHeight * (Mage::registry('heritage_current_section') - 1)) ?>>
+            <?php echo $_block->toHtml(); ?>
+        </div>
+        <?php $i++; ?>
+    <?php endforeach ?>
+<?php endIf; ?>

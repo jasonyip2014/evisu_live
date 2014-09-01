@@ -1,0 +1,67 @@
+<?php /* @var $this Fishpig_Wordpress_Block_Post_View */ ?>
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php /* @var $post Fishpig_Wordpress_Model_Post*/ ?>
+<?php $post = $this->getPost() ?>
+<?php if ($post): ?>
+	<?php $helper = $this->helper('wordpress') ?>
+    <div class="gallery-full-view no-display">
+        <div class="loader"><?php echo $this->__('loading...') ?></div>
+        <div class="content">
+            <div class="content-wrapper">
+                <div class="close-btn"><?php echo $this->__('Close') ?></div>
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+	<div class="post-view">
+        <?php echo $this->getBeforePostContentHtml() ?>
+        <div class="blog-title"><?php echo $this->escapeHtml($post->getPostTitle()) ?></div>
+        <div class="col-1">
+		    <div class="post-date">
+                <?php echo date('d F, Y', strtotime($post->getData('post_date'))) ?>
+            </div>
+            <?php if($categories = $post->getParentCategories()): ?>
+                <div class="categories">
+                    <?php foreach($categories as $category): ?>
+                        <a href="<?php echo $category->getUrl() ?>" ><?php echo $category->getName() ?></a>
+                    <?php endForeach; ?>
+                </div>
+            <?php endIf; ?>
+            <?php $sharedData = Mage::helper('evisu_blog')->getSocialShareData($post) ?>
+            <div class="social-media-share">
+                <div class="share-title"><?php echo $this->__('Share') ?></div>
+                <ul>
+                    <li><a href="http://www.smartaddon.com/?share" title="Mail" class="mail" onclick="return sa_tellafriend('<?php echo urldecode($sharedData->getUrl()) ?>','email');">Mail</a></li>
+                    <li><a onclick="window.open('https://twitter.com/intent/tweet?text=<?php echo $sharedData->getTitle() ?>: &url=<?php echo $sharedData->getUrl() ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Twitter" class="twitter">Twitter</a></li>
+                    <li><a onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=<?php echo $sharedData->getTitle() ?>&p[summary]=<?php echo $sharedData->getSummary() ?>&p[url]=<?php echo $sharedData->getUrl() ?>&p[images][0]=<?php if($sharedData->getImage()) echo $sharedData->getImage() ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Facebook" class="facebook">Facebook</a></li>
+                </ul>
+                <ul>
+                    <li><a onclick="window.open('http://service.weibo.com/share/share.php?url=<?php echo $sharedData->getUrl() ?>&title=<?php echo $sharedData->getTitle() ?>&pic=<?php if($sharedData->getImage()) echo urlencode($sharedData->getImage()) ?>','sharer','toolbar=0,status=0,width=548,height=325')" class="weibo" title="Weibo" href="javascript: void(0)">Weibo</a></li>
+                    <li><a onclick="window.open('http://pinterest.com/pin/create/button/?url=<?php echo $sharedData->getUrl() ?>&media=<?php if($sharedData->getImage()) echo $sharedData->getImage() ?>&description=<?php echo $sharedData->getTitle() ?> - <?php echo $sharedData->getSummary() ?>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" title="Pinterest" class="pinterest">Pinterest</a></li>
+                    <li><a onclick="window.open('https://plus.google.com/share?url=<?php echo $sharedData->getUrl() ?>','sharer','toolbar=0,status=0,width=548,height=325')" title="Google+" class="gplus" href="javascript: void(0)">G+</a></li>
+                </ul>
+            </div>
+		</div>
+        <div class="col-2">
+            <div class="post-entry entry std">
+                <?php if ($post->isViewableForVisitor()): ?>
+                    <?php echo $post->getPostContent() ?>
+                <?php else: ?>
+                    <?php echo $this->getPasswordProtectHtml($post) ?>
+                <?php endif; ?>
+            </div>
+            <hr class="line-before-comment"/>
+            <?php echo $this->getCommentsHtml() ?>
+            <hr class="line-after-comment"/>
+        </div>
+		<?php echo $this->getAfterPostContentHtml() ?>
+        <div class="back-to-top-btn"><span><?php echo $this->__('Back To Top') ?></span></div>
+	</div>
+<?php endif; ?>

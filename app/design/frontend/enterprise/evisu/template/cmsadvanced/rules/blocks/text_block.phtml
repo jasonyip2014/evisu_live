@@ -1,0 +1,19 @@
+
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+?>
+<div class="section-text-holder">
+	<div class="section-text-wrapper">
+		<div class="round-text"><?php echo Mage::registry('rules_current_section') ?></div>
+		<div class="section-description">
+			<h2 class="header <?php echo $this->getRHeaderAlign() ?>"><?php echo $this->stripTags($this->getRTextBlockHeader()) ?></h2>
+            <ul class="links">
+                <li><a href="<?php echo $this->getRTextBlockLinkTarget1() ?>"><?php echo $this->getRTextBlockLinkText1() ?></a></li>
+                <li><a href="<?php echo $this->getRTextBlockLinkTarget2() ?>"><?php echo $this->getRTextBlockLinkText2() ?></a></li>
+                <li><a href="<?php echo $this->getRTextBlockLinkTarget3() ?>"><?php echo $this->getRTextBlockLinkText3() ?></a></li>
+            </ul>
+			<div class="text"><?php echo nl2br($this->stripTags($this->getRTextBlockText())) ?></div>
+		</div>	
+	</div>
+</div>
+

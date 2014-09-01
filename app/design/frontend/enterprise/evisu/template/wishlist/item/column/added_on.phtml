@@ -1,0 +1,5 @@
+<?php
+    $item = $this->getItem();
+    /* @var $item Mage_Wishlist_Model_Item */
+?>
+<span class="added-on"><?php echo date('d/m/Y', strtotime($item->getAddedAt())) ?></span>

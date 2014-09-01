@@ -1,0 +1,80 @@
+<?php
+    /* @var $this RonisBT_Cms_Block_Page */
+    $page = $this->getPage();
+?>
+<?php if(Mage::getStoreConfig('evisu_storelocator/google_maps_api/enabled')): ?>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo Mage::getStoreConfig('evisu_storelocator/google_maps_api/api_key')?>&sensor=false&libraries=places&language=<?php echo $this->getSlLocalization() ?>"type="text/javascript"></script>
+<?php endIf; ?>
+<div class="page-title">
+    <h1><?php echo $this->stripTags($this->getName()) ?></h1>
+</div>
+
+<div class="store-locator-page-wrapper">
+    <div id="map-canvas"></div>
+    <?php $storesCollection = Mage::helper('evisu_storelocator')->getStoresCollection($page) ?>
+    <?php if(Mage::getStoreConfig('evisu_storelocator/google_maps_api/enabled')): ?>
+        <?php
+            $config = array();
+            $config['skin_base_url'] = $this->getSkinUrl();
+            $config['default_zoom'] = $this->getSlDefaultZoom();
+            $config['default_coordinates'] = array('long' => $this->getSlDefaultLong(), 'lat' => $this->getSlDefaultLat());
+            // @0_0@
+            foreach($storesCollection as $country)
+            {
+                foreach($country as $store)
+                {
+                    $config['stores'][$store->getId()] = array(
+                        'coordinates' =>  array(
+                            'long' => $store->getSlLong(),
+                            'lat' => $store->getSlLat()
+                        ),
+                        'type' => $store->getSlType(),
+                        'country' => $store->getSlCountry(),
+                        'zoom' => $store->getSlZoom(),
+                        'popup' => array(
+                            'name' => $store->getSlName(),
+                            'address' => $store->getSlAddress(),
+                            'telephone' => $store->getSlTelephone(),
+                            'times' => unserialize($store->getSlTimes())
+                        )
+                    );
+                }
+            }
+        ?>
+        <script type="text/javascript">
+            StoreLocator.init(<?php echo json_encode($config) ?>);
+        </script>
+    <?php endIf; ?>
+    <div class="filters">
+        <div class="stores-filter"><?php echo $this->__('Stores') ?></div>
+        <div class="stockist-filter"><?php echo $this->__('Stockist') ?></div>
+    </div>
+    <div class="search-form">
+        <form id="search-form">
+            <input id="search-input" placeholder="<?php echo $this->__('Find A Store') ?>" />
+            <input class="sl-search-btn" value="" type='submit'>
+        </form>
+        <div id="search-error"></div>
+    </div>
+    <?php if($storesCollection): ?>
+        <div class="stores-section">
+            <?php foreach($storesCollection as $country => $stores): ?>
+                <?php if(count($stores) > 0): ?>
+                    <div class="group">
+                        <div class="group-title"><?php echo $country ?></div>
+                        <div class="group-stores">
+                            <?php foreach($stores as $store): ?>
+                                <div id="store-<?php echo $store->getId() ?>" class="stores <?php echo $store->getSlType() ?>">
+                                    <div class="store-name"><?php echo $store->getSlName() ?></div>
+                                    <div class="store-address"><?php echo $store->getSlAddress() ?></div>
+                                    <div class="store-phone"><?php echo $store->getSlTelephone() ?></div>
+                                    <div data-id="<?php echo $store->getId() ?>" class="store-link"><?php echo $this->__('View On Map') ?></div>
+                                </div>
+                            <?php endForeach; ?>
+                        </div>
+                    </div>
+                <?php endIf; ?>
+            <?php endForeach; ?>
+        </div>
+    <?php endIf; ?>
+</div>

@@ -1,0 +1,76 @@
+<?php $page = Mage::helper('evisu_contacts')->getPage() ?>
+<div class="contacts">
+    <ul>
+        <?php if($page->getContact1Status()): ?>
+            <li>
+                <div class="contact-title"><?php echo $this->stripTags($page->getContact1Title()) ?></div>
+                <div class="contact-email"><a id="email-1" href=""></a></div>
+            </li>
+        <?php endIf; ?>
+        <?php if($page->getContact2Status()): ?>
+            <li>
+                <div class="contact-title"><?php echo $this->stripTags($page->getContact2Title()) ?></div>
+                <div class="contact-email"><a id="email-2" href=""></a></div>
+            </li>
+        <?php endIf; ?>
+        <?php if($page->getContact3Status()): ?>
+            <li>
+                <div class="contact-title"><?php echo $this->stripTags($page->getContact3Title()) ?></div>
+                <div class="contact-email"><a id="email-3" href=""></a></div>
+            </li>
+        <?php endIf; ?>
+        <?php if($page->getContact4Status()): ?>
+            <li>
+                <div class="contact-title"><?php echo $this->stripTags($page->getContact4Title()) ?></div>
+                <div class="contact-email"><a id="email-4" href=""></a></div>
+            </li>
+        <?php endIf; ?>
+        <?php if($page->getContact5Status()): ?>
+            <li>
+                <div class="contact-title"><?php echo $this->stripTags($page->getContact5Title()) ?></div>
+                <div class="contact-email"><a id="email-5" href=""></a></div>
+            </li>
+        <?php endIf; ?>
+    </ul>
+    <script>
+        //<![CDATA[
+        <?php // antispam ?>
+        var subject = '<?php echo $this->__('Evisu Website Contact Us Page - Customer Services') ?>';
+        <?php if($page->getContact1Status() && $page->getContact1Email()): ?>
+            <?php $email = explode('@', $this->stripTags($page->getContact1Email())); ?>
+            <?php if(count($email) == 2): ?>
+                jQuery('#email-1').attr('href', 'mailto:' + '<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>' + '?subject=' + subject);
+                jQuery('#email-1').html('<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>');
+            <?php endIf; ?>
+        <?php endIf; ?>
+        <?php if($page->getContact2Status() && $page->getContact2Email()): ?>
+            <?php $email = explode('@', $this->stripTags($page->getContact2Email())); ?>
+            <?php if(count($email) == 2): ?>
+                jQuery('#email-2').attr('href', 'mailto:' + '<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>' + '?subject=' + subject);
+                jQuery('#email-2').html('<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>');
+            <?php endIf; ?>
+        <?php endIf; ?>
+        <?php if($page->getContact3Status() && $page->getContact3Email()): ?>
+        <?php $email = explode('@', $this->stripTags($page->getContact3Email())); ?>
+            <?php if(count($email) == 2): ?>
+                jQuery('#email-3').attr('href', 'mailto:' + '<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>' + '?subject=' + subject);
+                jQuery('#email-3').html('<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>');
+            <?php endIf; ?>
+        <?php endIf; ?>
+        <?php if($page->getContact4Status() && $page->getContact4Email()): ?>
+            <?php $email = explode('@', $this->stripTags($page->getContact4Email())); ?>
+            <?php if(count($email) == 2): ?>
+                jQuery('#email-4').attr('href', 'mailto:' + '<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>' + '?subject=' + subject);
+                jQuery('#email-4').html('<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>');
+            <?php endIf; ?>
+        <?php endIf; ?>
+        <?php if($page->getContact5Status() && $this->stripTags($page->getContact5Email())): ?>
+            <?php $email = explode('@', $this->stripTags($page->getContact5Email())); ?>
+            <?php if(count($email) == 2): ?>
+                jQuery('#email-5').attr('href', 'mailto:' + '<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>' + '?subject=' + subject);
+                jQuery('#email-5').html('<?php echo $email[0] ?>' + '@' + '<?php echo $email[1] ?>');
+            <?php endIf; ?>
+        <?php endIf; ?>
+        //]]>
+    </script>
+</div>

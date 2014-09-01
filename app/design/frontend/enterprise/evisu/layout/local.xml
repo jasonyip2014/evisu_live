@@ -1,0 +1,239 @@
+<layout version="0.1.0">
+
+    <default>
+        <reference name="head">
+            <action method="removeItem"><type>js</type><name>varien/menu.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery-1.9.1.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.noconflict.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.sticky.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/event.simulate.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/customSelect.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/main.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/froogaloop.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.fittext.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.cookie.js</name></action>
+            <!--<action method="addItem"><type>skin_js</type><name>js/mageworx/selectreplace.js</name></action>-->
+            <!--<action method="addItem"><type>skin_css</type><name>css/mageworx/storeswitcher.css</name></action>-->
+            <action method="addItem"><type>skin_js</type><name>js/jquery/jquery.arcticmodal-0.3.min.js</name><params/></action>
+            <action method="addItem"><type>skin_css</type><name>css/jquery.arcticmodal-0.3.css</name></action>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="cms/block" name="cms_after_body_scripts"><action method="setBlockId"><block_id>after_body_scripts</block_id></action></block>
+        </reference>
+
+        <!--remove trash-->
+
+        <reference name="topCart.extra_actions">
+            <remove name="paypal.partner.top_cart.shortcut" />
+            <remove name="paypaluk.partner.top_cart.shortcut" />
+        </reference>
+        <reference name="cart_sidebar.extra_actions">
+            <remove name="paypal.partner.cart_sidebar.shortcut" />
+            <remove name="paypaluk.partner.cart_sidebar.shortcut" />
+        </reference>
+        <reference name="right">
+            <remove name="right.reports.product.viewed" />
+            <remove name="right.permanent.callout" />
+            <remove name="right.reports.product.compared" />
+            <remove name="catalog.compare.sidebar" />
+            <remove name="paypal.partner.right.logo" />
+            <remove name="sagepaysuite.right.logo" />
+            <remove name="right.poll" />
+            <remove name="wishlist_sidebar" />
+            <remove name="sale.reorder.sidebar" />
+        </reference>
+        <reference name="left">
+            <remove name="tags_popular"/>
+        </reference>
+        <remove name="head_rss" />
+        <reference name="before_body_end">
+            <remove name="wishlist_behaviour" />
+        </reference>
+        <reference name="header">
+            <remove name="account.links" />
+            <remove name="checkout.links" />
+            <remove name="wishlist_link"/>
+            <remove name="welcome" />
+            <remove name="header.callout" />
+            <action method="unsetChild"><alias>topSearch</alias></action>
+            <!-- <remove name="top.search" />-->
+            <!--<block type="page/switch" name="store_switcher" as="store_switcher" after="-" template="storeswitcher/country-switcher.phtml"/>-->
+        </reference>
+        <!--end remove trash-->
+
+
+        <!--Experiment-->
+        <!--<remove name="header" />-->
+        <!-- <reference name="left">
+            <remove name="currency" />
+        </reference>-->
+
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="customer"><label>Sign Up</label><url helper="customer/getRegisterUrl" /><title>Sign Up</title><prepare/><urlParams/><position>1</position></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="unsetChild"><name>left</name></action>
+            <block type="core/template" name="top_bar" as="top_bar" template="catalog/product/list/top_bar.phtml">
+                <action method="insert"><name>left</name><sibling/><after>1</after><alias>left</alias></action>
+                <action method="insert"><name>top.search</name><sibling/><after>1</after><alias>topSearch</alias></action>
+            </block>
+        </reference>
+
+        <reference name="footer">
+            <remove name="footer_links" />
+            <remove name="store_switcher" />
+            <block type="cms/block" name="social_links"><action method="setBlockId"><block_id>social_links_block</block_id></action></block>
+        </reference>
+    </default>
+
+    <catalog_category_layered>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/product_listing.js</name><params/></action>
+        </reference>
+        <reference name="root">
+            <reference name="top_bar">
+                <action method="insert"><name>product_list_toolbar</name><sibling/><after>1</after><alias>product_list_toolbar</alias></action>
+                <block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />
+            <!--set template column layout-->
+                <!--action method="setTemplate"><template>page/2columns-left.phtml</template></action-->
+            </reference>
+        </reference>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar" />
+            <remove name="paypal.partner.right.logo" />
+        </reference>
+        <reference name="product_list">
+            <action method="unsetChild"><name>toolbar</name></action>
+        </reference>
+        <reference name="breadcrumbs.container">
+            <remove name="category.title" />
+            <!--<block type="catalog/category_view" name="category.main_title" before="-" template="catalog/category/title.phtml"/>-->
+            <block type="core/template" name="product_list_navigation" as="product_list_navigation" after="-" template="catalog/product/list/category_and_navigation.phtml" />
+            <!--<block type="catalog/product_list_toolbar" name="product_list_view_mode" as="view_mode" after="-" template="catalog/product/list/view_mode.phtml" />-->
+        </reference>
+    </catalog_category_layered>
+
+    <catalog_product_view>
+        <reference name="head">
+            <action method="removeItem"><type>skin_js</type><name>js/jqzoom/jquery-1.3.1.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/jqzoom/jquery.jqzoom1.0.1.js</name></action>
+            <action method="removeItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name></action>
+            <action method="removeItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="removeItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <!--<action method="addItem"><type>skin_js</type><name>js/jquery/jquery.maketabs.min.js</name><params/></action>-->
+            <action method="addItem"><type>skin_js</type><name>js/jquery/cloud-zoom.1.0.2.min.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/social_share.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>js/product_detail.js</name><params/></action>
+        </reference>
+        <reference name="product.info.media">
+            <block type="reports/product_viewed" name="product.recently.viewed" as="recently_viewed" template="catalog/product/view/recently_viewed.phtml" />
+            <block type="catalog/product_list_related" name="catalog.product.related" as="relatedProducts" template="catalog/product/list/related.phtml"/>
+        </reference>
+        <reference name="product.info">
+            <remove name="html_calendar" />
+            <remove name="options_js"/>
+            <block type="core/template" name="alertoos" as="alertoos" template="catalog/product/view/alertoos.phtml" />
+        </reference>
+        <reference type="productalert/product_view" name="productalert.stock" as="productalert_stock" template="productalert/product/view.phtml">
+            <action method="setSignupLabel" translate="value"><value>Email Me When Back In Stock</value></action>
+        </reference>
+        <reference name="product.info.options.wrapper.bottom">
+            <remove name="product.info.addto" />
+            <remove name="product.clone_prices"/>
+        </reference>
+    </catalog_product_view>
+
+    <!-- ============================ Customer and dashboard ============================================ -->
+    <customer_account translate="label">
+        <reference name="left">
+            <remove name="customer_account_navigation" />
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="core/template" name="dashboard_navigation" as="dashboard_navigation" before="-" template="customer/account/dashboard/dashboard_navigation.phtml">
+                <block type="customer/account_dashboard_hello" name="customer_account_dashboard_hello" as="hello" template="customer/account/dashboard/hello.phtml"/>
+            </block>
+        </reference>
+    </customer_account>
+    <customer_account_index translate="label">
+        <reference name="customer_account_dashboard" >
+            <block type="sales/order_history" name="customer_salest_account_dashboard_order_history" as="orders" template="customer/account/dashboard/orders.phtml" />
+            <block type="core/template" name="customer_account_dashboard_wishlist" as="wishlist" template="customer/account/dashboard/wishlist.phtml" />
+            <block type="cms/block" name="customer-dashboard-promo" as="customer-dashboard-promo"><action method="setBlockId"><block_id>customer-dashboard-promo</block_id></action></block>
+        </reference>
+    </customer_account_index>
+    <wishlist_index_index>
+        <!--<update handle="customer_account"/>-->
+        <reference name="my.account.wrapper">
+            <remove name="customer.account.link.back" />
+        </reference>
+        <!-- ======== Wishlist Columns ======== -->
+        <reference name="customer.wishlist.item.image">
+            <action method="setTitle" translate="title">
+                <title>Product</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.item.info">
+            <action method="setTitle" translate="title">
+                <title>Description</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.item.cart">
+            <action method="setTitle" translate="title">
+                <title>Quantity</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.item.remove">
+            <action method="setTitle" translate="title">
+                <title>Remove</title>
+            </action>
+        </reference>
+        <reference name="customer.wishlist.items">
+            <block type="wishlist/customer_wishlist_item_column_comment" name="customer.wishlist.item.added.on" before="customer.wishlist.item.button" template="wishlist/item/column/added_on.phtml" >
+                <action method="setTitle" translate="title">
+                    <title>Added On</title>
+                </action>
+            </block>
+            <block type="wishlist/customer_wishlist_item_column_cart" name="customer.wishlist.item.button" before="customer.wishlist.item.remove" template="wishlist/item/column/button.phtml" >
+                <action method="setTitle" translate="title">
+                    <title>Add to Bag</title>
+                </action>
+            </block>
+        </reference>
+    </wishlist_index_index>
+    <sales_order_history>
+        <!--<update handle="customer_account"/>-->
+        <reference name="my.account.wrapper">
+            <remove name="customer.account.link.back" />
+        </reference>
+    </sales_order_history>
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <block type="cms/block" name="basket-promo" as="basket-promo"><action method="setBlockId"><block_id>basket-promo</block_id></action></block>
+            <block type="cms/block" name="basket-help" as="basket-help"><action method="setBlockId"><block_id>basket-help</block_id></action></block>
+        </reference>
+    </checkout_cart_index>
+
+    <catalogsearch_result_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </catalogsearch_result_index>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/onepage_checkout.js</name><params/></action>
+            <action method="addItem"><type>skin_js</type><name>onestepcheckout/js/zip_validation.js</name></action>
+        </reference>
+    </checkout_onepage_index>
+    <!--<checkout_onepage_success>
+        <reference name="after_body_start">
+            <block type="core/template" name="ga_traking_coge" template="checkout/ga_traking_coge.phtml" />
+        </reference>
+    </checkout_onepage_success>-->
+
+
+</layout>
+
+
