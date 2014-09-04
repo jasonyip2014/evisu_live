@@ -1,0 +1,49 @@
+<?php
+/* some id has been changed to prevent conflict, remain logic was the same as coupon.html
+ * author@ leo
+ */
+?>
+<style>
+    .deals #discount-coupon-form-header .button {
+        background: none repeat scroll 0 0 #333;
+        border: medium none;
+        color: #fff;
+        cursor: pointer;
+        font: 14px/39px 'open_sanssemibold',Arial,sans-serif;
+        text-transform: uppercase;
+        width: 120px;
+    }
+</style>
+<div class="discount">
+    <h2><?php echo $this->__('Promo Codes') ?></h2>
+    <form id="discount-coupon-form-header" action="<?php echo $this->getUrl('checkout/cart/couponPost') ?>" method="post">
+        <fieldset>
+            <input type="hidden" name="remove" id="remove-coupone-header" value="0" />
+            <?php if(!strlen($this->getCouponCode())): ?>
+            <div class="v-fix"><input placeholder="Enter code/s" class="input-text" id="coupon_code_header" name="coupon_code" value="<?php echo $this->escapeHtml($this->getCouponCode()) ?>" /></div>
+            <button class="button" onclick="discountFormHeader.submit(false)" type="button" value="<?php echo $this->__('Update') ?>"><span><span><?php echo $this->__('Update') ?></span></span></button>
+            <?php else: ?>
+            <div class="v-fix"><input class="input-text" id="coupon_code_header" name="coupon_code" value="<?php echo $this->escapeHtml($this->getCouponCode()) ?>" /></div>
+            <button type="button" class="button" onclick="discountFormHeader.submit(false)" value="<?php echo $this->__('Update') ?>"><span><span><?php echo $this->__('Update') ?></span></span></button>
+            <button  type="button" class="button cancel-btn" onclick="discountFormHeader.submit(true)" value="<?php echo $this->__('Cancel') ?>"><span><span><?php echo $this->__('Cancel') ?></span></span></button>
+            <?php endif;?>
+        </fieldset>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+    var discountFormHeader = new VarienForm('discount-coupon-form-header');
+    discountFormHeader.submit = function (isRemove) {
+        if (isRemove) {
+            $('coupon_code_header').removeClassName('required-entry');
+            $('remove-coupone-header').value = "1";
+        } else {
+            $('coupon_code_header').addClassName('required-entry');
+            $('remove-coupone-header').value = "0";
+        }
+        return VarienForm.prototype.submit.bind(discountFormHeader)();
+    }
+    //]]>
+    </script>
+</div>
+
+
