@@ -5,6 +5,7 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
     const ENCLOSURE = '"';
     const DELIMITER = ',';
     protected $_order;
+    public  $_shipment;
 
     /**
      * Concrete implementation of abstract method to export given orders to csv file in var/export.
@@ -126,27 +127,21 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'cc_type' => 'Credit Card Type',
 
 
-            "order_currency_code"=>"Order Currency Code",
 
             'customer_name' => 'Customer Name',
             'item_name'=>'Item Name',
             'item_status'=>'Item Status',
             'item_sku'=>'Item SKU',
+            'evisu_sku'=>'Evisu SKU',
             'item_options'=>'Item Options',
-            'item_original_price'=>'Item Original Price',
-            'item_price'=>'Item Price',
             'item_qty_ordered'=>'Item Qty Ordered',
             'item_qty_invoiced'=>'Item Qty Invoiced',
             'item_qty_shipped'=>'Item Qty Shipped',
             'item_qty_canceled'=>'Item Qty Canceled',
             'item_qty_refunded'=>'Item Qty Refunded',
-            'item_tax'=>'Item Tax',
-            'item_discount'=>'Item Discount',
-            'item_total'=>'Item Total',
-            'item_count'=>'Order Item Increment',
-
-            'userselect'=>'User Select',
-            'shipping_method' => 'Shipping Method',
+            'item_original_price'=>'Item Original Price',
+            'base_item_original_price'=>'Base Item Original Price',
+            'base_product_original_price'=>'Base Product Original Price',
 
             'billing_company'=>'Billing Company',
             'billing_street'=>'Billing Street',
@@ -168,26 +163,76 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'shipping_country'=>'Shipping Country Name',
             'shipping_telephone'=>'Shipping Phone Number',
 
+
+            'shipping_cost' => 'Order Shipping',
+            'base_shipping_cost' => 'Base Order Shipping',
+            'shipping_cost_on_first_item' => 'Order Shipping (on first item)',
+            'base_shipping_cost_on_first_item' => 'Base Order Shipping (on first item)',
+            //'shipping_cost_per_line' => 'Order Shipping fee (Per Line Item)',
+
+            'base_discount_price_diff'=>'Discount price(diff): base_product_original_price - base_item_price',
+
+
+
+
+            'item_tax'=>'Item Tax',
+            'base_item_tax'=>'Base Item Tax',
+            'tax_code'=>'Tax Code',
+            'item_discount'=>'Item Discount',
+            'base_item_discount'=>'Base Item Discount',
+
+
+
+            'item_price'=>'Item Price',
+            'base_item_price'=>'Base Item Price',
+
+            'item_total'=>'Item Total',
+            'base_item_total'=>'Base Item Total',
+
+            'item_count'=>'Order Item Increment',
+
+
+
+
+            'userselect'=>'User Select',
+            'shipping_method' => 'Shipping Method',
+
+
+
             'byselfstorename'=> 'Delivery Branch Name',
             'byselfstoreid'=>'Delivery Branch Code',
 
             'subtotal' => 'Order Subtotal',
-            'tax' => 'Order Tax',
-            'shipping_cost' => 'Order Shipping',
-            'shipping_cost_per_line' => 'Order Shipping fee (Per Line Item)',
+            'tax_amount' => 'Order Tax',
+            'base_tax_amount' => 'Base Order Tax',
+
             'discount_amount' => 'Order Discount',
+            'base_discount_amount' => 'Base Order Discount',
+
             'grand_total' => 'Order Grand Total',
             'base_grand_total' => 'Order Base Grand Total',
+
             'total_paid' => 'Order Paid',
+            'base_total_paid' => 'Base Order Paid',
+
             'total_refunded' => 'Order Refunded',
+            'base_total_refunded' => 'Base Order Refunded',
+
             'total_due' => 'Order Due',
+            'base_total_due' => 'Base Order Due',
+
             'total_qty_ordered' => 'Total Qty Items Ordered',
+
             'real_grand_total'=>'Grand Total(without redemption)',
+            'base_real_grand_total'=>'Base Grand Total(without redemption)',
+
+            "order_currency_code"=>"Order Currency Code",
+            "base_order_currency_code"=>"Base Order Currency Code",
 
             'status' =>'Order Status',
             'status_last_updated' => 'Status Last Update Day',
 
-
+            'shipment_date'=>'Shipment Date'
 
 
 
@@ -224,6 +269,12 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
         $status_last_updated = $history->getFirstItem()->getCreatedAt();
 
 
+        $tax_info = $order->getFullTaxInfo();
+        $tax_code = array();
+        foreach ($tax_info as $info){
+            array_push($tax_code,$info['id']);
+        }
+        $tax_code = implode(',',$tax_code);
 
         return array(
             'increment_id'=>$order->getRealOrderId(),
@@ -236,17 +287,26 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
             'userselect' => $shippingAddress ? $shippingAddress->getUserselect() : '',
             'shipping_method' =>$order->getShippingMethod(),
             'subtotal' =>  $this->formatPrice($order->getData('subtotal'), $order),
-            'tax' =>$this->formatPrice($order->getData('tax_amount'), $order),
+            'tax_amount' =>$this->formatPrice($order->getData('tax_amount'), $order),
+            'base_tax_amount' =>$this->formatPrice($order->getData('base_tax_amount'), $order),
+            'tax_code'=>$tax_code,
             'order_currency_code' =>$order->getOrderCurrencyCode(),
+            'base_order_currency_code' =>$order->getBaseOrderCurrencyCode(),
             'shipping_cost' =>$this->formatPrice($order->getData('shipping_amount'), $order),
+            'base_shipping_cost' =>$this->formatPrice($order->getData('base_shipping_amount'), $order),
             'discount_amount' =>$this->formatPrice($order->getData('discount_amount'), $order),
+            'base_discount_amount' =>$this->formatPrice($order->getData('base_discount_amount'), $order),
             'grand_total' => $this->formatPrice($order->getData('grand_total'), $order),
             'base_grand_total' =>$this->formatPrice($order->getData('base_grand_total'), $order),
             'total_paid' =>$this->formatPrice($order->getData('total_paid'), $order),
+            'base_total_paid' =>$this->formatPrice($order->getData('base_total_paid'), $order),
             'total_refunded' => $this->formatPrice($order->getData('total_refunded'), $order),
+            'base_total_refunded' => $this->formatPrice($order->getData('base_total_refunded'), $order),
             'total_due' =>$this->formatPrice($order->getData('total_due'), $order),
+            'base_total_due' =>$this->formatPrice($order->getData('base_total_due'), $order),
             'total_qty_ordered' => $this->getTotalQtyItemsOrdered($order),
             'real_grand_total'=> $this->formatPrice($order->getData('subtotal') + $order->getData('shipping_amount') + $order->getData('discount_amount'), $order),
+            'base_real_grand_total'=> $this->formatPrice($order->getData('base_subtotal') + $order->getData('base_shipping_amount') + $order->getData('base_discount_amount'), $order),
             'customer_name' =>$order->getCustomerName(),
             'customer_email'=>$order->getCustomerEmail(),
             'shipping_name'=>$shippingAddress ? $shippingAddress->getName() : '',
@@ -284,27 +344,86 @@ class Cleargo_Orderexport_Model_Export_Orderperrow extends Cleargo_Orderexport_M
     protected function getOrderItemValues($item, $order, $itemInc=1)
     {
 
+
         //get shipping cost 20140813, by line item
         $shipping_cost_per_line = $order->getData('shipping_amount');
+        $shipping_cost_on_first_item = $shipping_cost_per_line;
 
+        $base_shipping_cost_per_line = $order->getData('base_shipping_amount');
+        $base_shipping_cost_on_first_item = $base_shipping_cost_per_line;
+        if ($itemInc!=1){
+            $base_shipping_cost_on_first_item = 0;
+        }
+
+        $store_id = $order->getStoreId();
+
+        $product_id = Mage::getModel('catalog/product')->getIdBySku($item['sku']);
+        $product = Mage::getModel('catalog/product')
+            ->setStoreId($store_id)
+            ->load($product_id);
+        $evisu_sku = $product->getData('evisu_sku');
+
+        //$shipment_date
+        $shipments =$order->getShipmentsCollection();
+
+        $shipDate ='';
+        if (!isset($this->_shipment[$order->getEntityId()])){
+            foreach ($shipments as $shipment){
+               // $shipDate = $shipment->getCreatedAt();
+                $shippedItems = $shipment->getItemsCollection();
+                $this->_shipment[$order->getEntityId()]['created_at'] =  $shipment->getCreatedAt();
+                foreach ($shippedItems as $i) {
+                    $this->_shipment[$order->getEntityId()]['item'][$i->getOrderItemId()] = $i->getOrderItemId();
+                }
+            }
+
+        }
+
+       $created_at = $this->_shipment[$order->getEntityId()]['created_at'];
+        if (isset($this->_shipment[$order->getEntityId()]['item'][$item->getItemId()])
+        ){
+
+            $shipDate = Mage::getModel('core/date')->timestamp(strtotime($created_at));
+            $shipDate = date('Y-m-d',$shipDate);
+        }
+
+        $item_price  = $this->formatPrice($item->getData('price'), $order);
+        $base_product_original_price = $this->formatPrice($product->getPrice(), $order);
+        $base_item_price = $this->formatPrice($item->getData('base_price'), $order);
+        $base_price_diff = ($base_product_original_price - $base_item_price)>0? $base_product_original_price - $base_item_price : 0;
         return array(
             'item_count'=>$itemInc,
             'item_name'=>$item->getName(),
             'item_status'=>$item->getStatus(),
+            'evisu_sku'=> $evisu_sku,
             'item_sku'=>$this->getItemSku($item),
             'item_options'=>$this->getItemOptions($item),
+
             'item_original_price'=>$this->formatPrice($item->getOriginalPrice(), $order),
-            'item_price'=>$this->formatPrice($item->getData('price'), $order),
+            'base_item_original_price'=>$this->formatPrice($item->getBaseOriginalPrice(), $order),
+
+            'base_product_original_price'=>$base_product_original_price,
+
+            'item_price'=>$item_price,
+            'base_item_price'=>$base_item_price,
+            'base_discount_price_diff'=> $base_price_diff,
+
             'item_qty_ordered'=>(int)$item->getQtyOrdered(),
             'item_qty_invoiced'=>(int)$item->getQtyInvoiced(),
             'item_qty_shipped'=>(int)$item->getQtyShipped(),
             'item_qty_canceled'=>(int)$item->getQtyCanceled(),
             'item_qty_refunded'=>(int)$item->getQtyRefunded(),
             'item_tax'=>$this->formatPrice($item->getTaxAmount(), $order),
+            'base_item_tax'=>$this->formatPrice($item->getBaseTaxAmount(), $order),
             'item_discount'=>$this->formatPrice($item->getDiscountAmount(), $order),
+            'base_item_discount'=>$this->formatPrice($item->getBaseDiscountAmount(), $order),
             'item_total'=>$this->formatPrice($this->getItemTotal($item), $order),
+            'base_item_total'=>$this->formatPrice($this->getBaseItemTotal($item), $order),
 
-            'shipping_cost_per_line' =>$this->formatPrice($shipping_cost_per_line, $order),
+            'shipping_cost_on_first_item'=>$this->formatPrice($shipping_cost_on_first_item, $order),
+            'base_shipping_cost_on_first_item'=>$this->formatPrice($base_shipping_cost_on_first_item, $order),
+            //'shipping_cost_per_line' =>$this->formatPrice($shipping_cost_per_line, $order),
+            'shipment_date'=>$shipDate
 
         );
     }
