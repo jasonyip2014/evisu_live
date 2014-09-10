@@ -152,7 +152,9 @@ class Mage_Adminhtml_Block_Sales_Order_Grid extends Mage_Adminhtml_Block_Widget_
     {
         $this->setMassactionIdField('entity_id');
         $this->getMassactionBlock()->setFormFieldName('order_ids');
-        $this->getMassactionBlock()->setUseSelectAll(false);
+        //$this->getMassactionBlock()->setUseSelectAll(false);
+        /* enable select all*/
+        $this->getMassactionBlock()->setUseSelectAll(true);
 
         if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/cancel')) {
             $this->getMassactionBlock()->addItem('cancel_order', array(
