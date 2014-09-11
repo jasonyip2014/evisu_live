@@ -2,7 +2,7 @@
 <layout>
 
     <default>
-        <reference name="after_body_start">
+        <reference name="before_body_end">
             <block type="cleargo_veinteractive/conversion"
                    name="veinteractive_allpage"
                    template="veinteractive/all_page.phtml"
@@ -11,7 +11,7 @@
     </default>
 
     <checkout_onepage_success>
-        <reference name="before_body_end">
+        <reference name="after_body_start">
             <block type="cleargo_veinteractive/conversion"
                    name="veinteractive_success"
                    template="veinteractive/order_success.phtml" />
