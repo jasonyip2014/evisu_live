@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+
+    <default>
+        <reference name="after_body_start">
+            <block type="cleargo_veinteractive/conversion"
+                   name="veinteractive_allpage"
+                   template="veinteractive/all_page.phtml"
+                    />
+        </reference>
+    </default>
+
+    <checkout_onepage_success>
+        <reference name="before_body_end">
+            <block type="cleargo_veinteractive/conversion"
+                   name="veinteractive_success"
+                   template="veinteractive/order_success.phtml" />
+        </reference>
+    </checkout_onepage_success>
+
+
+
+</layout>

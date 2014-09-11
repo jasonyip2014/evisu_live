@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Cleargo_Veinteractive>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Cleargo_Veinteractive>
+    </modules>
+</config>

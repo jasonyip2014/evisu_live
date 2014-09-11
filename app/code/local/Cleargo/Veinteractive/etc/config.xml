@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Cleargo_Veinteractive>
+            <version>0.1.0</version>
+        </Cleargo_Veinteractive>
+    </modules>
+    <global>
+        <helpers>
+            <cleargo_veinteractive>
+                <class>Cleargo_Veinteractive_Helper</class>
+            </cleargo_veinteractive>
+        </helpers>
+        <models>
+            <cleargo_veinteractive>
+                <class>Cleargo_Veinteractive_Model</class>
+            </cleargo_veinteractive>
+        </models>
+        <blocks>
+            <cleargo_veinteractive>
+                <class>Cleargo_Veinteractive_Block</class>
+            </cleargo_veinteractive>
+        </blocks>
+    </global>
+
+
+
+    <frontend>
+        <layout>
+            <updates>
+                <cleargo_veinteractive>
+                    <file>cleargo_veinteractive.xml</file>
+                </cleargo_veinteractive>
+            </updates>
+        </layout>
+    </frontend>
+
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <veinteractive>
+                                            <title>Cleargo_Veinteractive</title>
+                                        </veinteractive>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

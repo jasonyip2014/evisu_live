@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <cleargotab translate="label">
+            <label>Cleargo</label>
+            <sort_order>200</sort_order>
+        </cleargotab>
+    </tabs>
+    <sections>
+        <veinteractive translate="label">
+            <class>Cleargo_Veinteractive</class>
+            <label>Veinteractive</label>
+            <header_css>Cleargo_Veinteractive</header_css>
+            <tab>cleargotab</tab>
+            <show_in_default>1</show_in_default>
+            <sort_order>500</sort_order>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+
+                <general translate="label comment">
+
+                    <label>integration</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>100</sort_order>
+                    <expanded>1</expanded>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <container_tag translate="label comment">
+                            <label>Container Tag - script</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Install on every page]]>
+                            </comment>
+                        </container_tag>
+
+                        <pixel translate="label comment">
+                            <label>Pixel Implementation</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Install on Order Success page ONLY]]>
+                            </comment>
+                        </pixel>
+                    </fields>
+                </general>
+
+
+
+
+            </groups>
+        </veinteractive>
+    </sections>
+
+</config>
