@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Cleargo_Invoice>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Cleargo_Invoice>
+    </modules>
+</config>
