@@ -2,15 +2,19 @@
 <?php $_afHelper = Mage::helper('adminforms/image'); ?>
 <?php $_menu = $this->getMenuItems() ?>
 <?php
-function genMenuHtml($currCategory){
+function genMenuHtml($currCategory, $grouping){
 
     $columnOpen1 = '<li class="level1 parent"><a href="javascript:void(0)" class="title"><span>';
     $columnOpen2 = '</span></a><div class="level-1"><ul class="dropdown-categories">';
     $columnClose = '</ul></div></li>';
 
-    $column_bottoms = $columnOpen1 . 'Bottoms' . $columnOpen2;
-    $column_tops = $columnOpen1 . 'Tops' . $columnOpen2;
-    $column_others = $columnOpen1. 'Others' . $columnOpen2;
+    if($grouping) {
+        $column_bottoms = $columnOpen1 . 'Bottoms' . $columnOpen2;
+        $column_tops = $columnOpen1 . 'Tops' . $columnOpen2;
+        $column_others = $columnOpen1. 'Others' . $columnOpen2;
+    } else {
+        $one_column = '<li class="level1 parent"><div class="level-1" id="dropdown-collaborations"><ul class="dropdown-categories">';
+    }
 
     /*
     $subCategories = $thisCategory->getCollection()
@@ -57,15 +61,24 @@ function genMenuHtml($currCategory){
         elseif($_subCatGrouping == 'others'):
             $column_others .= $_subCatHtml;
         endif;
+
+        if(!$grouping):
+            $one_column .= $_subCatHtml;
+        endif;
     endforeach;
 
-    $column_bottoms .= $columnClose;
-    $column_tops .= $columnClose;
-    $column_others .= $columnClose;
+    if($grouping):
+        $column_bottoms .= $columnClose;
+        $column_tops .= $columnClose;
+        $column_others .= $columnClose;
 
-    echo $column_bottoms;
-    echo $column_tops;
-    echo $column_others;
+        echo $column_bottoms;
+        echo $column_tops;
+        echo $column_others;
+    else:
+        $one_column .= $columnClose;
+        echo $one_column;
+    endif;
 }
 ?>
 
@@ -167,7 +180,7 @@ function genMenuHtml($currCategory){
                             $thisCategory = $_item->getCategory();
 //Zend_debug::dump($thisCategory->debug());
                             if($thisCategory->getData('request_path') == 'evisu'):
-                                genMenuHtml($thisCategory);
+                                genMenuHtml($thisCategory, true);
 
                                 //category : sale
                                 echo '<li class="level1 sale"><a href="' . $this->getUrl() . $thisCategory->getData('request_path')  . '/evisu-sale.html" class="title"><span>Sale</span></a></li>';
@@ -193,7 +206,7 @@ function genMenuHtml($currCategory){
                         foreach ($_menu as $_item):
                             $thisCategory = $_item->getCategory();
                             if($thisCategory->getData('request_path') == 'womens'):
-                                genMenuHtml($thisCategory);
+                                genMenuHtml($thisCategory, true);
 
                                 //category : sale
                                 echo '<li class="level1 sale"><a href="' . $this->getUrl() . $thisCategory->getData('request_path')  . '/womens-sale.html" class="title"><span>Sale</span></a></li>';
@@ -208,6 +221,24 @@ function genMenuHtml($currCategory){
             <?php endif; ?>
         </li>
         <?php endif; ?>
+        <li class="level0 nav-3 top-level" id="nav-collaborations">
+            <a class="main-menu-item" href="javascript:void(0)" title="<?php echo $this->__('​Collaborations'); ?>">
+                <?php echo $this->__('​Collaborations'); ?>
+            </a>
+            <?php if ($_menu): ?>
+                <div class="shop-menu-container no-display">
+                    <ul class="level0">
+                        <?php
+                        foreach ($_menu as $_item):
+                            $thisCategory = $_item->getCategory();
+                            if($thisCategory->getData('request_path') == 'collaborations'):
+                                genMenuHtml($thisCategory, false);
+                            endif; ?>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </li>
         <?php if($cmsMenuItems = Mage::helper('topmenu')->getCmsMenuItems()): ?>
             <?php foreach ($cmsMenuItems as $cmsMenuItem): ?>
                 <li class="level0 top-level" data-url="<?php echo $cmsMenuItem->getUrlKey() ?>">
@@ -227,3 +258,27 @@ function genMenuHtml($currCategory){
     </ul>
 </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+    function moveNavCollaboration() {
+        var headerContainer_width = jQuery("div.branding").width();
+        var headerContainer_padding = jQuery("div.branding").css( "padding-left" );
+        jQuery("li#nav-collaborations div.shop-menu-container > ul").width(headerContainer_width+parseInt(headerContainer_padding)*2);
+        var navContainer_padding = jQuery("div.nav-container").css ( "padding-left" );
+
+        var nav_collaborations_pos_left = jQuery(".nav-3").position().left;
+        var nav_collaborations_margin = jQuery(".nav-3").css ("margin-left");
+        var nav_pos_left = jQuery("#nav").position().left;
+        jQuery("#dropdown-collaborations").css("position", "relative");
+        jQuery("#dropdown-collaborations").css("left", nav_collaborations_pos_left - nav_pos_left + 158 +parseInt(headerContainer_padding) + parseInt(navContainer_padding) + parseInt(nav_collaborations_margin));
+    }
+    jQuery(function(){
+        jQuery(window).resize(function() {
+            moveNavCollaboration();
+        })
+
+        jQuery(window).scroll(function() {
+            moveNavCollaboration();
+        })
+    });
+</script>
