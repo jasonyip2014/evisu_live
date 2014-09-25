@@ -303,7 +303,7 @@ iframe[name="google_conversion_frame"]{display: none;}
     color:#fff;
 }
 .header{background: #fff;}
-.branding-container{height: 101px;}
+.branding-container{height: 98px;}
 .branding{
     margin: 0 auto;
     max-width: 1440px;
@@ -411,7 +411,7 @@ iframe[name="google_conversion_frame"]{display: none;}
 .shop-menu-container{
     width: 100%;
     position:absolute;
-    top:124px;
+    top:122px;
     /* border-top: 1px solid #333; */
     background:url(../images/menu-bg.png) repeat;
     z-index: 1100;
