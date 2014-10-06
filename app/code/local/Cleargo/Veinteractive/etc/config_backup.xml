@@ -23,14 +23,7 @@
         </blocks>
     </global>
 
-    <crontab>
-        <jobs>
-            <cleargo_veinteractive>
-                <schedule><cron_expr>0 0 * * *</cron_expr></schedule>
-                <run><model>cleargo_veinteractive/observer::getDataFeed</model></run>
-            </cleargo_veinteractive>
-        </jobs>
-    </crontab>
+
 
     <frontend>
         <layout>
