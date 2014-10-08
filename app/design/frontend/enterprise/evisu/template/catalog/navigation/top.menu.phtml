@@ -1,0 +1,286 @@
+<?php /* @var $this RonisBT_TopMenu_Block_Navigation */ ?>
+<?php $_afHelper = Mage::helper('adminforms/image'); ?>
+<?php $_menu = $this->getMenuItems() ?>
+<?php
+function genMenuHtml($currCategory, $grouping){
+
+    $columnOpen1 = '<li class="level1 parent"><a href="javascript:void(0)" class="title"><span>';
+    $columnOpen2 = '</span></a><div class="level-1"><ul class="dropdown-categories">';
+    $columnClose = '</ul></div></li>';
+
+    if($grouping) {
+        $column_bottoms = $columnOpen1 . 'Bottoms' . $columnOpen2;
+        $column_tops = $columnOpen1 . 'Tops' . $columnOpen2;
+        $column_others = $columnOpen1. 'Others' . $columnOpen2;
+    } else {
+        $one_column = '<li class="level1 parent"><div class="level-1" id="dropdown-collaborations"><ul class="dropdown-categories">';
+    }
+
+    /*
+    $subCategories = $thisCategory->getCollection()
+        ->addAttributeToFilter('entity_id',array('in'=>explode(",",$thisCategory->getChildren())))
+        ->addAttributeToSort('name','asc');
+    */
+    $subCategories = $currCategory->getCollection()
+        ->addAttributeToSelect('position')
+        ->addAttributeToFilter('main_table.entity_id',array('in'=>explode(",",$currCategory->getChildren())))
+        ->setOrder('main_table.position','asc');
+
+    foreach( $subCategories as $subCat ):
+        //each category data
+
+        $_subCat = Mage::getModel('catalog/category')->load($subCat->getEntityId());
+
+        $_subCat =  Mage::getModel('catalog/category')->getCollection();
+        $_subCat->addAttributeToFilter('main_table.entity_id',$subCat->getEntityId())
+        ->addAttributeToSelect('*')
+        ;
+        //join url key table, fix missing url key
+        $_subCat->getSelect()
+            ->join(
+                array('url_keys' => 'catalog_category_entity_url_key'),
+                'url_keys.entity_id = main_table.entity_id and url_keys.store_id = 0',
+                array('url_key'=>'value')
+            );
+
+
+        $_subCat = $_subCat->getFirstItem();
+
+        $_subCatUrl = Mage::getUrl() . $currCategory->getRequestPath() . '/' . $_subCat->getUrlKey() . '.html';
+        $_subCatName = $_subCat->getName();
+        $_subCatGrouping = strtolower($_subCat->getGrouping());
+        $_subCatPic = "";
+
+        //each menu item list item
+        $_subCatHtml = '<li class="level-2"><div class="category-name"><a href="' . $_subCatUrl . '" title="' . $_subCatName . '" ' . $_subCatPic . '>' . $_subCatName . '</a></div></li>';
+
+        if($_subCatGrouping == 'bottoms'):
+            $column_bottoms .= $_subCatHtml;
+        elseif($_subCatGrouping == 'tops'):
+            $column_tops .= $_subCatHtml;
+        elseif($_subCatGrouping == 'others'):
+            $column_others .= $_subCatHtml;
+        endif;
+
+        if(!$grouping):
+            $one_column .= $_subCatHtml;
+        endif;
+    endforeach;
+
+    if($grouping):
+        $column_bottoms .= $columnClose;
+        $column_tops .= $columnClose;
+        $column_others .= $columnClose;
+
+        echo $column_bottoms;
+        echo $column_tops;
+        echo $column_others;
+    else:
+        $one_column .= $columnClose;
+        echo $one_column;
+    endif;
+}
+?>
+
+<?php if (!empty($_menu)): ?>
+<div class="nav-container">
+    <div class="burger-menu-btn mobile mobile-only" title="<?php echo $this->__('Show Menu') ?>"></div>
+    <div class="burger-menu mobile mobile-only no-display">
+        <div class="mobile-navigation mobile-only">
+            <ul>
+                <!--li class="level0">
+                    <?php echo $this->__('Shop By Brand') ?>
+                    <ul>
+                        <?php echo $this->getBrandMenuHtml() ?>
+                    </ul>
+                </li-->
+                <li class="level0">
+                    <?php echo $this->__('Shop By Product') ?>
+                    <ul>
+                        <?php echo $this->getProductMenuHtml() ?>
+                    </ul>
+                </li>
+                <!--li class="level0">
+                    <a href="<?php echo Mage::getUrl('lookbook') ?>"><?php echo $this->__('Lookbook') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('Collections') ?>"><?php echo $this->__('Collections') ?></a>
+                </li-->
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('blog') ?>"><?php echo $this->__('Blog') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('evisu-rules') ?>"><?php echo $this->__('Evisu Rules') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('contacts') ?>"><?php echo $this->__('Contact Us') ?></a>
+                </li>
+                <li class="level0">
+                    <a href="<?php echo Mage::getUrl('customer/account') ?>"><?php echo $this->__('My Account') ?></a>
+                </li>
+            </ul>
+            <div class="additional-menu">
+                <ul>
+                    <li class="about-us">
+                        <a href="<?php echo Mage::getUrl('about-us') ?>"><?php echo $this->__('About Us') ?></a>
+                    </li><li class="store-locator">
+                        <a href="<?php echo Mage::getUrl('store-locator') ?>"><?php echo $this->__('Store Locator') ?></a>
+                    </li><li class="fit-guide">
+                        <a href="<?php echo Mage::getUrl('fit-guide') ?>"><?php echo $this->__('Fit Guide') ?></a>
+                    </li>
+                </ul>
+            </div>
+            <?php echo $this->getChildHtml('currency_mobile') ?>
+                <div class="mobile-store-switcher">
+                    <div class="caption"><?php echo $this->__('Store') ?></div>
+                    <?php $countries = array('1' => array('value' => 'eu', 'label' => 'UK'), '2' => array('value' => 'us', 'label' => 'US'), '3' => array('value' => 'asia', 'label' => 'AP')); ?>
+                    <ul>
+                        <?php foreach ($countries as $store => $country): ?>
+                            <li class="store-switch-item<?php if(Mage::app()->getStore()->getWebsiteId() == $store): ?> active<?php endIf; ?>" data-value="<?php echo $country['value'] ?>">
+                                <span><?php echo $country['label'] ?></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <script type="text/javascript">
+                        jQuery('.store-switch-item').on('click', function(){
+                            var countryCode = jQuery(this).data('value');
+                            var url = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' ?>';
+                            if(countryCode != 'asia'){
+                                url += countryCode;
+                            }
+                            jQuery.cookie('__switch-store', countryCode, {expires: 366, path: '/' });
+                            setLocation(url);
+                        });
+                    </script>
+                </div>
+        </div>
+    </div>
+    <ul id="nav" class="no-mobile">
+        <li class="level0 top-level" data-url="<?php echo $this->getUrl('new-arrival') ?>">
+            <a href="<?php echo $this->getUrl() . 'new-arrival.html' ?>">
+                <span><?php echo $this->__('new arrival'); ?></span>
+            </a>
+        </li>
+        <li class="level0 nav-1 top-level">
+            <a class="main-menu-item" href="javascript:void(0)" title="<?php echo $this->__('Men'); ?>">
+                <?php echo $this->__('Men'); ?>
+            </a>
+            <?php if ($_menu): ?>
+                <div class="shop-menu-container no-display">
+                    <ul class="level0">
+                        <?php /*
+                        <li class="category-image-holder">
+                            <div class="image-holder">
+                                <?php $defaultMenuImage = $_afHelper->init('catalog/category', Mage::helper('topmenu')->getDefaultCategoryImage(), '')->resize(487, 443); ?>
+                                <img width="487" height="443" id="menu-category-image" src="<?php echo $defaultMenuImage ?>" rel="<?php echo $defaultMenuImage ?>" alt="menu-category-image" />
+                            </div>
+                        </li> */ ?>
+                        <?php
+                        foreach ($_menu as $_item):
+                            $thisCategory = $_item->getCategory();
+//Zend_debug::dump($thisCategory->debug());
+                            if($thisCategory->getData('request_path') == 'evisu'):
+                                genMenuHtml($thisCategory, true);
+
+                                //category : sale
+                                echo '<li class="level1 sale"><a href="' . $this->getUrl() . $thisCategory->getData('request_path')  . '/evisu-sale.html" class="title"><span>Sale</span></a></li>';
+                            ?>
+                                <?php /*$menuThumbnailImage = ''; //$_item->getCategory()->getMenuThumbnailImage() ?>
+                                <?php $customTitle = ($menuThumbnailImage) ? '<img width="67", height="29" src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(67, 29) . '" alt="" />' : false ; ?>
+                                <?php echo $this->drawItem($_item, 1, false)//, $customTitle)*/ ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </li>
+        <?php //if(Mage::app()->getStore()->getStoreId()!=1): ?>
+        <li class="level0 nav-2 top-level">
+            <a class="main-menu-item" href="javascript:void(0)" title="<?php echo $this->__('Women'); ?>">
+                <?php echo $this->__('Women'); ?>
+            </a>
+            <?php if ($_menu): ?>
+                <div class="shop-menu-container no-display">
+                    <ul class="level0">
+                        <?php
+                        foreach ($_menu as $_item):
+                            $thisCategory = $_item->getCategory();
+                            if($thisCategory->getData('request_path') == 'womens'):
+                                genMenuHtml($thisCategory, true);
+
+                                //category : sale
+                                if(Mage::app()->getStore()->getStoreId()!=1):
+                                    echo '<li class="level1 sale"><a href="' . $this->getUrl() . $thisCategory->getData('request_path')  . '/womens-sale.html" class="title"><span>Sale</span></a></li>';
+                                endif;
+                            ?>
+                                <?php /* $menuThumbnailImage = ''; //$_item->getCategory()->getMenuThumbnailImage() ?>
+                                <?php $customTitle = ($menuThumbnailImage) ? '<img width="67", height="29" src="' . $_afHelper->init('catalog/category/', $menuThumbnailImage, '')->resize(67, 29) . '" alt="" />' : false ; ?>
+                                <?php echo $this->drawItem($_item, 1, false)//, $customTitle)*/ ?>
+                            <?php endif; ?>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </li>
+        <?php //endif; ?>
+        <li class="level0 nav-3 top-level" id="nav-collaborations">
+            <a class="main-menu-item" href="javascript:void(0)" title="<?php echo $this->__('​Collaborations'); ?>">
+                <?php echo $this->__('​Collaborations'); ?>
+            </a>
+            <?php if ($_menu): ?>
+                <div class="shop-menu-container no-display">
+                    <ul class="level0">
+                        <?php
+                        foreach ($_menu as $_item):
+                            $thisCategory = $_item->getCategory();
+                            if($thisCategory->getData('request_path') == 'collaborations'):
+                                genMenuHtml($thisCategory, false);
+                            endif; ?>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </li>
+        <?php if($cmsMenuItems = Mage::helper('topmenu')->getCmsMenuItems()): ?>
+            <?php foreach ($cmsMenuItems as $cmsMenuItem): ?>
+                <li class="level0 top-level" data-url="<?php echo $cmsMenuItem->getUrlKey() ?>">
+                    <a href="<?php echo $cmsMenuItem->getUrl() ?>">
+                        <span><?php echo $cmsMenuItem->getName() ?></span>
+                    </a>
+                </li>
+            <?php endForeach; ?>
+        <?php endIf; ?>
+        <?php /*
+            <li class="level0 top-level">
+                <a href="<?php echo Mage::getUrl('blog'); ?>">
+                    <span><?php echo $this->__('Blog'); ?></span>
+                </a>
+            </li>
+        */ ?>
+    </ul>
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    function moveNavCollaboration() {
+        var headerContainer_width = jQuery("div.branding").width();
+        var headerContainer_padding = jQuery("div.branding").css( "padding-left" );
+        jQuery("li#nav-collaborations div.shop-menu-container > ul").width(headerContainer_width+parseInt(headerContainer_padding)*2);
+        var navContainer_padding = jQuery("div.nav-container").css ( "padding-left" );
+
+        var nav_collaborations_pos_left = jQuery(".nav-3").position().left;
+        var nav_collaborations_margin = jQuery(".nav-3").css ("margin-left");
+        var nav_pos_left = jQuery("#nav").position().left;
+        jQuery("#dropdown-collaborations").css("position", "relative");
+        jQuery("#dropdown-collaborations").css("left", nav_collaborations_pos_left - nav_pos_left + 158 +parseInt(headerContainer_padding) + parseInt(navContainer_padding) + parseInt(nav_collaborations_margin));
+    }
+    jQuery(function(){
+        jQuery(window).resize(function() {
+            moveNavCollaboration();
+        })
+
+        jQuery(window).scroll(function() {
+            moveNavCollaboration();
+        })
+    });
+</script>
