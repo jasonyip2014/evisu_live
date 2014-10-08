@@ -1,0 +1,310 @@
+<?php /* @var $this Mage_Catalog_Block_Product_List */ ?>
+<?php /* @var $this Mage_Catalog_Block_Product_List */ ?>
+<?php
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     enterprise_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $_category = Mage::getSingleton('catalog/layer')->getCurrentCategory();
+    $_curPage = $_productCollection->getCurPage();
+//$_productCollection->setCurPage(2);
+//echo $_productCollection->getCurPage();
+?>
+
+<!--lazy load-->
+<script src="<?php echo Mage::getBaseUrl();?>js/jquery.lazyload.min.js" type="text/javascript"></script>
+
+<?php if(!$_productCollection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+    <?php //echo $this->getToolbarHtml() ?>
+    <?php echo $this->getAdditionalHtml() ?>
+    <div class="category-products">
+        <?php // List mode ?>
+        <?php if($this->getMode()!='grid'): ?>
+            <?php $_iterator = 0; ?>
+            <ol class="products-list" id="products-list">
+                <?php foreach ($_productCollection as $_product): ?>
+                    <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+                        <?php // Product Image ?>
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                            <span class="image-holder">
+                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(692, 889); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                            </span>
+                        </a>
+
+                        <?php // Product description ?>
+                        <div class="product-shop">
+                            <div class="f-fix">
+                                <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                                <?php $_productSecondNameStripped = $this->stripTags($_product->getSecondName(), null, true); ?>
+                                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped . " " . $_productNameStripped ?>"><span class="first-name"><?php echo $_productNameStripped ?></span><span><?php echo $_productSecondNameStripped ?></span></a></h2>
+                                <?php if($_product->getTypeId() == 'grouped'): ?>
+                                    <div class="grouped-price">
+                                        <span><?php echo $this->__('started at') ?></span>
+                                        <?php echo Mage::helper('core')->currency(Mage::helper('tax')->getPrice($_product, $_product->getMinPrice(), true), true, false) ?>
+                                    </div>
+                                <?php else: ?>
+                                    <?php echo $this->getPriceHtml($_product, true) ?>
+                                <?php endIf; ?>
+                                <?php if($_product->isSaleable()): ?>
+                                    <a title="<?php echo $this->__('View') ?>" class="button btn-cart" href="<?php echo $_product->getProductUrl() ?>"><span><span><?php echo $this->__('View') ?></span></span></a>
+                                <?php else: ?>
+                                    <?php if ($_product->getIsSalable()): ?>
+                                        <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
+                                    <?php else: ?>
+                                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <ul class="add-to-links">
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                        <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                    <?php endif; ?>
+                                    <?php /*
+                                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                            <li><a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                        <?php endif; ?>
+                                    */ ?>
+                                </ul>
+                                <?php if($_product->getRatingSummary()): ?>
+                                    <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                                <?php endif; ?>
+
+                                <div class="product-description">
+                                    <?php /* echo $_helper->productAttribute($_product, $_product->getDescription(), 'description') */ ?>
+                                    <?php /* <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a> */ ?>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <?php /*
+                <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+            */ ?>
+        <?php else: ?>
+
+            <?php // Grid Mode ?>
+            <?php $_collectionSize = $_productCollection->count() ?>
+            <?php $_columnCount = $this->getColumnCount(); ?>
+            <ul class="products-grid">
+                <?php $i = 0; foreach ($_productCollection as $_product): ?>
+
+                    <?php //Promo Panels ?>
+                    <?php if($i == 6 && $_curPage == 1): ?>
+                        <?php if($_category->getFirstPromoPanelEnabled()): ?>
+                            <li class="first-promo no-mobile">
+                                <div class="promo-text-holder">
+                                    <span class="promo-title"><?php echo $this->stripTags($_category->getFirstPromoPanelTitle()) ?></span>
+                                    <span class="promo-description"><?php echo nl2br($this->stripTags($_category->getFirstPromoPanelDescription())) ?></span>
+                                    <a href="<?php echo $this->stripTags($_category->getFirstPromoPanelTargetUrl()) ?>"><?php echo $this->stripTags($_category->getFirstPromoPanelLinkText()) ?></a>
+                                </div>
+                                <?php $promoImage1 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getFirstPromoPanelImage() , '')->resize(442, 682); ?>
+                                <span class="image-holder">
+                                    <img width="442px" height="682px" src="<?php echo $promoImage1 ?>" alt="<?php echo $this->stripTags($_category->getFirstPromoPanelTitle()) ?>" />
+                                </span>
+                            </li>
+                        <?php endIf; ?>
+                    <?php endif ?>
+                    <?php if($i == 10 && $_curPage == 1): ?>
+                        <?php if($_category->getSecondPromoPanelEnabled()): ?>
+                            <?php $promoImage2 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getSecondPromoPanelImage() , '')->resize(442, 682); ?>
+                            <li class="second-promo no-mobile">
+                                <span class="image-holder">
+                                    <img width="442px" height="682px" src="<?php echo $promoImage2 ?>" alt="<?php echo $this->stripTags($_category->getSecondPromoPanelTitle()) ?>" />
+                                </span>
+                                <div class="second-text-holder">
+                                    <span class="second-title"><?php echo $this->stripTags($_category->getSecondPromoPanelTitle()) ?></span>
+                                    <span class="second-description"><?php echo nl2br($this->stripTags($_category->getSecondPromoPanelDescription())) ?></span>
+                                    <a href="<?php echo $this->stripTags($_category->getSecondPromoPanelTargetUrl()) ?>"><?php echo $this->stripTags($_category->getSecondPromoPanelLinkText()) ?></a>
+                                </div>
+                            </li>
+                        <?php endIf; ?>
+                    <?php endif ?>
+
+                    <?php //Product Item ?>
+                    <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                        <div class="product-image">
+                            <span class="images-holder">
+                                <span class="image-holder img-1">
+                                    <img src="<?php echo Mage::getBaseUrl()?>js/spacer.gif" class="lazy" width="305px" height="392px" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                </span>
+                                <span class="image-holder img-2">
+                                    <img src="<?php echo Mage::getBaseUrl()?>js/spacer.gif" class="lazy" width="305px" height="392px" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
+                                </span>
+                            </span>
+                        </div>
+                        <div class="hover-holder">
+
+                             <div class="hover-wrapper">
+
+                                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="hover-container">
+                                     <?php /*
+                                    <div onmouseout="return false;" onmouseover="return false" class="product-short-description">
+                                        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                                    </div>
+                                    <?php if($_product->isSaleable()): ?>
+                                        <span title="<?php echo $this->__('Quick Buy') ?>" class="button btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><?php echo $this->__('Quick Buy') ?></span> <?php //$this->getAddToCartUrl($_product) ?>
+                                    <?php else: ?>
+                                        <?php if ($_product->getIsSalable()): ?>
+                                            <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
+                                        <?php else: ?>
+                                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                    <ul class="add-to-links">
+                                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                            <li><span title="<?php echo $this->__('Save For Later') ?>" onclick="setLocation('<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>');return false;" class="link-wishlist"><?php echo $this->__('Save For Later') ?></span></li>
+                                        <?php endif; ?>
+
+                                    </ul>
+                              */?>
+                                </a>
+                            </div>
+
+                        </div>
+                        <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                        <?php $_productSecondNameStripped = $this->stripTags($_product->getSecondName(), null, true); ?>
+                        <h2 class="product-name">
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped . " " . $_productNameStripped ?>">
+                                <div class="first-name"><?php echo $_productNameStripped ?></div>
+                                <span class="second-name"><?php echo $_productSecondNameStripped ?></span>
+                            </a>
+                        </h2>
+                        <?php if($_product->getRatingSummary()): ?>
+                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                        <?php endif; ?>
+                        <?php if($_product->getTypeId() == 'grouped'): ?>
+                            <div class="grouped-price">
+                                <span><?php echo $this->__('started at') ?></span>
+                                <?php echo Mage::helper('core')->currency(Mage::helper('tax')->getPrice($_product, $_product->getMinPrice(), true), true, false) ?>
+                            </div>
+                        <?php else: ?>
+                            <?php echo $this->getPriceHtml($_product, true) ?>
+                        <?php endIf; ?>
+                    </li>
+                    <?php $i++; ?>
+                <?php endforeach ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+    <div class="ajax-loader" style="display: none; font-size: 16px; clear: both; width: 100%; padding: 20px 0px; text-align: center;"><img src="<?php echo $this->getSkinUrl('images/ajax-loader01.gif'); ?>" alt="" /></div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("img.lazy").lazyload({
+        });
+    });
+
+    jQuery(document).ready(function(){
+        /*
+                 * queryParameters -> handles the query string parameters
+                 * queryString -> the query string without the fist '?' character
+                 * re -> the regular expression
+                 * m -> holds the string matching the regular expression
+                 */
+        var queryParameters = {}, queryString = location.search.substring(1),
+            re = /([^&=]+)=([^&]*)/g, m;
+
+        // Creates a map with the query string parameters
+        while (m = re.exec(queryString)) {
+            queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+
+        //List Mode
+        var displayMode = '<?php echo $this->getMode(); ?>';
+        //Product Collectioon Last Page Number
+        var ajaxLastPageNum = parseInt(<?php echo $_productCollection->getLastPageNumber(); ?>);
+        //console.log(ajaxLastPageNum);
+
+        //Cleargo Ajax Pageloader page counter
+        var ajaxPageCounter = 2;
+
+        // Add new parameters or update existing ones
+        if(queryParameters['p']) {
+            ajaxPageCounter = parseInt(queryParameters['p']) + 1;
+        }
+        //Identify the ajax request is sent by Cleargo Pageloader
+        queryParameters['page'] = true;
+
+        var ajaxPageLoading = function(){
+            if (jQuery(this).scrollTop() + 100 >= jQuery("div.category-products .product-name").last().position().top){
+                if (ajaxPageCounter > ajaxLastPageNum) {
+                    jQuery(window).off('scroll', ajaxPageLoading);
+                    jQuery(window).off('touchmove', ajaxPageLoading);
+                    return;
+                }
+                if (jQuery.active <= 0) {
+                    jQuery(".ajax-loader").show();
+                    queryParameters['p'] = ajaxPageCounter;
+                    var nextPageUrl = document.location.protocol +"//"+ document.location.hostname + document.location.pathname + "?" + jQuery.param(queryParameters);
+                    if (nextPageUrl == undefined) {
+                        jQuery(".ajax-loader").hide();
+                    } else {
+                        jQuery.ajax({
+                            url: nextPageUrl,
+                            success: function(data) {
+                                jQuery(".ajax-loader").hide();
+                                if (displayMode == "grid") {
+                                    jQuery('.products-grid').append(jQuery(data).find('.products-grid').html());
+                                    jQuery("img.lazy").lazyload({});
+                                } else {
+                                    jQuery('.products-list').append(jQuery(data).find('.products-list').html())
+                                }
+                                ajaxPageCounter++;
+                                console.log(data);
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                if (XMLHttpRequest.status == 0) {
+                                    console.log(' Check Your Network.');
+                                } else if (XMLHttpRequest.status == 404) {
+                                    console.log('Requested URL not found.');
+                                } else if (XMLHttpRequest.status == 500) {
+                                    console.log('Internel Server Error.');
+                                }  else {
+                                    console.log('Unknow Error.\n' + XMLHttpRequest.responseText);
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
+        jQuery(window).on('scroll', ajaxPageLoading);
+        jQuery(window).on('touchmove', ajaxPageLoading);
+    });
+</script>
