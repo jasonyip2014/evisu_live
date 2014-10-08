@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Cleargo_Pageloader>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Cleargo_Pageloader>
+    </modules>
+</config>
