@@ -11,6 +11,14 @@
                 <class>Cleargo_Pageloader_Model</class>
             </cleargo_pageloader>
         </models>
+
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <product_list_toolbar>Cleargo_Pageloader_Block_Product_List_Toolbar</product_list_toolbar>
+                </rewrite>
+            </catalog>
+        </blocks>
     </global>
     <frontend>
         <events>
