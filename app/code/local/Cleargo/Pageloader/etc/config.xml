@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cleargo_Pageloader>
+            <version>0.1.0</version>
+        </Cleargo_Pageloader>
+    </modules>
+    <global>
+        <models>
+            <cleargo_pageloader>
+                <class>Cleargo_Pageloader_Model</class>
+            </cleargo_pageloader>
+        </models>
+
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <product_list_toolbar>Cleargo_Pageloader_Block_Product_List_Toolbar</product_list_toolbar>
+                </rewrite>
+            </catalog>
+        </blocks>
+    </global>
+    <frontend>
+        <events>
+            <cleargo_page_loading_before>
+                <observers>
+                    <cleargo_pageloader>
+                        <class>cleargo_pageloader/observer</class>
+                        <method>newPageLoadBefore</method>
+                    </cleargo_pageloader>
+                </observers>
+            </cleargo_page_loading_before>
+            <controller_action_layout_generate_xml_before>
+                <observers>
+                    <cleargo_pageloader>
+                        <class>cleargo_pageloader/observer</class>
+                        <method>controllerActionLayoutLoadBefore</method>
+                    </cleargo_pageloader>
+                </observers>
+            </controller_action_layout_generate_xml_before>
+        </events>
+    </frontend>
+</config>
