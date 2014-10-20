@@ -34,12 +34,10 @@
  */
 ?>
 <?php
-    $_productCollection=$this->getLoadedProductCollection();
-    $_helper = $this->helper('catalog/output');
-    $_category = Mage::getSingleton('catalog/layer')->getCurrentCategory();
-    $_curPage = $_productCollection->getCurPage();
-//$_productCollection->setCurPage(2);
-//echo $_productCollection->getCurPage();
+$_productCollection=$this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$_category = Mage::getSingleton('catalog/layer')->getCurrentCategory();
+$_curPage = $_productCollection->getCurPage();
 ?>
 
 <!--lazy load-->
@@ -159,19 +157,19 @@
                         <div class="product-image">
                             <span class="images-holder">
                                 <span class="image-holder img-1">
-                                    <img src="<?php echo Mage::getBaseUrl()?>js/spacer.gif" class="lazy" width="305px" height="392px" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" width="305px" height="392px" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                                 </span>
                                 <span class="image-holder img-2">
-                                    <img src="<?php echo Mage::getBaseUrl()?>js/spacer.gif" class="lazy" width="305px" height="392px" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" width="305px" height="392px" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
                                 </span>
                             </span>
                         </div>
                         <div class="hover-holder">
 
-                             <div class="hover-wrapper">
+                            <div class="hover-wrapper">
 
-                                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="hover-container">
-                                     <?php /*
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="hover-container">
+                                    <?php /*
                                     <div onmouseout="return false;" onmouseover="return false" class="product-short-description">
                                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                                     </div>
@@ -224,18 +222,14 @@
 <?php endif; ?>
 
 <script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery("img.lazy").lazyload({
-        });
-    });
 
     jQuery(document).ready(function(){
         /*
-                 * queryParameters -> handles the query string parameters
-                 * queryString -> the query string without the fist '?' character
-                 * re -> the regular expression
-                 * m -> holds the string matching the regular expression
-                 */
+         * queryParameters -> handles the query string parameters
+         * queryString -> the query string without the fist '?' character
+         * re -> the regular expression
+         * m -> holds the string matching the regular expression
+         */
         var queryParameters = {}, queryString = location.search.substring(1),
             re = /([^&=]+)=([^&]*)/g, m;
 
@@ -248,7 +242,6 @@
         var displayMode = '<?php echo $this->getMode(); ?>';
         //Product Collectioon Last Page Number
         var ajaxLastPageNum = parseInt(<?php echo $_productCollection->getLastPageNumber(); ?>);
-        //console.log(ajaxLastPageNum);
 
         //Cleargo Ajax Pageloader page counter
         var ajaxPageCounter = 2;
@@ -260,8 +253,10 @@
         //Identify the ajax request is sent by Cleargo Pageloader
         queryParameters['page'] = true;
 
-        var ajaxPageLoading = function(){
-            if (jQuery(this).scrollTop() + 100 >= jQuery("div.category-products .product-name").last().position().top){
+        var ajaxPageLoading = function(event){
+            if ((jQuery(this).scrollTop() + jQuery(this).height() + 100 >= jQuery("div.footer-container").position().top) && event.type == "scroll" || (jQuery(this).scrollTop() + jQuery(this).height() + 650 >= jQuery("div.footer-container").position().top) && event.type == "touchmove"){
+            //if ((jQuery(this).scrollTop() + jQuery(this).height() + 100 >= jQuery("div.footer-container").position().top) && event.type == "scroll" || (jQuery(this).scrollTop() + 100 >= jQuery("div.category-products .product-name").last().position().top) && event.type == "touchmove"){
+                //console.log(jQuery(window).scrollTop()+", "+jQuery("div.category-products .product-name").children().eq(jQuery("div.category-products .product-name").length - 1).position().top+", "+jQuery("div.category-products .product-name").length);
                 if (ajaxPageCounter > ajaxLastPageNum) {
                     jQuery(window).off('scroll', ajaxPageLoading);
                     jQuery(window).off('touchmove', ajaxPageLoading);
@@ -280,12 +275,11 @@
                                 jQuery(".ajax-loader").hide();
                                 if (displayMode == "grid") {
                                     jQuery('.products-grid').append(jQuery(data).find('.products-grid').html());
-                                    jQuery("img.lazy").lazyload({});
+                                    //jQuery("img.lazy").lazyload({});
                                 } else {
                                     jQuery('.products-list').append(jQuery(data).find('.products-list').html())
                                 }
                                 ajaxPageCounter++;
-                                console.log(data);
                             },
                             error: function(XMLHttpRequest, textStatus, errorThrown) {
                                 if (XMLHttpRequest.status == 0) {
