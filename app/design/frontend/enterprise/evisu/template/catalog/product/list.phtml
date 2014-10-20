@@ -34,9 +34,10 @@
  */
 ?>
 <?php
-    $_productCollection=$this->getLoadedProductCollection();
-    $_helper = $this->helper('catalog/output');
-    $_category = Mage::getSingleton('catalog/layer')->getCurrentCategory();
+$_productCollection=$this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$_category = Mage::getSingleton('catalog/layer')->getCurrentCategory();
+$_curPage = $_productCollection->getCurPage();
 ?>
 
 <!--lazy load-->
@@ -120,7 +121,7 @@
                 <?php $i = 0; foreach ($_productCollection as $_product): ?>
 
                     <?php //Promo Panels ?>
-                    <?php if($i == 6): ?>
+                    <?php if($i == 6 && $_curPage == 1): ?>
                         <?php if($_category->getFirstPromoPanelEnabled()): ?>
                             <li class="first-promo no-mobile">
                                 <div class="promo-text-holder">
@@ -135,7 +136,7 @@
                             </li>
                         <?php endIf; ?>
                     <?php endif ?>
-                    <?php if($i == 10): ?>
+                    <?php if($i == 10 && $_curPage == 1): ?>
                         <?php if($_category->getSecondPromoPanelEnabled()): ?>
                             <?php $promoImage2 = Mage::helper('adminforms/image')->init('catalog/category', $_category->getSecondPromoPanelImage() , '')->resize(442, 682); ?>
                             <li class="second-promo no-mobile">
@@ -156,19 +157,19 @@
                         <div class="product-image">
                             <span class="images-holder">
                                 <span class="image-holder img-1">
-                                    <img src="<?php echo Mage::getBaseUrl()?>js/spacer.gif" class="lazy" width="305px" height="392px" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" width="305px" height="392px" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                                 </span>
                                 <span class="image-holder img-2">
-                                    <img src="<?php echo Mage::getBaseUrl()?>js/spacer.gif" class="lazy" width="305px" height="392px" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
+                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'alt_small_image')->backgroundColor(array(255, 255, 255))->resize(305,392); ?>" width="305px" height="392px" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'alt_small_image'), null, true) ?>" />
                                 </span>
                             </span>
                         </div>
                         <div class="hover-holder">
 
-                             <div class="hover-wrapper">
+                            <div class="hover-wrapper">
 
-                                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="hover-container">
-                                     <?php /*
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="hover-container">
+                                    <?php /*
                                     <div onmouseout="return false;" onmouseover="return false" class="product-short-description">
                                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                                     </div>
@@ -217,11 +218,87 @@
             </ul>
         <?php endif; ?>
     </div>
+    <div class="ajax-loader" style="display: none; font-size: 16px; clear: both; width: 100%; padding: 20px 0px; text-align: center;"><img src="<?php echo $this->getSkinUrl('images/ajax-loader01.gif'); ?>" alt="" /></div>
 <?php endif; ?>
 
-<script>
+<script type="text/javascript">
+
     jQuery(document).ready(function(){
-        jQuery("img.lazy").lazyload({
-        });
-    })
+        /*
+         * queryParameters -> handles the query string parameters
+         * queryString -> the query string without the fist '?' character
+         * re -> the regular expression
+         * m -> holds the string matching the regular expression
+         */
+        var queryParameters = {}, queryString = location.search.substring(1),
+            re = /([^&=]+)=([^&]*)/g, m;
+
+        // Creates a map with the query string parameters
+        while (m = re.exec(queryString)) {
+            queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+
+        //List Mode
+        var displayMode = '<?php echo $this->getMode(); ?>';
+        //Product Collectioon Last Page Number
+        var ajaxLastPageNum = parseInt(<?php echo $_productCollection->getLastPageNumber(); ?>);
+
+        //Cleargo Ajax Pageloader page counter
+        var ajaxPageCounter = 2;
+
+        // Add new parameters or update existing ones
+        if(queryParameters['p']) {
+            ajaxPageCounter = parseInt(queryParameters['p']) + 1;
+        }
+        //Identify the ajax request is sent by Cleargo Pageloader
+        queryParameters['page'] = true;
+
+        var ajaxPageLoading = function(event){
+            if ((jQuery(this).scrollTop() + jQuery(this).height() + 100 >= jQuery("div.footer-container").position().top) && event.type == "scroll" || (jQuery(this).scrollTop() + jQuery(this).height() + 650 >= jQuery("div.footer-container").position().top) && event.type == "touchmove"){
+                //if ((jQuery(this).scrollTop() + jQuery(this).height() + 100 >= jQuery("div.footer-container").position().top) && event.type == "scroll" || (jQuery(this).scrollTop() + 100 >= jQuery("div.category-products .product-name").last().position().top) && event.type == "touchmove"){
+                //console.log(jQuery(window).scrollTop()+", "+jQuery("div.category-products .product-name").children().eq(jQuery("div.category-products .product-name").length - 1).position().top+", "+jQuery("div.category-products .product-name").length);
+                if (ajaxPageCounter > ajaxLastPageNum) {
+                    jQuery(window).off('scroll', ajaxPageLoading);
+                    jQuery(window).off('touchmove', ajaxPageLoading);
+                    return;
+                }
+                if (jQuery.active <= 0) {
+                    jQuery(".ajax-loader").show();
+                    queryParameters['p'] = ajaxPageCounter;
+                    var nextPageUrl = document.location.protocol +"//"+ document.location.hostname + document.location.pathname + "?" + jQuery.param(queryParameters);
+                    if (nextPageUrl == undefined) {
+                        jQuery(".ajax-loader").hide();
+                    } else {
+                        jQuery.ajax({
+                            url: nextPageUrl,
+                            success: function(data) {
+                                jQuery(".ajax-loader").hide();
+                                if (displayMode == "grid") {
+                                    jQuery('.products-grid').append(jQuery(data).find('.products-grid').html());
+                                    //jQuery("img.lazy").lazyload({});
+                                } else {
+                                    jQuery('.products-list').append(jQuery(data).find('.products-list').html())
+                                }
+                                ajaxPageCounter++;
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                if (XMLHttpRequest.status == 0) {
+                                    console.log(' Check Your Network.');
+                                } else if (XMLHttpRequest.status == 404) {
+                                    console.log('Requested URL not found.');
+                                } else if (XMLHttpRequest.status == 500) {
+                                    console.log('Internel Server Error.');
+                                }  else {
+                                    console.log('Unknow Error.\n' + XMLHttpRequest.responseText);
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
+        jQuery(window).on('scroll', ajaxPageLoading);
+        jQuery(window).on('touchmove', ajaxPageLoading);
+    });
 </script>

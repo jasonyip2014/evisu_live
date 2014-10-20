@@ -30,6 +30,7 @@
                     </cleargo_pageloader>
                 </observers>
             </cleargo_page_loading_before>
+
             <controller_action_layout_generate_xml_before>
                 <observers>
                     <cleargo_pageloader>

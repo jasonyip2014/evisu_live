@@ -29,6 +29,7 @@ class Cleargo_Pageloader_Block_Product_List_Toolbar extends Mage_Catalog_Block_P
             $this->_collection->setOrder($this->getCurrentOrder(), $this->getCurrentDirection());
             $this->_collection->setOrder('entity_id', $this->getCurrentDirection());
         }
+
         return $this;
     }
 }
